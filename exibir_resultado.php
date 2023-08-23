@@ -63,7 +63,8 @@ foreach ($xr as $key => $a) {
         $rb->execute();
         $nb = $rb->fetchAll();
         foreach ($nb as $key => $nbb) {
-          echo $nbb["nome"]; 
+          $nomeM = strtoupper($nbb["nome"]);
+          echo $nomeM;  
         }
          
          ?>
