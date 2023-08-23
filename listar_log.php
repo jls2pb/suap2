@@ -18,6 +18,7 @@ if(isset($_SESSION['cpf']) == FALSE){
 include "head.php";
 include "menu.php";
 include "navibar.php";
+include "footer.php";
 ?>
 <h2 class="mb-4">AÇÕES REALIZADAS</h2>
 <p><a class="link-offset-2 link-underline link-underline-opacity-0" href="listar.php">VOLTAR</a></p>

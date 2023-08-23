@@ -12,6 +12,7 @@ $resultado = $conexao->prepare($sql);
 $resultado->execute();
 include "menu.php";
 include "navibar.php";
+include "footer.php";
 ?>
 <h3 class="mb-5 text-center"> CADASTRO DE PACIENTE </h3>
 <form method = "POST" action = "registro_paciente.php">  

@@ -1,6 +1,7 @@
 ﻿<?php 
 require_once("conexao.php");
 require_once("head.php");
+include "footer.php";
 session_start();
 if(isset($_SESSION['cpf']) == FALSE){
     header("Location:index.php");

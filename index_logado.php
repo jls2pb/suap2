@@ -29,6 +29,7 @@ if(isset($_SESSION['cpf']) == FALSE){
 include "head.php";
 include "menu.php";
 include "navibar.php";
+include "footer.php";
 ?>
 <h2 class="mb-4">SUAP - Sistema Unico de Acompanhamento de Procedimentos</h2>
 <table class="table table-striped">
