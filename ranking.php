@@ -13,6 +13,10 @@ $hoje = date('d/m/Y');
         }, 5000); // 5000 milissegundos = 5 segundos
 </script>
 <div >
+    <center>
+        <img src="logo_ti.png" width = "250px" >
+    </center>
+    <br>
 <?php 
 $qdp = "SELECT COUNT(*) AS quantidade FROM tb_log WHERE acao = 'CADASTRADO'";
 $rqdp = $conexao->prepare($qdp);
