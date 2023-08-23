@@ -48,7 +48,7 @@ if(isset($_POST["cpf"])){
               <form method = "POST" action = "">
                   <input type="hidden" id="nome" name = "nome" class="form-control form-control-lg" required/>
                   <div class="form-outline mb-4">
-                 CPF: </label>    
+                  <label class="form-label" for="senha" style="color: black;">CPF: </label>    
                   <input type="text" id="cpf" name = "cpf" class="form-control form-control-lg" required/>
                   </div>
 
