@@ -13,15 +13,16 @@ include "head.php";
     <div class="col-12 col-md-8 col-lg-6 col-xl-5">
 
                     <div class="row">
+                    <div class="col d-flex align-items-center justify-content-center">
+                        <img src="logo_ti2.png" width = "250px" >
+                      </div>
                       <div class="col text-center">
                         <img src="iconw2.png" width = "152px">
                       </div>
-                      <div class="col d-flex align-items-center justify-content-center">
-                        <img src="logo_ti2.png" width = "250px" >
-                      </div>
+                      
                     </div>
     
-          <div class = "container" style = "margin-top:20px">   
+          <br>  
               
           <form method = "POST" action = "cadastrar_usuario.php">
                     <div class="form-outline mb-4">
@@ -42,7 +43,7 @@ include "head.php";
                 
                     <a class="btn btn-primary  btn-lg btn-block" href="index.php" role="button">VOLTAR</a>
                 </form>
-          </div>
+          
         </div>
   </div>
 </div>
