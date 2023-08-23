@@ -13,6 +13,7 @@ $n = $_GET["n"];
 include "head.php";
 include "menu.php";
 include "navibar.php";
+include "footer.php";
 ?>
 <h2 class="mb-4">CADASTRO DE PROCEDIMENTO</h2>
 <form method = "POST" action = "registro_procedimento.php">  
