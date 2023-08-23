@@ -2,7 +2,7 @@
 date_default_timezone_set('America/Sao_Paulo');
 session_start();
 include "head.php";
-
+include "conexao.php";
 $hoje = date('d/m/Y');
 ?>
 <script>
@@ -11,7 +11,7 @@ $hoje = date('d/m/Y');
             location.reload();
         }, 5000); // 5000 milissegundos = 5 segundos
 </script>
-
+<div >
 <?php 
 $qdp = "SELECT COUNT(*) AS quantidade FROM tb_log WHERE acao = 'CADASTRADO'";
 $rqdp = $conexao->prepare($qdp);
@@ -109,4 +109,4 @@ foreach ($xr as $key => $a) {
     ?> 
   </tbody>
 </table>
-
+</div>
