@@ -1,17 +1,19 @@
+
 <?php
 session_start();
 if(isset($_SESSION['cpf']) == FALSE){
     header("Location:index.php");
 }
+include "menu.php";
+include "navibar.php";
+include "footer.php";
+require_once("head.php");
+$cpf_logado = $_SESSION['cpf'];
+
+require_once("conexao.php");
  $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
-
  $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
- require_once("head.php");
- require_once("conexao.php");
-
  $cpf_logado = $_SESSION['cpf'];
-
-
  //Setar a quantidade de registros por página
  $limite_resultado = 6;
 
@@ -25,13 +27,6 @@ if(isset($_SESSION['cpf']) == FALSE){
 
 ?>
 
-<?php 
-include "head.php";
-include "menu.php";
-include "navibar.php";
-include "footer.php";
-?>
-<h2 class="mb-4">SUAP - Sistema Unico de Acompanhamento de Procedimentos</h2>
 <table class="table table-striped">
         <thead>
             <tr>

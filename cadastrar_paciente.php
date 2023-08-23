@@ -3,6 +3,10 @@ session_start();
 if(isset($_SESSION['cpf']) == FALSE){
     header("Location:index.php");
 }
+include "menu.php";
+include "navibar.php";
+include "footer.php";
+
 
 $cpf_logado = $_SESSION['cpf'];
 require_once("head.php");
@@ -10,9 +14,6 @@ require_once("conexao.php");
 $sql = "SELECT * FROM uaps ORDER BY nome_uaps ASC";
 $resultado = $conexao->prepare($sql);
 $resultado->execute();
-include "menu.php";
-include "navibar.php";
-include "footer.php";
 ?>
 <h3 class="mb-5 text-center"> CADASTRO DE PACIENTE </h3>
 <form method = "POST" action = "registro_paciente.php">  

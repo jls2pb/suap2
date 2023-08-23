@@ -24,7 +24,7 @@ include "footer.php";
 
             <div class="form-outline mb-4">
             <label class="form-label">Profissional</label>
-            <input type="text" name = "profissional" class="form-control form-control-lg"/>
+            <input type="text" name = "profissional" class="form-control form-control-lg" oninput="handleInput(event)"/>
             </div>
             <div class="row">
                 <div class="col-8">     

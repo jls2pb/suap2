@@ -1,12 +1,18 @@
 ﻿<?php 
-require_once("head.php");
-require_once("conexao.php");
-include "footer.php";
+
+
 session_start();
 if(isset($_SESSION['cpf']) == FALSE){
     header("Location:index.php");
 }
+include "menu.php";
+include "navibar.php";
+include "footer.php";
+
+
 $cpf_logado = $_SESSION['cpf'];
+require_once("head.php");
+require_once("conexao.php");
 $id = $_SESSION['id'];
 $sql = "SELECT * FROM tabela WHERE cod = $id LIMIT 1";
 $resultado = $conexao->prepare($sql);
@@ -18,13 +24,6 @@ if($resultado->execute()){
 }else{
     echo "erro ao coletar os dados";
 }
-?>
-
-
-<?php 
-include "head.php";
-include "menu.php";
-include "navibar.php";
 ?>
 <h2 class="mb-4">EDITAR PACIENTE</h2>
 <form method = "POST" action = "edita_paciente.php">  

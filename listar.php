@@ -1,7 +1,5 @@
 ﻿<?php 
-require_once("conexao.php");
-require_once("head.php");
-include "footer.php";
+
 session_start();
 if(isset($_SESSION['cpf']) == FALSE){
     header("Location:index.php");
@@ -9,7 +7,14 @@ if(isset($_SESSION['cpf']) == FALSE){
 if(isset($_GET["id"])){
   $_SESSION['id'] = $_GET["id"];
 }
+include "menu.php";
+include "navibar.php";
+include "footer.php";
+
+
 $cpf_logado = $_SESSION['cpf'];
+require_once("head.php");
+require_once("conexao.php");
 $nome_paciente = $_SESSION['id'];
 $sql = "SELECT * FROM tabela WHERE cod = '$nome_paciente'";
 $resultado = $conexao->prepare($sql);
@@ -20,10 +25,6 @@ if($resultado->execute()){
 }
 ?>
 
-<?php 
-include "menu.php";
-include "navibar.php";
-?>
 <h2 class="mb-4">DADOS COMPLETOS DO PACIENTE</h2>
 
 <?php 
