@@ -1,11 +1,18 @@
 ﻿<?php 
-require_once("head.php");
 require_once("conexao.php");
+
+include "menu.php";
+include "navibar.php";
+include "footer.php";
+require_once("head.php");
+
 session_start();
 if(isset($_SESSION['cpf']) == FALSE){
     header("Location:index.php");
 }
+
 $cpf_logado = $_SESSION['cpf'];
+
 $id = $_GET["id"];
 $sql = "SELECT * FROM procedimentos WHERE id = $id ";
 $resultado = $conexao->prepare($sql);
@@ -16,12 +23,6 @@ if($resultado->execute()){
 }
 ?>
 
-
-<?php 
-include "head.php";
-include "menu.php";
-include "navibar.php";
-?>
 <h2 class="mb-4">EDIÇÃO DE PROCEDIMENTO</h2>
 <form method = "POST" action = "edita_procedimento.php">  
           <?php 
