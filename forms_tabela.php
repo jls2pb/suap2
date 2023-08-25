@@ -13,28 +13,28 @@ include "footer.php";
     <form method = "POST" action = "cadastrar_tabela.php">
         <strong>LOCAL DE AGENDAMENTO: </strong>
         <input type = "text" class="form-control" name = "local" oninput="handleInput(event)">
-        <button type="submit" style = "margin-top:7px" class="btn btn-success">Cadastrar</button>
+        <button type="submit" style = "margin-top:7px;background-color: DarkBlue" class="btn text-white">CADASTRAR</button>
     </form>  
     </div>
     <div class="col-sm">
     <form method = "POST" action = "cadastrar_tabela.php">    
         <strong>PROCEDIMENTOS:</strong>
         <input type = "text" class="form-control" name = "procedimento" oninput="handleInput(event)">
-        <button type="submit" style = "margin-top:7px" class="btn btn-success">Cadastrar</button>
+        <button type="submit" style = "margin-top:7px;background-color: DarkBlue" class="btn text-white">CADASTRAR</button>
     </form>  
     </div>
     <div class="col-sm">
     <form method = "POST" action = "cadastrar_tabela.php">    
         <strong>ACS:</strong>
         <input type = "text" class="form-control" name = "acs" oninput="handleInput(event)">
-        <button type="submit" style = "margin-top:7px" class="btn btn-success">Cadastrar</button>
+        <button type="submit" style = "margin-top:7px;background-color: DarkBlue" class="btn text-white">CADASTRAR</button>
     </form>
     </div>
     <div class="col-sm">
     <form method = "POST" action = "cadastrar_tabela.php">
         <strong>UBS:</strong>
         <input type = "text" class="form-control" name = "ubs" oninput="handleInput(event)">
-        <button type="submit" style = "margin-top:7px" class="btn btn-success">Cadastrar</button>
+        <button type="submit" style = "margin-top:7px;background-color: DarkBlue" class="btn text-white">CADASTRAR</button>
     </form>
     </div>
   </div>

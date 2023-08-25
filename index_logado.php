@@ -4,10 +4,11 @@ session_start();
 if(isset($_SESSION['cpf']) == FALSE){
     header("Location:index.php");
 }
+require_once("head.php");
 include "menu.php";
 include "navibar.php";
 include "footer.php";
-require_once("head.php");
+
 $cpf_logado = $_SESSION['cpf'];
 
 require_once("conexao.php");
@@ -57,7 +58,7 @@ require_once("conexao.php");
             <td><?php echo $d["cpf"]; ?></td>
             <td><?php echo $d["nascimento"] ?></td>
             <td>
-                <a class="btn btn-success text-white" href = "listar.php?id=<?php echo $d["cod"];?>" role="button">VER MAIS</a>
+                <a class="btn text-white" style = "background-color: DarkBlue" href = "listar.php?id=<?php echo $d["cod"];?>" role="button">VER MAIS</a>
             </td>
             </tr>
             <?php

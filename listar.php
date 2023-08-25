@@ -7,13 +7,14 @@ if(isset($_SESSION['cpf']) == FALSE){
 if(isset($_GET["id"])){
   $_SESSION['id'] = $_GET["id"];
 }
+require_once("head.php");
 include "menu.php";
 include "navibar.php";
 include "footer.php";
 
 
 $cpf_logado = $_SESSION['cpf'];
-require_once("head.php");
+
 require_once("conexao.php");
 $nome_paciente = $_SESSION['id'];
 $sql = "SELECT * FROM tabela WHERE cod = '$nome_paciente'";
@@ -90,7 +91,7 @@ if($resultado->execute()){
       <br>
       <div class="row text-center">
         <div class="col">
-          <a class="btn btn-success text-white" href="form_edita.php" role="button">EDITAR PACIENTE</a>
+          <a class="btn text-white" style = "background-color: DarkBlue" href="form_edita.php" role="button">EDITAR PACIENTE</a>
           <a class="btn btn-primary text-white" href="cadastrar_procedimento.php?n=<?php echo $y["nome_paciente"]; ?>" role="button">NOVO PROCEDIMENTO</a>
           <a class="btn btn-info text-white" href="listar_log.php" role="button">ATIVIDADES</a>
           <a class="btn btn-danger text-white" href="excluir_paciente.php" role="button">EXCLUIR CADASTRO</a>
@@ -146,7 +147,7 @@ if($resultado->execute()){
             <td><?php echo $saida ?></td>
             <td><?php echo $agendamento ?></td>
             <td><?php echo $y2["local_do_agendamento"]; ?></td>
-            <td><a class="btn btn-success text-white" href="form_edita_procedimento.php?id=<?php echo $y2['id'] ?>" role="button"> EDITAR </a></td>
+            <td><a class="btn text-white" style = "background-color: DarkBlue" href="form_edita_procedimento.php?id=<?php echo $y2['id'] ?>" role="button"> EDITAR </a></td>
             <td><a class="btn btn-danger text-white" href="excluir_procedimento.php?id=<?php echo $y2['id'] ?>&nome=<?php echo $y2["nome_paciente"]; ?>" role="button"> EXCLUIR </a></td>
             </tr>
             <?php
