@@ -1,18 +1,18 @@
 ﻿<?php 
-require_once("conexao.php");
 
+session_start();
 include "menu.php";
 include "navibar.php";
 include "footer.php";
 require_once("head.php");
 
-session_start();
+
 if(isset($_SESSION['cpf']) == FALSE){
     header("Location:index.php");
 }
 
 $cpf_logado = $_SESSION['cpf'];
-
+require_once("conexao.php");
 $id = $_GET["id"];
 $sql = "SELECT * FROM procedimentos WHERE id = $id ";
 $resultado = $conexao->prepare($sql);
