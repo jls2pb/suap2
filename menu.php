@@ -25,11 +25,18 @@
           <li >
             <a href="inicio.php"><span class="fa fa-home"></span><b> INICIO</b></a>
           </li>
-          <li>
-              <a href="forms_tabela.php"><span class="bi bi-table"></span><b> TABELAS</b></a>
-          </li>
-          <li>
-              <a href="cadastrar_paciente.php"><span class="fa fa-user"></span> <b>NOVO PACIENTE</b></a>
+          <li class="mb-1">
+        <button style="color: white;"class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+          <b>CADASTRO</b>
+        </button>
+        <div class="collapse show" id="home-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            <li><a href="forms_tabela.php" class="link-dark rounded"><span class="bi bi-table"></span><b>TABELAS</b></a></li>
+            <li><a href="cadastrar_paciente.php" class="link-dark rounded"><span class="fa fa-user"></span><b>PACIENTE</b></a></li>
+          </ul>
+        </div>
+      </li>
+  
           </li>
           <li>
             <a href="index_logado.php"><span class="fa fa-sticky-note"></span><b> LISTAR PACIENTES</b></a>
