@@ -42,9 +42,6 @@
             <a href="index_logado.php"><span class="fa fa-sticky-note"></span><b> LISTAR PACIENTES</b></a>
           </li>
           <li>
-            <a href="imprimir_procedimento.php"><img style="width: 10%" src="impressora.png"><b> RELATÓRIOS</b></a>
-          </li>
-          <li>
             <a href="exibir_resultado.php"><span class="bi bi-bar-chart-line-fill" ></i></span><b> RANKING </b></a>
           </li>
           <li>
