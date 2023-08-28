@@ -6,7 +6,7 @@ if(isset($_SESSION['cpf']) == FALSE){
 require_once("head.php");
 include "menu.php";
 include "navibar.php";
-include "footer.php";
+
 
 $cpf_logado = $_SESSION['cpf'];
 require_once("conexao.php");
@@ -109,9 +109,12 @@ $resultado->execute();
                     </div>
                 </div>
                 <input type = "hidden" name = "cpf_logado" value = "<?php echo $cpf_logado?>">
-                <button class="btn btn-primary " type="submit">CADASTRAR</button>
+                <button style="color:white;background-color: #66a7ff;" class="btn " type="submit"><b>CADASTRAR</b></button>
                 <button class="btn btn-danger "><a class="link-offset-2 link-underline link-underline-opacity-0" style = "color:white" href="inicio.php">VOLTAR</a></button>    
             </div>
+            <?php
+            include "footer.php";
+            ?>
             </form>
 
 

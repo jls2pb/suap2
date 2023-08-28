@@ -3,7 +3,6 @@ date_default_timezone_set('America/Sao_Paulo');
 session_start();
 include "head.php";
 include "conexao.php";
-include "footer.php";
 $hoje = date('d/m/Y');
 ?>
 <script>
@@ -112,6 +111,7 @@ foreach ($xr as $key => $a) {
     <?php
       }
     }
+
     ?> 
   </tbody>
 </table>

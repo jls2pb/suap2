@@ -1,5 +1,4 @@
 ﻿<?php 
-
 session_start();
 if(isset($_SESSION['cpf']) == FALSE){
     header("Location:index.php");

@@ -1,8 +1,13 @@
 ﻿<?php
 $timezone = new DateTimeZone('America/Sao_Paulo');
  require_once("head.php");
- require_once("conexao.php");
+
+
  session_start();
+ include "head.php";
+ include "menu.php";
+ include "navibar.php";
+ require_once("conexao.php");
  $cpf_logado = $_SESSION['cpf'];
  $dado = $_POST["nome"];
 
@@ -12,11 +17,6 @@ $timezone = new DateTimeZone('America/Sao_Paulo');
 
 ?>
 
-<?php 
-include "head.php";
-include "menu.php";
-include "navibar.php";
-?>
 <h2 class="mb-4">SUAP - Sistema Unico de Acompanhamento de Procedimentos</h2>
 
 <table class="table table-striped">
@@ -45,7 +45,7 @@ include "navibar.php";
                         <td><?php echo $d["cpf"]; ?></td>
                         <td><?php echo $d["nascimento"]; ?></td>
                         <td>
-                        <a class="btn btn-success text-white" href = "listar.php?id=<?php echo $d["cod"];?>" role="button">VER MAIS</a>      
+                        <a class="btn" style="color: white; background-color: #66a7ff;" href = "listar.php?id=<?php echo $d["cod"];?>" role="button">VER MAIS</a>      
                         </td>
                         </tr>
                     <?php

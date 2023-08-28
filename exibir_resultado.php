@@ -7,7 +7,7 @@ include "head.php";
 include "menu.php";
 include "navibar.php";
 include "conexao.php";
-
+include "footer.php";
 $hoje = date('d/m/Y');
 ?>
 <script>

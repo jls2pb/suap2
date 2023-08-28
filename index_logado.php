@@ -58,7 +58,7 @@ require_once("conexao.php");
             <td><?php echo $d["cpf"]; ?></td>
             <td><?php echo $d["nascimento"] ?></td>
             <td>
-                <a class="btn text-white" style = "background-color: DarkBlue" href = "listar.php?id=<?php echo $d["cod"];?>" role="button">VER MAIS</a>
+                <a class="btn text-white" style="background-color: #66a7ff;" href = "listar.php?id=<?php echo $d["cod"];?>" role="button">VER MAIS</a>
             </td>
             </tr>
             <?php
@@ -78,7 +78,7 @@ require_once("conexao.php");
             <div class = "row">
                 <div class = "col">        
             <?php 
-            echo "<a class='btn btn-primary' href='index_logado.php?page=1&cpf=$cpf_logado '>Primeira</a> ";
+            echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='index_logado.php?page=1&cpf=$cpf_logado '>Primeira</a> ";
 
             for ($pagina_anterior = $pagina - $maximo_link; $pagina_anterior <= $pagina - 1; $pagina_anterior++) {
                 if ($pagina_anterior >= 1) {
