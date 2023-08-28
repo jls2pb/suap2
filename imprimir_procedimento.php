@@ -1,9 +1,9 @@
 <?php 
 require_once("head.php");
 require_once("conexao.php");
-$id = $_GET["id"];
-$cpf_logado = $_GET["cpf"];
-$sql = "SELECT * FROM procedimentos WHERE id = $id ";
+$id = $_POST["id"];
+$cpf_logado = $_POST["cpf"];
+$sql = "SELECT * FROM procedimentos WHERE id = $id";
 $resultado = $conexao->prepare($sql);
 if($resultado->execute()){
     $x=$resultado->fetchAll();

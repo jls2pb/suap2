@@ -1,5 +1,5 @@
 <div class="wrapper d-flex align-items-stretch">
-			<nav id="sidebar" style="background-color: #66a7ff;">
+			<nav id="sidebar" style=" background-color: #66a7ff;">
       <img style="width: 72%;"src="logo_clara.png">
       <img style="width: 25%;" src="iconw2.png">
       <div class="container">
@@ -23,7 +23,7 @@
 
 </li>
           <li >
-            <a href="inicio.php"><span class="fa fa-home"></span><b> INICIO</b></a>
+            <a href="inicio.php"><span class="fa fa-home"></span><b> INÍCIO</b></a>
           </li>
           <li class="mb-1">
         <button style="color: white;"class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
@@ -40,6 +40,9 @@
           </li>
           <li>
             <a href="index_logado.php"><span class="fa fa-sticky-note"></span><b> LISTAR PACIENTES</b></a>
+          </li>
+          <li>
+            <a href="imprimir_procedimento.php"><img style="width: 10%" src="impressora.png"><b> RELATÓRIOS</b></a>
           </li>
           <li>
             <a href="exibir_resultado.php"><span class="bi bi-bar-chart-line-fill" ></i></span><b> RANKING </b></a>

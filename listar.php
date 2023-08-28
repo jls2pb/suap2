@@ -148,7 +148,7 @@ if($resultado->execute()){
             <td><?php echo $saida ?></td>
             <td><?php echo $agendamento ?></td>
             <td><?php echo $y2["local_do_agendamento"]; ?></td>
-            <td><a class="btn text-white" style = "background-color: DarkBlue" href="form_edita_procedimento.php?id=<?php echo $y2['id'] ?>" role="button"> EDITAR </a></td>
+            <td><a class="btn text-white" style = "background-color: DarkBlue" href="form_edita_procedimento.php?id=<?php echo $y2['id'] ?>" role="button"> VER MAIS </a></td>
             <td><a class="btn btn-danger text-white" href="excluir_procedimento.php?id=<?php echo $y2['id'] ?>&nome=<?php echo $y2["nome_paciente"]; ?>" role="button"> EXCLUIR </a></td>
             </tr>
             <?php
