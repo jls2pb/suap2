@@ -26,15 +26,15 @@ if($resultado->execute()){
 ?>
 
 <h2 class="mb-4">DADOS COMPLETOS DO PACIENTE</h2>
-
-<?php 
+<div class = "container">
+  <?php 
     foreach ($x as $y) {
       if($y["nascimento"] != NULL){
         $nascimento = date('d/m/Y', strtotime($y["nascimento"]));
     }else{
         $nascimento = NULL;
     }
-    ?>
+  ?>
     <h1 class = "text-center"></h1>
       <div class="row">
         <div class="col-3 border "><strong>COD</strong></div>
@@ -73,7 +73,7 @@ if($resultado->execute()){
         <div class="col border ">  <?php echo $y["ubs"]; ?> </strong></div>
         <div class="col border "> <?php echo $y["celular"]; ?> </strong></div>
         <div class="col border "> <?php echo $y["telefone"]; ?> </div>
-        <?php
+    <?php
         $id_usuario = $y["cod"];
     }
     $sql2 = "SELECT * FROM procedimentos WHERE cod = '$nome_paciente' ORDER BY id DESC";
@@ -87,7 +87,9 @@ if($resultado->execute()){
     ?> 
              
       </div>
+      
       <br>
+ 
       <div class="row text-center">
         <div class="col">
           <a class="btn text-white" style = "background-color: DarkBlue" href="form_edita.php" role="button">EDITAR PACIENTE</a>
