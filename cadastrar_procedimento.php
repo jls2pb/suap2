@@ -91,7 +91,7 @@ include "footer.php";
                     <div class="col">
                         <div class="form-outline mb-4">
                             <input type="text" name = "l_agendamento" list="local_list" oninput="handleInput(event)" id = "l_agendamento" class="form-control form-control-lg" />
-			<datalist id="local_list"></datalist>
+			                <datalist id="local_list"></datalist>
                         </div>
                     </div>
                     <div class="col">

@@ -32,22 +32,28 @@ foreach ($x as $y) {
             $agendamento = NULL;
         }
         ?>
-        <form method="GET" action="">
+        <form method="POST" action="">
         <div class = "container">
             <center> <h3> AGENDAMENTO </h3> </center>
             <label> <strong> NOME DO PACIENTE: </strong> <?php echo $y["nome_paciente"];?></label><br>
             <label> <strong> NOME DA MÃE: </strong> <?php echo $b["nome_da_mae"];?></label><br>
-            <label> <strong> Nº DO CARTÃO NACIONAL: </strong> <?php echo $b["cns"];?></label>
+            <label> <strong> Nº DO CARTÃO NACIONAL: </strong> <?php echo $b["cns"];?></label><br>
             <label> <strong> DATA DE NASCIMENTO: </strong> <?php echo $b["nascimento"];?></label> <br>
-            <label for="sexo"> <strong> SEXO: </strong> </label> <input type="text" name="sexo"><br>
-            <label for="endereco"> <strong> ENDEREÇO RESIDENCIAL: </strong> </label> <input type="text" name="endereco"><br>
+            <label for="sexo"> <strong> SEXO: </strong> </label><br>
+            <label for="endereco"> <strong> ENDEREÇO RESIDENCIAL: </strong> </label> <br>
             <label> <strong> LOCAL DO AGENDAMENTO: </strong> <?php echo $y["local_do_agendamento"];?></label><br>
-            <label> <strong> ENDEREÇO: </strong> </label> <label> <strong> TELEFONE: </strong> </label> <label> <strong> COMPLEMENTO: </strong> </label> <br>
+            <label> <strong> ENDEREÇO: </strong> </label> <br>
+            <label> <strong> TELEFONE: </strong> </label><br>
+             <label> <strong> COMPLEMENTO: </strong> </label> <br>
             <label> <strong> UNIDADE DE ORIGEM: </strong> <?php echo $b["ubs"];?></label><br>
             <label> <strong> PROFISSIONAL: </strong> <?php echo $y["profissional"];?></label><br> 
             <label> <strong> PROCEDIMENTO: </strong> <?php echo $y["procedimento"];?></label><br>
-            <label> <strong> DIA: </strong> </label> <input type = "date" class="form-control-plaintext" name = "dia_marcado"> <br>
-            <label> <strong> HORA: </strong> </label> <input type = "time" class="form-control-plaintext" name = "dia_marcado"> <br>
+            <label> <strong> LOCAL DO ATENDIMENTO: </strong> </label>
+            <input type="text" name = "l_agendamento" list="local_list" oninput="handleInput(event)" id = "l_agendamento" class="form-control form-control-lg" />
+			<datalist id="local_list"></datalist> 
+             <br>
+            <label> <strong> DATA DO ATENDIMENTO: </strong> </label> <input type = "date" class="form-control-plaintext" name = "dia_marcado"> <br>
+            <label> <strong> HORARIO DO ATENDIMENTO: </strong> </label> <input type = "time" class="form-control-plaintext" name = "dia_marcado"> <br>
             <button type="submit" style="background-color: blue; color: white;"class="btn btn-primary">AGENDAR</button>
                 <button class="btn btn-danger"  style = "color:white" formaction="listar.php">VOLTAR</button>
     </form>
@@ -56,3 +62,29 @@ foreach ($x as $y) {
     }
 }
 ?>
+<script>
+        $(document).ready(function() {
+            // Quando o usuário digitar algo no input, acionamos a função de busca
+            $('#l_agendamento').on('input', function() {
+                var term = $(this).val();
+                if (term.length >= 3) {
+                    // Realizamos a solicitação AJAX para buscar os procedimentos
+                    $.ajax({
+                        url: 'buscar_local.php',
+                        type: 'GET',
+                        data: {term: term},
+                        dataType: 'json',
+                        success: function(data) {
+                            // Limpa o datalist antes de preencher com as novas opções
+                            $('#local_list').empty();
+
+                            // Preenche o datalist com as opções retornadas pela busca
+                            data.forEach(function(nome_fantasia) {
+                                $('#local_list').append('<option value="' + nome_fantasia + '">');
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    </script>
