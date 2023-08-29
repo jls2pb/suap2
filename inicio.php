@@ -48,7 +48,7 @@ include "conexao.php";
       $xr = $rqdp->fetchAll();
       foreach ($xr as $key => $a) {
         ?>
-        <p style="display: inline; margin-top: 15px; color: black;">PROCEDIMENTOS CADASTRADOS: <?= $a["quantidade"] ?>  </p>;
+        <p style="display: inline; margin-top: 15px; color: black;">PROCEDIMENTOS CADASTRADOS: <?= $a["quantidade"]; ?>  </p>
         <?php
       }
     ?>

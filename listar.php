@@ -11,7 +11,6 @@ include "menu.php";
 include "navibar.php";
 include "footer.php";
 
-
 $cpf_logado = $_SESSION['cpf'];
 
 require_once("conexao.php");
@@ -27,7 +26,6 @@ if($resultado->execute()){
 <script>
 function deleteItem(itemId) {
   let userConfirmation = confirm("Você tem certeza de que deseja deletar?");
-  
   // Se o usuário confirmou a exclusão
   if(userConfirmation) {
     // Delete o item
@@ -41,7 +39,6 @@ function deleteItem(itemId) {
   }
 }
    </script> 
-   
 <h2 class="mb-4">DADOS COMPLETOS DO PACIENTE</h2>
 <div class = "container">
   <?php 
@@ -102,11 +99,8 @@ function deleteItem(itemId) {
           echo "erro ao coletar os dados";
       }
     ?> 
-             
       </div>
-      
       <br>
- 
       <div class="row text-center">
         <div class="col">
           <a class="btn text-white" style = "background-color: DarkBlue" href="form_edita.php" role="button">EDITAR PACIENTE</a>
@@ -174,15 +168,9 @@ function deleteItem(itemId) {
         </tbody>
         </table>
           </div>  
-
     </div>
 </div>
-
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
-
-
-
-
