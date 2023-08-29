@@ -32,28 +32,41 @@ foreach ($x as $y) {
             $agendamento = NULL;
         }
         ?>
-        <form method="POST" action="">
+        <form method="POST" action="agendar.php">
         <div class = "container">
             <center> <h3> AGENDAMENTO </h3> </center>
             <label> <strong> NOME DO PACIENTE: </strong> <?php echo $y["nome_paciente"];?></label><br>
+            <input type="hidden" name="nome_paciente" value= "<?= $y["nome_paciente"]; ?>">
             <label> <strong> NOME DA MÃE: </strong> <?php echo $b["nome_da_mae"];?></label><br>
+            <input type="hidden" name="nome_da_mae" value= "<?= $b["nome_da_mae"]; ?>">
             <label> <strong> Nº DO CARTÃO NACIONAL: </strong> <?php echo $b["cns"];?></label><br>
+            <input type="hidden" name="cns" value= "<?= $b["cns"]; ?>">
             <label> <strong> DATA DE NASCIMENTO: </strong> <?php echo $b["nascimento"];?></label> <br>
+            <input type="hidden" name="nascimento" value= "<?= $b["nascimento"]; ?>">
             <label for="sexo"> <strong> SEXO: </strong> </label><br>
+            <input type="hidden" name="sexo" value= "<?= $y[""]; ?>">
             <label for="endereco"> <strong> ENDEREÇO RESIDENCIAL: </strong> </label> <br>
+            <input type="hidden" name="endereco" value= "<?= $y[""]; ?>">
             <label> <strong> LOCAL DO AGENDAMENTO: </strong> <?php echo $y["local_do_agendamento"];?></label><br>
+            <input type="hidden" name="local_do_agendamento" value= "<?= $y["local_do_agendamento"]; ?>">
             <label> <strong> ENDEREÇO: </strong> </label> <br>
+            <input type="hidden" name="" value= "<?= $y[""]; ?>">
             <label> <strong> TELEFONE: </strong> </label><br>
+            <input type="hidden" name="telefone" value= "<?= $y[""]; ?>">
              <label> <strong> COMPLEMENTO: </strong> </label> <br>
+             <input type="hidden" name="complemento" value= "<?= $y[""]; ?>">
             <label> <strong> UNIDADE DE ORIGEM: </strong> <?php echo $b["ubs"];?></label><br>
+            <input type="hidden" name="ubs" value= "<?= $b["ubs"]; ?>">
             <label> <strong> PROFISSIONAL: </strong> <?php echo $y["profissional"];?></label><br> 
+            <input type="hidden" name="profissional" value= "<?= $y["profissional"]; ?>">
             <label> <strong> PROCEDIMENTO: </strong> <?php echo $y["procedimento"];?></label><br>
-            <label> <strong> LOCAL DO ATENDIMENTO: </strong> </label>
+            <input type="hidden" name="procedimento" value= "<?= $y["procedimento"]; ?>">
+            <label> <strong> LOCAL DO ATENDIMENTO: </strong> </label> 
             <input type="text" name = "l_agendamento" list="local_list" oninput="handleInput(event)" id = "l_agendamento" class="form-control form-control-lg" />
 			<datalist id="local_list"></datalist> 
              <br>
             <label> <strong> DATA DO ATENDIMENTO: </strong> </label> <input type = "date" class="form-control-plaintext" name = "dia_marcado"> <br>
-            <label> <strong> HORARIO DO ATENDIMENTO: </strong> </label> <input type = "time" class="form-control-plaintext" name = "dia_marcado"> <br>
+            <label> <strong> HORARIO DO ATENDIMENTO: </strong> </label> <input type = "time" class="form-control-plaintext" name = "horario_marcado"> <br>
             <button type="submit" style="background-color: blue; color: white;"class="btn btn-primary">AGENDAR</button>
                 <button class="btn btn-danger"  style = "color:white" formaction="listar.php">VOLTAR</button>
     </form>
