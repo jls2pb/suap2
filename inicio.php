@@ -12,7 +12,7 @@ include "conexao.php";
 <div class="container">
   <div class="row">
     <div class="col-sm border rounded d-flex" style="margin: 10px;">
-    <img style=" width: 30%; padding: 7px;"src="paciente.jpeg">
+    <img style=" width: 30%; padding: 7px;"src="images/paciente.jpeg">
       <?php 
         $qdp = "SELECT COUNT(*) AS quantidade FROM tb_log WHERE acao = 'CADASTRADO'";
         $rqdp = $conexao->prepare($qdp);
@@ -28,11 +28,11 @@ include "conexao.php";
     
     </div>
     <div class="col-sm border rounded d-flex" style="margin: 10px;">
-    <img style="width: 30%; padding: 7px;"src="espera.jpeg">
+    <img style="width: 30%; padding: 7px;"src="images/espera.jpeg">
     <p style="margin-top: 15px; color: black;">PACIENTES EM <br> ESPERA:  </p>
     </div>
     <div class="col-sm border rounded d-flex" style="margin: 10px;">
-    <img style="width: 30%; padding: 7px;"src="calendario.jpeg"> 
+    <img style="width: 30%; padding: 7px;"src="images/calendario.jpeg"> 
     <p style="margin-top: 15px; color: black;">PACIENTES <br>AGENDADOS:  </p>                            
     </div>
   </div>
@@ -40,7 +40,7 @@ include "conexao.php";
 
   <div class="row">
     <div class="col-sm border rounded d-flex" style="margin: 10px;">
-    <img style="margin-right: 5px; width: 30%; padding: 7px;"src="p_cadastrado.jpeg">
+    <img style="margin-right: 5px; width: 30%; padding: 7px;"src="images/p_cadastrado.jpeg">
     <?php 
       $qdp = "SELECT COUNT(*) AS quantidade FROM tb_log WHERE acao LIKE '%NOVO PROCEDIMENTO%'";
       $rqdp = $conexao->prepare($qdp);
@@ -56,7 +56,7 @@ include "conexao.php";
     
     </div>
     <div class="col-sm border rounded d-flex" style="margin: 10px;">
-    <img style="width: 30%; padding: 7px;"src="p_espera.jpeg">
+    <img style="width: 30%; padding: 7px;"src="images/p_espera.jpeg">
     <?php 
       $qdp = "SELECT COUNT(*) AS quantidade FROM procedimentos WHERE data_de_entrada_cadastro IS NOT NULL";
       $rqdp = $conexao->prepare($qdp);
@@ -75,7 +75,7 @@ include "conexao.php";
 
     </div>
     <div class="col-sm border rounded d-flex" style="margin: 10px;">
-    <img style="width: 30%; padding: 7px;"src="p_agendado.jpeg">
+    <img style="width: 30%; padding: 7px;"src="images/p_agendado.jpeg">
     <p style="margin-top: 15px; color: black;">PROCEDIMENTOS AGENDADOS:  </p>
     </div>
   </div>
