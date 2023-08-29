@@ -22,3 +22,20 @@ if($resultado->execute()){
 }
 
 ?>
+<script>
+function deleteItem(itemId) {
+  let userConfirmation = confirm("Você tem certeza de que deseja deletar?");
+  
+  // Se o usuário confirmou a exclusão
+  if(userConfirmation) {
+    // Delete o item
+    // Código para deletar o item vai aqui
+    console.log(`Item ${itemId} deletado.`);
+  }
+  // Se o usuário cancelou a exclusão
+  else {
+    // Não faça nada
+    console.log('Operação de exclusão cancelada.');
+  }
+}
+   </script> 
