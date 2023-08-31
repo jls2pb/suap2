@@ -11,7 +11,6 @@ include "menu.php";
 include "navibar.php";
 include "footer.php";
 
-
 $cpf_logado = $_SESSION['cpf'];
 
 require_once("conexao.php");
@@ -24,7 +23,22 @@ if($resultado->execute()){
     echo "erro ao coletar os dados";
 }
 ?>
-
+<script>
+function deleteItem(itemId) {
+  let userConfirmation = confirm("Você tem certeza de que deseja deletar?");
+  // Se o usuário confirmou a exclusão
+  if(userConfirmation) {
+    // Delete o item
+    // Código para deletar o item vai aqui
+    console.log(`Item ${itemId} deletado.`);
+  }
+  // Se o usuário cancelou a exclusão
+  else {
+    // Não faça nada
+    console.log('Operação de exclusão cancelada.');
+  }
+}
+   </script> 
 <h2 class="mb-4">DADOS COMPLETOS DO PACIENTE</h2>
 <div class = "container">
   <?php 
@@ -85,11 +99,8 @@ if($resultado->execute()){
           echo "erro ao coletar os dados";
       }
     ?> 
-             
       </div>
-      
       <br>
- 
       <div class="row text-center">
         <div class="col">
           <a class="btn text-white" style = "background-color: DarkBlue" href="form_edita.php" role="button">EDITAR PACIENTE</a>
@@ -149,7 +160,7 @@ if($resultado->execute()){
             <td><?php echo $agendamento ?></td>
             <td><?php echo $y2["local_do_agendamento"]; ?></td>
             <td><a class="btn text-white" style = "background-color: DarkBlue" href="form_edita_procedimento.php?id=<?php echo $y2['id'] ?>" role="button"> VER MAIS </a></td>
-            <td><a class="btn btn-danger text-white" href="excluir_procedimento.php?id=<?php echo $y2['id'] ?>&nome=<?php echo $y2["nome_paciente"]; ?>" role="button"> EXCLUIR </a></td>
+            <td><a onclick="deleteItem(itemId)" class="btn btn-danger text-white" href="excluir_procedimento.php?id=<?php echo $y2['id'] ?>&nome=<?php echo $y2["nome_paciente"]; ?>" role="button" onclick="deleteItem(itemId)"> EXCLUIR </a></td>
             </tr>
             <?php
             }
@@ -157,15 +168,9 @@ if($resultado->execute()){
         </tbody>
         </table>
           </div>  
-
     </div>
 </div>
-
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/main.js"></script>
-
-
-
-

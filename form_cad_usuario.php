@@ -14,10 +14,10 @@ include "head.php";
 
                     <div class="row">
                     <div class="col d-flex align-items-center justify-content-center">
-                        <img src="logo_ti2.png" width = "250px" >
+                        <img src="images/logo_ti2.png" width = "250px" >
                       </div>
                       <div class="col text-center">
-                        <img src="iconw2.png" width = "152px">
+                        <img src="images/iconw2.png" width = "152px">
                       </div>
                       
                     </div>
@@ -70,7 +70,7 @@ include "head.php";
     margin: 0;
   }
   body {
-  background-image: url("imagem.jpg");
+  background-image: url("images/imagem.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;

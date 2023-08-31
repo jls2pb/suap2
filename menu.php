@@ -1,14 +1,14 @@
 <div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar" style=" background-color: #66a7ff;">
-      <img style="width: 72%;"src="logo_clara.png">
-      <img style="width: 25%;" src="iconw2.png">
+      <img style="width: 72%;"src="images/logo_clara.png">
+      <img style="width: 25%;" src="images/iconw2.png">
       <div class="container">
   <div class="row">
     <div class="col-sm">
     
     </div>
     <div class="col-sm-5">
-         <img style=" width: 90%;" src="perfil.png">
+         <img style=" width: 90%;" src="images/perfil.png">
         
     </div>
     <div class="col-sm">

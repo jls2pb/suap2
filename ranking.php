@@ -13,7 +13,7 @@ $hoje = date('d/m/Y');
 </script>
 <div >
     <center>
-        <img src="logo_ti.png" width = "250px" >
+        <img src="images/logo_ti.png" width = "250px" >
     </center>
     <br>
 <?php 
