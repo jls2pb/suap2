@@ -36,6 +36,7 @@ foreach ($x as $y) {
         <div class = "container">
             <center> <h3> AGENDAMENTO </h3> </center>
             <label> <strong> NOME DO PACIENTE: </strong> <?php echo $y["nome_paciente"];?></label><br>
+            <input type = "hidden" name = "nome_paciente" value = <?= $y["nome_paciente"]; ?>>
             <label> <strong> NOME DA MÃE: </strong> <?php echo $b["nome_da_mae"];?></label><br>
             <label> <strong> Nº DO CARTÃO NACIONAL: </strong> <?php echo $b["cns"];?></label><br>
             <label> <strong> DATA DE NASCIMENTO: </strong> <?php echo $b["nascimento"];?></label> <br>
