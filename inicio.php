@@ -14,7 +14,7 @@ include "conexao.php";
     <div class="col-sm border rounded d-flex" style="margin: 10px;">
     <img style=" width: 30%; padding: 7px;"src="images/paciente.jpeg">
       <?php 
-        $qdp = "SELECT COUNT(*) AS quantidade FROM tb_log WHERE acao = 'CADASTRADO'";
+        $qdp = "SELECT COUNT(*) AS quantidade FROM tabela";
         $rqdp = $conexao->prepare($qdp);
         $rqdp->execute();
         $xr = $rqdp->fetchAll();
@@ -42,7 +42,7 @@ include "conexao.php";
     <div class="col-sm border rounded d-flex" style="margin: 10px;">
     <img style="margin-right: 5px; width: 30%; padding: 7px;"src="images/p_cadastrado.jpeg">
     <?php 
-      $qdp = "SELECT COUNT(*) AS quantidade FROM tb_log WHERE acao LIKE '%NOVO PROCEDIMENTO%'";
+      $qdp = "SELECT COUNT(*) AS quantidade FROM procedimentos";
       $rqdp = $conexao->prepare($qdp);
       $rqdp->execute();
       $xr = $rqdp->fetchAll();
@@ -58,7 +58,8 @@ include "conexao.php";
     <div class="col-sm border rounded d-flex" style="margin: 10px;">
     <img style="width: 30%; padding: 7px;"src="images/p_espera.jpeg">
     <?php 
-      $qdp = "SELECT COUNT(*) AS quantidade FROM procedimentos WHERE data_de_entrada_cadastro IS NOT NULL";
+      $qdp = "SELECT COUNT(*) AS quantidade FROM procedimentos WHERE data_do_agendamento IS NULL OR data_do_agendamento = ''";
+      
       $rqdp = $conexao->prepare($qdp);
       $rqdp->execute();
       $xr = $rqdp->fetchAll();
@@ -69,14 +70,23 @@ include "conexao.php";
       }
 
     ?>
-    
-
-      
-
     </div>
     <div class="col-sm border rounded d-flex" style="margin: 10px;">
     <img style="width: 30%; padding: 7px;"src="images/p_agendado.jpeg">
-    <p style="margin-top: 15px; color: black;">PROCEDIMENTOS AGENDADOS:  </p>
+    
+    <?php 
+      $qdp = "SELECT COUNT(*) AS quantidade FROM procedimentos WHERE data_do_agendamento IS NOT NULL AND data_do_agendamento != ''";
+      
+      $rqdp = $conexao->prepare($qdp);
+      $rqdp->execute();
+      $xr = $rqdp->fetchAll();
+      foreach ($xr as $key => $a) {
+        ?>
+        <p style="margin-top: 15px; color: black;">PROCEDIMENTOS AGENDADOS: <?= $a["quantidade"] ?> </p>
+        <?php
+      }
+
+    ?>
     </div>
   </div>
   <?php 
