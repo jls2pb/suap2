@@ -2,11 +2,12 @@
 session_start();
 if(isset($_SESSION['cpf'])){
 $cpf_logado = $_SESSION['cpf'];
-include "head.php";
+include "conexao.php";
 include "menu.php";
+include "head.php";
 include "navibar.php";
 include "footer.php";
-include "conexao.php";
+
 
 ?>
 <div class="container">
