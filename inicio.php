@@ -2,12 +2,12 @@
 session_start();
 if(isset($_SESSION['cpf'])){
 $cpf_logado = $_SESSION['cpf'];
-include "conexao.php";
+
 include "menu.php";
 include "head.php";
 include "navibar.php";
 include "footer.php";
-
+include "conexao.php";
 
 ?>
 <div class="container">
@@ -15,6 +15,7 @@ include "footer.php";
     <div class="col-sm border rounded d-flex" style="margin: 10px;">
     <img style=" width: 30%; padding: 7px;"src="images/paciente.jpeg">
       <?php 
+     
         $qdp = "SELECT COUNT(*) AS quantidade FROM tabela";
         $rqdp = $conexao->prepare($qdp);
         $rqdp->execute();

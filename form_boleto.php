@@ -61,6 +61,8 @@ foreach ($x as $y) {
             <input type="hidden" name="profissional" value= "<?= $y["profissional"]; ?>">
             <label> <strong> PROCEDIMENTO: </strong> <?php echo $y["procedimento"];?></label><br>
             <input type="hidden" name="procedimento" value= "<?= $y["procedimento"]; ?>">
+            <label> <strong> ID DO PROCEDIMENTO: </strong> <?php echo $y["id"];?></label><br>
+            <input type="hidden" name="id_procedimento" value= "<?= $y["id"]; ?>">
             <label> <strong> LOCAL DO ATENDIMENTO: </strong> </label> 
             <input type="text" name = "l_agendamento" list="local_list" oninput="handleInput(event)" id = "l_agendamento" class="form-control form-control-lg" />
 			<datalist id="local_list"></datalist> 
