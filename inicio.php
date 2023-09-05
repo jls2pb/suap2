@@ -30,6 +30,17 @@ include "conexao.php";
     <div class="col-sm border rounded d-flex" style="margin: 10px;">
     <img style="width: 30%; padding: 7px;"src="images/espera.jpeg">
     <p style="margin-top: 15px; color: black;">PACIENTES EM <br> ESPERA:  </p>
+    <?php 
+        $qdp = "SELECT COUNT(*) AS quantidade FROM tabela";
+        $rqdp = $conexao->prepare($qdp);
+        $rqdp->execute();
+        $xr = $rqdp->fetchAll();
+        foreach ($xr as $key => $a) {
+          ?>
+          <p style="margin-top: 15px; color: black;">PACIENTES <br>CADASTRADOS: <?= $a["quantidade"]; ?> </p>
+          <?php 
+        }
+      ?>
     </div>
     <div class="col-sm border rounded d-flex" style="margin: 10px;">
     <img style="width: 30%; padding: 7px;"src="images/calendario.jpeg"> 

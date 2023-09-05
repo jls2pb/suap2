@@ -23,13 +23,13 @@
 
 </li>
           <li >
-            <a href="inicio.php"><span class="fa fa-home"></span><b> INÍCIO</b></a>
+            <a href="inicio_agendamento.php"><span class="fa fa-home"></span><b> INÍCIO</b></a>
           </li>
          
   
           </li>
           <li>
-            <a href="index_logado.php"><span class="fa fa-sticky-note"></span><b> LISTAR PACIENTES</b></a>
+            <a href="cadastrar_profissional.php"><span class="fa fa-sticky-note"></span><b> NOVO PROFISSIONAL </b></a>
           </li>
           <li>
             <a href="exibir_resultado.php"><span class="bi bi-bar-chart-line-fill" ></i></span><b> RANKING </b></a>
