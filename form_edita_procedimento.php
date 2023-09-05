@@ -145,7 +145,7 @@ if($resultado->execute()){
                     
                 </div>
                 <button class="btn btn-primary" type="submit">EDITAR</button>
-                <button type="submit" style="background-color: blue; color: white;"class="btn btn-primary" formaction="form_boleto.php">AGENDAMENTO</button>
+            
                 <button class="btn btn-danger"><a class="link-offset-2 link-underline link-underline-opacity-0" style = "color:white" href="listar.php">VOLTAR</a></button>    
                 
             </div>

@@ -1,14 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-br">
 <?php 
-session_start();
+require_once("head.php");
+session_start(); 
 if(isset($_SESSION['cpf'])){
 $cpf_logado = $_SESSION['cpf'];
 
 include "menu.php";
-include "head.php";
 include "navibar.php";
-include "footer.php";
-include "conexao.php";
 
+
+include "footer.php";
+
+require_once("conexao.php");
 ?>
 <div class="container">
   <div class="row">
@@ -32,17 +36,6 @@ include "conexao.php";
     <div class="col-sm border rounded d-flex" style="margin: 10px;">
     <img style="width: 30%; padding: 7px;"src="images/espera.jpeg">
     <p style="margin-top: 15px; color: black;">PACIENTES EM <br> ESPERA:  </p>
-    <?php 
-        $qdp = "SELECT COUNT(*) AS quantidade FROM tabela";
-        $rqdp = $conexao->prepare($qdp);
-        $rqdp->execute();
-        $xr = $rqdp->fetchAll();
-        foreach ($xr as $key => $a) {
-          ?>
-          <p style="margin-top: 15px; color: black;">PACIENTES <br>CADASTRADOS: <?= $a["quantidade"]; ?> </p>
-          <?php 
-        }
-      ?>
     </div>
     <div class="col-sm border rounded d-flex" style="margin: 10px;">
     <img style="width: 30%; padding: 7px;"src="images/calendario.jpeg"> 
@@ -109,10 +102,7 @@ include "conexao.php";
 
     </div>
 </div>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/popper.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
+    
 <?php 
 }else{
     header("Location:index.php");

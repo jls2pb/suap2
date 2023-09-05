@@ -20,7 +20,7 @@
                                 <input type = "hidden" name = "cpf" value = "<?php echo $cpf_logado?>">
                             </div>
                             
-                            <button style="background-color: #66a7ff; color: white;" type="subimit" class="btn">
+                            <button style="background-color: #66a7ff; color: white;" type="submit" class="btn">
                             <i class="bi bi-search"></i>
                             </button>
                             </div>

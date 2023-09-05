@@ -1,3 +1,4 @@
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -54,7 +55,13 @@ nav ul li ul li a:hover {
     </div>
     <div class="col-sm-5">
          <img style=" width: 90%;" src="images/perfil.png">
+
         
+<?php
+require_once("conexao.php");
+?>
+        
+
     </div>
     <div class="col-sm">
       
@@ -69,9 +76,9 @@ nav ul li ul li a:hover {
             <a href="inicio.php"><span class="fa fa-home"></span><b> INÍCIO</b></a>
           </li>
           
-          <li class="sub-menu">
-          <a href="#" class="link-dark rounded"><b>CADASTRO </b><div class="fa fa-caret-down right"></div></a>
-          
+          <li class="sub-menu-second">
+          <a style="cursor: pointer;" class="link-dark rounded"><b>CADASTRO </b><div class="fa fa-caret-down right"></div></a>
+           
           <ul>
 
           <li>
@@ -86,9 +93,11 @@ nav ul li ul li a:hover {
           <li>
             <a href="index_logado.php"><span class="fa fa-sticky-note"></span><b> LISTAR PACIENTES</b></a>
           </li>
+
           <li>
             <a href="exibir_resultado.php"><span class="bi bi-bar-chart-line-fill" ></i></span><b> RANKING </b></a>
           </li>
+
           <li>
             <a href="sair.php"><span class="bi bi-door-open-fill" ></i></span><b> SAIR</b></a>
           </li>
@@ -103,12 +112,12 @@ nav ul li ul li a:hover {
        
       
       
-<script>
+      <script>
 $(document).ready(function () {
     console.log("JavaScript está funcionando!"); // Adicione esta linha para verificar
-    $('.sub-menu ul').hide();
-    $(".sub-menu a").click(function () {
-        $(this).parent(".sub-menu").children("ul").slideToggle("100");
+    $('.sub-menu-second ul').hide();
+    $(".sub-menu-second a").click(function () {
+        $(this).parent(".sub-menu-second").children("ul").slideToggle("100");
         $(this).find("span.right").toggleClass("fa-caret-up fa-caret-down");
     });
 });

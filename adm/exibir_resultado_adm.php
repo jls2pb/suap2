@@ -1,8 +1,13 @@
 <?php 
 date_default_timezone_set('America/Sao_Paulo');
 session_start();
+if(isset($_SESSION['cpf'])){
+$cpf_logado = $_SESSION['cpf'];
 include "../head.php";
+include "menu_adm.php";
+include "../navibar.php";
 include "../conexao.php";
+include "../footer.php";
 $hoje = date('d/m/Y');
 ?>
 <script>
@@ -11,11 +16,7 @@ $hoje = date('d/m/Y');
             location.reload();
         }, 5000); // 5000 milissegundos = 5 segundos
 </script>
-<div >
-    <center>
-        <img src="../images/logo_ti.png" width = "250px" >
-    </center>
-    <br>
+
 <?php 
 $qdp = "SELECT COUNT(*) AS quantidade FROM tb_log WHERE acao = 'CADASTRADO'";
 $rqdp = $conexao->prepare($qdp);
@@ -62,8 +63,8 @@ foreach ($xr as $key => $a) {
         $rb->execute();
         $nb = $rb->fetchAll();
         foreach ($nb as $key => $nbb) {
-        $nomeM = strtoupper($nbb["nome"]);
-          echo $nomeM; 
+          $nomeM = strtoupper($nbb["nome"]);
+          echo $nomeM;  
         }
          
          ?>
@@ -111,8 +112,12 @@ foreach ($xr as $key => $a) {
     <?php
       }
     }
-
     ?> 
   </tbody>
 </table>
-</div>
+
+<?php 
+}else{
+    header("Location:../index.php");
+}
+?>
