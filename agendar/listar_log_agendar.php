@@ -4,9 +4,9 @@ if(isset($_SESSION['cpf']) == FALSE){
     header("Location:../index.php");
 }
 require_once("../conexao.php");
-require_once("../head.php");
-include "menu_adm.php";
-include "navibar_adm.php";
+require_once("head.php");
+include "menu_agendamento.php";
+include "navibar_agendar.php";
 include "../footer.php";
 $cpf_logado = $_SESSION['cpf'];
 
@@ -18,7 +18,7 @@ $cpf_logado = $_SESSION['cpf'];
 ?>
 
 <h2 class="mb-4">AÇÕES REALIZADAS</h2>
-<p><a class="link-offset-2 link-underline link-underline-opacity-0" href="listar_adm.php">VOLTAR</a></p>
+<p><a class="link-offset-2 link-underline link-underline-opacity-0" href="listar_agendar.php">VOLTAR</a></p>
 <table class="table table-striped">
         <thead>
             <tr>

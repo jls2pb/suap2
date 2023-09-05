@@ -2,10 +2,11 @@
 require_once("head.php");
 session_start();
 
-include "menu_agendamento.php";
-include "navibar_agendamento.php";
 
-require_once("conexao.php");
+include "menu_agendamento.php";
+include "navibar_agendar.php";
+include "../footer.php";
+require_once("../conexao.php");
 $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
  $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
  $cpf_logado = $_SESSION['cpf'];
@@ -59,9 +60,3 @@ $result_profissional->execute();
         <script src="mascara.js"></script>
     </div>
 </div>
-
-    <script src="js/jquery.min.js"></script>
-    <script src="js/popper.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
-    

@@ -3,12 +3,13 @@ $timezone = new DateTimeZone('America/Sao_Paulo');
  require_once("head.php");
 
 
- session_start();
+ session_start(); 
+ $cpf_logado = $_SESSION['cpf'];
  include "head.php";
  include "menu.php";
  include "navibar.php";
  require_once("conexao.php");
- $cpf_logado = $_SESSION['cpf'];
+
  $dado = $_POST["nome"];
 
  $query_usuarios ="SELECT * FROM tabela WHERE nome_paciente LIKE '%$dado%' OR rg LIKE '%$dado%' OR cns LIKE '%$dado%' OR cpf LIKE '%$dado%' OR nascimento LIKE '%$dado%'";

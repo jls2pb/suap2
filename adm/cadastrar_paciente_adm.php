@@ -5,7 +5,7 @@ if(isset($_SESSION['cpf']) == FALSE){
 }
 require_once("../head.php");
 include "menu_adm.php";
-include "../navibar.php";
+include "navibar_adm.php";
 
 
 $cpf_logado = $_SESSION['cpf'];

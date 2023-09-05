@@ -3,13 +3,14 @@
 session_start();
 if(isset($_SESSION['cpf']) == FALSE){
     header("Location:index.php");
-}
+} 
+$cpf_logado = $_SESSION['cpf'];
 require_once("head.php");
 include "menu.php";
 include "navibar.php";
 include "footer.php";
 
-$cpf_logado = $_SESSION['cpf'];
+
 
 require_once("conexao.php");
  $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);

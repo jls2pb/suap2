@@ -12,7 +12,7 @@ $n = $_GET["n"];
 <?php 
 include "../head.php";
 include "menu_adm.php";
-include "../navibar.php";
+include "navibar_adm.php";
 include "../footer.php";
 ?>
 <h2 class="mb-4">CADASTRO DE PROCEDIMENTO</h2>

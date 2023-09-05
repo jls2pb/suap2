@@ -1,12 +1,12 @@
 <?php
 $timezone = new DateTimeZone('America/Sao_Paulo');
- require_once("../head.php");
+ require_once("head.php");
 
 
  session_start();
- include "../head.php";
- include "menu_adm.php";
- include "navibar_adm.php";
+ include "head.php";
+ include "menu_agendamento.php";
+ include "navibar_agendar.php";
  require_once("../conexao.php");
  $cpf_logado = $_SESSION['cpf'];
  $dado = $_POST["nome"];
@@ -45,7 +45,7 @@ $timezone = new DateTimeZone('America/Sao_Paulo');
                         <td><?php echo $d["cpf"]; ?></td>
                         <td><?php echo $d["nascimento"]; ?></td>
                         <td>
-                        <a class="btn" style="color: white; background-color: #66a7ff;" href = "listar_adm.php?id=<?php echo $d["cod"];?>" role="button">VER MAIS</a>      
+                        <a class="btn" style="color: white; background-color: #66a7ff;" href = "listar_agendar.php?id=<?php echo $d["cod"];?>" role="button">VER MAIS</a>      
                         </td>
                         </tr>
                     <?php

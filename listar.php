@@ -6,12 +6,12 @@ if(isset($_SESSION['cpf']) == FALSE){
 if(isset($_GET["id"])){
   $_SESSION['id'] = $_GET["id"];
 }
+$cpf_logado = $_SESSION['cpf'];
 require_once("head.php");
 include "menu.php";
 include "navibar.php";
 include "footer.php";
 
-$cpf_logado = $_SESSION['cpf'];
 
 require_once("conexao.php");
 $nome_paciente = $_SESSION['id'];

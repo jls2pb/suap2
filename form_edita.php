@@ -5,11 +5,12 @@ session_start();
 if(isset($_SESSION['cpf']) == FALSE){
     header("Location:index.php");
 }
+$cpf_logado = $_SESSION['cpf'];
 require_once("head.php");
 include "menu.php";
 include "navibar.php";
 include "footer.php";
-$cpf_logado = $_SESSION['cpf'];
+
 require_once("conexao.php");
 $id = $_SESSION['id'];
 $sql = "SELECT * FROM tabela WHERE cod = $id LIMIT 1";

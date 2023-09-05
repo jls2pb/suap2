@@ -1,78 +1,48 @@
 <?php 
-
+require_once("head.php");
 session_start();
-include "menu_adm.php";
-include "navibar_adm.php";
-include "../footer.php";
-require_once("../head.php");
-
-
 if(isset($_SESSION['cpf']) == FALSE){
     header("Location:../index.php");
 }
-
 $cpf_logado = $_SESSION['cpf'];
-require_once("../conexao.php");
-$id = $_GET["id"];
-$sql = "SELECT * FROM procedimentos WHERE id = $id ";
-$resultado = $conexao->prepare($sql);
-if($resultado->execute()){
-    $x=$resultado->fetchAll();
-}else{
-    echo "erro ao coletar os dados";
-}
+$nome = $_SESSION['id'];
+
+$n = $_GET["n"];
 ?>
-
-<h2 class="mb-4">EDIÇÃO DE PROCEDIMENTO</h2>
-<form method = "POST" action = "edita_procedimento_adm.php">  
-          <?php 
-
-                foreach ($x as $y) {
-                    if($y["data_da_solicitacao"] != NULL){
-                        $solicitacao = date('Y-m-d', strtotime($y["data_da_solicitacao"]));
-                    }else{
-                        $solicitacao = NULL;
-                    }
-                    if($y["data_de_entrada_cadastro"] != NULL){
-                        $entrada = date('Y-m-d', strtotime($y["data_de_entrada_cadastro"]));
-                    }else{
-                        $entrada = NULL;
-                    }
-                    if($y["data_da_saida"] != NULL){
-                        $saida = date('Y-m-d', strtotime($y["data_da_saida"])); 
-                    }else{
-                        $saida = NULL;
-                    }
-                    if($y["data_do_agendamento"] != NULL){
-                        $agendamento = date('Y-m-d', strtotime($y["data_do_agendamento"]));  
-                    }else{
-                        $agendamento = NULL;
-                    }
-            ?>  
+<?php 
+include "head.php";
+include "menu_agendamento.php";
+include "navibar_agendar.php";
+include "../footer.php";
+?>
+<h2 class="mb-4">CADASTRO DE PROCEDIMENTO</h2>
+<form method = "POST" action = "registro_procedimento_agendar.php">  
             <div class="form-outline mb-4">
             <label class="form-label">Nome do Paciente</label>
-            <input type="text" name = "paciente" class="form-control form-control-lg" value = "<?php echo $y['nome_paciente'] ?>"  disabled=""/>
+            <input type="text" name = "paciente" class="form-control form-control-lg" value = "<?php echo $n ?>"  disabled=""/>
             </div>
 
             <div class="form-outline mb-4">
             <label class="form-label">Profissional</label>
-            <input type="text" name = "profissional" class="form-control form-control-lg" value = "<?php echo $y['profissional'] ?>" />
+            <input type="text" name = "profissional" class="form-control form-control-lg" oninput="handleInput(event)"/>
             </div>
-		<div class="row">
+            <div class="row">
                 <div class="col-8">     
           	        <div class="form-outline mb-4">
                         <label class="form-label">Procedimento</label>
-                        <input type="text" name = "procedimento" class="form-control form-control-lg" id="procedimento_input" list="procedimentos_list" oninput="handleInput(event)" value = "<?php echo $y['procedimento'] ?>">
+                        <input type="text" name = "procedimento" class="form-control form-control-lg" id="procedimento_input" list="procedimentos_list" oninput="handleInput(event)" placeholder="Digite o procedimento...">
                     <datalist id="procedimentos_list"></datalist>
 		            </div>
                 </div>
                     <div class="col">
                         <div class="form-outline mb-4">
                         <label class="form-label">Especificação</label>    
-                        <input type="text" name = "especificacao" oninput="handleInput(event)" class="form-control form-control-lg" value = "<?php echo $y['especificacao'] ?>"/>
+                        <input type="text" name = "especificacao" oninput="handleInput(event)" class="form-control form-control-lg" />
                     </div>
                 </div>
-            </div>
+            </div>            
+                    <br>
+
                 <div class="row">
                     <div class="col">
                         <label class="form-label">Data da Solicitação</label>
@@ -90,22 +60,22 @@ if($resultado->execute()){
                 <div class="row">
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="date" name = "d_solicitacao" class="form-control form-control-lg" value = "<?php echo $solicitacao ?>"/>
+                        <input type="date" name = "d_solicitacao" class="form-control form-control-lg" />
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="date" name = "d_entrada" class="form-control form-control-lg" value = "<?php echo $entrada ?>" />
+                        <input type="date" name = "d_entrada" class="form-control form-control-lg" />
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="date" name = "d_saida" class="form-control form-control-lg" value = "<?php echo $saida ?>"/>
+                        <input type="date" name = "d_saida" class="form-control form-control-lg" />
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="date" name = "d_agendamento" class="form-control form-control-lg" value = "<?php echo $agendamento ?>"/>
+                        <input type="date" name = "d_agendamento" class="form-control form-control-lg" />
                         </div>
                     </div>
                 </div>
@@ -120,12 +90,13 @@ if($resultado->execute()){
                 <div class="row">
                     <div class="col">
                         <div class="form-outline mb-4">
-                            <input type="text" name = "l_agendamento" class="form-control form-control-lg" value = "<?php echo $y['local_do_agendamento'] ?>"/>
+                            <input type="text" name = "l_agendamento" list="local_list" oninput="handleInput(event)" id = "l_agendamento" class="form-control form-control-lg" />
+			                <datalist id="local_list"></datalist>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-outline mb-4">
-                            <input type="text" name = "obs" class="form-control form-control-lg" value = "<?php echo $y['observacao'] ?>"/>
+                            <input type="text" name = "obs" class="form-control form-control-lg" />
                         </div>
                     </div>
 
@@ -135,23 +106,19 @@ if($resultado->execute()){
                     
                 </div>
                 <div class="form-outline mb-4">
-                <input type = "hidden" name = "cod" value = "<?php echo $y['cod'] ?>" >    
-                <input type = "hidden" name = "n_paciente" value = "<?php echo $y['nome_paciente'] ?>" >
-                <input type = "hidden" name = "id" value = "<?php echo $y['id'] ?>" >
-                <input type = "hidden" name = "cpf_logado" value = "<?php echo $cpf_logado ?>">     
-                <?php 
-            }
-            ?>  
+                    
                     
                 </div>
-                <button class="btn btn-primary" type="submit">EDITAR</button>
-            
-                <button class="btn btn-danger"><a class="link-offset-2 link-underline link-underline-opacity-0" style = "color:white" href="listar_adm.php">VOLTAR</a></button>    
-                
+                <input type = "hidden" name = "n" value = "<?php echo $n; ?>" >
+                <input type = "hidden" name = "n_paciente" value = "<?php echo $nome; ?>" >
+                <input type = "hidden" name = "cpf_logado" value = "<?php echo $cpf_logado; ?>" >
+                <button class="btn btn-primary " type="submit">CADASTRAR</button>
+                <button class="btn btn-danger "><a class="link-offset-2 link-underline link-underline-opacity-0" style = "color:white" href="listar_agendar.php">VOLTAR</a></button>    
             </div>
-            </form>
+            </form> 
     </div>
 </div>
+
 <script src="../mascara.js"></script>
 <script>
         $(document).ready(function() {
@@ -172,6 +139,32 @@ if($resultado->execute()){
                             // Preenche o datalist com as opções retornadas pela busca
                             data.forEach(function(procedimento) {
                                 $('#procedimentos_list').append('<option value="' + procedimento + '">');
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+<script>
+        $(document).ready(function() {
+            // Quando o usuário digitar algo no input, acionamos a função de busca
+            $('#l_agendamento').on('input', function() {
+                var term = $(this).val();
+                if (term.length >= 3) {
+                    // Realizamos a solicitação AJAX para buscar os procedimentos
+                    $.ajax({
+                        url: '../buscar_local.php',
+                        type: 'GET',
+                        data: {term: term},
+                        dataType: 'json',
+                        success: function(data) {
+                            // Limpa o datalist antes de preencher com as novas opções
+                            $('#local_list').empty();
+
+                            // Preenche o datalist com as opções retornadas pela busca
+                            data.forEach(function(nome_fantasia) {
+                                $('#local_list').append('<option value="' + nome_fantasia + '">');
                             });
                         }
                     });

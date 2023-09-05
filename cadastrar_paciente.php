@@ -3,12 +3,13 @@ session_start();
 if(isset($_SESSION['cpf']) == FALSE){
     header("Location:index.php");
 }
+$cpf_logado = $_SESSION['cpf'];
 require_once("head.php");
 include "menu.php";
 include "navibar.php";
 
 
-$cpf_logado = $_SESSION['cpf'];
+
 require_once("conexao.php");
 $sql = "SELECT * FROM uaps ORDER BY nome_uaps ASC";
 $resultado = $conexao->prepare($sql);

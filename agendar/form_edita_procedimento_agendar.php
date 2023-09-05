@@ -1,10 +1,10 @@
 <?php 
 
 session_start();
-include "menu_adm.php";
-include "navibar_adm.php";
+include "menu_agendamento.php";
+include "navibar_agendar.php";
 include "../footer.php";
-require_once("../head.php");
+require_once("head.php");
 
 
 if(isset($_SESSION['cpf']) == FALSE){
@@ -24,7 +24,7 @@ if($resultado->execute()){
 ?>
 
 <h2 class="mb-4">EDIÇÃO DE PROCEDIMENTO</h2>
-<form method = "POST" action = "edita_procedimento_adm.php">  
+<form method = "POST" action = "edita_procedimento_agendar.php">  
           <?php 
 
                 foreach ($x as $y) {
@@ -146,7 +146,7 @@ if($resultado->execute()){
                 </div>
                 <button class="btn btn-primary" type="submit">EDITAR</button>
             
-                <button class="btn btn-danger"><a class="link-offset-2 link-underline link-underline-opacity-0" style = "color:white" href="listar_adm.php">VOLTAR</a></button>    
+                <button class="btn btn-danger"><a class="link-offset-2 link-underline link-underline-opacity-0" style = "color:white" href="listar_agendar.php">VOLTAR</a></button>    
                 
             </div>
             </form>

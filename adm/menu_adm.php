@@ -97,7 +97,7 @@ nav ul li ul li a:hover {
             <a href="exibir_resultado_adm.php"><span class="bi bi-bar-chart-line-fill" ></i></span><b> RANKING </b></a>
           </li>
           <li>
-            <a href="sair.php"><span class="bi bi-door-open-fill" ></i></span><b> SAIR</b></a>
+            <a href="../sair.php"><span class="bi bi-door-open-fill" ></i></span><b> SAIR</b></a>
           </li>
         </ul>
 
