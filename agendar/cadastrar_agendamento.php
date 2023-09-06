@@ -1,3 +1,8 @@
+<?php
+require_once("head.php");
+include "menu_agendamento.php";
+include "navibar_agendar.php";
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +21,7 @@
         <select name="horario" required>
             <?php
             // Conexão com o banco de dados
-            include "conexao.php";
+            include "../conexao.php";
 
             // ID do médico e tempo de atendimento
             $idMedico = 1;
