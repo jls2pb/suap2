@@ -25,23 +25,34 @@ include "head.php";
           <br>  
               
           <form method = "POST" action = "cadastrar_usuario.php">
-                    <div class="form-outline mb-4">
-                    <b> <label class="form-label" for="cpf" style="color: black;">DIGITE SEU NOME: </label></b>    
-                    <input type="text" id="nome" name = "nome" class="form-control form-control-lg" required/>
+                    <div class="form-outline mb-3">
+                      
+                    <input style="" type="text" id="nome" name = "nome" class="form-control" placeholder="Digite seu nome completo" required/>
                     </div>
-                    <div class="form-outline mb-4">
-                    <b> <label class="form-label" for="cpf" style="color: black;">CPF: </label></b>    
-                    <input type="text" id="cpf" name = "cpf" class="form-control form-control-lg" required/>
-                    </div>
-
-                    <div class="form-outline mb-4">
-                    <b> <label class="form-label" for="cpf" style="color: black;">SENHA: </label></b>
-                    <input type="password" id="senha" name = "senha" class="form-control form-control-lg" required/>
+                    <div class="form-outline mb-3">
+                    
+                    <input type="text" id="cpf" name = "cpf" class="form-control" placeholder="Digite seu CPF" required/>
                     </div>
 
-                    <button style="background-color: DarkBlue; color: white;"class="btn  btn-lg btn-block" type="submit">CADASTRAR</button>
+                    <div class="form-outline mb-3">
+                   
+                    <input type="password" id="senha" name = "senha" class="form-control" placeholder="Digite sua senha" required/>
+                    </div>
+                    <div class="form-outline mb-3">
+                    <select class="form-control " name="funcao">
+                    <option selected disabled>Selecione sua função</option>
+                      <option name="age">Agendamento</option>
+                      <option name="cad">Cadastro</option>
+                    </select>
+                    </div>
+                    <div class="form-outline mb-3">
+                   
+                   <input type="text" id="codigo" name = "codigo" class="form-control" placeholder="Digite o código" required/>
+                   </div>
+
+                    <button style="background-color: DarkBlue; color: white;"class="btn  btn btn-block" type="submit">CADASTRAR</button>
                 
-                    <a class="btn btn-primary  btn-lg btn-block" href="index.php" role="button">VOLTAR</a>
+                    <a class="btn btn-primary  btn btn-block" href="index.php" role="button">VOLTAR</a>
                 </form>
           
         </div>
@@ -79,6 +90,7 @@ include "head.php";
   display: flex;
   flex-direction: column;
   min-height: 100vh; 
+  position: relative;
 }
 
 .container {
