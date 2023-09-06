@@ -19,7 +19,7 @@ $resultado->execute();
 <form method = "POST" action = "registro_paciente.php">  
 <div class="form-outline mb-4">
             <label class="form-label">Nome do Paciente *</label>
-            <input type="text" name="n_paciente" class="form-control form-control-lg" id="n_paciente" list="paciente_list" oninput="handleInput(event)" placeholder="Digite o nome do paciente...">
+            <input type="text" name="n_paciente" class="form-control form-control-lg" id="n_paciente" list="paciente_list" oninput="handleInput(event)" required placeholder="Digite o nome do paciente...">
             <ul id="resultado"></ul>  
             </div>
 
