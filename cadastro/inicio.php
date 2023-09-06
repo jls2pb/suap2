@@ -1,11 +1,17 @@
+<!DOCTYPE html>
+<html lang="pt-br">
 <?php 
 require_once("head.php");
-session_start();
+session_start(); 
+if(isset($_SESSION['cpf'])){
+$cpf_logado = $_SESSION['cpf'];
 
-include "menu_adm.php";
-include "navibar_adm.php";
+include "menu.php";
+include "navibar.php";
+
 
 include "../footer.php";
+
 require_once("../conexao.php");
 ?>
 <div class="container">
@@ -89,3 +95,16 @@ require_once("../conexao.php");
     ?>
     </div>
   </div>
+  <?php 
+
+?>
+</div>
+
+    </div>
+</div>
+    
+<?php 
+}else{
+    header("Location:../index.php");
+}
+?>

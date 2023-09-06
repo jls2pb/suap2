@@ -1,5 +1,5 @@
 <?php 
-require_once("../head.php");
+require_once("head.php");
 session_start();
 
 include "menu_adm.php";

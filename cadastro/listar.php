@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 session_start();
 if(isset($_SESSION['cpf']) == FALSE){
     header("Location:../index.php");
@@ -6,12 +6,12 @@ if(isset($_SESSION['cpf']) == FALSE){
 if(isset($_GET["id"])){
   $_SESSION['id'] = $_GET["id"];
 }
+$cpf_logado = $_SESSION['cpf'];
 require_once("head.php");
-include "menu_adm.php";
-include "navibar_adm.php";
+include "menu.php";
+include "navibar.php";
 include "../footer.php";
 
-$cpf_logado = $_SESSION['cpf'];
 
 require_once("../conexao.php");
 $nome_paciente = $_SESSION['id'];
@@ -103,10 +103,10 @@ function deleteItem(itemId) {
       <br>
       <div class="row text-center">
         <div class="col">
-          <a class="btn text-white" style = "background-color: DarkBlue" href="form_edita_adm.php" role="button">EDITAR PACIENTE</a>
-          <a class="btn btn-primary text-white" href="cadastrar_procedimento_adm.php?n=<?php echo $y["nome_paciente"]; ?>" role="button">NOVO PROCEDIMENTO</a>
-          <a class="btn btn-info text-white" href="listar_log_adm.php" role="button">ATIVIDADES</a>
-          <a class="btn btn-danger text-white" href="excluir_paciente_adm.php" role="button">EXCLUIR CADASTRO</a>
+          <a class="btn text-white" style = "background-color: DarkBlue" href="form_edita.php" role="button">EDITAR PACIENTE</a>
+          <a class="btn btn-primary text-white" href="cadastrar_procedimento.php?n=<?php echo $y["nome_paciente"]; ?>" role="button">NOVO PROCEDIMENTO</a>
+          <a class="btn btn-info text-white" href="listar_log.php" role="button">ATIVIDADES</a>
+          <a class="btn btn-danger text-white" href="excluir_paciente.php" role="button">EXCLUIR CADASTRO</a>
         </div>
       </div> 
             <br>
@@ -159,8 +159,8 @@ function deleteItem(itemId) {
             <td><?php echo $saida ?></td>
             <td><?php echo $agendamento ?></td>
             <td><?php echo $y2["local_do_agendamento"]; ?></td>
-            <td><a class="btn text-white" style = "background-color: DarkBlue" href="form_edita_procedimento_adm.php?id=<?php echo $y2['id'] ?>" role="button"> VER MAIS </a></td>
-            <td><a onclick="deleteItem($y2['id'])" class="btn btn-danger text-white" href="excluir_procedimento_adm.php?id=<?php echo $y2['id'] ?>&nome=<?php echo $y2["nome_paciente"]; ?>" role="button"> EXCLUIR </a></td>
+            <td><a class="btn text-white" style = "background-color: DarkBlue" href="form_edita_procedimento.php?id=<?php echo $y2['id'] ?>" role="button"> VER MAIS </a></td>
+            <td><a onclick="deleteItem(itemId)" class="btn btn-danger text-white" href="excluir_procedimento.php?id=<?php echo $y2['id'] ?>&nome=<?php echo $y2["nome_paciente"]; ?>" role="button" onclick="deleteItem(itemId)"> EXCLUIR </a></td>
             </tr>
             <?php
             }
@@ -170,7 +170,4 @@ function deleteItem(itemId) {
           </div>  
     </div>
 </div>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/popper.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
+    

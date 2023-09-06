@@ -1,21 +1,22 @@
-<?php 
+﻿ <?php 
 session_start();
 if(isset($_SESSION['cpf']) == FALSE){
     header("Location:../index.php");
 }
-require_once("head.php");
-include "menu_adm.php";
-include "navibar_adm.php";
-
-
 $cpf_logado = $_SESSION['cpf'];
+require_once("head.php");
+include "menu.php";
+include "navibar.php";
+
+
+
 require_once("../conexao.php");
 $sql = "SELECT * FROM uaps ORDER BY nome_uaps ASC";
 $resultado = $conexao->prepare($sql);
 $resultado->execute();
 ?>
 <h3 class="mb-5 text-center"> CADASTRO DE PACIENTE </h3>
-<form method = "POST" action = "registro_paciente_adm.php">  
+<form method = "POST" action = "registro_paciente.php">  
 <div class="form-outline mb-4">
             <label class="form-label">Nome do Paciente *</label>
             <input type="text" name="n_paciente" class="form-control form-control-lg" id="n_paciente" list="paciente_list" oninput="handleInput(event)" placeholder="Digite o nome do paciente...">

@@ -12,11 +12,17 @@
             
               <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item">
-                <form method = "POST" action = "pesquisa_agendar.php">
+                <form method = "POST" action = "pesquisa.php">
                         <div class="input-group">
                           
-
-                        
+                            <div class="form-outline">
+                                <input type="search" name = "nome" class="form-control" oninput="handleInput(event)" placeholder = "BUSCAR PACIENTE"/>
+                                <input type = "hidden" name = "cpf" value = "<?php echo $cpf_logado?>">
+                            </div>
+                            
+                            <button style="background-color: #66a7ff; color: white;" type="submit" class="btn">
+                            <i class="bi bi-search"></i>
+                            </button>
                             </div>
                             
                         </form> 
@@ -25,4 +31,4 @@
             </div>
           </div>
         </nav>
-        <script src="../mascara.js"></script>
+        <script src="mascara.js"></script>

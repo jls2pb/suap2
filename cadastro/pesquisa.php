@@ -1,14 +1,15 @@
-<?php
+﻿<?php
 $timezone = new DateTimeZone('America/Sao_Paulo');
  require_once("head.php");
 
 
- session_start();
- include "head.php";
- include "menu_adm.php";
- include "navibar_adm.php";
- require_once("../conexao.php");
+ session_start(); 
  $cpf_logado = $_SESSION['cpf'];
+ include "head.php";
+ include "menu.php";
+ include "navibar.php";
+ require_once("../conexao.php");
+
  $dado = $_POST["nome"];
 
  $query_usuarios ="SELECT * FROM tabela WHERE nome_paciente LIKE '%$dado%' OR rg LIKE '%$dado%' OR cns LIKE '%$dado%' OR cpf LIKE '%$dado%' OR nascimento LIKE '%$dado%'";
@@ -45,7 +46,7 @@ $timezone = new DateTimeZone('America/Sao_Paulo');
                         <td><?php echo $d["cpf"]; ?></td>
                         <td><?php echo $d["nascimento"]; ?></td>
                         <td>
-                        <a class="btn" style="color: white; background-color: #66a7ff;" href = "listar_adm.php?id=<?php echo $d["cod"];?>" role="button">VER MAIS</a>      
+                        <a class="btn" style="color: white; background-color: #66a7ff;" href = "listar.php?id=<?php echo $d["cod"];?>" role="button">VER MAIS</a>      
                         </td>
                         </tr>
                     <?php
@@ -63,4 +64,6 @@ $timezone = new DateTimeZone('America/Sao_Paulo');
 
     </div>
 </div>
+
+
 

@@ -1,20 +1,9 @@
 <?php 
-
-session_start();
-include "menu_adm.php";
-include "navibar_adm.php";
-include "../footer.php";
 require_once("head.php");
-
-
-if(isset($_SESSION['cpf']) == FALSE){
-    header("Location:../index.php");
-}
-
-$cpf_logado = $_SESSION['cpf'];
 require_once("../conexao.php");
-$id = $_GET["id"];
-$sql = "SELECT * FROM procedimentos WHERE id = $id ";
+$id = $_POST["id"];
+$cpf_logado = $_POST["cpf"];
+$sql = "SELECT * FROM procedimentos WHERE id = $id";
 $resultado = $conexao->prepare($sql);
 if($resultado->execute()){
     $x=$resultado->fetchAll();
@@ -22,33 +11,20 @@ if($resultado->execute()){
     echo "erro ao coletar os dados";
 }
 ?>
+<body style="background-color: #508bfc;">
+<section class="vh-100" style="background-color: #508bfc;">
 
-<h2 class="mb-4">EDIÇÃO DE PROCEDIMENTO</h2>
-<form method = "POST" action = "edita_procedimento_adm.php">  
+<div class="container py-5 h-100">
+  
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="container">
+      <div class="card shadow-2-strong" style="border-radius: 1rem;">
+        <div class="card-body p-5">
+          <h3 class="mb-5 text-center"> AGENDAMENTO </h3>
+          <form method = "POST" action = "edita_procedimento.php">  
           <?php 
-
                 foreach ($x as $y) {
-                    if($y["data_da_solicitacao"] != NULL){
-                        $solicitacao = date('Y-m-d', strtotime($y["data_da_solicitacao"]));
-                    }else{
-                        $solicitacao = NULL;
-                    }
-                    if($y["data_de_entrada_cadastro"] != NULL){
-                        $entrada = date('Y-m-d', strtotime($y["data_de_entrada_cadastro"]));
-                    }else{
-                        $entrada = NULL;
-                    }
-                    if($y["data_da_saida"] != NULL){
-                        $saida = date('Y-m-d', strtotime($y["data_da_saida"])); 
-                    }else{
-                        $saida = NULL;
-                    }
-                    if($y["data_do_agendamento"] != NULL){
-                        $agendamento = date('Y-m-d', strtotime($y["data_do_agendamento"]));  
-                    }else{
-                        $agendamento = NULL;
-                    }
-            ?>  
+            ?>
             <div class="form-outline mb-4">
             <label class="form-label">Nome do Paciente</label>
             <input type="text" name = "paciente" class="form-control form-control-lg" value = "<?php echo $y['nome_paciente'] ?>"  disabled=""/>
@@ -58,20 +34,13 @@ if($resultado->execute()){
             <label class="form-label">Profissional</label>
             <input type="text" name = "profissional" class="form-control form-control-lg" value = "<?php echo $y['profissional'] ?>" />
             </div>
-		<div class="row">
-                <div class="col-8">     
-          	        <div class="form-outline mb-4">
-                        <label class="form-label">Procedimento</label>
-                        <input type="text" name = "procedimento" class="form-control form-control-lg" id="procedimento_input" list="procedimentos_list" oninput="handleInput(event)" value = "<?php echo $y['procedimento'] ?>">
-                    <datalist id="procedimentos_list"></datalist>
-		            </div>
-                </div>
-                    <div class="col">
-                        <div class="form-outline mb-4">
-                        <label class="form-label">Especificação</label>    
-                        <input type="text" name = "especificacao" oninput="handleInput(event)" class="form-control form-control-lg" value = "<?php echo $y['especificacao'] ?>"/>
-                    </div>
-                </div>
+
+            <div class="form-outline mb-4">
+            <label class="form-label">Procedimento</label>
+            <input type="text" name = "procedimento" class="form-control form-control-lg" id="procedimento_input" list="procedimentos_list" oninput="handleInput(event)" value = "<?php echo $y['procedimento'] ?>">
+
+            <datalist id="procedimentos_list"></datalist>
+
             </div>
                 <div class="row">
                     <div class="col">
@@ -90,22 +59,22 @@ if($resultado->execute()){
                 <div class="row">
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="date" name = "d_solicitacao" class="form-control form-control-lg" value = "<?php echo $solicitacao ?>"/>
+                        <input type="date" name = "d_solicitacao" class="form-control form-control-lg" value = "<?php echo $y['data_da_solicitacao'] ?>"/>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="date" name = "d_entrada" class="form-control form-control-lg" value = "<?php echo $entrada ?>" />
+                        <input type="date" name = "d_entrada" class="form-control form-control-lg" value = "<?php echo $y['data_de_entrada_cadastro'] ?>" />
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="date" name = "d_saida" class="form-control form-control-lg" value = "<?php echo $saida ?>"/>
+                        <input type="date" name = "d_saida" class="form-control form-control-lg" value = "<?php echo $y['data_da_saida'] ?>"/>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="date" name = "d_agendamento" class="form-control form-control-lg" value = "<?php echo $agendamento ?>"/>
+                        <input type="date" name = "d_agendamento" class="form-control form-control-lg" value = "<?php echo $y['data_do_agendamento'] ?>"/>
                         </div>
                     </div>
                 </div>
@@ -135,24 +104,25 @@ if($resultado->execute()){
                     
                 </div>
                 <div class="form-outline mb-4">
-                <input type = "hidden" name = "cod" value = "<?php echo $y['cod'] ?>" >    
                 <input type = "hidden" name = "n_paciente" value = "<?php echo $y['nome_paciente'] ?>" >
                 <input type = "hidden" name = "id" value = "<?php echo $y['id'] ?>" >
                 <input type = "hidden" name = "cpf_logado" value = "<?php echo $cpf_logado ?>">     
                 <?php 
             }
-            ?>  
-                    
+            ?> 
+                 <a href="#" onclick="window. print();"> <i class="bi bi-printer"></i> </a>  
                 </div>
-                <button class="btn btn-primary" type="submit">EDITAR</button>
+                </div>
+            </form>  
+        </div>
+            <button class="btn btn-danger btn-lg btn-block"><a class="link-offset-2 link-underline link-underline-opacity-0" style = "color:white" href="listar.php?id=<?php echo $y['nome_paciente'] ?>&cpf=<?php echo $cpf_logado ?>">VOLTAR</a></button>    
             
-                <button class="btn btn-danger"><a class="link-offset-2 link-underline link-underline-opacity-0" style = "color:white" href="listar_adm.php">VOLTAR</a></button>    
-                
-            </div>
-            </form>
     </div>
+  </div>
 </div>
-<script src="../mascara.js"></script>
+<script src="mascara.js"></script>
+</section>
+
 <script>
         $(document).ready(function() {
             // Quando o usuário digitar algo no input, acionamos a função de busca

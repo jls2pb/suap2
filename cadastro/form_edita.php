@@ -1,13 +1,16 @@
-<?php 
+﻿<?php 
+
+
 session_start();
 if(isset($_SESSION['cpf']) == FALSE){
     header("Location:../index.php");
 }
-require_once("head.php");
-include "menu_adm.php";
-include "navibar_adm.php";
-include "../footer.php";
 $cpf_logado = $_SESSION['cpf'];
+require_once("head.php");
+include "menu.php";
+include "navibar.php";
+include "../footer.php";
+
 require_once("../conexao.php");
 $id = $_SESSION['id'];
 $sql = "SELECT * FROM tabela WHERE cod = $id LIMIT 1";
@@ -22,7 +25,7 @@ if($resultado->execute()){
 }
 ?>
 <h2 class="mb-4">EDITAR PACIENTE</h2>
-<form method = "POST" action = "edita_paciente_adm.php">  
+<form method = "POST" action = "edita_paciente.php">  
             <?php 
                 foreach ($x as $y) {
 
@@ -142,11 +145,9 @@ if($resultado->execute()){
                 ?>
                 <input type = "hidden" name = "cpf_logado" value = "<?php echo $cpf_logado ?>">    
                 <button class="btn btn-primary " type="submit">SALVAR</button>
-                <button class="btn btn-danger "><a class="link-offset-2 link-underline link-underline-opacity-0" style = "color:white" href="listar_adm.php">VOLTAR</a></button>    
+                <button class="btn btn-danger "><a class="link-offset-2 link-underline link-underline-opacity-0" style = "color:white" href="listar.php">VOLTAR</a></button>    
             </div>
             </form>
     </div>
 </div>
-
-
 

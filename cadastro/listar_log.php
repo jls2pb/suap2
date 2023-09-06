@@ -3,12 +3,13 @@
 if(isset($_SESSION['cpf']) == FALSE){
     header("Location:../index.php");
 }
+$cpf_logado = $_SESSION['cpf'];
 require_once("../conexao.php");
 require_once("head.php");
-include "menu_adm.php";
-include "navibar_adm.php";
+include "menu.php";
+include "navibar.php";
 include "../footer.php";
-$cpf_logado = $_SESSION['cpf'];
+
 
  $dado = $_SESSION['id'];
  $query_usuarios ="SELECT * FROM tb_log WHERE id_paciente = '$dado'";
@@ -18,7 +19,7 @@ $cpf_logado = $_SESSION['cpf'];
 ?>
 
 <h2 class="mb-4">AÇÕES REALIZADAS</h2>
-<p><a class="link-offset-2 link-underline link-underline-opacity-0" href="listar_adm.php">VOLTAR</a></p>
+<p><a class="link-offset-2 link-underline link-underline-opacity-0" href="listar.php">VOLTAR</a></p>
 <table class="table table-striped">
         <thead>
             <tr>
@@ -56,7 +57,6 @@ $cpf_logado = $_SESSION['cpf'];
         </table>
     </div>
 </div>
-
 
 
 

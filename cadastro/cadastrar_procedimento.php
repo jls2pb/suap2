@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 require_once("head.php");
 session_start();
 if(isset($_SESSION['cpf']) == FALSE){
@@ -11,12 +11,12 @@ $n = $_GET["n"];
 ?>
 <?php 
 include "head.php";
-include "menu_adm.php";
-include "navibar_adm.php";
+include "menu.php";
+include "navibar.php";
 include "../footer.php";
 ?>
 <h2 class="mb-4">CADASTRO DE PROCEDIMENTO</h2>
-<form method = "POST" action = "registro_procedimento_adm.php">  
+<form method = "POST" action = "registro_procedimento.php">  
             <div class="form-outline mb-4">
             <label class="form-label">Nome do Paciente</label>
             <input type="text" name = "paciente" class="form-control form-control-lg" value = "<?php echo $n ?>"  disabled=""/>
@@ -113,13 +113,13 @@ include "../footer.php";
                 <input type = "hidden" name = "n_paciente" value = "<?php echo $nome; ?>" >
                 <input type = "hidden" name = "cpf_logado" value = "<?php echo $cpf_logado; ?>" >
                 <button class="btn btn-primary " type="submit">CADASTRAR</button>
-                <button class="btn btn-danger "><a class="link-offset-2 link-underline link-underline-opacity-0" style = "color:white" href="listar_adm.php">VOLTAR</a></button>    
+                <button class="btn btn-danger "><a class="link-offset-2 link-underline link-underline-opacity-0" style = "color:white" href="listar.php">VOLTAR</a></button>    
             </div>
             </form> 
     </div>
 </div>
 
-<script src="../mascara.js"></script>
+<script src="mascara.js"></script>
 <script>
         $(document).ready(function() {
             // Quando o usuário digitar algo no input, acionamos a função de busca

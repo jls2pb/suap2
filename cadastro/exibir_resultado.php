@@ -4,8 +4,8 @@ session_start();
 if(isset($_SESSION['cpf'])){
 $cpf_logado = $_SESSION['cpf'];
 include "head.php";
-include "menu_adm.php";
-include "navibar_adm.php";
+include "menu.php";
+include "navibar.php";
 include "../conexao.php";
 include "../footer.php";
 $hoje = date('d/m/Y');

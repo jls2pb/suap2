@@ -14,7 +14,7 @@ if(isset($_POST["cpf"])){
     if($r["cpf"] == $cpf && $r["senha"] == $senha){
       session_start();
       $_SESSION['cpf'] = $cpf;
-      Header("Location:inicio.php");
+      Header("Location:cadastro/inicio.php");
     }
   }
   ?>
