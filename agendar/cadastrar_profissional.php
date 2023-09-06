@@ -1,16 +1,16 @@
 <?php 
 session_start();
 if(isset($_SESSION['cpf']) == FALSE){
-    header("Location:index.php");
+    header("Location:..index.php");
 }
 $cpf_logado = $_SESSION['cpf'];
 require_once("head.php");
 include "menu_agendamento.php";
-include "navibar_agendamento.php";
+include "navibar_agendar.php";
 
 
 
-require_once("conexao.php");
+require_once("../conexao.php");
 $sql = "SELECT * FROM uaps ORDER BY nome_uaps ASC";
 $resultado = $conexao->prepare($sql);
 $resultado->execute();
@@ -32,7 +32,7 @@ $resultado->execute();
     <button style="color:white;background-color: #66a7ff;" class="btn " type="submit"><b>CADASTRAR</b></button>
                 <button class="btn btn-danger "><a class="link-offset-2 link-underline link-underline-opacity-0" style = "color:white" href="inicio_AGENDAMENTO.php">VOLTAR</a></button> 
             <?php
-            include "footer.php";
+            include "../footer.php";
             ?>
             </form>
 
