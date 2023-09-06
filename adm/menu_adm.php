@@ -93,6 +93,11 @@ nav ul li ul li a:hover {
           <li>
             <a href="index_logado_adm.php"><span class="fa fa-sticky-note"></span><b> LISTAR PACIENTES</b></a>
           </li>
+
+          <li>
+            <a href="codigo.php"><b>GERAR CÓDIGO</b></a>
+          </li>
+
           <li>
             <a href="exibir_resultado_adm.php"><span class="bi bi-bar-chart-line-fill" ></i></span><b> RANKING </b></a>
           </li>
