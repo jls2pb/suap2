@@ -1,6 +1,7 @@
 <?php 
 
-session_start();
+session_start(); 
+$cpf_logado = $_SESSION['cpf'];
 include "menu_adm.php";
 include "navibar_adm.php";
 include "../footer.php";
@@ -11,7 +12,7 @@ if(isset($_SESSION['cpf']) == FALSE){
     header("Location:../index.php");
 }
 
-$cpf_logado = $_SESSION['cpf'];
+
 require_once("../conexao.php");
 $id = $_GET["id"];
 $sql = "SELECT * FROM procedimentos WHERE id = $id ";

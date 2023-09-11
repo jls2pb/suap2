@@ -3,12 +3,12 @@ session_start();
 if(isset($_SESSION['cpf']) == FALSE){
     header("Location:../index.php");
 }
+$cpf_logado = $_SESSION['cpf'];
 require_once("head.php");
 include "menu_adm.php";
 include "navibar_adm.php";
 
 
-$cpf_logado = $_SESSION['cpf'];
 require_once("../conexao.php");
 $sql = "SELECT * FROM uaps ORDER BY nome_uaps ASC";
 $resultado = $conexao->prepare($sql);
@@ -125,10 +125,7 @@ $resultado->execute();
     </div>
 </div>
 <script src="../mascara.js"></script>
-    <script src="../js/popper.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/main.js"></script>
-    <script>
+
     new FormMask(document.querySelector("#cpf"), "___.___.___-__", "_", [".", "-"])
     new FormMask(document.querySelector("#cel"), "(__)_____-____", "_", ["(", ")", "-"])
     new FormMask(document.querySelector("#tel"), "(__)_____-____", "_", ["(", ")", "-"])
