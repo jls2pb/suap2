@@ -39,15 +39,15 @@ include "head.php";
                     <input type="password" id="senha" name = "senha" class="form-control" placeholder="Digite sua senha" required/>
                     </div>
                     <div class="form-outline mb-3">
-                    <select class="form-control " name="funcao">
-                    <option selected disabled>Selecione sua função</option>
-                      <option name="age">Agendamento</option>
-                      <option name="cad">Cadastro</option>
+                    <select class="form-control " name="funcao" required>
+                      <option value="" selected disabled>Selecione sua função</option>
+                      <option value="2" id="2">Agendamento</option>
+                      <option value="3" id="3">Cadastro</option>
                     </select>
                     </div>
                     <div class="form-outline mb-3">
                    
-                   <input type="text" id="codigo" name = "codigo" class="form-control" placeholder="Digite o código" required/>
+                   <input type="number" id="codigo" name = "codigo" class="form-control" placeholder="Digite o código" required/>
                    </div>
 
                     <button style="background-color: DarkBlue; color: white;"class="btn  btn btn-block" type="submit">CADASTRAR</button>

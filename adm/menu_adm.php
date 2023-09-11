@@ -59,7 +59,30 @@ nav ul li ul li a:hover {
     <div class="col-sm">
       
     </div>
+    
   </div>
+  <div class="text-center" style="font-size: 80%;">       
+<?php
+require_once("../conexao.php");
+
+
+  $sql = "SELECT * FROM usuario WHERE cpf = '$cpf_logado'";
+  $resultado = $conexao->query($sql);
+
+  if ($resultado) {
+    $row = $resultado->fetch(PDO::FETCH_ASSOC);
+    if ($row) {
+      echo $row['nome'];
+    } else {
+      echo "Nome não encontrado";
+    }
+  } else {
+    echo "Erro na consulta SQL"; // Pode ser alterado para uma mensagem de erro personalizada
+  }
+
+
+?>
+</div>
 </div>
    
 
@@ -82,17 +105,31 @@ nav ul li ul li a:hover {
           </li>
 
           <li>
-          <a href="cadastro_profissionais.php" class="link-dark rounded"><img style="width: 14%;" src="../images/medico.png"><b>NOVO PROFISSIONAL</b></a></li>
+          <a href="cadastrar_profissional.php" class="link-dark rounded"><img style="width: 14%;" src="../images/medico.png"><b>NOVO PROFISSIONAL</b></a></li>
           </li>
           </ul></li>
 
-          <li>
+          <li class="sub-menu-second">
+          <a style="cursor: pointer;" class="link-dark rounded"><b>VISUALIZAR </b><div class="fa fa-caret-down right"></div></a>
+          
+      <ul>
+      <li>
           <a href="ver_atividades.php" class="link-dark rounded"><img style="width: 15%;" src="../images/checklist.png"><b>VER ATIVIDADES</b></a></li>
           </li>
+          <li>
+          <a href="ver_usuarios.php" class="link-dark rounded"><span class="bi bi-person"></span><b>VER USUÁRIOS</b></a></li>
+          </li>
+</ul>
+</li>
 
           <li>
             <a href="index_logado_adm.php"><span class="fa fa-sticky-note"></span><b> LISTAR PACIENTES</b></a>
           </li>
+
+          <li>
+            <a href="codigo.php"><img style="width: 12%; margin-right: 5px;"src="../images/pin.png"><b>GERAR CÓDIGO</b></a>
+          </li>
+
           <li>
             <a href="exibir_resultado_adm.php"><span class="bi bi-bar-chart-line-fill" ></i></span><b> RANKING </b></a>
           </li>

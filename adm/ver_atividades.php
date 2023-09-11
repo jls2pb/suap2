@@ -1,7 +1,7 @@
 <?php 
 require_once("head.php");
 session_start();
-
+ $cpf_logado = $_SESSION['cpf'];
 include "menu_adm.php";
 include "navibar_adm.php";
 
@@ -11,7 +11,7 @@ require_once("../conexao.php");
 <?php
  $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
  $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
- $cpf_logado = $_SESSION['cpf'];
+
  //Setar a quantidade de registros por página
  $limite_resultado = 6;
 

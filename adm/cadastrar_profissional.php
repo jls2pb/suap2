@@ -5,8 +5,8 @@ if(isset($_SESSION['cpf']) == FALSE){
 }
 $cpf_logado = $_SESSION['cpf'];
 require_once("head.php");
-include "menu_agendamento.php";
-include "navibar_agendar.php";
+include "menu_adm.php";
+include "navibar_adm.php";
 
 
 
@@ -27,10 +27,10 @@ $resultado->execute();
     </div>
     <div class="form-outline mb-4">
     <label class="form-label">Tempo de atendimento *</label>
-    <input type="text" name="tempo" class="form-control form-control-lg" id="tempo" pattern="^(0?[1-9]|[1-5][0-9]|60)$" placeholder = "Tempo de 1 a 60 minutos" title="Digite um número de 1 a 60">
+    <input type="number" name="tempo" class="form-control form-control-lg" id="tempo" pattern="^(0?[1-9]|[1-5][0-9]|60)$" placeholder = "Tempo de 1 a 60 minutos" title="Digite um número de 1 a 60">
 </div>
     <button style="color:white;background-color: #66a7ff;" class="btn " type="submit"><b>CADASTRAR</b></button>
-                <a class="link-offset-2 link-underline link-underline-opacity-0 btn btn-danger" style = "color:white" href="inicio_agendamento.php" role="button">VOLTAR</a> 
+               <a class="link-offset-2 link-underline link-underline-opacity-0 btn btn-danger" style = "color:white" href="inicio_adm.php" role="button">VOLTAR</a> 
             <?php
             include "../footer.php";
             ?>

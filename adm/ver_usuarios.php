@@ -1,19 +1,16 @@
-<?php
-session_start();
-if(isset($_SESSION['cpf']) == FALSE){
-    header("Location:../index.php");
-}$cpf_logado = $_SESSION['cpf'];
+<?php 
 require_once("head.php");
+session_start();
+ $cpf_logado = $_SESSION['cpf'];
 include "menu_adm.php";
 include "navibar_adm.php";
+
 include "../footer.php";
-
-
-
 require_once("../conexao.php");
- $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
+
+$pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
  $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
- $cpf_logado = $_SESSION['cpf'];
+
  //Setar a quantidade de registros por página
  $limite_resultado = 6;
 
@@ -21,20 +18,21 @@ require_once("../conexao.php");
  $inicio = ($limite_resultado * $pagina) - $limite_resultado;
 
 
- $query_usuarios = "SELECT DISTINCT ON (nome_paciente) * FROM tabela ORDER BY nome_paciente ASC LIMIT $limite_resultado OFFSET $inicio ";
+ $query_usuarios = "SELECT DISTINCT ON (nome) * FROM usuario ORDER BY nome ASC LIMIT $limite_resultado OFFSET $inicio ";
  $result_usuarios = $conexao->prepare($query_usuarios);
  $result_usuarios->execute();
+
 
 ?>
 
 <table class="table table-striped">
         <thead>
             <tr>
-            <th scope="col">COD</th>
-            <th scope="col">NOME PACIENTE</th>
-            <th scope="col">RG</th>
+            <th scope="col">ID</th>
+            <th scope="col">NOME USUÁRIO</th>
             <th scope="col">CPF</th>
-            <th scope="col">DATA DE NASCIMENTO</th>
+            <th scope="col">FUNÇÃO</th>
+            <th scope="col">AÇÃO</th>
             <th scope="col">AÇÃO</th>
             </tr>
         </thead>
@@ -43,27 +41,41 @@ require_once("../conexao.php");
               if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
                     while ($d = $result_usuarios->fetch(PDO::FETCH_ASSOC)) { 
                         extract($d); 
-                        if($d["nascimento"] != NULL){
-                            $nascimento = date('d/m/Y', strtotime($d["nascimento"]));
-                        }else{
-                            $nascimento = NULL;
-                        }
+        
             ?>
             
             <tr>
-            <th scope="row"><?php echo $d["cod"]; ?></th>
-            <td><?php echo $d["nome_paciente"]; ?></td>
-            <td><?php echo $d["rg"]; ?></td>
+            <th scope="row"><?php echo $d["id_usuario"];?></th>
+            <td><?php echo $d["nome"]; ?></td>
             <td><?php echo $d["cpf"]; ?></td>
-            <td><?php echo $d["nascimento"] ?></td>
+            <td><?php
+            
+        $nome_tipo = $d["id_tipo"];
+        $sql2 = "SELECT nome_tipo FROM tipo_usuario WHERE id_tipo ='$nome_tipo' ";
+        $resultado = $conexao->query($sql2);
+        if ($resultado) {
+            $row = $resultado->fetch(PDO::FETCH_ASSOC);
+            if ($row) {
+             echo $row['nome_tipo'];
+            } else {
+              echo "Nome não encontrado";
+            }
+          } else {
+            echo "Erro na consulta SQL"; // Pode ser alterado para uma mensagem de erro personalizada
+          } ?>
+          
+        </td>
             <td>
-                <a class="btn text-white" style="background-color: #66a7ff;" href = "listar_adm.php?id=<?php echo $d["cod"];?>" role="button">VER MAIS</a>
+                <a class="btn text-white" style="background-color: #66a7ff;" href = "form_edita_usuario_adm.php?id=<?php $_GET["id"] = $d["id_usuario"]; echo $_GET["id"];?>" role="button"><b>EDITAR</b></a>
+            </td>
+            <td>
+                <a class="btn text-white btn-danger" href = "excluir_usuario_adm.php?id=<?php $_GET["id"] = $d["id_usuario"]; echo $_GET["id"];?>" role="button"><b>EXCLUIR</b></a>
             </td>
             </tr>
             <?php
                     }
 
-            $query_qnt_registros = "SELECT COUNT(cod) AS num_result FROM tabela";
+            $query_qnt_registros = "SELECT COUNT(id_usuario) AS num_result FROM usuario";
             $result_qnt_registros = $conexao->prepare($query_qnt_registros);
             $result_qnt_registros->execute();
             $row_qnt_registros = $result_qnt_registros->fetch(PDO::FETCH_ASSOC);
@@ -77,11 +89,11 @@ require_once("../conexao.php");
             <div class = "row">
                 <div class = "col">        
             <?php 
-            echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='index_logado_adm.php?page=1&cpf=$cpf_logado '>Primeira</a> ";
+            echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='ver_usuarios.php?page=1&cpf=$cpf_logado '>Primeira</a> ";
 
             for ($pagina_anterior = $pagina - $maximo_link; $pagina_anterior <= $pagina - 1; $pagina_anterior++) {
                 if ($pagina_anterior >= 1) {
-                    echo "<a href='index_logado_adm.php?page=$pagina_anterior&cpf=$cpf_logado'><label>$pagina_anterior</label></a> ";
+                    echo "<a href='ver_usuarios.php?page=$pagina_anterior&cpf=$cpf_logado'><label>$pagina_anterior</label></a> ";
                 }
             }
 
@@ -89,7 +101,7 @@ require_once("../conexao.php");
 
             for ($proxima_pagina = $pagina + 1; $proxima_pagina <= $pagina + $maximo_link; $proxima_pagina++) {
                 if ($proxima_pagina <= $qnt_pagina) {
-                    echo "<a href='index_logado_adm.php?page=$proxima_pagina&cpf=$cpf_logado'><label>$proxima_pagina</label></a> ";
+                    echo "<a href='ver_usuarios.php?page=$proxima_pagina&cpf=$cpf_logado'><label>$proxima_pagina</label></a> ";
                 }
             }
 
@@ -106,8 +118,3 @@ require_once("../conexao.php");
         <script src="../mascara.js"></script>
     </div>
 </div>
-
-
-
-
-

@@ -1,7 +1,8 @@
 <?php 
 require_once("head.php");
 session_start();
-
+if(isset($_SESSION['cpf'])){
+  $cpf_logado = $_SESSION['cpf'];
 include "menu_adm.php";
 include "navibar_adm.php";
 
@@ -85,7 +86,11 @@ require_once("../conexao.php");
         <p style="margin-top: 15px; color: black;">PROCEDIMENTOS AGENDADOS: <?= $a["quantidade"] ?> </p>
         <?php
       }
-
+    }
+    else {
+      header("location: ../index.php");
+    }
     ?>
     </div>
   </div>
+    

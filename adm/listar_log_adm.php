@@ -2,13 +2,13 @@
  session_start();
 if(isset($_SESSION['cpf']) == FALSE){
     header("Location:../index.php");
-}
+}$cpf_logado = $_SESSION['cpf'];
 require_once("../conexao.php");
 require_once("head.php");
 include "menu_adm.php";
 include "navibar_adm.php";
 include "../footer.php";
-$cpf_logado = $_SESSION['cpf'];
+
 
  $dado = $_SESSION['id'];
  $query_usuarios ="SELECT * FROM tb_log WHERE id_paciente = '$dado'";

@@ -1,7 +1,8 @@
 <?php 
 require_once("head.php");
 session_start();
-
+if(isset($_SESSION['cpf'])){
+    $cpf_logado = $_SESSION['cpf'];
 
 include "menu_agendamento.php";
 include "navibar_agendar.php";
@@ -50,7 +51,10 @@ $result_profissional->execute();
             } else {
             echo "<p style='color: #f00;'>Erro: Nenhum usuário Profissional encontrado!</p>";
             }  
-                
+        }
+        else {
+          header("location: ../index.php");
+        }
             ?>
                 </div>
             </div> 

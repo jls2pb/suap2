@@ -11,7 +11,17 @@ if(isset($_POST["cpf"])){
   $result_usuarios->execute();
   
   foreach ($result_usuarios as $r ) {
-    if($r["cpf"] == $cpf && $r["senha"] == $senha){
+    if($r["cpf"] == $cpf && $r["senha"] == $senha && $r["id_tipo"] == 1){
+      session_start();
+      $_SESSION['cpf'] = $cpf;
+      Header("Location:adm/inicio_adm.php");
+    }
+    else if($r["cpf"] == $cpf && $r["senha"] == $senha && $r["id_tipo"] == 2){
+      session_start();
+      $_SESSION['cpf'] = $cpf;
+      Header("Location:agendar/inicio_agendamento.php");
+    }
+    else if($r["cpf"] == $cpf && $r["senha"] == $senha && $r["id_tipo"] == 3){
       session_start();
       $_SESSION['cpf'] = $cpf;
       Header("Location:cadastro/inicio.php");
