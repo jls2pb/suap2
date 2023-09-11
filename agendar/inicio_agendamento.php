@@ -40,7 +40,7 @@ $result_profissional->execute();
             <td><?php echo $d["tempo_atendimento"]; ?> Min</td>
             <td>
                 <a class="link-underline text-dark" href="cadastrar_agenda.php?id=<?= $d["id_profissional"]; ?>" ><i class="bi bi-calendar-plus"></i></a>  
-                <a class="link-underline text-dark" href="cadastrar_agendamento.php" ><i class="bi bi-card-list"></i></a> 
+                <a class="link-underline text-dark" href="cadastrar_agendamento.php?id=<?= $d["id_profissional"]; ?>" ><i class="bi bi-card-list"></i></a> 
                 <a class="link-underline text-dark" href="#" ><i class="bi bi-pencil-square"></i></a>  
                 <a class="link-underline text-dark" href="#" ><i class="bi bi-trash3"></i></a>  
             </td>                
