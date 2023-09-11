@@ -1,48 +1,49 @@
 <?php
 include "head.php";
 require_once("conexao.php");
-    $cpf = $_POST['cpf'];
-    $nome = $_POST['nome'];
-    $senha = $_POST['senha'];
-    $funcao = $_POST['funcao'];
-    $sql = "SELECT * FROM usuario";
-    $resultado = $conexao->prepare($sql);
-    $cont = 0;
-    if($resultado->execute()){
-      $x = $resultado->fetchAll();
-      foreach ($x as $y) {
-        if($y["cpf"] === $cpf){
-        $cont++;
-        }
-      }
-    }
-    if($cont == 0){
-        $query_usuarios = "INSERT INTO usuario(cpf,nome,senha,id_tipo) VALUES ('$cpf','$nome','$senha', '$funcao')";
-        $result_usuarios = $conexao->prepare($query_usuarios);
-    
-        if($result_usuarios->execute()){
-            ?>
-        <script>
-            window.alert("CADASTRO REALIZADOR COM SUCESSO, REALIZE O LOGIN!");
-        </script> 
-            <?php
-            echo "cadastrou";
-            Header("Location:index.php");
-        }else{
-            ?>
-        <script>
-            window.alert("ERRO AO CADASTRAR!");
-        </script> 
-            <?php
-        }
 
-    }else{
+$cpf = $_POST['cpf'];
+$nome = $_POST['nome'];
+$senha = $_POST['senha'];
+$funcao = $_POST['funcao'];
+$codigo = $_POST['codigo'];
+
+// Consulta o código na tabela "codigo"
+$sql2 = "SELECT * FROM codigo WHERE numero = :codigo";
+$resultado2 = $conexao->prepare($sql2);
+$resultado2->bindParam(':codigo', $codigo, PDO::PARAM_STR);
+$resultado2->execute();
+
+if ($resultado2->rowCount() > 0) {
+    // Código válido, insira os dados do usuário na tabela "usuario"
+    $query_usuarios = "INSERT INTO usuario(cpf, nome, senha, id_tipo) VALUES (:cpf, :nome, :senha, :funcao)";
+    $result_usuarios = $conexao->prepare($query_usuarios);
+    $result_usuarios->bindParam(':cpf', $cpf, PDO::PARAM_STR);
+    $result_usuarios->bindParam(':nome', $nome, PDO::PARAM_STR);
+    $result_usuarios->bindParam(':senha', $senha, PDO::PARAM_STR);
+    $result_usuarios->bindParam(':funcao', $funcao, PDO::PARAM_INT);
+
+    if ($result_usuarios->execute()) {
         ?>
         <script>
-            alert("CPF JA CADASTRADO!");
-	        window.location="form_cad_usuario.php";
-        </script> 
-            <?php
+            window.alert("CADASTRO REALIZADO COM SUCESSO, REALIZE O LOGIN!");
+        </script>
+        <?php
+        Header("Location:index.php");
+    } else {
+        ?>
+        <script>
+            window.alert("ERRO AO CADASTRAR!");
+        </script>
+        <?php
     }
-    
+} else {
+    ?>
+    <script>
+        alert("CÓDIGO INVÁLIDO!");
+        window.location = "form_cad_usuario.php";
+    </script>
+    <?php
+}
+
 ?>

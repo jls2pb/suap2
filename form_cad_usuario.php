@@ -47,7 +47,7 @@ include "head.php";
                     </div>
                     <div class="form-outline mb-3">
                    
-                   <input type="text" id="codigo" name = "codigo" class="form-control" placeholder="Digite o código" required/>
+                   <input type="number" id="codigo" name = "codigo" class="form-control" placeholder="Digite o código" required/>
                    </div>
 
                     <button style="background-color: DarkBlue; color: white;"class="btn  btn btn-block" type="submit">CADASTRAR</button>
