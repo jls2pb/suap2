@@ -4,6 +4,7 @@ require_once("conexao.php");
     $cpf = $_POST['cpf'];
     $nome = $_POST['nome'];
     $senha = $_POST['senha'];
+    $funcao = $_POST['funcao'];
     $sql = "SELECT * FROM usuario";
     $resultado = $conexao->prepare($sql);
     $cont = 0;
@@ -16,7 +17,7 @@ require_once("conexao.php");
       }
     }
     if($cont == 0){
-        $query_usuarios = "INSERT INTO usuario(cpf,nome,senha) VALUES ('$cpf','$nome','$senha')";
+        $query_usuarios = "INSERT INTO usuario(cpf,nome,senha,id_tipo) VALUES ('$cpf','$nome','$senha', '$funcao')";
         $result_usuarios = $conexao->prepare($query_usuarios);
     
         if($result_usuarios->execute()){

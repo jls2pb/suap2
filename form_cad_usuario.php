@@ -40,9 +40,9 @@ include "head.php";
                     </div>
                     <div class="form-outline mb-3">
                     <select class="form-control " name="funcao">
-                    <option selected disabled>Selecione sua função</option>
-                      <option name="age">Agendamento</option>
-                      <option name="cad">Cadastro</option>
+                      <option selected disabled>Selecione sua função</option>
+                      <option value="2" id="2">Agendamento</option>
+                      <option value="3" id="3">Cadastro</option>
                     </select>
                     </div>
                     <div class="form-outline mb-3">

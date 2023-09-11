@@ -86,16 +86,25 @@ nav ul li ul li a:hover {
           </li>
           </ul></li>
 
-          <li>
+          <li class="sub-menu-second">
+          <a style="cursor: pointer;" class="link-dark rounded"><b>VISUALIZAR </b><div class="fa fa-caret-down right"></div></a>
+          
+      <ul>
+      <li>
           <a href="ver_atividades.php" class="link-dark rounded"><img style="width: 15%;" src="../images/checklist.png"><b>VER ATIVIDADES</b></a></li>
           </li>
+          <li>
+          <a href="ver_usuarios.php" class="link-dark rounded"><span class="bi bi-person"></span><b>VER USUÁRIOS</b></a></li>
+          </li>
+</ul>
+</li>
 
           <li>
             <a href="index_logado_adm.php"><span class="fa fa-sticky-note"></span><b> LISTAR PACIENTES</b></a>
           </li>
 
           <li>
-            <a href="codigo.php"><b>GERAR CÓDIGO</b></a>
+            <a href="codigo.php"><img style="width: 12%; margin-right: 5px;"src="../images/pin.png"><b>GERAR CÓDIGO</b></a>
           </li>
 
           <li>
