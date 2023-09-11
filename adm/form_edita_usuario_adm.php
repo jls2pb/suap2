@@ -53,8 +53,8 @@ $resultado2 = $conexao->query($sql2);
                     <div class="col">
                         <div class="form-outline mb-4">
 
-                        <select class="form-control " name="funcao">
-                    <option selected disabled>A função atual é: <?php 
+                        <select  class="form-control " name="funcao" required>
+                    <option value="" selected disabled>A função atual é: <?php 
          $nome_tipo = $y["id_tipo"];
         $sql2 = "SELECT nome_tipo FROM tipo_usuario WHERE id_tipo ='$nome_tipo' ";
         $resultado = $conexao->query($sql2);

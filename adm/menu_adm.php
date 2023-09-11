@@ -82,7 +82,7 @@ nav ul li ul li a:hover {
           </li>
 
           <li>
-          <a href="cadastro_profissionais.php" class="link-dark rounded"><img style="width: 14%;" src="../images/medico.png"><b>NOVO PROFISSIONAL</b></a></li>
+          <a href="cadastrar_profissional.php" class="link-dark rounded"><img style="width: 14%;" src="../images/medico.png"><b>NOVO PROFISSIONAL</b></a></li>
           </li>
           </ul></li>
 
