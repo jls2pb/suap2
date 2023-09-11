@@ -11,14 +11,34 @@
     <div class="col-sm">
     
     </div>
-    <div class="col-sm-5">
-         <img style=" width: 90%;" src="../images/perfil.png">
-        
-    </div>
+    
     <div class="col-sm">
       
     </div>
+    
   </div>
+  <div class="text-center" style="font-size: 80%;">       
+<?php
+require_once("../conexao.php");
+
+
+  $sql = "SELECT * FROM usuario WHERE cpf = '$cpf_logado'";
+  $resultado = $conexao->query($sql);
+
+  if ($resultado) {
+    $row = $resultado->fetch(PDO::FETCH_ASSOC);
+    if ($row) {
+      echo $row['nome'];
+    } else {
+      echo "Nome não encontrado";
+    }
+  } else {
+    echo "Erro na consulta SQL"; // Pode ser alterado para uma mensagem de erro personalizada
+  }
+
+
+?>
+</div>
 </div>
    
 
