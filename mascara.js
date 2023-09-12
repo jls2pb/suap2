@@ -6,14 +6,14 @@ function handleInput(e) {
     e.target.selectionEnd = se;
  }
 
-var inputNome = document.querySelector("#nome");
-nome.addEventListener("keypress", function(e) {
-    var keyCode = (e.keyCode ? e.keyCode : e.which);
-  
-  if (keyCode > 47 && keyCode < 58) {
-    e.preventDefault();
-  }
-});
+ var inputNome = document.querySelector("#nome");
+ inputNome.addEventListener("keypress", function(e) {
+     var keyCode = (e.keyCode ? e.keyCode : e.which);
+ 
+     if (keyCode > 47 && keyCode < 58) {
+         e.preventDefault();
+     }
+ });
 
 function funcao1()
 {
