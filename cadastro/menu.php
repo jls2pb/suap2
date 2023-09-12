@@ -96,7 +96,7 @@ require_once("../conexao.php");
           </li>
           
           <li class="sub-menu-second">
-          <a style="cursor: pointer;" class="link-dark rounded"><b>CADASTRO </b><div class="fa fa-caret-down right"></div></a>
+          <a style="cursor: pointer;" class="link-dark rounded"><span class="bi bi-pencil-square"></span><b>CADASTRO </b><div class="fa fa-caret-down right"></div></a>
            
           <ul>
 
