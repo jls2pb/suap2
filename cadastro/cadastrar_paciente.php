@@ -111,7 +111,7 @@ $resultado->execute();
                 </div>
                 <input type = "hidden" name = "cpf_logado" value = "<?php echo $cpf_logado?>">
                 <button style="color:white;background-color: #66a7ff;" class="btn " type="submit"><b>CADASTRAR</b></button>
-                <button class="btn btn-danger "><a class="link-offset-2 link-underline link-underline-opacity-0" style = "color:white" href="inicio.php">VOLTAR</a></button>    
+                <a class="link-offset-2 link-underline link-underline-opacity-0 btn btn-danger" style = "color:white" href="inicio.php" role="button">VOLTAR</a>    
             </div>
             <?php
             include "../footer.php";

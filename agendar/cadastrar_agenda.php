@@ -1,14 +1,16 @@
 <?php 
+date_default_timezone_set('America/Sao_Paulo');
 session_start();
 if(isset($_SESSION['cpf']) == FALSE){
     header("Location:../index.php");
 }
+$cpf_logado = $_SESSION['cpf'];
 require_once("head.php");
 include "menu_agendamento.php";
 include "navibar_agendar.php";
 
 $id = $_GET['id'];
-$cpf_logado = $_SESSION['cpf'];
+
 require_once("../conexao.php");
 $sql = "SELECT * FROM uaps ORDER BY nome_uaps ASC";
 $resultado = $conexao->prepare($sql);
@@ -38,7 +40,7 @@ $resultado->execute();
     </div>
     <input type = "hidden" name = "id" value = "<?= $id; ?>">
     <button style="color:white;background-color: #66a7ff;" class="btn " type="submit"><b>CADASTRAR</b></button>
-              <button class="btn btn-danger "> <a class="link-offset-2 link-underline link-underline-opacity-0" style = "color:white" href="inicio_agendamento.php">VOLTAR</a></button>
+    <a class="link-offset-2 link-underline link-underline-opacity-0 btn btn-danger" style = "color:white" href="inicio_agendamento.php" role="button">VOLTAR</a>
             <?php
             include "../footer.php";
             ?>

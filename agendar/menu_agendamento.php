@@ -7,16 +7,22 @@
       <img style="width: 72%;"src="../images/logo_clara.png">
       <img style="width: 25%;" src="../images/iconw2.png">
       <div class="container">
-  <div class="row">
+    <div class="row">
     <div class="col-sm">
     
     </div>
-    
+    <div class="col-sm-5">
+         <img style=" width: 90%;" src="../images/perfil.png">
+
+
+        
+
+    </div>
     <div class="col-sm">
       
     </div>
-    
   </div>
+  
   <div class="text-center" style="font-size: 80%;">       
 <?php
 require_once("../conexao.php");
