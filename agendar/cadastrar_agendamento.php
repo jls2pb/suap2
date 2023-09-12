@@ -19,14 +19,20 @@ include "../footer.php";
 <form method="POST" action="registro_procedimento.php">
     <div class="col-4">
         <div class="form-outline mb-4">
-            <label class="form-label">NOME DO PACIENTE</label>
+            <label class="form-label">NOME DO PACIENTE: </label>
             <input type="text" name="paciente" class="form-control form-control-lg" id="paciente_input" list="paciente_list">
             <datalist id="paciente_list"></datalist>
         </div>
-    </div>
+    </div> 
+    <div class="col-4">
+    <div class="form-outline mb-4">
+            <label class="form-label">NOME DA MÃE: </label>
+            <input type="text" name="mae" class="form-control form-control-lg" id="mae_input" list="">
+</div>
+        </div>       
     <div class="col-4">
         <div class="form-outline mb-4">
-            <label class="form-label">PROCEDIMENTO</label>
+            <label class="form-label">PROCEDIMENTO: </label>
             <select class="form-control form-control-lg" name="procedimento" id="procedimento">
                 <option  value="">PROCEDIMENTO</option>
             </select>
@@ -36,7 +42,7 @@ include "../footer.php";
     <input type="hidden" name="cod" id="cod">
     <div class="col-4">
     <div class="form-outline mb-4">
-        <label class="form-label">DIA DO ATENDIMENTO</label>
+        <label class="form-label">DIA DO ATENDIMENTO: </label>
         <select class="form-control form-control-lg" name="dia" id="dia" onchange="carregarHorarios()">
             <?php
             // Conexão com o banco de dados
@@ -57,13 +63,50 @@ include "../footer.php";
 </div>
 <div class="col-4">
     <div class="form-outline mb-4">
-        <label class="form-label">HORARIO DO ATENDIMENTO</label>
+        <label class="form-label">HORARIO DO ATENDIMENTO: </label>
         <select class="form-control form-control-lg" name="horario" id="horario" required>
             <!-- Opções de horário serão carregadas dinamicamente aqui -->
-        </select><br><br>
+        </select>
     </div>
 </div>
-                
+
+       
+        <div class="col-4">
+        <div class="form-outline mb-4">
+            <label class="form-label">TELEFONE: </label>
+            <input type="number" name="telefone" class="form-control form-control-lg" id="telefone_input" list="">
+            <datalist id=""></datalist>
+        </div>
+        </div>
+        <div class="col-4">
+        <div class="form-outline mb-4">
+            <label class="form-label">Nº DO CARTÃO NACIONAL: </label>
+            <input type="number" name="cns" class="form-control form-control-lg" id="cns_input" list="">
+            <datalist id=""></datalist>
+        </div>
+        </div>
+        <div class="col-4">
+        <div class="form-outline mb-4">
+            <label class="form-label">DATA DE NASCIMENTO: </label>
+            <input type="date" name="data" class="form-control form-control-lg" id="data_input" list="">
+            <datalist id=""></datalist>
+        </div>
+        </div>
+        <div class="col-4">
+        <div class="form-outline mb-4">
+            <label class="form-label">SEXO: </label>
+            <input type="text" name="sexo" class="form-control form-control-lg" id="sexo_input" list="">
+            <datalist id=""></datalist>
+        </div>
+        </div>
+        <div class="col-4">
+        <div class="form-outline mb-4">
+            <label class="form-label">ENDEREÇO RESIDENCIAL</label>
+            <input type="text" name="endereco" class="form-control form-control-lg" id="endereco_input" list="">
+            <datalist id=""></datalist>
+        </div>
+        </div>
+
 </form>
 
 <script src="../mascara.js"></script>
