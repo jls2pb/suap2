@@ -5,9 +5,10 @@ session_start();
 if (isset($_SESSION['cpf']) == FALSE) {
     header("Location:../index.php");
 }
-$cpf_logado = $_SESSION['cpf'];
-
 $id = $_GET['id'];
+$cpf_logado = $_SESSION['cpf'];
+$_SESSION['id'] = $id;
+
 ?>
 
 <?php
