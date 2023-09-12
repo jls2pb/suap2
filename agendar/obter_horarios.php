@@ -6,7 +6,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     session_start();
     // Obter o dia selecionado pelo usuário da solicitação POST
     $diaSelecionado = $_POST['dia'];
-    $id = $_SESSION['id_profissional'];
+    $id = $_POST['idProfissional'];
+    $teste = "SELECT * FROM profissionais WHERE id_profissional = $id";
+    $res = $conexao->prepare($teste);
+    $res->execute();
+    $vr = $res->fetchAll();
+    foreach ($vr as $vr2) {
+        $tempoAtendimento = $vr2['tempo_atendimento'];
+    }
+ 
     // Consulta ao banco de dados para obter os horários disponíveis com base no dia selecionado
     $sql = "SELECT * FROM agenda_profissional WHERE id_profissional = :id_profissional AND dia = :dia";
     $resultado = $conexao->prepare($sql);
@@ -28,17 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $finalTarde = strtotime($dado['final_tarde']);
 
             // Tempo de atendimento
-            $tempoAtendimento = NULL;
-            $sql2 = "SELECT * FROM profissionais where id_profissional = '$id'";
-            $resultado2 = $conexao->prepare($sql2);
-            if($resultado2->execute){
-                $y = $resultado2->fetchAll();
-                foreach ($y as $r) {
-                    $tempoAtendimento = $r['tempo_atendimento'];
-                }
-                
-            }
-           
+            
 
             // Gerar horários disponíveis e adicioná-los ao array PHP
             for ($horario = $inicioManha; $horario <= $finalManha; $horario += 60 * $tempoAtendimento) {

@@ -7,8 +7,6 @@ if (isset($_SESSION['cpf']) == FALSE) {
 }
 $id = $_GET['id'];
 $cpf_logado = $_SESSION['cpf'];
-$_SESSION['id'] = $id;
-
 ?>
 
 <?php
@@ -144,6 +142,11 @@ include "../footer.php";
     });
 </script>
 <script>
+    // Defina o valor de $id como uma variável JavaScript
+    var idProfissional = <?php echo $id; ?>;
+</script>
+
+<script>
     function carregarHorarios() {
     var diaSelecionado = document.getElementById("dia").value;
     var horarioSelect = document.getElementById("horario");
@@ -155,7 +158,10 @@ include "../footer.php";
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "obter_horarios.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    
+
+    // Adicione idProfissional como um parâmetro na solicitação POST
+    var data = "dia=" + diaSelecionado + "&idProfissional=" + idProfissional;
+
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             var horariosDisponiveis = JSON.parse(xhr.responseText);
@@ -170,7 +176,8 @@ include "../footer.php";
         }
     };
 
-    xhr.send("dia=" + diaSelecionado);
+    xhr.send(data);
 }
+
 
 </script>
