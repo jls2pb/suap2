@@ -6,7 +6,7 @@ if (isset($_SESSION['cpf']) == FALSE) {
     header("Location:../index.php");
 }
 $cpf_logado = $_SESSION['cpf'];
-$nome = $_SESSION['id'];
+
 $id = $_GET['id'];
 ?>
 
@@ -36,74 +36,35 @@ include "../footer.php";
     <input type="hidden" name="cpf" id="cpf">
     <input type="hidden" name="cod" id="cod">
     <div class="col-4">
-        <div class="form-outline mb-4">
-            <label class="form-label">DIA DO ATENDIMENTO</label>
-            <select class="form-control form-control-lg" name="dia" id="dia">
-                <?php
-                // Conexão com o banco de dados
-                include "../conexao.php";
-                $sql = "select * from agenda_profissional where id_profissional = '$id'";
-                $resultado = $conexao->prepare($sql);
-                if ($resultado->execute()) {
-                    $x = $resultado->fetchAll();
-                }
+    <div class="form-outline mb-4">
+        <label class="form-label">DIA DO ATENDIMENTO</label>
+        <select class="form-control form-control-lg" name="dia" id="dia" onchange="carregarHorarios()">
+            <?php
+            // Conexão com o banco de dados
+            include "../conexao.php";
+            $sql = "select * from agenda_profissional where id_profissional = '$id'";
+            $resultado = $conexao->prepare($sql);
+            if ($resultado->execute()) {
+                $x = $resultado->fetchAll();
                 foreach ($x as $dado) {
                     ?>
                     <option value="<?php echo $dado['dia']; ?>"><?php echo $dado["dia"]; ?></option>
-                <?php }
-
-                ?>
-            </select>
-        </div>
+                    <?php
+                }
+            }
+            ?>
+        </select>
     </div>
-    <div class="col-4">
-        <div class="form-outline mb-4">
-            <label class="form-label">HORARIO DO ATENDIMENTO</label>
-            <select class="form-control form-control-lg" name="horario" required>
-                <?php
-                // Conexão com o banco de dados
-                $sql = "select * from agenda_profissional where id_profissional = '$id'";
-                $resultado = $conexao->prepare($sql);
-                if ($resultado->execute()) {
-                    $x = $resultado->fetchAll();
-                }
-                foreach ($x as $dado) {
-                    // Horário de início e final da manhã
-                    $inicioManha = strtotime($dado['inicio_manha']);
-                    $finalManha = strtotime($dado['final_manha']);
-
-                    // Horário de início e final da tarde
-                    $inicioTarde = strtotime($dado['inicio_tarde']);
-                    $finalTarde = strtotime($dado['final_tarde']);
-                }
-                $sql = "select * from profissionais where id_profissional = '$id'";
-                $resultado = $conexao->prepare($sql);
-                if ($resultado->execute()) {
-                    $x = $resultado->fetchAll();
-                }
-                foreach ($x as $dado) {
-                    $tempoAtendimento = $dado['tempo_atendimento'];
-                }
-
-                // Consulta ao banco para obter os horários disponíveis
-                $dia = $_POST['dia']; // Dia selecionado pelo usuário
-
-                // Loop para gerar os horários disponíveis com base no tempo de atendimento
-                for ($horario = $inicioManha; $horario <= $finalManha; $horario += 60 * $tempoAtendimento) {
-                    $horarioFormatado = date('H:i', $horario);
-                    echo "<option value='$horarioFormatado'>$horarioFormatado</option>";
-                }
-
-                for ($horario = $inicioTarde; $horario <= $finalTarde; $horario += 60 * $tempoAtendimento) {
-                    $horarioFormatado = date('H:i', $horario);
-                    echo "<option value='$horarioFormatado'>$horarioFormatado</option>";
-                }
-
-                // Feche a conexão com o banco de dados
-                ?>
-            </select><br><br>
-        </div>
+</div>
+<div class="col-4">
+    <div class="form-outline mb-4">
+        <label class="form-label">HORARIO DO ATENDIMENTO</label>
+        <select class="form-control form-control-lg" name="horario" id="horario" required>
+            <!-- Opções de horário serão carregadas dinamicamente aqui -->
+        </select><br><br>
     </div>
+</div>
+                
 </form>
 
 <script src="../mascara.js"></script>
@@ -180,4 +141,35 @@ include "../footer.php";
             });
         }
     });
+</script>
+<script>
+    function carregarHorarios() {
+    var diaSelecionado = document.getElementById("dia").value;
+    var horarioSelect = document.getElementById("horario");
+
+    // Limpar a lista de horários
+    horarioSelect.innerHTML = "<option value=''>Selecione um horário</option>";
+
+    // Realizar uma solicitação AJAX para obter os horários disponíveis
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "obter_horarios.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var horariosDisponiveis = JSON.parse(xhr.responseText);
+
+            // Preencher a lista de horários com base na resposta do servidor
+            for (var i = 0; i < horariosDisponiveis.length; i++) {
+                var option = document.createElement('option');
+                option.value = horariosDisponiveis[i];
+                option.text = horariosDisponiveis[i];
+                horarioSelect.appendChild(option);
+            }
+        }
+    };
+
+    xhr.send("dia=" + diaSelecionado);
+}
+
 </script>
