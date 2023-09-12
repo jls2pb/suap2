@@ -174,7 +174,7 @@ include "../footer.php";
 
                     // Preenche o campo de seleção de procedimentos com os procedimentos obtidos na consulta
                     data.forEach(function (procedimento) {
-                        $('#procedimento').append('<option value="' + procedimento.procedimento + '">' + procedimento.procedimento + '</option>');
+                        $('#procedimento').append('<option value="' + procedimento.cod + '">' + procedimento.procedimento + '</option>');
                     });
                 }
             });
