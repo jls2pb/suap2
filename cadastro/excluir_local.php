@@ -7,12 +7,12 @@ $cpf_logado = $_SESSION['cpf'];
 $id = $_GET["id"];
 
 try {
-    $sql = "DELETE FROM usuario WHERE id_usuario = :id";
+    $sql = "DELETE FROM local_atendimento WHERE cnes = :id";
     $stmt = $conexao->prepare($sql);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
     if ($stmt->execute()) {
-        header("location:ver_usuarios.php");
+        header("location: tb_local_ag.php");
     } else {
         echo "Erro ao excluir o registro.";
     }
