@@ -14,6 +14,7 @@ include "../footer.php";
         <strong>LOCAL DE AGENDAMENTO: </strong>
         <input type = "text" class="form-control" name = "local" oninput="handleInput(event)">
         <button type="submit" style = "margin-top:7px;background-color: #66a7ff;" class="btn text-white"><b>CADASTRAR</b></button>
+        <a class="btn text-white btn-primary" style = "margin-top:7px;" href="tb_local_ag.php" role="button"> VER MAIS </a>
     </form>  
     </div>
     <div class="col-sm">
@@ -21,6 +22,7 @@ include "../footer.php";
         <strong>PROCEDIMENTOS:</strong>
         <input type = "text" class="form-control" name = "procedimento" oninput="handleInput(event)">
         <button type="submit" style = "margin-top:7px;background-color: #66a7ff;" class="btn text-white"><b>CADASTRAR</b></button>
+        <a class="btn text-white btn-primary" style = "margin-top:7px;" href="tb_procedimentos.php" role="button"> VER MAIS </a>
     </form>  
     </div>
     <div class="col-sm">
@@ -28,6 +30,7 @@ include "../footer.php";
         <strong>ACS:</strong>
         <input type = "text" class="form-control" name = "acs" oninput="handleInput(event)">
         <button type="submit" style = "margin-top:7px;background-color: #66a7ff;" class="btn text-white"><b>CADASTRAR</b></button>
+        <a class="btn text-white btn-primary" style = "margin-top:7px;" href="tb_acs.php" role="button"> VER MAIS </a>
     </form>
     </div>
     <div class="col-sm">
@@ -35,13 +38,14 @@ include "../footer.php";
         <strong>UBS:</strong>
         <input type = "text" class="form-control" name = "ubs" oninput="handleInput(event)">
         <button type="submit" style = "margin-top:7px;background-color: #66a7ff;" class="btn text-white"><b>CADASTRAR</b></button>
+        <a class="btn text-white btn-primary" style = "margin-top:7px;" href="tb_ubs.php" role="button"> VER MAIS </a>
     </form>
     </div>
   </div>
 
     </div>
 </div>
-
+   
 <?php 
 }else{
     header("Location:../index.php");
