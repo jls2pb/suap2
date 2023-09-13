@@ -16,7 +16,15 @@ $query_profissional = "SELECT * FROM profissionais ORDER BY nome";
 $result_profissional = $conexao->prepare($query_profissional);
 $result_profissional->execute();
 ?>
-
+<script>
+        $(document).ready(function() {
+            $('.hover-title').hover(function() {
+                var $this = $(this);
+                var originalTitle = $this.attr('title');
+                $this.attr('title', originalTitle); 
+            });
+        });
+    </script>
 <table class="table table-striped">
         <thead>
             <tr>
@@ -40,8 +48,8 @@ $result_profissional->execute();
             <td><?php echo $d["area"]; ?></td>
             <td><?php echo $d["tempo_atendimento"]; ?> Min</td>
             <td>
-                <a class="link-underline text-dark" href="cadastrar_agenda.php?id=<?= $d["id_profissional"]; ?>" ><i class="bi bi-calendar-plus"></i></a>  
-                <a class="link-underline text-dark" href="cadastrar_agendamento.php?id=<?= $d["id_profissional"]; ?>" ><i class="bi bi-card-list"></i></a> 
+                <a title="Agenda Profissional" class="link-underline text-dark hover-title" href="tabela_agenda.php?id=<?= $d["id_profissional"]; ?>" ><i class="bi bi-calendar-plus"></i></a>  
+                <a title="Agendamento" class="link-underline text-dark hover-title" href="tabela_agendamento.php?id=<?= $d["id_profissional"]; ?>" ><i class="bi bi-card-list"></i></a> 
                 <a class="link-underline text-dark" href="#" ><i class="bi bi-pencil-square"></i></a>  
                 <a class="link-underline text-dark" href="#" ><i class="bi bi-trash3"></i></a>  
             </td>                
