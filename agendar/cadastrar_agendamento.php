@@ -16,7 +16,7 @@ include "navibar_agendar.php";
 include "../footer.php";
 ?>
 <h2 class="mb-4">CADASTRO DE AGENDAMENTO</h2>
-<form method="POST" action="registro_procedimento.php">
+<form method="POST" action="registro_agendamento.php">
     <div class="col-4">
         <div class="form-outline mb-4">
             <label class="form-label">NOME DO PACIENTE: </label>
@@ -25,11 +25,21 @@ include "../footer.php";
         </div>
     </div> 
     <div class="col-4">
-    <div class="form-outline mb-4">
-            <label class="form-label">NOME DA MÃE: </label>
-            <input type="text" name="mae" class="form-control form-control-lg" id="mae_input" list="">
-</div>
-        </div>       
+        <div class="form-outline mb-4">
+            <label class="form-label">SEXO: </label>
+            <select class="form-control form-control-lg" name = "sexo">
+            <option value = ""> SELECIONE O SEXO </option>
+                <option value = "M"> Masculino </option>
+                <option value = "F"> Feminino </option>
+            </select>    
+        </div>
+        </div>
+        <div class="col-4">
+        <div class="form-outline mb-4">
+            <label class="form-label">ENDEREÇO RESIDENCIAL</label>
+            <input type="text" name="endereco" class="form-control form-control-lg" id="endereco_input" list="">
+        </div>
+        </div>      
     <div class="col-4">
         <div class="form-outline mb-4">
             <label class="form-label">PROCEDIMENTO: </label>
@@ -40,6 +50,7 @@ include "../footer.php";
     </div>
     <input type="hidden" name="cpf" id="cpf">
     <input type="hidden" name="cod" id="cod">
+
     <div class="col-4">
     <div class="form-outline mb-4">
         <label class="form-label">DIA DO ATENDIMENTO: </label>
@@ -69,44 +80,21 @@ include "../footer.php";
         </select>
     </div>
 </div>
-
-       
-        <div class="col-4">
+<div class="col-4">
+    <div class="form-outline mb-4">
+    <label class="form-label">LOCAL DO ATENDIMENTO</label>
+        <input type="text" name = "l_agendamento" list="local_list" oninput="handleInput(event)" id = "l_agendamento" class="form-control form-control-lg" />
+		<datalist id="local_list"></datalist>
+    </div>
+</div>
+<div class="col-4">
         <div class="form-outline mb-4">
-            <label class="form-label">TELEFONE: </label>
-            <input type="number" name="telefone" class="form-control form-control-lg" id="telefone_input" list="">
-            <datalist id=""></datalist>
+            <label class="form-label">ENDEREÇO LOCAL DE ATENDIMENTO</label>
+            <input type="text" name="endereco_local" class="form-control form-control-lg" id="enderecolocal_input" list="">
         </div>
-        </div>
-        <div class="col-4">
-        <div class="form-outline mb-4">
-            <label class="form-label">Nº DO CARTÃO NACIONAL: </label>
-            <input type="number" name="cns" class="form-control form-control-lg" id="cns_input" list="">
-            <datalist id=""></datalist>
-        </div>
-        </div>
-        <div class="col-4">
-        <div class="form-outline mb-4">
-            <label class="form-label">DATA DE NASCIMENTO: </label>
-            <input type="date" name="data" class="form-control form-control-lg" id="data_input" list="">
-            <datalist id=""></datalist>
-        </div>
-        </div>
-        <div class="col-4">
-        <div class="form-outline mb-4">
-            <label class="form-label">SEXO: </label>
-            <input type="text" name="sexo" class="form-control form-control-lg" id="sexo_input" list="">
-            <datalist id=""></datalist>
-        </div>
-        </div>
-        <div class="col-4">
-        <div class="form-outline mb-4">
-            <label class="form-label">ENDEREÇO RESIDENCIAL</label>
-            <input type="text" name="endereco" class="form-control form-control-lg" id="endereco_input" list="">
-            <datalist id=""></datalist>
-        </div>
-        </div>
-
+</div> 
+<input type = "hidden" name = "cod_profissional" value = "<?php echo $id; ?>">
+<input type = "submit" value = "cadastrar">
 </form>
 
 <script src="../mascara.js"></script>
@@ -224,3 +212,29 @@ include "../footer.php";
 
 
 </script>
+<script>
+        $(document).ready(function() {
+            // Quando o usuário digitar algo no input, acionamos a função de busca
+            $('#l_agendamento').on('input', function() {
+                var term = $(this).val();
+                if (term.length >= 3) {
+                    // Realizamos a solicitação AJAX para buscar os procedimentos
+                    $.ajax({
+                        url: '../buscar/buscar_local.php',
+                        type: 'GET',
+                        data: {term: term},
+                        dataType: 'json',
+                        success: function(data) {
+                            // Limpa o datalist antes de preencher com as novas opções
+                            $('#local_list').empty();
+
+                            // Preenche o datalist com as opções retornadas pela busca
+                            data.forEach(function(nome_fantasia) {
+                                $('#local_list').append('<option value="' + nome_fantasia + '">');
+                            });
+                        }
+                    });
+                }
+            });
+        });
+    </script>

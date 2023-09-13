@@ -10,7 +10,7 @@ if (isset($_GET['cod'])) {
     $cod = $_GET['cod'];
 
     // Consulta para obter os procedimentos com base no código (cod)
-    $sql = "SELECT procedimento FROM procedimentos WHERE cod = :cod";
+    $sql = "SELECT cod, procedimento FROM procedimentos WHERE cod = :cod";
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue(':cod', $cod, PDO::PARAM_INT);
     $stmt->execute();
