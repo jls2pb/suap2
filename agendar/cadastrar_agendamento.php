@@ -14,7 +14,7 @@ include "head.php";
 include "menu_agendamento.php";
 include "navibar_agendar.php";
 include "../footer.php";
-?>
+?> <script src="../mascara.js"></script>
 <h2 class="mb-4">CADASTRO DE AGENDAMENTO</h2>
 <form method="POST" action="registro_agendamento.php">
     <div class="col-4">
@@ -29,22 +29,12 @@ include "../footer.php";
         <div class="form-outline mb-4">
             <label class="form-label">SEXO: </label>
             <select class="form-control form-control-lg" name = "sexo">
-            <option value = ""> SELECIONE O SEXO </option>
+            <option selected disabled value = ""> SELECIONE O SEXO </option>
                 <option value = "M"> Masculino </option>
                 <option value = "F"> Feminino </option>
             </select>    
         </div>
         </div>
-
-        <div class="col-4">
-        <div class="form-outline mb-4">
-            <label class="form-label">TELEFONE: </label>
-            <input type="number" name="telefone" class="form-control form-control-lg" id="telefone_input" list="">
-            
-        </div>
-    </div> 
-
-    
 
         <div class="col-4">
         <div class="form-outline mb-4">
@@ -94,22 +84,24 @@ include "../footer.php";
 </div>
 <div class="col-4">
     <div class="form-outline mb-4">
-    <label class="form-label">LOCAL DO ATENDIMENTO</label>
+    <label class="form-label">LOCAL DO ATENDIMENTO: </label>
         <input type="text" name = "l_agendamento" list="local_list" oninput="handleInput(event)" id = "l_agendamento" class="form-control form-control-lg" />
 		<datalist id="local_list"></datalist>
     </div>
 </div>
 <div class="col-4">
         <div class="form-outline mb-4">
-            <label class="form-label">ENDEREÇO LOCAL DE ATENDIMENTO</label>
+            <label class="form-label">ENDEREÇO LOCAL DE ATENDIMENTO: </label>
             <input type="text" name="endereco_local" class="form-control form-control-lg" id="enderecolocal_input" list="">
         </div>
 </div> 
 <input type = "hidden" name = "cod_profissional" value = "<?php echo $id; ?>">
-<input type = "submit" value = "cadastrar">
+<button class="btn btn-primary" type = "submit">CADASTRAR</button>
+<a class="btn btn-danger" role="button" href="inicio_agendamento.php">VOLTAR</a>
+
 </form>
 
-<script src="../mascara.js"></script>
+
 <script>
     $(document).ready(function () {
         // Quando o usuário digitar algo no input, acionamos a função de busca
@@ -250,3 +242,11 @@ include "../footer.php";
             });
         });
     </script>
+    <script>
+    $(document).ready(function () {
+        // Quando o usuário digitar algo no input, convertemos para maiúsculas
+        $('#enderecolocal_input, #endereco_input').on('input', function () {
+            $(this).val($(this).val().toUpperCase());
+        });
+    });
+</script>

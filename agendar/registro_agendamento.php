@@ -1,5 +1,7 @@
 <?php 
 include "../conexao.php";
+require_once("head.php");
+
 $paciente = $_POST["paciente"];
 $sexo = $_POST["sexo"];
 $endereco = $_POST["endereco"];
@@ -127,8 +129,8 @@ if($resultado->execute()){
    echo "</div>";
    
    ?>
-   <button style="width: 100%;" id="print" onclick="printPage()">Imprimir<img style="width: 2%;" src="images/printer.png"></button>
-   <a href="listar.php" ><button  style="width: 100%; background-color:#B22222;color: white;" id="voltar">Voltar</button><a>
+   <button style="width: 100%;" id="print" onclick="printPage()">Imprimir<img style="width: 2%;" src="../images/printer.png"></button>
+   <a href="cadastrar_agendamento.php?id=<?php echo $cod_profissional;?>" ><button  style="width: 100%; background-color:#B22222;color: white;" id="voltar">Voltar</button><a>
    <script>
    function printPage() {
            window.print();
