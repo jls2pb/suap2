@@ -23,7 +23,8 @@ include "../footer.php";
             <input type="text" name="paciente" class="form-control form-control-lg" id="paciente_input" list="paciente_list">
             <datalist id="paciente_list"></datalist>
         </div>
-    </div> 
+    </div>
+     
     <div class="col-4">
         <div class="form-outline mb-4">
             <label class="form-label">SEXO: </label>
@@ -34,6 +35,17 @@ include "../footer.php";
             </select>    
         </div>
         </div>
+
+        <div class="col-4">
+        <div class="form-outline mb-4">
+            <label class="form-label">TELEFONE: </label>
+            <input type="number" name="telefone" class="form-control form-control-lg" id="telefone_input" list="">
+            
+        </div>
+    </div> 
+
+    
+
         <div class="col-4">
         <div class="form-outline mb-4">
             <label class="form-label">ENDEREÇO RESIDENCIAL</label>
