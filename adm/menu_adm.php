@@ -131,6 +131,10 @@ require_once("../conexao.php");
           </li>
 
           <li>
+            <a href="relatorios.php"><i class="bi bi-file-earmark-text"></i> <b> RELATÓRIOS</b></a>
+          </li>
+          <li>
+
             <a href="exibir_resultado_adm.php"><span class="bi bi-bar-chart-line-fill" ></i></span><b> RANKING </b></a>
           </li>
           <li>
