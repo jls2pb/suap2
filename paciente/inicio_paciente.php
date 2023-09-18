@@ -48,8 +48,15 @@ $result_procedimento->execute();
                         $row = $result_profissionais->fetch(PDO::FETCH_ASSOC);
         
                         // Use $row_profissional['nome'] para obter o nome do profissional
+                       
+                       if($row != "") {
                         $data = $row['data_atendimento'];
                         $local = $row['local_atendimento'];
+
+                       } else {
+                        $data = "";
+                        $local ="";
+                       }
                         
             ?>
             

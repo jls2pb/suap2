@@ -24,7 +24,18 @@ $id = $_GET['id'];
  $result_usuarios->execute();
 
 ?>
+<script>
+  function confirmarExclusao(id) {
+            var confirmacao = confirm("Tem certeza de que deseja excluir este registro?");
+            if (confirmacao) {
+                // Se o usuário confirmar, redirecione para o script de exclusão PHP
+                window.location = "excluir_agendamento.php?id=" + id;
+            } else {
+                // Se o usuário cancelar, não faça nada
+            }
+        }
 
+   </script>  
 <h2 class="mb-4">TABELA DE AGENDAMENTO</h2>
 <a style="" href="cadastrar_agendamento.php?id=<?php echo $id; ?>" class="btn btn-primary text-white float-right" role="button">CADASTRAR AGENDAMENTO</a>
 <table class="table table-striped">
@@ -41,6 +52,7 @@ $id = $_GET['id'];
             <th scope="col">NOME DO PROFISSIONAL</th>
             <th scope="col">LOCAL DO ATENDIMENTO</th>
             <th scope="col">PROCEDIMENTO</th>
+            <th scope="col">AÇÃO</th>
             
             
             </tr>
@@ -73,6 +85,10 @@ if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
             <td><?php echo $nome_profissional; ?></td>
             <td><?php echo $d["local_atendimento"]; ?></td>
             <td><?php echo $d["procedimento"]; ?></td>
+            <td>
+                  <a class="btn text-white" style="background-color: #66a7ff;" href = "form_edita_agendamento.php?id=<?php echo $d["id_agendamento"];?>" role="button">EDITAR</a>
+                  <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php echo $d['id_agendamento'] ; ?>)" role="button">EXCLUIR</a>
+            </td>
             </tr>
             <?php
                     }
