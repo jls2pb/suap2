@@ -27,7 +27,7 @@ $result_procedimento->execute();
             <th scope="col">DATA DA SOLICITAÇÃO</th>
             <th scope="col">DATA DA ENTRADA</th>
             <th scope="col">DATA DA SAIDA</th>
-            <th scope="col">DATA DA AGENDAMENTO</th>
+            <th scope="col">DATA DO AGENDAMENTO</th>
             <th scope="col">LOCAL DO AGENDAMENTO</th>
             <th scope="col">OBSERVAÇÃO</th>
             <th scope="col">PROFISSIONAL</th>
