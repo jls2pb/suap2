@@ -3,9 +3,7 @@ require_once("head.php");
 session_start();
 if (isset($_SESSION['cpf'])) {
     $cpf_logado = $_SESSION['cpf'];
-    include "menu_adm.php";
-    include "navibar_adm.php";
-    include "../footer.php";
+
     require_once("../conexao.php");
 
     // Inicializa as variáveis para os resultados
@@ -75,7 +73,7 @@ if (isset($_SESSION['cpf'])) {
     if (!empty($procedimentosEntrada)) {
         echo "<h3>Procedimentos com Entrada no Período</h3>";
         echo "O número de procedimentos com entrada são: " . $resultado['quantidade_entrada'];
-        echo "<table border='1'>";
+        echo "<table class='table table-striped table-bordered table-sm table-responsive' border='1'>";
         echo "<tr><th>Cod</th><th>Nome do Paciente</th><th>Procedimento</th><th>Data de Entrada</th></tr>";
         foreach ($procedimentosEntrada as $procedimento) {
             echo "<tr>";
@@ -91,7 +89,7 @@ if (isset($_SESSION['cpf'])) {
     if (!empty($agendamentos)) {
         echo "<h3>Agendamentos</h3>";
         echo "<p>O número de procedimentos agendados são: $numProcedimentosAgendados</p>";
-        echo "<table border='1'>";
+        echo "<table class='table table-striped table-bordered table-sm table-responsive' border='1'>";
         echo "<tr><th>ID Agendamento</th><th>Nome do Paciente</th><th>Data de Atendimento</th><th>Hora</th><th>Endereço Local</th><th>Local de Atendimento</th></tr>";
         foreach ($agendamentos as $agendamento) {
             echo "<tr>";
@@ -109,7 +107,7 @@ if (isset($_SESSION['cpf'])) {
     if (!empty($procedimentosNaoAgendados)) {
         echo "<h3>Procedimentos não Agendados</h3>";
         echo "<p>O número de procedimentos não agendados são: $numProcedimentosNaoAgendados</p>";
-        echo "<table border='1'>";
+        echo "<table class='table table-striped table-bordered table-sm table-responsive' border='1'>";
         echo "<tr><th>Cod</th><th>Nome do Paciente</th><th>Procedimento</th></tr>";
         foreach ($procedimentosNaoAgendados as $procedimento) {
             echo "<tr>";
@@ -120,6 +118,70 @@ if (isset($_SESSION['cpf'])) {
         }
         echo "</table>";
     }
+
+    // Execute uma consulta SQL para buscar a agenda do profissional
+    if (isset($_POST['profissional_nome'])) {
+        $profissional_nome = $_POST["profissional_nome"];
+        $agenda_inicio = $_POST["agenda_inicio"];
+        $agenda_fim = $_POST["agenda_fim"];
+
+        try {
+            // Execute uma consulta SQL para buscar os agendamentos com base nas informações fornecidas
+            $sql = "SELECT a.id_agenda, p.nome AS nome_profissional, a.dia, a.inicio_manha, a.final_manha, a.inicio_tarde, a.final_tarde
+                    FROM agenda_profissional AS a
+                    INNER JOIN profissionais AS p ON a.id_profissional = p.id_profissional
+                    WHERE p.nome = :profissional_nome
+                    AND a.dia BETWEEN :agenda_inicio AND :agenda_fim";
+
+            $stmt = $conexao->prepare($sql);
+            $stmt->bindParam(':profissional_nome', $profissional_nome, PDO::PARAM_STR);
+            $stmt->bindParam(':agenda_inicio', $agenda_inicio, PDO::PARAM_STR);
+            $stmt->bindParam(':agenda_fim', $agenda_fim, PDO::PARAM_STR);
+            $stmt->execute();
+
+            // Verifique se há resultados
+            if ($stmt->rowCount() > 0) {
+                echo "<h2>Agenda do Profissional: $profissional_nome</h2>";
+                echo "<table class='table table-striped table-bordered table-sm table-responsive' border='1'>";
+                echo "<tr><th>ID Agenda</th><th>Nome do Profissional</th><th>Dia</th><th>Início Manhã</th><th>Final Manhã</th><th>Início Tarde</th><th>Final Tarde</th></tr>";
+
+                // Loop através dos resultados e exiba-os na tabela
+                while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+                    echo "<tr>";
+                    echo "<td>" . $row['id_agenda'] . "</td>";
+                    echo "<td>" . $row['nome_profissional'] . "</td>";
+                    echo "<td>" . $row['dia'] . "</td>";
+                    echo "<td>" . $row['inicio_manha'] . "</td>";
+                    echo "<td>" . $row['final_manha'] . "</td>";
+                    echo "<td>" . $row['inicio_tarde'] . "</td>";
+                    echo "<td>" . $row['final_tarde'] . "</td>";
+                    echo "</tr>";
+                }
+                echo "</table>";
+            } else {
+                echo "Nenhum resultado encontrado.";
+            }
+        } catch (PDOException $e) {
+            echo "Erro ao buscar agenda: " . $e->getMessage();
+        }
+    }
+?>
+<style>
+@media print {
+    #print,
+    #voltar {
+        display: none;
+    }
+}
+</style>
+<button style="width: 100%;" id="print" onclick="printPage()">Imprimir<img style="width: 2%;" src="../images/printer.png"></button>
+<a href="relatorios.php"><button style="width: 100%; background-color:#B22222;color: white;" id="voltar">Voltar</button><a>
+<script>
+function printPage() {
+    window.print();
+}
+</script>
+<?php
 } else {
     header("location: ../index.php");
 }
