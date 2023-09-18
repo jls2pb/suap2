@@ -59,7 +59,7 @@ if(isset($_POST["cpf"])){
               <form method = "POST" action = "">
                   <input type="hidden" id="nome" name = "nome" class="form-control form-control-lg" required/>
                   <div class="form-outline mb-4">
-                  <label class="form-label" for="senha" style="color: black;">CPF: </label>    
+                  <label class="form-label" for="cpf" style="color: black;">CPF: </label>    
                   <input type="text" id="cpf" name = "cpf" class="form-control form-control-lg" required/>
                   </div>
 
@@ -71,6 +71,7 @@ if(isset($_POST["cpf"])){
                   <button style="background-color: DarkBlue; color: white;"class="btn  btn-lg btn-block" type="submit">ENTRAR</button>
               
                   <a class="btn btn-primary  btn-lg btn-block" href="form_cad_usuario.php" role="button">CADASTRAR</a>
+                  <a class="btn btn-danger  btn-lg btn-block" href="paciente/login_paciente.php" role="button">LOGIN DE PACIENTES</a>
               </form>
         </div>
   </div>
@@ -88,50 +89,39 @@ if(isset($_POST["cpf"])){
   new FormMask(document.querySelector("#cpf"), "___.___.___-__", "_", [".", "-"])
 </script>
 <style>
-  html, body{
-    width: 100%;
-    max-width: 100vw;
-    height: 100%;
-    padding: 0;
-    margin: 0;
-  }
-  body {
-  background-image: url("images/imagem.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  margin: 0; 
-  padding: 0; 
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; 
-}
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url("images/imagem.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed; /* Isso mantém a imagem fixa na tela */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+           
+        }
 
-.container {
-display: block;
-justify-content: right;
-align-items: right;
-left: 200px;
-}
-form {
-  
-}
-input {
-width: 20%;
-}
-  .responsive {
-    width: 70%;
-    right: 100px;
-  }
-  .imgs{
-    display: inline-block;
-  }
-.tamanho {
-  width: 100px; 
-}
-p {
-  font-size: 20px;
-  margin: 0px 15px 15px 20px;
-  padding: 0;
-}
-</style>
+       
+
+        /* Seu estilo restante... */
+
+        .responsive {
+            width: 70%;
+            right: 100px;
+        }
+
+        .imgs {
+            display: inline-block;
+        }
+
+        .tamanho {
+            width: 100px;
+        }
+
+        p {
+            font-size: 20px;
+            margin: 0px 15px 15px 20px;
+            padding: 0;
+        }
+    </style>

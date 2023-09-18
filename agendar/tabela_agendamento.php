@@ -26,7 +26,7 @@ $id = $_GET['id'];
 ?>
 
 <h2 class="mb-4">TABELA DE AGENDAMENTO</h2>
-<a style="" href="cadastrar_agendamento.php?id=<?php echo $id; ?>" class="btn btn-primary text-white float-right" role="button">CADASTRAR AGENDA</a>
+<a style="" href="cadastrar_agendamento.php?id=<?php echo $id; ?>" class="btn btn-primary text-white float-right" role="button">CADASTRAR AGENDAMENTO</a>
 <table class="table table-striped">
         <thead>
             <tr>
@@ -46,17 +46,21 @@ $id = $_GET['id'];
             </tr>
         </thead>
         <tbody>
-            <?php 
- $query_profissionais = "SELECT nome FROM profissionais WHERE id_profissional = $id ";
-                        $result_profissionais = $conexao->prepare($query_profissionais);
-                        $nome_profissional = $result_profissionais->execute();
-              if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
-                    while ($d = $result_usuarios->fetch(PDO::FETCH_ASSOC)) { 
-                        extract($d); 
-                       
-            
-            
-            ?>
+            <?php
+        $query_profissionais = "SELECT nome FROM profissionais WHERE id_profissional = $id";
+$result_profissionais = $conexao->prepare($query_profissionais);
+$result_profissionais->execute();
+$row_profissional = $result_profissionais->fetch(PDO::FETCH_ASSOC);
+
+if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
+    while ($d = $result_usuarios->fetch(PDO::FETCH_ASSOC)) {
+        extract($d);
+
+        // Use $row_profissional['nome'] para obter o nome do profissional
+        $nome_profissional = $row_profissional['nome'];
+
+        // Resto do seu código
+?>
             <tr>
             <th scope="row"><?php echo $d["id_agendamento"]; ?></th>
             <td><?php echo $d["data_atendimento"]; ?></td>
