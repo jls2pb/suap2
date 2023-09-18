@@ -20,7 +20,7 @@ $result_procedimento->bindParam(':cod', $cod, PDO::PARAM_STR);
 $result_procedimento->execute();
 ?>
 <br>
-<a style="padding-left: 10px;" href="inicio_paciente.php" role="button">VOLTAR</a>
+<a class="btn btn-danger" style="padding-left: 10px;" href="inicio_paciente.php" role="button">VOLTAR</a>
 
 <table style="" class="table table-striped table-bordered table-sm table-responsive">
     <thead style="background-color: #66a7ff;" class="thead text-white">
