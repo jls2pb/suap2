@@ -30,7 +30,7 @@ $result_procedimento->execute();
             <th scope="col">DATA DO AGENDAMENTO</th>
             <th scope="col">LOCAL DO AGENDAMENTO</th>
             <th scope="col">OBSERVAÇÃO</th>
-            <th scope="col">PROFISSIONAL</th>
+            
             <th scope="col">ESPECIFICAÇÃO</th>
             <th scope="col">AÇÃO</th>
             </tr>
@@ -40,6 +40,16 @@ $result_procedimento->execute();
               if (($result_procedimento) AND ($result_procedimento->rowCount() != 0)) {
                     while ($d = $result_procedimento->fetch(PDO::FETCH_ASSOC)) { 
                         extract($d); 
+                        $query_profissionais = "SELECT * FROM agendamento WHERE procedimento = :cod";
+                        $result_profissionais = $conexao->prepare($query_profissionais);
+                        $result_profissionais->bindParam(':cod', $d['cod'], PDO::PARAM_INT);
+                        
+                        $result_profissionais->execute();
+                        $row = $result_profissionais->fetch(PDO::FETCH_ASSOC);
+        
+                        // Use $row_profissional['nome'] para obter o nome do profissional
+                        $data = $row['data_atendimento'];
+                        $local = $row['local_atendimento'];
                         
             ?>
             
@@ -48,10 +58,10 @@ $result_procedimento->execute();
             <td><?php echo $d["data_da_solicitacao"]; ?></td>
             <td><?php echo $d["data_de_entrada_cadastro"]; ?></td>
             <td><?php echo $d["data_da_saida"]; ?></td>
-            <td><?php echo $d["data_do_agendamento"]; ?></td>
-            <td><?php echo $d["local_do_agendamento"]; ?></td>
+            <td><?php echo $data; ?></td>
+            <td><?php echo $local; ?></td>
             <td><?php echo $d["observacao"]; ?></td>
-            <td><?php echo $d["profissional"]; ?></td>
+            
             <td><?php echo $d["especificacao"]; ?></td>
             <td>
                   <a class="btn text-white" style="background-color: #66a7ff;" href = "ver_status.php?id=<?php echo $d["cod"];?>" role="button">VER STATUS</a>
