@@ -105,7 +105,7 @@ if($resultado->execute()){
                 <?php
                 }
                 ?>
-                <input type = "hidden" name = "cod" value = "<?php echo $y['cod_profissional'] ?>">    
+                <input type = "hidden" name = "cod" value = "<?php echo $y['id_profissional'] ?>">    
                 <button class="btn btn-primary " type="submit">SALVAR</button>
                <a class="link-offset-2 link-underline link-underline-opacity-0 btn btn-danger" style = "color:white" href="tabela_agendamento.php?id=<?php echo $y['cod_profissional'];?>">VOLTAR</a>
             </div>
