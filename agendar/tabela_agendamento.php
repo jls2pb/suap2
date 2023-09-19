@@ -29,7 +29,7 @@ $id = $_GET['id'];
             var confirmacao = confirm("Tem certeza de que deseja excluir este registro?");
             if (confirmacao) {
                 // Se o usuário confirmar, redirecione para o script de exclusão PHP
-                window.location = "excluir_agendamento.php?id=" + id;
+                window.location = "excluir_agendamento.php?id1=<?php echo $id; ?>&id=" + id;
             } else {
                 // Se o usuário cancelar, não faça nada
             }

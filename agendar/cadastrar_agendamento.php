@@ -257,3 +257,29 @@ include "../footer.php";
         });
     });
 </script>
+
+<script>
+    $(document).ready(function () {
+        // Quando o usuário escolher um local de atendimento
+        $('#l_agendamento').on('change', function () {
+            var localSelecionado = $(this).val();
+            
+            // Realize uma solicitação AJAX para buscar o endereço correspondente
+            $.ajax({
+                url: '../buscar/buscar_endereco_local.php', // Substitua pelo URL correto para buscar o endereço
+                type: 'GET',
+                data: { local: localSelecionado },
+                dataType: 'json',
+                success: function (data) {
+                    // Atualize o campo "ENDEREÇO LOCAL DE ATENDIMENTO" com o endereço encontrado
+                    if (data && data.endereco_local) {
+                        $('#enderecolocal_input').val(data.endereco_local);
+                    } else {
+                        // Caso não seja encontrado um endereço correspondente, limpe o campo
+                        $('#enderecolocal_input').val('');
+                    }
+                }
+            });
+        });
+    });
+</script>
