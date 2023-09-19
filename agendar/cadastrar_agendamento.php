@@ -20,7 +20,7 @@ include "../footer.php";
     <div class="col-4">
         <div class="form-outline mb-4">
             <label class="form-label">NOME DO PACIENTE: </label>
-            <input type="text" name="paciente" class="form-control form-control-lg" id="paciente_input" list="paciente_list">
+            <input type="text" name="paciente" class="form-control form-control-lg" oninput="handleInput(event)" id="paciente_input" list="paciente_list">
             <datalist id="paciente_list"></datalist>
         </div>
     </div>
@@ -29,9 +29,9 @@ include "../footer.php";
         <div class="form-outline mb-4">
             <label class="form-label">SEXO: </label>
             <select class="form-control form-control-lg" name = "sexo">
-            <option selected disabled value = ""> SELECIONE O SEXO </option>
-                <option value = "M"> Masculino </option>
-                <option value = "F"> Feminino </option>
+            <option selected disabled value = ""> Selecione o sexo </option>
+                <option value = "M"> MASCULINO </option>
+                <option value = "F"> FEMININO </option>
             </select>    
         </div>
         </div>
@@ -39,14 +39,14 @@ include "../footer.php";
         <div class="col-4">
         <div class="form-outline mb-4">
             <label class="form-label">ENDEREÇO RESIDENCIAL</label>
-            <input type="text" name="endereco" class="form-control form-control-lg" id="endereco_input" list="">
+            <input type="text" name="endereco" class="form-control form-control-lg" oninput="handleInput(event)" id="endereco_input">
         </div>
         </div>      
     <div class="col-4">
         <div class="form-outline mb-4">
             <label class="form-label">PROCEDIMENTO: </label>
             <select class="form-control form-control-lg" name="procedimento" id="procedimento">
-                <option  value="">PROCEDIMENTO</option>
+                <option  value="">Selecione um procedimento</option>
             </select>
         </div>
     </div>
@@ -57,6 +57,7 @@ include "../footer.php";
     <div class="form-outline mb-4">
         <label class="form-label">DIA DO ATENDIMENTO: </label>
         <select class="form-control form-control-lg" name="dia" id="dia" onchange="carregarHorarios()">
+        <option value = "">Selecione uma data</option>
             <?php
             // Conexão com o banco de dados
             include "../conexao.php";
@@ -66,7 +67,13 @@ include "../footer.php";
                 $x = $resultado->fetchAll();
                 foreach ($x as $dado) {
                     ?>
-                    <option value="<?php echo $dado['dia']; ?>"><?php echo $dado["dia"]; ?></option>
+                    <option value="<?php echo $dado['dia']; ?>">
+                    <?php 
+                    $dia = date('d/m/Y', strtotime($dado['dia']));
+                    echo $dia
+                    
+                    ?>
+                    </option>
                     <?php
                 }
             }
@@ -92,7 +99,7 @@ include "../footer.php";
 <div class="col-4">
         <div class="form-outline mb-4">
             <label class="form-label">ENDEREÇO LOCAL DE ATENDIMENTO: </label>
-            <input type="text" name="endereco_local" class="form-control form-control-lg" id="enderecolocal_input" list="">
+            <input type="text" name="endereco_local" class="form-control form-control-lg"  oninput="handleInput(event)" id="enderecolocal_input" list="">
         </div>
 </div> 
 <input type = "hidden" name = "cod_profissional" value = "<?php echo $id; ?>">

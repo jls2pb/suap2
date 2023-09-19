@@ -39,9 +39,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
 
             // Gerar horários disponíveis e adicioná-los ao array PHP
+            $sql2 = "SELECT hora FROM agendamento WHERE data_atendimento = '$diaSelecionado'";
+            $resultado2 = $conexao->prepare($sql2);
+            $resultado2->execute();
+            $horariosAgendados = $resultado2->fetchAll(PDO::FETCH_COLUMN);
+            
             for ($horario = $inicioManha; $horario <= $finalManha; $horario += 60 * $tempoAtendimento) {
-                $horariosDisponiveis[] = date('H:i', $horario);
+                $horario_certo = date('H:i', $horario);
+                
+                if (!in_array($horario_certo, $horariosAgendados)) {
+                    $horariosDisponiveis[] = $horario_certo;
+                }
             }
+            $horariosDisponiveis = array_diff($horariosDisponiveis, $horariosAgendados);
 
             for ($horario = $inicioTarde; $horario <= $finalTarde; $horario += 60 * $tempoAtendimento) {
                 $horariosDisponiveis[] = date('H:i', $horario);

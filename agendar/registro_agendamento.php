@@ -70,7 +70,8 @@ if($resultado->execute()){
    echo "<b>Nº do Cartão Nacional: </b>$cns";
    echo "</div>";
    echo "<div class='col-4'>";
-   echo "<b>Nasc: </b>$data_nascimento";
+   $nascimento = date('d/m/Y', strtotime($data_nascimento));
+   echo "<b>Nasc: </b>$nascimento";
    echo "</div>";
    echo "<div class='col-4'>";
    echo "<b>Sexo: </b> $sexo <br>";
@@ -101,7 +102,8 @@ if($resultado->execute()){
    echo "<div class='row'>";
    
    echo "<div class='col-5'>";
-   echo "<b>Data: </b>$dia";
+   $dia_certo = date('d/m/Y', strtotime($dia));
+   echo "<b>Data: </b>$dia_certo";
    echo "</div>";
    echo "<div class='col-5'>";
    echo "<b>Horário da Consulta: </b>$horario<br>";
