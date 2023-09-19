@@ -175,7 +175,7 @@ if (isset($_SESSION['cpf'])) {
         // Verifique se há resultados
         if ($stmtProfissionais->rowCount() > 0) {
             echo "<h3>Profissionais Cadastrados</h3><p>Total de profissionais cadastrados: " . $stmtProfissionais->rowCount() . "</p>";
-            echo "<table class='table table-striped table-bordered table-sm table-responsive' border='1'>";
+            echo "<table class='table table-striped table-bordered table-sm' border='1'>";
             echo "<tr><th>ID Profissional</th><th>Nome</th><th>Área</th><th>Tempo de Atendimento</th></tr>";
     
             // Loop através dos resultados e exiba-os na tabela
