@@ -71,53 +71,40 @@ include "head.php";
 <script>
     new FormMask(document.querySelector("#cpf"), "___.___.___-__", "_", [".", "-"])
 </script>
+<STYLE>
+body {
+            margin: 0;
+            padding: 0;
+            background-image: url("images/imagem.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: fixed; /* Isso mantém a imagem fixa na tela */
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+           
+        }
 
-<style>
-  html, body{
-    width: 100%;
-    max-width: 100vw;
-    height: 100%;
-    padding: 0;
-    margin: 0;
-  }
-  body {
-  background-image: url("images/imagem.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  margin: 0; 
-  padding: 0; 
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; 
-  position: relative;
-}
+       
 
-.container {
-display: block;
-justify-content: right;
-align-items: right;
-left: 200px;
-}
-form {
-  
-}
-input {
-width: 20%;
-}
-  .responsive {
-    width: 70%;
-    right: 100px;
-  }
-  .imgs{
-    display: inline-block;
-  }
-.tamanho {
-  width: 100px; 
-}
-p {
-  font-size: 20px;
-  margin: 0px 15px 15px 20px;
-  padding: 0;
-}
+        /* Seu estilo restante... */
+
+        .responsive {
+            width: 70%;
+            right: 100px;
+        }
+
+        .imgs {
+            display: inline-block;
+        }
+
+        .tamanho {
+            width: 100px;
+        }
+
+        p {
+            font-size: 20px;
+            margin: 0px 15px 15px 20px;
+            padding: 0;
+        }
 </style>

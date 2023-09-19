@@ -104,7 +104,7 @@ include "../footer.php";
 </div> 
 <input type = "hidden" name = "cod_profissional" value = "<?php echo $id; ?>">
 <button class="btn btn-primary" type = "submit">CADASTRAR</button>
-<a class="btn btn-danger" role="button" href="inicio_agendamento.php">VOLTAR</a>
+<a class="btn btn-danger" role="button" href="tabela_agendamento.php?id=<?php echo $id; ?>">VOLTAR</a>
 
 </form>
 
