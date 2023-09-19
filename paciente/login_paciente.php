@@ -54,7 +54,7 @@ if(isset($_POST["cpf"]) && isset($_POST["cns"])){
                   </div>
 
                   <div class="form-outline mb-4">
-                  <label class="form-label" for="cns" style="color: black;">SUS: </label> </b>
+                  <label class="form-label" for="cns" style="color: black;">SUS (Somente números): </label> </b>
                   <input type="text" id="cns" name = "cns" class="form-control form-control-lg" required/>
                   </div>
 
