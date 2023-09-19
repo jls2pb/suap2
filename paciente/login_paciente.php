@@ -59,7 +59,7 @@ if(isset($_POST["cpf"]) && isset($_POST["cns"])){
                   </div>
 
                   <button style="background-color: DarkBlue; color: white;"class="btn  btn-lg btn-block" type="submit">ENTRAR</button>
-                  <a class="btn btn-danger  btn btn-lg btn-block" href="../index.php" role="button">VOLTAR</a>
+                  
               </form>
         </div>
   </div>

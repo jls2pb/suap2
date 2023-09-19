@@ -71,7 +71,7 @@ if(isset($_POST["cpf"])){
                   <button style="background-color: DarkBlue; color: white;"class="btn  btn-lg btn-block" type="submit">ENTRAR</button>
               
                   <a class="btn btn-primary  btn-lg btn-block" href="form_cad_usuario.php" role="button">CADASTRAR</a>
-                  <a class="btn btn-danger  btn-lg btn-block" href="paciente/login_paciente.php" role="button">LOGIN DE PACIENTES</a>
+                
               </form>
         </div>
   </div>
