@@ -13,12 +13,7 @@ $horario = $_POST["horario"];
 $endereco_local = $_POST["endereco_local"];
 $cod_profissional = $_POST["cod_profissional"];
 $local_atendimento = $_POST["l_agendamento"];
-if($dia != NULL){
-    $dia_agenda = date('d/m/Y', strtotime($dia));
-}else{
-    $dia_agenda = NULL;
-}
-$sql = "INSERT INTO agendamento(cod_usuario, data_atendimento, hora, nome_paciente, sexo, endereco, cpf, endereco_local, cod_profissional,local_atendimento, procedimento) VALUES ($cod, '$dia_agenda', '$horario', '$paciente', '$sexo', '$endereco', '$cpf', '$endereco_local',$cod_profissional,'$local_atendimento',$procedimento)";
+$sql = "INSERT INTO agendamento(cod_usuario, data_atendimento, hora, nome_paciente, sexo, endereco, cpf, endereco_local, cod_profissional,local_atendimento, procedimento) VALUES ($cod, '$dia', '$horario', '$paciente', '$sexo', '$endereco', '$cpf', '$endereco_local',$cod_profissional,'$local_atendimento',$procedimento)";
 $resultado = $conexao->prepare($sql);
 if($resultado->execute()){
    ?>
