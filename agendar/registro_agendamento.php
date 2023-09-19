@@ -1,7 +1,8 @@
 <?php 
 include "../conexao.php";
 require_once("head.php");
-
+session_start();
+$cpf_logado = $_SESSION['cpf'];
 $paciente = $_POST["paciente"];
 $sexo = $_POST["sexo"];
 $endereco = $_POST["endereco"];
@@ -22,6 +23,17 @@ if($resultado->execute()){
   @media print {
             #print, #voltar {
                 display: none;
+            }
+            /* Estilo para o rodapé */
+            #rodape {
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background-color: white;
+                padding: 5px;
+                text-align: left;
+                border-top: 1px solid black;
             }
         }
 </style>  
@@ -129,10 +141,16 @@ if($resultado->execute()){
    <label for='paciente'>Alta na especialidade</label><br>";
    echo "</div>";
    echo "</div>";
-   
+   $sql2 = "SELECT id_usuario FROM usuario WHERE cpf =  '$cpf_logado'";
+   $stmt = $conexao->prepare($sql2);
+   $stmt->execute();
+   $result = $stmt->fetch(PDO::FETCH_ASSOC);
+   $id_usuario = $result['id_usuario'];
+
    ?>
    <button style="width: 100%;" id="print" onclick="printPage()">Imprimir<img style="width: 2%;" src="../images/printer.png"></button>
    <a href="cadastrar_agendamento.php?id=<?php echo $cod_profissional;?>" ><button  style="width: 100%; background-color:#B22222;color: white;" id="voltar">Voltar</button><a>
+   <div id="rodape">Usuário responsável: <?php echo $id_usuario; ?></div> <!-- Adicionei o rodapé aqui -->
    <script>
    function printPage() {
            window.print();
