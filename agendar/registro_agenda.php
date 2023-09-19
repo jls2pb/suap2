@@ -8,7 +8,13 @@ $inicio_tarde = $_POST["inicio_tarde"];
 $final_tarde = $_POST["final_tarde"];
 $id = $_POST["id"];
 
-$sql = "INSERT INTO agenda_profissional(id_profissional, dia, inicio_manha, final_manha, inicio_tarde, final_tarde) VALUES ('$id','$dia', '$inicio_manha', '$final_manha', '$inicio_tarde', '$final_tarde')";
+if($dia != NULL){
+    $dia_agenda = date('d/m/Y', strtotime($dia));
+}else{
+    $dia_agenda = NULL;
+}
+
+$sql = "INSERT INTO agenda_profissional(id_profissional, dia, inicio_manha, final_manha, inicio_tarde, final_tarde) VALUES ('$id','$dia_agenda', '$inicio_manha', '$final_manha', '$inicio_tarde', '$final_tarde')";
 $resultado = $conexao->prepare($sql);
 if($resultado->execute()){
     $cod = $conexao->lastInsertId();

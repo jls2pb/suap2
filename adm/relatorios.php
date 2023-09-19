@@ -48,7 +48,7 @@ if(isset($_SESSION['cpf'])){
 <form method="POST" action="relatorios_filtrados.php">
   <div class="form-outline mb-4">
     <label>
-      <input type="checkbox" name="agendamento" value="agendamento"> Quantos profissionais são
+      <input type="checkbox" name="profissional" value="profissional"> Quantos profissionais são
     </label><br>
     <hr></hr>
     <label class="form-label">NOME DO PROFISSIONAL: </label>
@@ -58,9 +58,9 @@ if(isset($_SESSION['cpf'])){
     </label><br>
     <label>Selecione o período da agenda do profissional respectivo</label><br>
     <label for="agenda_inicio">Data de Início: </label>
-    <input required type="date" name="agenda_inicio" id="agenda_inicio"> <br>
+    <input  type="date" name="agenda_inicio" id="agenda_inicio"> <br>
     <label for="agenda_fim">Data de Término: </label>
-    <input required type="date" name="agenda_fim" id="agenda_fim"> <br>
+    <input type="date" name="agenda_fim" id="agenda_fim"> <br>
   </div>
   <button class="btn btn-primary" type="submit">Filtrar</button>
 </form>
