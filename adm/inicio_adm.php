@@ -30,11 +30,37 @@ require_once("../conexao.php");
     </div>
     <div class="col-sm border rounded d-flex" style="margin: 10px;">
     <img style="width: 30%; padding: 7px;"src="../images/espera.jpeg">
-    <p style="margin-top: 15px; color: black;">PACIENTES EM <br> ESPERA:  </p>
+    <?php
+    $query = "SELECT COUNT(*) AS quantidade FROM tabela WHERE cpf NOT IN (SELECT cpf FROM agendamento)";
+        $stmt = $conexao->prepare($query);
+        $stmt->execute();
+
+        $xr = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+
+    // Contagem de procedimentos agendados e não agendados
+   
+    foreach ($xr as $key => $a) {
+?>  
+    <p style="margin-top: 15px; color: black;">PACIENTES EM <br> ESPERA: <?= $a["quantidade"]; ?> </p>
     </div>
+    <?php
+    }
+    ?>
+
     <div class="col-sm border rounded d-flex" style="margin: 10px;">
     <img style="width: 30%; padding: 7px;"src="../images/calendario.jpeg"> 
-    <p style="margin-top: 15px; color: black;">PACIENTES <br>AGENDADOS:  </p>                            
+    <?php
+    $qdp = "SELECT COUNT(*) AS quantidade FROM agendamento";
+        $rqdp = $conexao->prepare($qdp);
+        $rqdp->execute();
+        $xr = $rqdp->fetchAll();
+        foreach ($xr as $key => $a) {
+          ?>
+    <p style="margin-top: 15px; color: black;">PACIENTES <br>AGENDADOS: <?= $a["quantidade"]; ?>  </p>   
+    <?php 
+        }
+      ?>                         
     </div>
   </div>
 

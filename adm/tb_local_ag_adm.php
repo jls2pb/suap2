@@ -41,6 +41,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             <tr>
             <th scope="col">CNES</th>
             <th scope="col">NOME DO LOCAL</th>
+            <th scope="col">ENDEREÇO DO LOCAL</th>
             
             </tr>
         </thead>
@@ -55,7 +56,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             <tr>
             <th scope="row"><?php echo $d["cnes"];?></th>
             <td><?php echo $d["nome_fantasia"]; ?></td>
-          
+            <td><?php echo $d["endereco_local"]; ?></td>
             <td>
                 <a class="btn text-white btn-primary" href="edita_local.php?id=<?php echo $d['cnes'];?>" role="button"><b>EDITAR</b></a>
             </td>
