@@ -69,39 +69,56 @@ if (isset($_SESSION['cpf'])) {
     $numProcedimentosAgendados = count($agendamentos);
     $numProcedimentosNaoAgendados = count($procedimentosNaoAgendados);
 
-    // Verificar se o formulário de "Profissionais" foi enviado
-    if (isset($_POST['profissional'])) {
-        // Execute uma consulta SQL para buscar os profissionais cadastrados
-        $sqlProfissionais = "SELECT id_profissional, nome, area, tempo_atendimento FROM profissionais";
-        $stmtProfissionais = $conexao->prepare($sqlProfissionais);
-        $stmtProfissionais->execute();
-
-        // Verifique se há resultados
-        if ($stmtProfissionais->rowCount() > 0) {
-            echo "<h3>Profissionais Cadastrados</h3><p>Total de profissionais cadastrados: " . $stmtProfissionais->rowCount() . "</p>";
-            echo "<table class='table table-striped table-bordered table-sm table-responsive' border='1'>";
-            echo "<tr><th>ID Profissional</th><th>Nome</th><th>Área</th><th>Tempo de Atendimento</th></tr>";
-
-            // Loop através dos resultados e exiba-os na tabela
-            while ($rowProfissional = $stmtProfissionais->fetch(PDO::FETCH_ASSOC)) {
-                echo "<tr>";
-                echo "<td>" . $rowProfissional['id_profissional'] . "</td>";
-                echo "<td>" . $rowProfissional['nome'] . "</td>";
-                echo "<td>" . $rowProfissional['area'] . "</td>";
-                echo "<td>" . $rowProfissional['tempo_atendimento'] . "</td>";
-                echo "</tr>";
-            }
-            echo "</table>";
-
-            // Exibir a contagem de profissionais
-            
-        } else {
-            echo "Nenhum profissional cadastrado encontrado.";
+    // Exibir os resultados em tabelas
+    if (!empty($procedimentosEntrada)) {
+        echo "<h3>Procedimentos com Entrada no Período</h3>";
+        echo "O número de procedimentos com entrada são: " . $resultado['quantidade_entrada'];
+        echo "<table class='table table-striped table-bordered table-sm table-responsive' border='1'>";
+        echo "<tr><th>Cod</th><th>Nome do Paciente</th><th>Procedimento</th><th>Data de Entrada</th></tr>";
+        foreach ($procedimentosEntrada as $procedimento) {
+            echo "<tr>";
+            echo "<td>" . $procedimento['cod'] . "</td>";
+            echo "<td>" . $procedimento['nome_paciente'] . "</td>";
+            echo "<td>" . $procedimento['procedimento'] . "</td>";
+            echo "<td>" . $procedimento['data_de_entrada_cadastro'] . "</td>";
+            echo "</tr>";
         }
+        echo "</table>";
     }
 
-    // ...
+    if (!empty($agendamentos)) {
+        echo "<h3>Agendamentos</h3>";
+        echo "<p>O número de procedimentos agendados são: $numProcedimentosAgendados</p>";
+        echo "<table class='table table-striped table-bordered table-sm table-responsive' border='1'>";
+        echo "<tr><th>ID Agendamento</th><th>Nome do Paciente</th><th>Data de Atendimento</th><th>Hora</th><th>Endereço Local</th><th>Local de Atendimento</th></tr>";
+        foreach ($agendamentos as $agendamento) {
+            echo "<tr>";
+            echo "<td>" . $agendamento['id_agendamento'] . "</td>";
+            echo "<td>" . $agendamento['nome_paciente'] . "</td>";
+            echo "<td>" . $agendamento['data_atendimento'] . "</td>";
+            echo "<td>" . $agendamento['hora'] . "</td>";
+            echo "<td>" . $agendamento['endereco_local'] . "</td>";
+            echo "<td>" . $agendamento['local_atendimento'] . "</td>";
+            echo "</tr>";
+        }
+        echo "</table> <br>";
+    }
 
+    if (!empty($procedimentosNaoAgendados)) {
+        echo "<h3>Procedimentos não Agendados</h3>";
+        echo "<p>O número de procedimentos não agendados são: $numProcedimentosNaoAgendados</p>";
+        echo "<table class='table table-striped table-bordered table-sm table-responsive' border='1'>";
+        echo "<tr><th>Cod</th><th>Nome do Paciente</th><th>Procedimento</th></tr>";
+        foreach ($procedimentosNaoAgendados as $procedimento) {
+            echo "<tr>";
+            echo "<td>" . $procedimento['cod'] . "</td>";
+            echo "<td>" . $procedimento['nome_paciente'] . "</td>";
+            echo "<td>" . $procedimento['procedimento'] . "</td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+    }
+   
     // Execute uma consulta SQL para buscar a agenda do profissional
     if (isset($_POST['profissional_nome'])) {
         $profissional_nome = $_POST["profissional_nome"];
@@ -147,24 +164,53 @@ if (isset($_SESSION['cpf'])) {
         } catch (PDOException $e) {
             echo "Erro ao buscar agenda: " . $e->getMessage();
         }
-    }
-    ?>
-    <style>
-    @media print {
-        #print,
-        #voltar {
-            display: none;
+    } 
+    
+    if (isset($_POST['profissional'])) {
+        // Execute uma consulta SQL para buscar os profissionais cadastrados
+        $sqlProfissionais = "SELECT id_profissional, nome, area, tempo_atendimento FROM profissionais";
+        $stmtProfissionais = $conexao->prepare($sqlProfissionais);
+        $stmtProfissionais->execute();
+        
+        // Verifique se há resultados
+        if ($stmtProfissionais->rowCount() > 0) {
+            echo "<h3>Profissionais Cadastrados</h3><p>Total de profissionais cadastrados: " . $stmtProfissionais->rowCount() . "</p>";
+            echo "<table class='table table-striped table-bordered table-sm table-responsive' border='1'>";
+            echo "<tr><th>ID Profissional</th><th>Nome</th><th>Área</th><th>Tempo de Atendimento</th></tr>";
+    
+            // Loop através dos resultados e exiba-os na tabela
+            while ($rowProfissional = $stmtProfissionais->fetch(PDO::FETCH_ASSOC)) {
+                echo "<tr>";
+                echo "<td>" . $rowProfissional['id_profissional'] . "</td>";
+                echo "<td>" . $rowProfissional['nome'] . "</td>";
+                echo "<td>" . $rowProfissional['area'] . "</td>";
+                echo "<td>" . $rowProfissional['tempo_atendimento'] . "</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+            
+         
+        } else {
+            echo "Nenhum profissional cadastrado encontrado.";
         }
     }
-    </style>
-    <button style="width: 100%;" id="print" onclick="printPage()">Imprimir<img style="width: 2%;" src="../images/printer.png"></button>
-    <a href="relatorios.php"><button style="width: 100%; background-color:#B22222;color: white;" id="voltar">Voltar</button><a>
-    <script>
-    function printPage() {
-        window.print();
+?>
+<style>
+@media print {
+    #print,
+    #voltar {
+        display: none;
     }
-    </script>
-    <?php
+}
+</style>
+<button style="width: 100%;" id="print" onclick="printPage()">Imprimir<img style="width: 2%;" src="../images/printer.png"></button>
+<a href="relatorios.php"><button style="width: 100%; background-color:#B22222;color: white;" id="voltar">Voltar</button><a>
+<script>
+function printPage() {
+    window.print();
+}
+</script>
+<?php
 } else {
     header("location: ../index.php");
 }
