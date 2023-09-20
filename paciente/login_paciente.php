@@ -58,7 +58,7 @@ if(isset($_POST["cpf"]) && isset($_POST["cns"])){
                   <input type="text" id="cns" name = "cns" class="form-control form-control-lg" required/>
                   </div>
 
-                  <button style="background-color: DarkBlue; color: white;"class="btn  btn-lg btn-block" type="submit">ENTRAR</button>
+                  <button style="background-color: DarkBlue; color: white; "class="btn  btn-lg btn-block" type="submit">ENTRAR</button>
                   
               </form>
         </div>

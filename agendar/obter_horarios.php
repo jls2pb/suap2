@@ -4,6 +4,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Conexão com o banco de dados
     include "../conexao.php";
     session_start();
+    
     // Obter o dia selecionado pelo usuário da solicitação POST
     $diaSelecionado = $_POST['dia'];
     $id = $_POST['idProfissional'];
@@ -14,13 +15,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     foreach ($vr as $vr2) {
         $tempoAtendimento = $vr2['tempo_atendimento'];
     }
- 
-    // Consulta ao banco de dados para obter os horários disponíveis com base no dia selecionado
-    $sql = "SELECT * FROM agenda_profissional WHERE id_profissional = :id_profissional AND dia = :dia";
+    
+    // Consulta SQL para obter todos os horários disponíveis do profissional para o dia selecionado
+    $sql = "SELECT inicio_manha, final_manha, inicio_tarde, final_tarde FROM agenda_profissional WHERE id_profissional = :id_profissional AND dia = :diaSelecionado";
     $resultado = $conexao->prepare($sql);
     $resultado->bindParam(':id_profissional', $id, PDO::PARAM_INT);
-    $resultado->bindParam(':dia', $diaSelecionado, PDO::PARAM_STR);
-
+    $resultado->bindParam(':diaSelecionado', $diaSelecionado, PDO::PARAM_STR);
+    
     // Inicializar um array para armazenar os horários disponíveis
     $horariosDisponiveis = [];
 
@@ -36,25 +37,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $finalTarde = strtotime($dado['final_tarde']);
 
             // Tempo de atendimento
-            
-
-            // Gerar horários disponíveis e adicioná-los ao array PHP
             $sql2 = "SELECT hora FROM agendamento WHERE data_atendimento = '$diaSelecionado'";
             $resultado2 = $conexao->prepare($sql2);
             $resultado2->execute();
             $horariosAgendados = $resultado2->fetchAll(PDO::FETCH_COLUMN);
-            
+
             for ($horario = $inicioManha; $horario <= $finalManha; $horario += 60 * $tempoAtendimento) {
                 $horario_certo = date('H:i', $horario);
-                
+
+                // Verifique se o horário não está agendado
                 if (!in_array($horario_certo, $horariosAgendados)) {
                     $horariosDisponiveis[] = $horario_certo;
                 }
             }
-            $horariosDisponiveis = array_diff($horariosDisponiveis, $horariosAgendados);
 
             for ($horario = $inicioTarde; $horario <= $finalTarde; $horario += 60 * $tempoAtendimento) {
-                $horariosDisponiveis[] = date('H:i', $horario);
+                $horario_certo = date('H:i', $horario);
+
+                // Verifique se o horário não está agendado
+                if (!in_array($horario_certo, $horariosAgendados)) {
+                    $horariosDisponiveis[] = $horario_certo;
+                }
             }
         }
     }

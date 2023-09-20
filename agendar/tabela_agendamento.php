@@ -19,7 +19,7 @@ $id = $_GET['id'];
  // Calcular o inicio da visualização
  $inicio = ($limite_resultado * $pagina) - $limite_resultado;
 
- $query_usuarios = "SELECT DISTINCT ON (id_agendamento) * FROM agendamento WHERE cod_profissional = $id ORDER BY id_agendamento ASC LIMIT $limite_resultado OFFSET $inicio ";
+ $query_usuarios = "SELECT DISTINCT ON (data_atendimento, hora) * FROM agendamento WHERE cod_profissional = $id ORDER BY data_atendimento, hora ASC LIMIT $limite_resultado OFFSET $inicio ";
  $result_usuarios = $conexao->prepare($query_usuarios);
  $result_usuarios->execute();
 

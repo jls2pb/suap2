@@ -16,6 +16,16 @@ $endereco_local = $_POST["endereco_local"];
 $cod_profissional = $_POST["cod_profissional"];
 $local_atendimento = $_POST["l_agendamento"];
 $data_geracao = date('d/m/Y H:i:s');
+
+$sqlVerificar = "SELECT * FROM agendamento WHERE cod_profissional = $cod_profissional AND data_atendimento = '$dia' AND hora = '$horario'";
+$resultadoVerificar = $conexao->prepare($sqlVerificar);
+$resultadoVerificar->execute();
+if ($resultadoVerificar->rowCount() > 0) {
+    echo "<script>alert('Esse horário já está agendado. Por favor, escolha outro horário.'); window.history.back();</script>";
+    exit; // Encerra o script em caso de horário duplicado
+}
+
+
 $sql = "INSERT INTO agendamento(cod_usuario, data_atendimento, hora, nome_paciente, sexo, endereco, cpf, endereco_local, cod_profissional,local_atendimento, procedimento) VALUES ($cod, '$dia', '$horario', '$paciente', '$sexo', '$endereco', '$cpf', '$endereco_local',$cod_profissional,'$local_atendimento',$procedimento)";
 $resultado = $conexao->prepare($sql);
 if($resultado->execute()){
