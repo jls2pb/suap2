@@ -2,6 +2,7 @@
 include "../conexao.php";
 require_once("head.php");
 session_start();
+date_default_timezone_set('America/Sao_Paulo');
 $cpf_logado = $_SESSION['cpf'];
 $paciente = $_POST["paciente"];
 $sexo = $_POST["sexo"];
@@ -14,6 +15,7 @@ $horario = $_POST["horario"];
 $endereco_local = $_POST["endereco_local"];
 $cod_profissional = $_POST["cod_profissional"];
 $local_atendimento = $_POST["l_agendamento"];
+$data_geracao = date('d/m/Y H:i:s');
 $sql = "INSERT INTO agendamento(cod_usuario, data_atendimento, hora, nome_paciente, sexo, endereco, cpf, endereco_local, cod_profissional,local_atendimento, procedimento) VALUES ($cod, '$dia', '$horario', '$paciente', '$sexo', '$endereco', '$cpf', '$endereco_local',$cod_profissional,'$local_atendimento',$procedimento)";
 $resultado = $conexao->prepare($sql);
 if($resultado->execute()){
@@ -25,7 +27,7 @@ if($resultado->execute()){
                 display: none;
             }
             /* Estilo para o rodapé */
-            #rodape {
+            .rodape {
                 position: fixed;
                 bottom: 0;
                 left: 0;
@@ -150,7 +152,11 @@ if($resultado->execute()){
    ?>
    <button style="width: 100%;" id="print" onclick="printPage()">Imprimir<img style="width: 2%;" src="../images/printer.png"></button>
    <a href="cadastrar_agendamento.php?id=<?php echo $cod_profissional;?>" ><button  style="width: 100%; background-color:#B22222;color: white;" id="voltar">Voltar</button><a>
-   <div id="rodape">Usuário responsável: <?php echo $id_usuario; ?></div> <!-- Adicionei o rodapé aqui -->
+   <div class="rodape row">
+   <div class=" col-7">Usuário responsável: <?php echo $id_usuario; ?></div>
+<div class="col-5">Data e Hora de Geração do Boleto: <?=$data_geracao?></div>
+ <!-- Adicionei o rodapé aqui -->
+</div>
    <script>
    function printPage() {
            window.print();
