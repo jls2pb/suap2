@@ -28,13 +28,7 @@ if($resultado->execute()){
             }
             /* Estilo para o rodapé */
             .rodape {
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                background-color: white;
-                padding: 5px;
-                text-align: left;
+               
                 border-top: 1px solid black;
             }
         }
