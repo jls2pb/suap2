@@ -162,7 +162,7 @@ if (isset($_SESSION['cpf'])) {
                 echo "Nenhum resultado encontrado.";
             }
         } catch (PDOException $e) {
-            echo "Erro ao buscar agenda: " . $e->getMessage();
+            
         }
     } 
     
