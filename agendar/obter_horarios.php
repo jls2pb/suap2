@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $finalTarde = strtotime($dado['final_tarde']);
 
             // Tempo de atendimento
-            $sql2 = "SELECT hora FROM agendamento WHERE data_atendimento = '$diaSelecionado'";
+            $sql2 = "SELECT hora FROM agendamento WHERE data_atendimento = '$diaSelecionado' AND cod_profissional = $id";
             $resultado2 = $conexao->prepare($sql2);
             $resultado2->execute();
             $horariosAgendados = $resultado2->fetchAll(PDO::FETCH_COLUMN);
@@ -45,8 +45,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             for ($horario = $inicioManha; $horario <= $finalManha; $horario += 60 * $tempoAtendimento) {
                 $horario_certo = date('H:i', $horario);
 
-                // Verifique se o horário não está agendado
-                if (!in_array($horario_certo, $horariosAgendados)) {
+                // Consulta SQL para verificar se o horário já está agendado
+                $sql3 = "SELECT COUNT(*) AS count FROM agendamento WHERE data_atendimento = :diaSelecionado AND cod_profissional = :id AND hora = :horario";
+                $resultado3 = $conexao->prepare($sql3);
+                $resultado3->bindParam(':diaSelecionado', $diaSelecionado, PDO::PARAM_STR);
+                $resultado3->bindParam(':id', $id, PDO::PARAM_INT);
+                $resultado3->bindParam(':horario', $horario_certo, PDO::PARAM_STR);
+                $resultado3->execute();
+                $row = $resultado3->fetch(PDO::FETCH_ASSOC);
+
+                // Se o horário não estiver agendado, adicione-o aos horários disponíveis
+                if ($row['count'] == 0) {
                     $horariosDisponiveis[] = $horario_certo;
                 }
             }
@@ -54,8 +63,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             for ($horario = $inicioTarde; $horario <= $finalTarde; $horario += 60 * $tempoAtendimento) {
                 $horario_certo = date('H:i', $horario);
 
-                // Verifique se o horário não está agendado
-                if (!in_array($horario_certo, $horariosAgendados)) {
+                // Consulta SQL para verificar se o horário já está agendado
+                $sql4 = "SELECT COUNT(*) AS count FROM agendamento WHERE data_atendimento = :diaSelecionado AND cod_profissional = :id AND hora = :horario";
+                $resultado4 = $conexao->prepare($sql4);
+                $resultado4->bindParam(':diaSelecionado', $diaSelecionado, PDO::PARAM_STR);
+                $resultado4->bindParam(':id', $id, PDO::PARAM_INT);
+                $resultado4->bindParam(':horario', $horario_certo, PDO::PARAM_STR);
+                $resultado4->execute();
+                $row = $resultado4->fetch(PDO::FETCH_ASSOC);
+
+                // Se o horário não estiver agendado, adicione-o aos horários disponíveis
+                if ($row['count'] == 0) {
                     $horariosDisponiveis[] = $horario_certo;
                 }
             }
