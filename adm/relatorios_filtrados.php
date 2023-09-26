@@ -27,7 +27,7 @@ if (isset($_SESSION['cpf'])) {
 
             $procedimentosEntrada = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            $query2 = "SELECT COUNT(*) AS quantidade_entrada FROM procedimentos WHERE  data_de_entrada_cadastro BETWEEN :dataInicio AND :dataFim AND cod NOT IN (SELECT procedimento FROM agendamento)";
+            $query2 = "SELECT COUNT(*) AS quantidade_entrada FROM procedimentos WHERE  data_de_entrada_cadastro BETWEEN :dataInicio AND :dataFim";
             $stmt2 = $conexao->prepare($query2);
             $stmt2->bindParam(':dataInicio', $dataInicio, PDO::PARAM_STR);
             $stmt2->bindParam(':dataFim', $dataFim, PDO::PARAM_STR);

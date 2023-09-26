@@ -167,7 +167,7 @@ include "../footer.php";
             // Realize uma solicitação AJAX para buscar os procedimentos com base no código (cod)
             $.ajax({
                 url: 'buscar_procedimentos.php', // Substitua pelo URL correto para buscar procedimentos com base no código de paciente
-                type: 'GET',
+                type: 'GET',{"text":"public.tabela","objUrl":"/browser/table/obj/1/1/16398/2200/16414","nodeType":"table","cur":{"from":13,"to":13}}
                 data: { cod: cod },
                 dataType: 'json',
                 success: function (data) {
