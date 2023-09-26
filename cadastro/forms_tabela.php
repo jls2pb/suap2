@@ -1,7 +1,7 @@
 <?php 
 session_start();
-if(isset($_SESSION['cpf'])){
-$cpf_logado = $_SESSION['cpf'];
+if(isset($_SESSION['cpf_cadastro'])){
+$cpf_logado = $_SESSION['cpf_cadastro'];
 include "head.php";
 include "menu.php";
 include "navibar.php";

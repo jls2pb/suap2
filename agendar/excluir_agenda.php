@@ -2,7 +2,7 @@
 date_default_timezone_set('America/Sao_Paulo');
 require_once("../conexao.php");
 session_start();
-$cpf_logado = $_SESSION['cpf'];
+$cpf_logado = $_SESSION['cpf_agendar'];
 
 $id =  $_GET["id"];
 $id1 =  $_GET["id1"];

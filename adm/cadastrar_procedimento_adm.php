@@ -1,10 +1,10 @@
 <?php 
 require_once("head.php");
 session_start();
-if(isset($_SESSION['cpf']) == FALSE){
+if(isset($_SESSION['cpf_adm']) == FALSE){
     header("Location:../index.php");
 }
-$cpf_logado = $_SESSION['cpf'];
+$cpf_logado = $_SESSION['cpf_adm'];
 $nome = $_SESSION['id'];
 
 $n = $_GET["n"];

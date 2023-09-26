@@ -1,12 +1,12 @@
 ﻿<?php 
 session_start();
-if(isset($_SESSION['cpf']) == FALSE){
+if(isset($_SESSION['cpf_cadastro']) == FALSE){
     header("Location:../index.php");
 }
 if(isset($_GET["id"])){
   $_SESSION['id'] = $_GET["id"];
 }
-$cpf_logado = $_SESSION['cpf'];
+$cpf_logado = $_SESSION['cpf_cadastro'];
 require_once("head.php");
 include "menu.php";
 include "navibar.php";

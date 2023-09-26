@@ -1,8 +1,8 @@
 <?php 
 date_default_timezone_set('America/Sao_Paulo');
 session_start();
-if(isset($_SESSION['cpf'])){
-$cpf_logado = $_SESSION['cpf'];
+if(isset($_SESSION['cpf_adm'])){
+$cpf_logado = $_SESSION['cpf_adm'];
 include "head.php";
 include "menu_adm.php";
 include "navibar_adm.php";

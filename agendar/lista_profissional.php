@@ -8,7 +8,7 @@ include "navibar_agendamento.php";
 require_once("conexao.php");
 $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
  $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
- $cpf_logado = $_SESSION['cpf'];
+ $cpf_logado = $_SESSION['cpf_agendar'];
  //Setar a quantidade de registros por página
  $limite_resultado = 6;
 

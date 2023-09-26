@@ -1,8 +1,8 @@
 <?php 
 require_once("head.php");
 session_start();
-if(isset($_SESSION['cpf'])){
-    $cpf_logado = $_SESSION['cpf'];
+if(isset($_SESSION['cpf_agendar'])){
+    $cpf_logado = $_SESSION['cpf_agendar'];
 
 include "menu_agendamento.php";
 include "navibar_agendar.php";
@@ -10,7 +10,7 @@ include "../footer.php";
 require_once("../conexao.php");
 $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
  $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
- $cpf_logado = $_SESSION['cpf'];
+ $cpf_logado = $_SESSION['cpf_agendar'];
 
 $query_profissional = "SELECT * FROM profissionais ORDER BY nome";
 $result_profissional = $conexao->prepare($query_profissional);

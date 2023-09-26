@@ -3,7 +3,7 @@ include "../conexao.php";
 require_once("head.php");
 session_start();
 date_default_timezone_set('America/Sao_Paulo');
-$cpf_logado = $_SESSION['cpf'];
+$cpf_logado = $_SESSION['cpf_agendar'];
 $paciente = $_POST["paciente"];
 $sexo = $_POST["sexo"];
 $endereco = $_POST["endereco"];

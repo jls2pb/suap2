@@ -1,9 +1,9 @@
 <?php 
 session_start();
-if(isset($_SESSION['cpf']) == FALSE){
+if(isset($_SESSION['cpf_adm']) == FALSE){
     header("Location:../index.php");
 }
-$cpf_logado = $_SESSION['cpf'];
+$cpf_logado = $_SESSION['cpf_adm'];
 require_once("head.php");
 include "menu_adm.php";
 include "navibar_adm.php";

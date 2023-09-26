@@ -1,9 +1,9 @@
 <?php
 session_start();
-if(isset($_SESSION['cpf']) == FALSE){
+if(isset($_SESSION['cpf_cadastro']) == FALSE){
     header("Location:../index.php");
 } 
-$cpf_logado = $_SESSION['cpf'];
+$cpf_logado = $_SESSION['cpf_cadastro'];
 require_once("head.php");
 include "menu.php";
 include "navibar.php";
@@ -14,7 +14,7 @@ include "../footer.php";
 require_once("../conexao.php");
  $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
  $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
- $cpf_logado = $_SESSION['cpf'];
+ $cpf_logado = $_SESSION['cpf_cadastro'];
  //Setar a quantidade de registros por página
  $limite_resultado = 6;
 

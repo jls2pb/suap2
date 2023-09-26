@@ -2,7 +2,7 @@
 date_default_timezone_set('America/Sao_Paulo');
 require_once("../conexao.php");
 session_start();
-$cpf_logado = $_SESSION['cpf'];
+$cpf_logado = $_SESSION['cpf_cadastro'];
 $id =  $_SESSION['id'];
 $sql = "DELETE FROM tabela WHERE cod = '$id'";
 $resultado = $conexao->prepare($sql);

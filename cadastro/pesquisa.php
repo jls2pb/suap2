@@ -4,7 +4,7 @@ $timezone = new DateTimeZone('America/Sao_Paulo');
 
 
  session_start(); 
- $cpf_logado = $_SESSION['cpf'];
+ $cpf_logado = $_SESSION['cpf_cadastro'];
  include "head.php";
  include "menu.php";
  include "navibar.php";

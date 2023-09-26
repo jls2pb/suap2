@@ -2,7 +2,7 @@
 date_default_timezone_set('America/Sao_Paulo');
 require_once("../conexao.php");
 session_start();
-$cpf_logado = $_SESSION['cpf'];
+$cpf_logado = $_SESSION['cpf_adm'];
 
 $procedimento = $_GET['id']; // Aqui você obtém o valor do procedimento que deseja excluir
 

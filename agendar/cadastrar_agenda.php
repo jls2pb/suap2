@@ -1,10 +1,10 @@
 <?php 
 date_default_timezone_set('America/Sao_Paulo');
 session_start();
-if(isset($_SESSION['cpf']) == FALSE){
+if(isset($_SESSION['cpf_agendar']) == FALSE){
     header("Location:../index.php");
 }
-$cpf_logado = $_SESSION['cpf'];
+$cpf_logado = $_SESSION['cpf_agendar'];
 require_once("head.php");
 include "menu_agendamento.php";
 include "navibar_agendar.php";
