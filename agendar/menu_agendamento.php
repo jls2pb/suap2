@@ -61,9 +61,7 @@ require_once("../conexao.php");
           </li>
   
           </li>
-          <li>
-            <a href="index_logado_agendar.php"><span class="fa fa-sticky-note"></span><b> LISTAR PACIENTES</b></a>
-          </li>
+          
           <li>
             <a href="exibir_resultado_agendar.php"><span class="bi bi-bar-chart-line-fill" ></i></span><b> RANKING </b></a>
           </li>

@@ -160,6 +160,7 @@ if($resultado->execute()){
             <td><?php echo $y2["nome_paciente"]; ?></td>
             <td><?php echo $y2["procedimento"]; ?></td>
 		<td><?php echo $y2["especificacao"]; ?></td>
+                  <?php ?>
             <td><?php echo $solicitacao ?></td>
             <td><?php echo $entrada ?></td>
             <td><?php echo $saida ?></td>
