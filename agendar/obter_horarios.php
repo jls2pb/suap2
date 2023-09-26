@@ -51,7 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $horariosDisponiveis[] = $horario_certo;
                 }
             }
-            $horariosDisponiveis = array_diff($horariosDisponiveis, $horariosAgendados);
+            $horariosDisponiveis = array_diff($horariosDisponiveis, $horariosAgendados);    
+            
 
             for ($horario = $inicioTarde; $horario <= $finalTarde; $horario += 60 * $tempoAtendimento) {
                 $horariosDisponiveis[] = date('H:i', $horario);
