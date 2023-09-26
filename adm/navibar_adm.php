@@ -16,7 +16,7 @@
                         <div class="input-group">
                           
                             <div class="form-outline">
-                                <input type="search" name = "nome" class="form-control" oninput="handleInput(event)" placeholder = "BUSCAR PACIENTE"/>
+                                <input type="search" id="pesquisa" name = "nome" class="form-control" oninput="handleInput(event)" placeholder = "BUSCAR PACIENTE"/>
                                 <input type = "hidden" name = "cpf" value = "<?php echo $cpf_logado?>">
                             </div>
                             
@@ -32,3 +32,11 @@
           </div>
         </nav>
         <script src="mascara.js"></script>
+        <script>
+    $(document).ready(function () {
+        // Quando o usuário digitar algo no input, convertemos para maiúsculas
+        $('#pesquisa').on('input', function () {
+            $(this).val($(this).val().toUpperCase());
+        });
+    });
+</script>

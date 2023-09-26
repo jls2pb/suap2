@@ -19,7 +19,7 @@ $id = $_GET['id'];
  // Calcular o inicio da visualização
  $inicio = ($limite_resultado * $pagina) - $limite_resultado;
 
- $query_usuarios = "SELECT DISTINCT ON (id_agendamento) * FROM agendamento WHERE cod_profissional = $id ORDER BY id_agendamento ASC LIMIT $limite_resultado OFFSET $inicio ";
+ $query_usuarios = "SELECT DISTINCT ON (data_atendimento, hora) * FROM agendamento WHERE cod_profissional = $id ORDER BY data_atendimento, hora ASC LIMIT $limite_resultado OFFSET $inicio ";
  $result_usuarios = $conexao->prepare($query_usuarios);
  $result_usuarios->execute();
 
@@ -29,7 +29,7 @@ $id = $_GET['id'];
             var confirmacao = confirm("Tem certeza de que deseja excluir este registro?");
             if (confirmacao) {
                 // Se o usuário confirmar, redirecione para o script de exclusão PHP
-                window.location = "excluir_agendamento.php?id=" + id;
+                window.location = "excluir_agendamento.php?id1=<?php echo $id; ?>&id=" + id;
             } else {
                 // Se o usuário cancelar, não faça nada
             }
@@ -107,11 +107,11 @@ if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
                     <div class = "row">
                         <div class = "col">        
                     <?php 
-                    echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='tabela_agendamento.php?page=1&cpf=$cpf_logado '>Primeira</a>";
+                    echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='tabela_agendamento.php?id=$id&page=1&cpf=$cpf_logado '>Primeira</a>";
         
                     for ($pagina_anterior = $pagina - $maximo_link; $pagina_anterior <= $pagina - 1; $pagina_anterior++) {
                         if ($pagina_anterior >= 1) {
-                            echo "<a href='tabela_agendamento.php?page=$pagina_anterior&cpf=$cpf_logado'><label>$pagina_anterior</label></a> ";
+                            echo "<a href='tabela_agendamento.php?id=$id&page=$pagina_anterior&cpf=$cpf_logado'><label>$pagina_anterior</label></a> ";
                         }
                     }
         
@@ -119,7 +119,7 @@ if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
         
                     for ($proxima_pagina = $pagina + 1; $proxima_pagina <= $pagina + $maximo_link; $proxima_pagina++) {
                         if ($proxima_pagina <= $qnt_pagina) {
-                            echo "<a href='tabela_agendamento.php?page=$proxima_pagina&cpf=$cpf_logado'><label>$proxima_pagina</label></a> ";
+                            echo "<a href='tabela_agendamento.php?id=$id&page=$proxima_pagina&cpf=$cpf_logado'><label>$proxima_pagina</label></a> ";
                         }
                     }
 

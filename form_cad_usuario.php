@@ -63,7 +63,14 @@ include "head.php";
 </body>
 
 <script src="mascara.js"></script>
-
+<script>
+    $(document).ready(function () {
+        // Quando o usuário digitar algo no input, convertemos para maiúsculas
+        $('#nome').on('input', function () {
+            $(this).val($(this).val().toUpperCase());
+        });
+    });
+</script>
 <!--
     para iniciar, informe o elemento, a máscara, o caracter de substituição e
     os caracteres a serem ignorados

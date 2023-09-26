@@ -14,7 +14,7 @@
 
                     </li>
 
-                    <li class="nav-item ml-auto"><a href="../sair.php" class="link-dark rounded text-white"><span class="bi bi-door-open-fill"></span><b>SAIR</b></a></li>
+                    <li class="nav-item ml-auto"><a href="sair.php" class="link-dark rounded text-white"><span class="bi bi-door-open-fill"></span><b>SAIR</b></a></li>
                     </li>
 
                 </ul>

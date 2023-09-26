@@ -18,8 +18,8 @@ if (isset($_GET['term'])) {
         $stmt->execute();
 
         // Retorne os profissionais encontrados em um array associativo
-        $profissionais = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        echo json_encode($profissionais);
+        $profissional = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        echo json_encode($profissional);
     }
 }
 ?>

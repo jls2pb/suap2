@@ -48,7 +48,7 @@ if(isset($_SESSION['cpf'])){
 <form method="POST" action="relatorios_filtrados.php">
   <div class="form-outline mb-4">
     <label>
-      <input type="checkbox" name="agendamento" value="agendamento"> Quantos profissionais são
+      <input type="checkbox" name="profissional" value="profissional"> Quantos profissionais são
     </label><br>
     <hr></hr>
     <label class="form-label">NOME DO PROFISSIONAL: </label>
@@ -58,49 +58,50 @@ if(isset($_SESSION['cpf'])){
     </label><br>
     <label>Selecione o período da agenda do profissional respectivo</label><br>
     <label for="agenda_inicio">Data de Início: </label>
-    <input required type="date" name="agenda_inicio" id="agenda_inicio"> <br>
+    <input  type="date" name="agenda_inicio" id="agenda_inicio"> <br>
     <label for="agenda_fim">Data de Término: </label>
-    <input required type="date" name="agenda_fim" id="agenda_fim"> <br>
+    <input type="date" name="agenda_fim" id="agenda_fim"> <br>
   </div>
   <button class="btn btn-primary" type="submit">Filtrar</button>
 </form>
 
 <script>
     $(document).ready(function () {
-        // Quando o usuário digitar algo no input, acionamos a função de busca
+        // Quando o usuário digitar algo no input, convertemos para maiúsculas
         $('#profissional_input').on('input', function () {
-            var term = $(this).val();
-            if (term.length >= 3) {
-                // Realizamos a solicitação AJAX para buscar os profissionais
-                $.ajax({
-                    url: 'buscar_profissional.php',
-                    type: 'GET',
-                    data: { term: term },
-                    dataType: 'json',
-                    success: function (data) {
-                        // Limpa o datalist antes de preencher com as novas opções
-                        $('#profissional_list').empty();
+            $(this).val($(this).val().toUpperCase());
+        });
+    });
+</script>
 
-                        // Preenche o datalist com as opções retornadas pela busca
-                        data.forEach(function (profissional) {
-                            // Profissional é um objeto que contém nome e cod
-                            $('#profissional_list').append('<option value="' + profissional.nome_profissional + '" data-cod="' + profissional.id_profissional + '">');
-                        });
-                    }
+<script>
+    $(document).ready(function () {
+    // Quando o usuário digitar algo no input, acionamos a função de busca
+$('#profissional_input').on('input', function () {
+    var term = $(this).val();
+    if (term.length >= 3) {
+      $('#profissional_list').empty();
+        // Realizamos a solicitação AJAX para buscar os profissionais
+        $.ajax({
+            url: 'buscar_profissional.php',
+            type: 'GET',
+            data: { term: term },
+            dataType: 'json',
+            success: function (data) {
+                // Limpa o datalist antes de preencher com as novas opções
+                $('#profissional_list').empty();
+
+                // Preenche o datalist com as opções retornadas pela busca
+                data.forEach(function (profissional) {
+                    // Profissional é um objeto que contém nome e id_profissional
+                    $('#profissional_list').append('<option value="' + profissional.nome + '">' + profissional.nome + '</option>');
                 });
             }
         });
+    }
+});
 
-        // Quando uma opção é selecionada no datalist
-        $('#profissional_input').on('blur', function () {
-            // Se o valor selecionado está em cache
-            if (this.list.querySelector("option[value='" + this.value + "']")) {
-                var id = this.list.querySelector("option[value='" + this.value + "']").getAttribute('data-cod');
 
-                // Atualize o campo de código do profissional
-                $('#id_profissional').val(id);
-            }
-        });
     });
 </script>
 

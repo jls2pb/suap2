@@ -24,7 +24,18 @@ $id = $_GET['id'];
  $result_usuarios->execute();
 
 ?>
+<script>
+  function confirmarExclusao(id) {
+            var confirmacao = confirm("Tem certeza de que deseja excluir este registro?");
+            if (confirmacao) {
+                // Se o usuário confirmar, redirecione para o script de exclusão PHP
+                window.location = "excluir_agenda.php?id1=<?php echo $id; ?>&id=" + id;
+            } else {
+                // Se o usuário cancelar, não faça nada
+            }
+        }
 
+   </script>  
 <h2 class="mb-4">TABELA DE AGENDA DOS PROFISSIONAIS</h2>
 <a style="" href="cadastrar_agenda.php?id=<?php echo $id; ?>" class="btn btn-primary text-white float-right" role="button">CADASTRAR AGENDA</a>
 <table class="table table-striped">
@@ -37,14 +48,18 @@ $id = $_GET['id'];
             <th scope="col">FINAL DA MANHÃ</th>
             <th scope="col">INÍCIO DA TARDE</th>
             <th scope="col">FINAL DA TARDE</th>
+            <th scope="col">AÇÃO</th>
             
             </tr>
         </thead>
         <tbody>
             <?php 
- $query_profissionais = "SELECT nome FROM profissionais WHERE id_profissional = $id ";
-                        $result_profissionais = $conexao->prepare($query_profissionais);
-                        $nome_profissional = $result_profissionais->execute();
+$query_profissionais = "SELECT nome FROM profissionais WHERE id_profissional = $id ";
+$result_profissionais = $conexao->prepare($query_profissionais);
+$result_profissionais->execute();
+$profissional = $result_profissionais->fetch(PDO::FETCH_ASSOC);
+$nome_profissional = $profissional['nome'];
+
               if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
                     while ($d = $result_usuarios->fetch(PDO::FETCH_ASSOC)) { 
                         extract($d); 
@@ -60,6 +75,10 @@ $id = $_GET['id'];
             <td><?php echo $d["final_manha"]; ?></td>
             <td><?php echo $d["inicio_tarde"]; ?></td>
             <td><?php echo $d["final_tarde"]; ?></td>
+            <td>
+            <a class="btn text-white" style="background-color: #66a7ff;" href = "form_edita_agenda.php?id=<?php echo $d["id_agenda"];?>" role="button">EDITAR</a>
+                  <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php echo $d['id_agenda'] ; ?>)" role="button">EXCLUIR</a>
+            </td>
             </tr>
             <?php
                     }
@@ -78,11 +97,11 @@ $id = $_GET['id'];
                     <div class = "row">
                         <div class = "col">        
                     <?php 
-                    echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='tabela_agenda.php?page=1&cpf=$cpf_logado '>Primeira</a> ";
+                    echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='tabela_agenda.php?id=$id&page=1&cpf=$cpf_logado '>Primeira</a> ";
         
                     for ($pagina_anterior = $pagina - $maximo_link; $pagina_anterior <= $pagina - 1; $pagina_anterior++) {
                         if ($pagina_anterior >= 1) {
-                            echo "<a href='tabela_agenda.php?page=$pagina_anterior&cpf=$cpf_logado'><label>$pagina_anterior</label></a> ";
+                            echo "<a href='tabela_agenda.php?id=$id&page=$pagina_anterior&cpf=$cpf_logado'><label>$pagina_anterior</label></a> ";
                         }
                     }
         
@@ -90,7 +109,7 @@ $id = $_GET['id'];
         
                     for ($proxima_pagina = $pagina + 1; $proxima_pagina <= $pagina + $maximo_link; $proxima_pagina++) {
                         if ($proxima_pagina <= $qnt_pagina) {
-                            echo "<a href='tabela_agenda.php?page=$proxima_pagina&cpf=$cpf_logado'><label>$proxima_pagina</label></a> ";
+                            echo "<a href='tabela_agenda.php?id=$id&page=$proxima_pagina&cpf=$cpf_logado'><label>$proxima_pagina</label></a> ";
                         }
                     }
 

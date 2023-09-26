@@ -1,7 +1,9 @@
 <?php 
 include "../conexao.php";
 require_once("head.php");
-
+session_start();
+date_default_timezone_set('America/Sao_Paulo');
+$cpf_logado = $_SESSION['cpf'];
 $paciente = $_POST["paciente"];
 $sexo = $_POST["sexo"];
 $endereco = $_POST["endereco"];
@@ -13,6 +15,17 @@ $horario = $_POST["horario"];
 $endereco_local = $_POST["endereco_local"];
 $cod_profissional = $_POST["cod_profissional"];
 $local_atendimento = $_POST["l_agendamento"];
+$data_geracao = date('d/m/Y H:i:s');
+
+$sqlVerificar = "SELECT * FROM agendamento WHERE cod_profissional = $cod_profissional AND data_atendimento = '$dia' AND hora = '$horario'";
+$resultadoVerificar = $conexao->prepare($sqlVerificar);
+$resultadoVerificar->execute();
+if ($resultadoVerificar->rowCount() > 0) {
+    echo "<script>alert('Esse horário já está agendado. Por favor, escolha outro horário.'); window.history.back();</script>";
+    exit; // Encerra o script em caso de horário duplicado
+}
+
+
 $sql = "INSERT INTO agendamento(cod_usuario, data_atendimento, hora, nome_paciente, sexo, endereco, cpf, endereco_local, cod_profissional,local_atendimento, procedimento) VALUES ($cod, '$dia', '$horario', '$paciente', '$sexo', '$endereco', '$cpf', '$endereco_local',$cod_profissional,'$local_atendimento',$procedimento)";
 $resultado = $conexao->prepare($sql);
 if($resultado->execute()){
@@ -22,6 +35,11 @@ if($resultado->execute()){
   @media print {
             #print, #voltar {
                 display: none;
+            }
+            /* Estilo para o rodapé */
+            .rodape {
+               
+                border-top: 1px solid black;
             }
         }
 </style>  
@@ -129,10 +147,20 @@ if($resultado->execute()){
    <label for='paciente'>Alta na especialidade</label><br>";
    echo "</div>";
    echo "</div>";
-   
+   $sql2 = "SELECT id_usuario FROM usuario WHERE cpf =  '$cpf_logado'";
+   $stmt = $conexao->prepare($sql2);
+   $stmt->execute();
+   $result = $stmt->fetch(PDO::FETCH_ASSOC);
+   $id_usuario = $result['id_usuario'];
+
    ?>
    <button style="width: 100%;" id="print" onclick="printPage()">Imprimir<img style="width: 2%;" src="../images/printer.png"></button>
    <a href="cadastrar_agendamento.php?id=<?php echo $cod_profissional;?>" ><button  style="width: 100%; background-color:#B22222;color: white;" id="voltar">Voltar</button><a>
+   <div class="rodape row">
+   <div class=" col-7">Usuário responsável: <?php echo $id_usuario; ?></div>
+<div class="col-5">Data e Hora de Geração do Boleto: <?=$data_geracao?></div>
+ <!-- Adicionei o rodapé aqui -->
+</div>
    <script>
    function printPage() {
            window.print();

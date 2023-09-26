@@ -118,7 +118,7 @@ if (isset($_SESSION['cpf'])) {
         }
         echo "</table>";
     }
-
+   
     // Execute uma consulta SQL para buscar a agenda do profissional
     if (isset($_POST['profissional_nome'])) {
         $profissional_nome = $_POST["profissional_nome"];
@@ -162,7 +162,36 @@ if (isset($_SESSION['cpf'])) {
                 echo "Nenhum resultado encontrado.";
             }
         } catch (PDOException $e) {
-            echo "Erro ao buscar agenda: " . $e->getMessage();
+            
+        }
+    } 
+    
+    if (isset($_POST['profissional'])) {
+        // Execute uma consulta SQL para buscar os profissionais cadastrados
+        $sqlProfissionais = "SELECT id_profissional, nome, area, tempo_atendimento FROM profissionais";
+        $stmtProfissionais = $conexao->prepare($sqlProfissionais);
+        $stmtProfissionais->execute();
+        
+        // Verifique se há resultados
+        if ($stmtProfissionais->rowCount() > 0) {
+            echo "<h3>Profissionais Cadastrados</h3><p>Total de profissionais cadastrados: " . $stmtProfissionais->rowCount() . "</p>";
+            echo "<table class='table table-striped table-bordered table-sm' border='1'>";
+            echo "<tr><th>ID Profissional</th><th>Nome</th><th>Área</th><th>Tempo de Atendimento</th></tr>";
+    
+            // Loop através dos resultados e exiba-os na tabela
+            while ($rowProfissional = $stmtProfissionais->fetch(PDO::FETCH_ASSOC)) {
+                echo "<tr>";
+                echo "<td>" . $rowProfissional['id_profissional'] . "</td>";
+                echo "<td>" . $rowProfissional['nome'] . "</td>";
+                echo "<td>" . $rowProfissional['area'] . "</td>";
+                echo "<td>" . $rowProfissional['tempo_atendimento'] . "</td>";
+                echo "</tr>";
+            }
+            echo "</table>";
+            
+         
+        } else {
+            echo "Nenhum profissional cadastrado encontrado.";
         }
     }
 ?>

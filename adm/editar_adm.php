@@ -3,8 +3,10 @@ include "../conexao.php";
 
 if (isset($_POST['nome_fantasia'])) {
     $local = $_POST['nome_fantasia'];
-    $id = $_POST['cnes']; // Você precisa da chave primária (ID) do registro a ser atualizado
-    $sql = "UPDATE local_atendimento SET nome_fantasia = '$local' WHERE cnes = $id";
+    $endereco_local = $_POST['endereco_local'];
+     $id = $_POST['id']; // Você precisa da chave primária (ID) do registro a ser atualizado
+    $cnes = $_POST['cnes'];
+    $sql = "UPDATE local_atendimento SET cnes = '$cnes', nome_fantasia = '$local', endereco_local = '$endereco_local' WHERE cnes = $id";
     $resultado = $conexao->prepare($sql);
     if ($resultado->execute()) {
         ?>
