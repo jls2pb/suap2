@@ -55,17 +55,9 @@ require_once("../conexao.php");
           <li >
             <a href="inicio_agendamento.php"><span class="fa fa-home"></span><b> INÍCIO</b></a>
           </li>
-
           <li>
           <a href="cadastrar_profissional.php" class="link-dark rounded"><img style="width: 14%;" src="../images/medico.png"><b>NOVO PROFISSIONAL</b></a></li>
           </li>
-  
-          </li>
-          <li>
-            <a href="index_logado_agendar.php"><span class="fa fa-sticky-note"></span><b> LISTAR PACIENTES</b></a>
-          </li>
-          <li>
-            <a href="exibir_resultado_agendar.php"><span class="bi bi-bar-chart-line-fill" ></i></span><b> RANKING </b></a>
           </li>
           <li>
             <a href="../sair.php"><span class="bi bi-door-open-fill" ></i></span><b> SAIR</b></a>

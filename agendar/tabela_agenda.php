@@ -65,12 +65,17 @@ $nome_profissional = $profissional['nome'];
                         extract($d); 
                        
             
-            
+       
             ?>
             <tr>
             <th scope="row"><?php echo $d["id_agenda"]; ?></th>
             <td><?php echo $nome_profissional; ?></td>
-            <td><?php echo $d["dia"]; ?></td>
+            <td>
+                <?php
+                $dia = date('d/m/Y', strtotime($d["dia"]));
+                 echo $dia;
+                  ?>
+            </td>
             <td><?php echo $d["inicio_manha"]; ?></td>
             <td><?php echo $d["final_manha"]; ?></td>
             <td><?php echo $d["inicio_tarde"]; ?></td>

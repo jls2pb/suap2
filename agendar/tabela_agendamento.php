@@ -75,7 +75,12 @@ if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
 ?>
             <tr>
             <th scope="row"><?php echo $d["id_agendamento"]; ?></th>
-            <td><?php echo $d["data_atendimento"]; ?></td>
+            <td>
+                <?php
+                $dia = date('d/m/Y', strtotime($d["data_atendimento"]));
+                echo $dia; 
+                 ?>
+            </td>
             <td><?php echo $d["hora"]; ?></td>
             <td><?php echo $d["nome_paciente"]; ?></td>
             <td><?php echo $d["sexo"]; ?></td>
