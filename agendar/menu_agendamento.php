@@ -58,14 +58,6 @@ require_once("../conexao.php");
           <li>
           <a href="cadastrar_profissional.php" class="link-dark rounded"><img style="width: 14%;" src="../images/medico.png"><b>NOVO PROFISSIONAL</b></a></li>
           </li>
-<<<<<<< HEAD
-=======
-  
-          </li>
-          
-          <li>
-            <a href="exibir_resultado_agendar.php"><span class="bi bi-bar-chart-line-fill" ></i></span><b> RANKING </b></a>
->>>>>>> c4f02a617df6c0e64c9660cdb8d3d739622ec97c
           </li>
           <li>
             <a href="../sair.php"><span class="bi bi-door-open-fill" ></i></span><b> SAIR</b></a>
