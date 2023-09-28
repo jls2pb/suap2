@@ -71,9 +71,6 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
            
             
             <td>
-                <a class="btn text-white" style="background-color: #66a7ff;" href = "form_edita_agendamento_adm.php?id=<?php $_GET["id"] = $d["cod_usuario"]; echo $_GET["id"];?>" role="button"><b>EDITAR</b></a>
-            </td>
-            <td>
                 <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php $_GET['id'] = $d['cod_usuario']; echo $_GET['id']; ?>)" role="button"><b>EXCLUIR</b></a>
             </td>
             </tr>
