@@ -26,6 +26,21 @@ if(isset($_POST["cpf"])){
       $_SESSION['cpf_cadastro'] = $cpf;
       Header("Location:cadastro/inicio.php");
     }
+  } else if ($r["cpf"] == $cpf && $r["senha"] == $senha && $r["id_tipo"] == 4) {
+    // Defina as variáveis de sessão com base na escolha do usuário
+    $_SESSION['cpf_agendar'] = $cpf;
+    $_SESSION['cpf_cadastro'] = $cpf;
+
+    // Exibir um prompt com dois botões: Agendamento e Cadastro
+    echo '<script>';
+    echo 'var result = confirm("Escolha uma opção:");';
+    echo 'if (result) {';
+    echo '  window.location.href = "agendar/inicio_agendamento.php";'; // Redirecionar para Agendamento
+    echo '} else {';
+    echo '  window.location.href = "cadastro/inicio.php";'; // Redirecionar para Cadastro
+    echo '}';
+    echo '</script>';
+}
   }
   ?>
   <link href="css/style.css">
