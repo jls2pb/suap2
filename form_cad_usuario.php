@@ -43,6 +43,8 @@ include "head.php";
                       <option value="" selected disabled>Selecione sua função</option>
                       <option value="2" id="2">Agendamento</option>
                       <option value="3" id="3">Cadastro</option>
+                      <option value="4" id="4">Cadastro-Agendamento</option>
+                      <option value="5" id="5">Policlínica</option>
                     </select>
                     </div>
                     <div class="form-outline mb-3">
