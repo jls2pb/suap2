@@ -27,15 +27,59 @@ if($resultado->execute()){
             <?php 
                 foreach ($x as $y) {                    
             ?>
-            
-            <div class="form-outline mb-4">
-            <label class="form-label">DATA DO ATENDIMENTO</label>
-            <input type="date" name = "data_atendimento" class="form-control form-control-lg" value = "<?php echo $y["data_atendimento"]; ?>" />
-            </div>
                 <div class="row">
                     <div class="col">
-                        <label class="form-label">HORA</label>
+                        <label class="form-label">PROFISSIONAL</label>
+                        <select name="profissional" id="profissional" class="form-control form-control-lg">
+            <?php
+            $a = $y['cod_profissional'];
+            $sql = "SELECT id_profissional, nome FROM profissionais";
+            $stmt = $conexao->prepare($sql);
+            $stmt->execute();
+            $profissionais = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach ($profissionais as $profissional) {
+                $selected = ($profissional['id_profissional'] == $a) ? 'selected' : '';
+                echo "<option value=\"{$profissional['id_profissional']}\" $selected>{$profissional['nome']}</option>";
+            }
+            ?>
+        </select>
                     </div>
+                    <div class="col">
+                        <label class="form-label">DATA DE ATENDIMENTO</label>
+                        <select class="form-control form-control-lg" name="dia" id="dia" onchange="carregarHorarios()">
+        <option value = "<?php echo $y['data_atendimento']; ?>"> <?php echo $y['data_atendimento']; ?></option>
+            <?php
+            // Conexão com o banco de dados
+            include "../conexao.php";
+            $sql = "select * from agenda_profissional where id_profissional = '$a'";
+            $resultado = $conexao->prepare($sql);
+            if ($resultado->execute()) {
+                $x = $resultado->fetchAll();
+                foreach ($x as $dado) {
+                    ?>
+                    <option value="<?php echo $dado['dia']; ?>">
+                    <?php 
+                    $dia = date('d/m/Y', strtotime($dado['dia']));
+                    echo $dia
+                    
+                    ?>
+                    </option>
+                    <?php
+                }
+            }
+            ?>
+        </select>
+    </div>
+                    <div class="col">
+                        <label class="form-label">HORA</label>
+                        <select class="form-control form-control-lg" name="horario" id="horario" required>
+                            <!-- Opções de horário serão carregadas dinamicamente aqui -->
+                        </select>
+                    </div>
+                </div>
+                        <br>
+                <div class="row">
                     <div class="col">
                         <label class="form-label">NOME DO PACIENTE</label>
                     </div>
@@ -43,15 +87,10 @@ if($resultado->execute()){
                         <label class="form-label">SEXO</label>
                     </div>
                     <div class="col">
-                        <label class="form-label">ENDEREÇO RESIDENCIAL</label>
+                        <label class="form-label">CPF</label>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col">
-                        <div class="form-outline mb-4">
-                        <input type="time" name = "hora" class="form-control form-control-lg" value = "<?php echo $y["hora"]; ?>" />
-                        </div>
-                    </div>
                     <div class="col">
                         <div class="form-outline mb-4">
                         <input type="text" name = "nome_paciente" class="form-control form-control-lg" value = "<?php echo $y["nome_paciente"]; ?>" />
@@ -60,21 +99,22 @@ if($resultado->execute()){
                     <div class="col">
                         <div class="form-outline mb-4">
                         <select required class="form-control form-control-lg" name = "sexo">
-            <option selected disabled value = ""> O SEXO ATUAL É: <?php echo $y['sexo'];?> </option>
-                <option value = "M"> Masculino </option>
-                <option value = "F"> Feminino </option>
+            <option selected disabled value = ""><?php echo $y['sexo'];?> </option>
+                <option value = "M"> MASCULINO </option>
+                <option value = "F"> FEMININO </option>
             </select>    
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="text" name = "endereco" class="form-control form-control-lg" value = "<?php echo $y['endereco']; ?>" />
+                        <input type="text" name = "cpf" class="form-control form-control-lg" value = "<?php echo $y["cpf"]; ?>" />    
+                        
                         </div>
                     </div>
                 </div>
                 <div class="form-outline mb-4">
-                    <label class="form-label">CPF</label>
-                    <input type="text" name = "cpf" class="form-control form-control-lg" value = "<?php echo $y["cpf"]; ?>" />
+                    <label class="form-label">ENDEREÇO RESIDENCIAL</label>
+                    <input type="text" name = "endereco" class="form-control form-control-lg" value = "<?php echo $y['endereco']; ?>" />
                 </div>
                 <div class="row">
                     <div class="col">
@@ -114,4 +154,38 @@ if($resultado->execute()){
     </div>
 </div>
 
-  
+<script>
+    function carregarHorarios() {
+    var diaSelecionado = document.getElementById("dia").value;
+    var horarioSelect = document.getElementById("horario");
+
+    // Limpar a lista de horários
+    horarioSelect.innerHTML = "<option value=''>Selecione um horário</option>";
+
+    // Realizar uma solicitação AJAX para obter os horários disponíveis
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "obter_horarios.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    // Adicione idProfissional como um parâmetro na solicitação POST
+    var data = "dia=" + diaSelecionado + "&idProfissional=" + idProfissional;
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var horariosDisponiveis = JSON.parse(xhr.responseText);
+
+            // Preencher a lista de horários com base na resposta do servidor
+            for (var i = 0; i < horariosDisponiveis.length; i++) {
+                var option = document.createElement('option');
+                option.value = horariosDisponiveis[i];
+                option.text = horariosDisponiveis[i];
+                horarioSelect.appendChild(option);
+            }
+        }
+    };
+
+    xhr.send(data);
+}
+
+
+</script>1
