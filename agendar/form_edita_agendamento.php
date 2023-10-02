@@ -2,7 +2,7 @@
 session_start();
 if (!isset($_SESSION['cpf_agendar'])) {
     header("Location:../index.php");
-    exit(); // Certifique-se de sair após redirecionar
+    exit();
 }
 $cpf_logado = $_SESSION['cpf_agendar'];
 
@@ -23,7 +23,7 @@ if ($resultado->execute()) {
     $agendamento = $resultado->fetch(PDO::FETCH_ASSOC);
 } else {
     echo "Erro ao coletar os dados";
-    exit(); // Em caso de erro, sair para evitar a execução adicional do código
+    exit();
 }
 ?>
 
@@ -33,7 +33,7 @@ if ($resultado->execute()) {
     <div class="row">
         <div class="col">
             <label class="form-label">PROFISSIONAL</label>
-            <select name="profissional" id="profissional" class="form-control form-control-lg">
+            <select name="profissional" id="profissional" class="form-control form-control-lg" onchange="carregarDatas()">
                 <?php
                 $selectedProfissional = $agendamento['cod_profissional'];
                 $sql = "SELECT id_profissional, nome FROM profissionais";
@@ -51,20 +51,7 @@ if ($resultado->execute()) {
         <div class="col">
             <label class="form-label">DATA DE ATENDIMENTO</label>
             <select class="form-control form-control-lg" name="dia" id="dia" onchange="carregarHorarios()">
-               
-                <?php
-                $sql = "SELECT * FROM agenda_profissional WHERE id_profissional = :idProfissional";
-                $stmt = $conexao->prepare($sql);
-                $stmt->bindParam(':idProfissional', $selectedProfissional, PDO::PARAM_INT);
-                if ($stmt->execute()) {
-                    $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                    foreach ($datas as $data) {
-                        $formattedDate = date('d/m/Y', strtotime($data['dia']));
-                        echo "<option value=\"{$data['dia']}\" " . (($data['dia'] == $agendamento['data_atendimento']) ? 'selected' : '') . ">$formattedDate</option>";
-
-                    }
-                }
-                ?>
+                <option value="<?php echo $agendamento['data_atendimento']; ?>"><?php echo $agendamento['data_atendimento']; ?></option>
             </select>
         </div>
         <div class="col">
@@ -157,6 +144,37 @@ if ($resultado->execute()) {
 </form>
 
 <script>
+    function carregarDatas() {
+            var profissionalSelecionado = document.getElementById("profissional").value;
+            var dataSelect = document.getElementById("dia");
+
+            // Limpar a lista de datas
+            dataSelect.innerHTML = "<option value=''>Selecione uma data</option>";
+
+            // Realizar uma solicitação AJAX para obter as datas disponíveis
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "obter_datas_profissional.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+            // Adicionar o profissional selecionado como um parâmetro na solicitação POST
+            var data = "profissional=" + profissionalSelecionado;
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var datasDisponiveis = JSON.parse(xhr.responseText);
+
+                    // Preencher a lista de datas com base na resposta do servidor
+                    for (var i = 0; i < datasDisponiveis.length; i++) {
+                        var option = document.createElement('option');
+                        option.value = datasDisponiveis[i];
+                        option.text = datasDisponiveis[i];
+                        dataSelect.appendChild(option);
+                    }
+                }
+            };
+
+            xhr.send(data);
+        }
     function carregarHorarios() {
         var diaSelecionado = document.getElementById("dia").value;
         var horarioSelect = document.getElementById("horario");
