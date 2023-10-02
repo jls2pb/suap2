@@ -11,8 +11,10 @@ include "../footer.php";
 <div class="row">
     <div class="col-sm">
     <form method = "POST" action = "cadastrar_tabela.php">
+        <strong>CNES</strong>
+        <input type="number" class="form-control" name = "cnes" oninput="handleInput(event)" required>
         <strong>LOCAL DE AGENDAMENTO: </strong>
-        <input type = "text" class="form-control" name = "local" oninput="handleInput(event)">
+        <input type = "text" class="form-control" name = "local" oninput="handleInput(event)" required>
         <button type="submit" style = "margin-top:7px;background-color: #66a7ff;" class="btn text-white"><b>CADASTRAR</b></button>
         <a class="btn text-white btn-primary" style = "margin-top:7px;" href="tb_local_ag.php" role="button"> VER MAIS </a>
     </form>  
