@@ -51,7 +51,7 @@ if ($resultado->execute()) {
         <div class="col">
             <label class="form-label">DATA DE ATENDIMENTO</label>
             <select class="form-control form-control-lg" name="dia" id="dia" onchange="carregarHorarios()">
-                <option value="<?php echo $agendamento['data_atendimento']; ?>"><?php echo $agendamento['data_atendimento']; ?></option>
+               
                 <?php
                 $sql = "SELECT * FROM agenda_profissional WHERE id_profissional = :idProfissional";
                 $stmt = $conexao->prepare($sql);
@@ -60,7 +60,8 @@ if ($resultado->execute()) {
                     $datas = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     foreach ($datas as $data) {
                         $formattedDate = date('d/m/Y', strtotime($data['dia']));
-                        echo "<option value=\"{$data['dia']}\">$formattedDate</option>";
+                        echo "<option value=\"{$data['dia']}\" " . (($data['dia'] == $agendamento['data_atendimento']) ? 'selected' : '') . ">$formattedDate</option>";
+
                     }
                 }
                 ?>
