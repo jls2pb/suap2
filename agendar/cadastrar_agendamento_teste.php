@@ -1,14 +1,10 @@
 <?php
+session_start();
 date_default_timezone_set('America/Sao_Paulo');
 require_once("head.php");
-session_start();
-if (isset($_SESSION['cpf_agendar']) == FALSE) {
-    header("Location:../index.php");
-}
 $id = $_GET['id'];
 $cpf_logado = $_SESSION['cpf_agendar'];
 ?>
-
 <?php
 include "head.php";
 include "menu_agendamento.php";
@@ -17,7 +13,7 @@ include "../footer.php";
 ?> <script src="../mascara.js"></script>
 <h2 class="mb-4">CADASTRO DE AGENDAMENTO</h2>
 <form method="POST" action="registro_agendamento.php">
-<div class="col-4">
+    <div class="col-4">
         <div class="form-outline mb-4">
             <label class="form-label">NOME DO PACIENTE: </label>
             <input type="text" name="paciente" class="form-control form-control-lg" oninput="handleInput(event)" id="paciente_input" list="paciente_list">
@@ -104,9 +100,10 @@ include "../footer.php";
 </div> 
 <input type = "hidden" name = "cod_profissional" value = "<?php echo $id; ?>">
 <button class="btn btn-primary" type = "submit">CADASTRAR</button>
-<a class="btn btn-danger" role="button" href="tabela_agendamento.php?id=<?php echo $id; ?>">VOLTAR</a>
+<a class="btn btn-danger" role="button" href="inicio_agendamento.php">VOLTAR</a>
 
 </form>
+
 
 <script>
     $(document).ready(function () {
@@ -182,7 +179,6 @@ include "../footer.php";
         }
     });
 </script>
-
 <script>
     // Defina o valor de $id como uma variável JavaScript
     var idProfissional = <?php echo $id; ?>;
@@ -254,32 +250,6 @@ include "../footer.php";
         // Quando o usuário digitar algo no input, convertemos para maiúsculas
         $('#enderecolocal_input, #endereco_input').on('input', function () {
             $(this).val($(this).val().toUpperCase());
-        });
-    });
-</script>
-
-<script>
-    $(document).ready(function () {
-        // Quando o usuário escolher um local de atendimento
-        $('#l_agendamento').on('change', function () {
-            var localSelecionado = $(this).val();
-            
-            // Realize uma solicitação AJAX para buscar o endereço correspondente
-            $.ajax({
-                url: '../buscar/buscar_endereco_local.php', // Substitua pelo URL correto para buscar o endereço
-                type: 'GET',
-                data: { local: localSelecionado },
-                dataType: 'json',
-                success: function (data) {
-                    // Atualize o campo "ENDEREÇO LOCAL DE ATENDIMENTO" com o endereço encontrado
-                    if (data && data.endereco_local) {
-                        $('#enderecolocal_input').val(data.endereco_local);
-                    } else {
-                        // Caso não seja encontrado um endereço correspondente, limpe o campo
-                        $('#enderecolocal_input').val('');
-                    }
-                }
-            });
         });
     });
 </script>

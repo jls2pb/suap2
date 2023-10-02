@@ -41,17 +41,12 @@ $id = $_GET['id'];
 <table class="table table-striped">
         <thead>
             <tr>
-            <th scope="col">ID DO AGENDAMENTO</th>
-            <th scope="col">DATA DO ATENDIMENTO</th>
-            <th scope="col">HORA</th>
-            <th scope="col">NOME DO PACIENTE</th>
-            <th scope="col">SEXO</th>
-            <th scope="col">ENDEREÇO RESIDENCIAL</th>
-            <th scope="col">CPF</th>
-            <th scope="col">ENDEREÇO LOCAL</th>
-            <th scope="col">NOME DO PROFISSIONAL</th>
-            <th scope="col">LOCAL DO ATENDIMENTO</th>
+            <th scope="col">ID</th>
+            <th scope="col">PACIENTE</th>
+            <th scope="col">PROFISSIONAL</th>
             <th scope="col">PROCEDIMENTO</th>
+            <th scope="col">DATA</th>
+            <th scope="col">HORA</th>
             <th scope="col">AÇÃO</th>
             
             
@@ -75,6 +70,9 @@ if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
 ?>
             <tr>
             <th scope="row"><?php echo $d["id_agendamento"]; ?></th>
+            <td><?php echo $d["nome_paciente"]; ?></td>
+            <td><?php echo $nome_profissional; ?></td>
+            <td><?php echo $d["procedimento"]; ?></td>
             <td>
                 <?php
                 $dia = date('d/m/Y', strtotime($d["data_atendimento"]));
@@ -82,14 +80,6 @@ if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
                  ?>
             </td>
             <td><?php echo $d["hora"]; ?></td>
-            <td><?php echo $d["nome_paciente"]; ?></td>
-            <td><?php echo $d["sexo"]; ?></td>
-            <td><?php echo $d["endereco"]; ?></td>
-            <td><?php echo $d["cpf"]; ?></td>
-            <td><?php echo $d["endereco_local"]; ?></td>
-            <td><?php echo $nome_profissional; ?></td>
-            <td><?php echo $d["local_atendimento"]; ?></td>
-            <td><?php echo $d["procedimento"]; ?></td>
             <td>
                   <a class="btn text-white" style="background-color: #66a7ff;" href = "form_edita_agendamento.php?id=<?php echo $d["id_agendamento"];?>" role="button">EDITAR</a>
                   <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php echo $d['id_agendamento'] ; ?>)" role="button">EXCLUIR</a>

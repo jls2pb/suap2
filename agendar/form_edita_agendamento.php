@@ -99,16 +99,17 @@ if($resultado->execute()){
                         <input type="text" name = "local_atendimento" class="form-control form-control-lg" value = "<?php echo $y["local_atendimento"]; ?>" />
                         </div>
                     </div>
-                    <div class="col">
-                     
-                <input type="hidden" name = "id" value = "<?php echo $id; ?>">
+                </div>   
+                    <input type = "hidden" name = "cod" value = "<?php echo $y['cod_profissional']; ?>">     
                 <?php
                 }
                 ?>
-                <input type = "hidden" name = "cod" value = "<?php echo $y['id_profissional'] ?>">    
+                     
+                <input type="hidden" name = "id" value = "<?php echo $id; ?>">
+                
                 <button class="btn btn-primary " type="submit">SALVAR</button>
                <a class="link-offset-2 link-underline link-underline-opacity-0 btn btn-danger" style = "color:white" href="tabela_agendamento.php?id=<?php echo $y['cod_profissional'];?>">VOLTAR</a>
-            </div>
+            
             </form>
     </div>
 </div>
