@@ -26,6 +26,15 @@ if(isset($_POST["cpf"])){
       $_SESSION['cpf_cadastro'] = $cpf;
       Header("Location:cadastro/inicio.php");
     }
+   else if ($r["cpf"] == $cpf && $r["senha"] == $senha && $r["id_tipo"] == 4) {
+    session_start();
+    $_SESSION['cpf_agendar'] = $cpf;
+    $_SESSION['cpf_cadastro'] = $cpf;
+    Header("Location: escolha.php");
+}
+
+  
+  
   }
   ?>
   <link href="css/style.css">
