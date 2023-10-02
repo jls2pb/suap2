@@ -1,9 +1,9 @@
 <?php 
 require_once("head.php");
 session_start();
- $cpf_logado = $_SESSION['cpf_adm'];
-include "menu_adm.php";
-include "navibar_adm.php";
+ $cpf_logado = $_SESSION['cpf_policlinica'];
+
+include "navibar.php";
 
 include "../footer.php";
 require_once("../conexao.php");
@@ -24,19 +24,8 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
 
 
 ?>
-<script>
-  function confirmarExclusao(id) {
-            var confirmacao = confirm("Tem certeza de que deseja excluir este registro?");
-            if (confirmacao) {
-                // Se o usuário confirmar, redirecione para o script de exclusão PHP
-                window.location = "excluir_agendamento_adm.php?id=" + id;
-            } else {
-                // Se o usuário cancelar, não faça nada
-            }
-        }
 
-   </script>
-<table class="table table-striped">
+<table class="table table-striped table-responsive">
         <thead>
             <tr>
             <th scope="col">COD</th>
@@ -47,7 +36,6 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             <th scope="col">LOCAL DO ATENDIMENTO</th>
             <th scope="col">PROCEDIMENTO</th>
             <th scope="col">STATUS</th>
-            <th scope="col">AÇÕES</th>
             </tr>
         </thead>
         <tbody>
@@ -81,18 +69,14 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
                     }
                     ?></td>
             
-            <td>
-                <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php $_GET['id'] = $d['cod_usuario']; echo $_GET['id']; ?>)" role="button"><b>EXCLUIR</b></a>
-            </td>
             </tr>
             <?php
                     }
 
-            $query_qnt_registros = "SELECT COUNT(cod_usuario) AS num_result FROM agendamento";
-            $result_qnt_registros = $conexao->prepare($query_qnt_registros);
-            $result_qnt_registros->execute();
-            $row_qnt_registros = $result_qnt_registros->fetch(PDO::FETCH_ASSOC);
-
+                    $query_qnt_registros = "SELECT COUNT(id_agendamento) AS num_result FROM agendamento";
+                    $result_qnt_registros = $conexao->prepare($query_qnt_registros);
+                    $result_qnt_registros->execute();
+                    $row_qnt_registros = $result_qnt_registros->fetch(PDO::FETCH_ASSOC);
             //Quantidade de página
             $qnt_pagina = ceil($row_qnt_registros['num_result'] / $limite_resultado);
 

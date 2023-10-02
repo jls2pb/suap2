@@ -38,7 +38,7 @@ foreach ($a as $k) {
    echo "</div>";
    echo "<hr style='background-color: black;'>";
    echo "<div class='flex-row-reverse' style='color:black;'>";
-   
+
    echo "<div class='row'>";
    $sql = "select * from tabela where cod = $cod";
    $resultado = $conexao->prepare($sql);
@@ -56,13 +56,13 @@ foreach ($a as $k) {
    echo "<div class='col-5'>";
    echo "<b>Telefone: </b>$telefone <br>";
    echo "</div>";
-   
+
    echo "</div>";
-   
+
    echo "<b>Nome da mãe: </b>$mae <br>";
-   
+
    echo "<div class='row'>";
-   
+
    echo "<div class='col-4'>";
    echo "<b>Nº do Cartão Nacional: </b>$cns";
    echo "</div>";
@@ -73,9 +73,9 @@ foreach ($a as $k) {
    echo "<div class='col-4'>";
    echo "<b>Sexo: </b> $sexo <br>";
    echo "</div>";
-   
+
    echo "</div>";
-   
+
    echo "<b>End. Residencial: </b> $endereco <br>";
    echo "<b>Está agendado para: </b>$local_atendimento <br>";
    echo "<b>Endereço: </b>$endereco_local <br>";
@@ -95,9 +95,9 @@ foreach ($a as $k) {
     $n_procedimento = $y['procedimento'];
    }
    echo "<b>Seu procedimento de: </b> $procedimento - $n_procedimento <br>";
-   
+
    echo "<div class='row'>";
-   
+
    echo "<div class='col-5'>";
    $dia_certo = date('d/m/Y', strtotime($dia));
    echo "<b>Data: </b>$dia_certo";
@@ -105,7 +105,7 @@ foreach ($a as $k) {
    echo "<div class='col-5'>";
    echo "<b>Horário da Consulta: </b>$horario<br>";
    echo "</div>";
-   
+
    echo "</div>";
    echo "</div>";
    echo "<p style='color: black;' class='text-center'>$n_procedimento</p>";
@@ -113,7 +113,7 @@ foreach ($a as $k) {
    echo "<div class='col-8 p-5'>";
    echo "Atenciosamente, <br> A coordenação";
    echo "</div>";
-   
+
    echo "<div col-2>";
    echo "<p><b>O paciente deverá retornar para:</b></p>";
    echo "<input type='checkbox' id='paciente' name='paciente' value='paciente'>

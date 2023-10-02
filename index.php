@@ -32,7 +32,11 @@ if(isset($_POST["cpf"])){
     $_SESSION['cpf_cadastro'] = $cpf;
     Header("Location: escolha.php");
 }
-
+else if($r["cpf"] == $cpf && $r["senha"] == $senha && $r["id_tipo"] == 5){
+  session_start();
+  $_SESSION['cpf_policlinica'] = $cpf;
+  Header("Location:policlinica/inicio.php");
+}
   
   
   }

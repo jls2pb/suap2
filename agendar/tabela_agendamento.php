@@ -47,6 +47,7 @@ $id = $_GET['id'];
             <th scope="col">PROCEDIMENTO</th>
             <th scope="col">DATA</th>
             <th scope="col">HORA</th>
+            <th scope="col">STATUS</th>
             <th scope="col" class = "text-center">AÇÃO</th>
             
             
@@ -69,7 +70,7 @@ if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
         // Resto do seu código
 ?>
             <tr>
-          
+         
             <td><?php echo $d["nome_paciente"]; ?></td>
             <td><?php echo $nome_profissional; ?></td>
             <td><?php echo $d["procedimento"]; ?></td>
@@ -80,11 +81,22 @@ if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
                  ?>
             </td>
             <td><?php echo $d["hora"]; ?></td>
+            <td><?php $status = $d["status"]; 
+                    if ($status==0){
+                        echo "Em espera";
+                    }
+                    else if ($status==1) {
+                        echo "Compareceu";
+                    }
+                    else {
+                        echo "Não Compareceu";
+                    }
+                    ?></td>
             <td class = "text-center">
                   <a class="btn text-white" style="background-color: #66a7ff;" href = "form_edita_agendamento.php?id=<?php echo $d["id_agendamento"];?>" role="button">EDITAR</a>
                   <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php echo $d['id_agendamento'] ; ?>)" role="button">EXCLUIR</a>
                   <a class="btn text-white bg-info" href = "boleto.php?id=<?php echo $d["id_agendamento"];?>" role="button">BOLETO</a>
-            </td>
+                </td>
             </tr>
             <?php
                     }
