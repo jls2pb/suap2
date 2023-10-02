@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 require_once("head.php");
 session_start();
 if(isset($_SESSION['cpf_agendar'])){
@@ -74,7 +74,7 @@ a {
             <?php
                     }
             } else {
-            echo "<p style='color: #f00;'>Erro: Nenhum usuário Profissional encontrado!</p>";
+            echo "<p style='color: #f00;'>Nenhum Profissional encontrado!</p>";
             }  
         }
         else {

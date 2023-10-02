@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 require_once("head.php");
 session_start();
 if(isset($_SESSION['cpf_adm'])){
@@ -47,22 +47,26 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             <?php 
               if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
                     while ($d = $result_usuarios->fetch(PDO::FETCH_ASSOC)) { 
+
                         extract($d); 
+			if($d["procedimento"] != NULL){
         
             ?>
             
             <tr>
             <td><?php echo $d["procedimento"]; ?></td>
             <td>
-                <a class="btn text-white btn-primary" href="edita_procedimentos.php?id=<?php echo $d['id_procedimento'];?>" role="button"><b>EDITAR</b></a>
+		<a class="btn text-white btn-primary" href="edita_procedimentos.php?id=<?php echo $d['id_procedimento'];?>" role="button"><b>EDITAR</b></a>
+                
             </td>
             <td>
-                <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php echo $d['id_procedimento']; ?>)" role="button"><b>EXCLUIR</b></a>
+		<a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php echo $d['id_procedimento']; ?>)" role="button"><b>EXCLUIR</b></a>
+                
             </td>
             </tr>
             <?php
                     }
-
+		}
             $query_qnt_registros = "SELECT COUNT(procedimento) AS num_result FROM procedimento_medico";
             $result_qnt_registros = $conexao->prepare($query_qnt_registros);
             $result_qnt_registros->execute();

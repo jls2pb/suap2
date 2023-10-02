@@ -5,7 +5,7 @@ $resultado = $conexao->prepare($sql);
 if($resultado->execute()){
     $x = $resultado->fetchAll();
     foreach ($x as $r) {
-        if($r['id_tipo'] == 2){
+        if($r['id_tipo'] == NULL){
             $id = $r["id_usuario"];
             $sql2 = "update usuario set id_tipo = 3 where id_usuario = '$id'";
             $resultado2 = $conexao->prepare($sql2);

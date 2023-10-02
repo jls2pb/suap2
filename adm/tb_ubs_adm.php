@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 require_once("head.php");
 session_start();
 if(isset($_SESSION['cpf_adm'])){
@@ -41,7 +41,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             <tr>
             <th scope="col">UAPS</th>
            
-            
+            <th scope="col">AÇÕES</th>
             </tr>
         </thead>
         <tbody>
@@ -49,6 +49,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
               if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
                     while ($d = $result_usuarios->fetch(PDO::FETCH_ASSOC)) { 
                         extract($d); 
+			if($d["nome_uaps"] !== null || $d["nome_uaps"] !== ""){
         
             ?>
             
@@ -56,7 +57,8 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             <th scope="row"><?php echo $d["nome_uaps"];?></th>
             
             <td>
-                <a class="btn text-white btn-primary" href="edita_ubs.php?id=<?php echo $d['id_uaps'];?>" role="button"><b>EDITAR</b></a>
+		<a class="btn text-white btn-primary" href="edita_ubs.php?id=<?php echo $d['id_uaps'];?>" role="button"><b>EDITAR</b></a>
+         
             </td>
             <td>
                 <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php $_GET['id'] = $d['id_uaps']; echo $_GET['id']; ?>)" role="button"><b>EXCLUIR</b></a>
@@ -64,6 +66,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             </tr>
             <?php
                     }
+		}
 
             $query_qnt_registros = "SELECT COUNT(nome_uaps) AS num_result FROM uaps";
             $result_qnt_registros = $conexao->prepare($query_qnt_registros);

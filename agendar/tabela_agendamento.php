@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 require_once("head.php");
 session_start();
  $cpf_logado = $_SESSION['cpf_agendar'];

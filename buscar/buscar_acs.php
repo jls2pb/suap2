@@ -1,7 +1,7 @@
 <?php
    $host = "localhost";
    $port = 5432;
-   $database = "suap";
+   $database = "suapv2";
    $user = "postgres";
    $password = "1234";
    $pdo = new PDO("pgsql:host=$host;port=$port;dbname=$database;user=$user;password=$password");

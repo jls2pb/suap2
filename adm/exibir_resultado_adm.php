@@ -1,4 +1,4 @@
-<?php 
+﻿<?php 
 date_default_timezone_set('America/Sao_Paulo');
 session_start();
 if(isset($_SESSION['cpf_adm'])){
@@ -14,7 +14,7 @@ $hoje = date('d/m/Y');
         // Função para recarregar a página a cada 5 segundos
         setTimeout(function() {
             location.reload();
-        }, 5000); // 5000 milissegundos = 5 segundos
+        }, 30000); // 30000 milissegundos = 30 segundos
 </script>
 
 <?php 

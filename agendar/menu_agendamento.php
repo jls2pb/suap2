@@ -62,7 +62,7 @@ require_once("../conexao.php");
           <li>
             <a href="../sair.php"><span class="bi bi-door-open-fill" ></i></span><b> SAIR</b></a>
           </li>
-        </ul> 
+        </ul>
 
         <div class="footer">
         	<p>

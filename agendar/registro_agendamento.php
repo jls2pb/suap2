@@ -29,9 +29,6 @@ if ($resultadoVerificar->rowCount() > 0) {
 $sql = "INSERT INTO agendamento(cod_usuario, data_atendimento, hora, nome_paciente, sexo, endereco, cpf, endereco_local, cod_profissional,local_atendimento, procedimento) VALUES ($cod, '$dia', '$horario', '$paciente', '$sexo', '$endereco', '$cpf', '$endereco_local',$cod_profissional,'$local_atendimento',$procedimento)";
 $resultado = $conexao->prepare($sql);
 if($resultado->execute()){
-    $sql2 = "UPDATE procedimentos SET data_da_saida = '$data_geracao' where id = $procedimento";
-    $res = $conexao->prepare($sql2);
-    $res->execute();
    ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
 <style>
