@@ -112,22 +112,18 @@ if($resultado->execute()){
                         </div>
                     </div>
                 </div>
-<<<<<<< HEAD
+
                 <div class="form-outline mb-4">
                     <label class="form-label">ENDEREÇO RESIDENCIAL</label>
                     <input type="text" name = "endereco" class="form-control form-control-lg" value = "<?php echo $y['endereco']; ?>" />
-=======
-<div class="row">
-                <div class="form-outline mb-4 col">
-                    <label class="form-label">CPF</label>
-                    <input type="text" name = "cpf" class="form-control form-control-lg" value = "<?php echo $y["cpf"]; ?>" />
->>>>>>> 1cb822481fa8da6ee537dea620c39a3850ed99b9
-                </div>
+                    </div>
+                <div class="row">
+                
                 <div class="col">
                         <label class="form-label">STATUS</label>
                         <div class="form-outline mb-4">
                         <select required class="form-control form-control-lg" name = "status">
-            <option selected disabled value = ""> O STATUS ATUAL É: <?php $status = $y["status"]; 
+            <option selected disabled value = ""><?php $status = $y["status"]; 
                     if ($status==0){
                         echo "Em espera";
                     }
