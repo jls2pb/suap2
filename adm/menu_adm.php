@@ -120,7 +120,7 @@ require_once("../conexao.php");
           <a href="ver_usuarios.php" class="link-dark rounded"><span class="bi bi-person"></span><b>VER USUÁRIOS</b></a></li>
           </li>
           <li>
-          <a href="ver_agendamentos.php" class="link-dark rounded"><span class=""></span><b>VER AGENDAMENTOS</b></a></li>
+          <a href="ver_agendamentos.php" class="link-dark rounded"><i class="bi bi-card-list"></i><b> VER AGENDAMENTOS</b></a></li>
           </li>
 </ul>
 </li>
