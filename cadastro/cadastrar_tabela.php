@@ -1,9 +1,11 @@
 <?php 
+include "../conexao.php";
 $sql_last_code = "SELECT MAX(cod) FROM acs";
 $result_last_code = $conexao->query($sql_last_code);
 $last_code = $result_last_code->fetchColumn();
 $new_code = $last_code + 1;
-include "../conexao.php";
+
+
 if(isset($_POST['local'])){
     $cnes = $_POST['cnes'];
     $local  = $_POST['local'];
