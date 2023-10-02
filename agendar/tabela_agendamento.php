@@ -41,13 +41,13 @@ $id = $_GET['id'];
 <table class="table table-striped">
         <thead>
             <tr>
-            <th scope="col">ID</th>
+           
             <th scope="col">PACIENTE</th>
             <th scope="col">PROFISSIONAL</th>
             <th scope="col">PROCEDIMENTO</th>
             <th scope="col">DATA</th>
             <th scope="col">HORA</th>
-            <th scope="col">AÇÃO</th>
+            <th scope="col" class = "text-center">AÇÃO</th>
             
             
             </tr>
@@ -69,7 +69,7 @@ if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
         // Resto do seu código
 ?>
             <tr>
-            <th scope="row"><?php echo $d["id_agendamento"]; ?></th>
+          
             <td><?php echo $d["nome_paciente"]; ?></td>
             <td><?php echo $nome_profissional; ?></td>
             <td><?php echo $d["procedimento"]; ?></td>
@@ -80,9 +80,10 @@ if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
                  ?>
             </td>
             <td><?php echo $d["hora"]; ?></td>
-            <td>
+            <td class = "text-center">
                   <a class="btn text-white" style="background-color: #66a7ff;" href = "form_edita_agendamento.php?id=<?php echo $d["id_agendamento"];?>" role="button">EDITAR</a>
                   <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php echo $d['id_agendamento'] ; ?>)" role="button">EXCLUIR</a>
+                  <a class="btn text-white bg-info" href = "boleto.php?id=<?php echo $d["id_agendamento"];?>" role="button">BOLETO</a>
             </td>
             </tr>
             <?php
