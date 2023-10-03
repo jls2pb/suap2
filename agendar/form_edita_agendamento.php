@@ -50,7 +50,7 @@ if ($resultado->execute()) {
         </div>
         <div class="col">
             <label class="form-label">DATA DE ATENDIMENTO</label>
-            <select class="form-control form-control-lg" name="dia" id="dia" onchange="carregarHorarios()">
+            <select class="form-control form-control-lg" name="data_atendimento" id="dia" onchange="carregarHorarios()">
                 <option value="<?php echo $agendamento['data_atendimento']; ?>">
                 <?php
                 $d = date('d/m/Y', strtotime($agendamento['data_atendimento']));

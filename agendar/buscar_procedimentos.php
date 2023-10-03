@@ -9,8 +9,10 @@ $pdo = new PDO("pgsql:host=$host;port=$port;dbname=$database;user=$user;password
 if (isset($_GET['cod'])) {
     $cod = $_GET['cod'];
 
-    // Consulta para obter os procedimentos com base no código (cod)
-    $sql = "SELECT cod, procedimento FROM procedimentos WHERE cod = :cod";
+    // Consulta para obter os procedimentos com base no código (cod) e status igual a 1
+    $sql = "SELECT p.cod, p.procedimento FROM procedimentos p
+            INNER JOIN agendamento a ON p.cod = a.procedimento
+            WHERE a.procedimento = :cod AND a.status != 1";
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue(':cod', $cod, PDO::PARAM_INT);
     $stmt->execute();
@@ -19,4 +21,6 @@ if (isset($_GET['cod'])) {
     $procedimentos = $stmt->fetchAll(PDO::FETCH_ASSOC);
     echo json_encode($procedimentos);
 }
+
+
 ?>
