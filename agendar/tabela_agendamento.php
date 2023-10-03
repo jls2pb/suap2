@@ -94,7 +94,7 @@ if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
                     ?></td>
             <td class = "text-center">
                   <a class="btn text-white" style="background-color: #66a7ff;" href = "form_edita_agendamento.php?id=<?php echo $d["id_agendamento"];?>" role="button">EDITAR</a>
-                  <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php echo $d['id_agendamento'] ; ?>)" role="button">EXCLUIR</a>
+                  <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php echo $d['id_agendamento'] ; ?>)" role="button">DESMARCAR</a>
                   <a class="btn text-white bg-info" href = "boleto.php?id=<?php echo $d["id_agendamento"];?>" role="button">BOLETO</a>
                 </td>
             </tr>
