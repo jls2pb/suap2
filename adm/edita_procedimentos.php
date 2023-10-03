@@ -43,3 +43,12 @@ if($resultado->execute()){
         </div>
     </form>
 </div>
+
+<script>
+    $(document).ready(function () {
+        // Quando o usuário digitar algo no input, convertemos para maiúsculas
+        $('input').on('input', function () {
+            $(this).val($(this).val().toUpperCase());
+        });
+    });
+</script>

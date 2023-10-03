@@ -57,7 +57,7 @@ if (isset($_SESSION['data_geracao'])) {
 ?>
 
 <h1><div class="text-center">
-    <?php echo "O número gerado é: <br>$numeroAleatorio"; ?>
+    <?php echo "O código gerado é: <br>$numeroAleatorio"; ?>
 </div></h1>
 
 <?php

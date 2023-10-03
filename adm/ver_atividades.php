@@ -18,7 +18,7 @@ require_once("../conexao.php");
  // Calcular o inicio da visualização
  $inicio = ($limite_resultado * $pagina) - $limite_resultado;
 
- $query_usuarios = "SELECT DISTINCT ON (data_modificacao) * FROM tb_log ORDER BY data_modificacao ASC LIMIT $limite_resultado OFFSET $inicio ";
+ $query_usuarios = "SELECT DISTINCT ON (id_log) * FROM tb_log ORDER BY id_log DESC LIMIT $limite_resultado OFFSET $inicio ";
  $result_usuarios = $conexao->prepare($query_usuarios);
  $result_usuarios->execute();
 
@@ -30,7 +30,7 @@ require_once("../conexao.php");
             <tr>
             <th scope="col">COD</th>
             <th scope="col">AÇÃO</th>
-            <th scope="col">PACIENTE</th>
+            <th scope="col">PACIENTE/PROFISSIONAL</th>
             <th scope="col"> CPF MODIFICADOR </th>
             <th scope="col">DATA MODIFICAÇÃO</th>
             <th scope="col">HORA MODIFICAÇÃO</th>

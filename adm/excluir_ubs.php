@@ -5,13 +5,23 @@ session_start();
 $cpf_logado = $_SESSION['cpf_adm'];
 
 $id = $_GET["id"];
-
+$sql1 = "SELECT nome_uaps FROM uaps WHERE id_uaps = '$id'";
+$result_profissionais = $conexao->prepare($sql1);
+$result_profissionais->execute();
+$profissional = $result_profissionais->fetch(PDO::FETCH_ASSOC);
+$nome = $profissional['nome_uaps'];
 try {
     $sql = "DELETE FROM uaps WHERE id_uaps = :id";
     $stmt = $conexao->prepare($sql);
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
     if ($stmt->execute()) {
+        $hoje = date('d/m/Y');
+            $hora = date('H:i');
+            $x = "EXCLUIU UBS"." ".$id;
+            $sql2 = "INSERT INTO tb_log(acao,nome_paciente,cpf_modificador,data_modificacao,hora,id_paciente) VALUES ('$x','$nome','$cpf_logado','$hoje','$hora','$id')";
+            $resultado2 = $conexao->prepare($sql2);
+            $resultado2->execute();
         header("location: tb_ubs_adm.php");
     } else {
         echo "Erro ao excluir o registro.";

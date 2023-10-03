@@ -108,6 +108,9 @@ require_once("../conexao.php");
           <a href="cadastrar_profissional.php" class="link-dark rounded"><img style="width: 14%;" src="../images/medico.png"><b>NOVO PROFISSIONAL</b></a></li>
           </li>
           </ul></li>
+          <li>
+          <a href="inicio_agendamento.php" class="link-dark rounded"><span class=""></span><b>AGENDAMENTO</b></a></li>
+          </li>
 
           <li class="sub-menu-second">
           <a style="cursor: pointer;" class="link-dark rounded"><span class="bi bi-eye"></span><b>VISUALIZAR </b><div class="fa fa-caret-down right"></div></a>

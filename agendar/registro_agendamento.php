@@ -31,7 +31,13 @@ $resultado = $conexao->prepare($sql);
 if($resultado->execute()){
     $sql1 = "UPDATE procedimentos SET data_do_agendamento = '$dia' WHERE cod = $procedimento";
     $resultado1 = $conexao->prepare($sql1);
-    $resultado1->execute()
+    $resultado1->execute();
+    $hoje = date('d/m/Y');
+    $hora = date('H:i');
+    $x = "AGENDAMENTO ";
+    $sql2 = "INSERT INTO tb_log(acao,nome_paciente,cpf_modificador,data_modificacao,hora,id_paciente) VALUES ('$x','$paciente','$cpf_logado','$hoje','$hora','$cod_profissional')";
+    $resultado2 = $conexao->prepare($sql2);
+    $resultado2->execute();
    ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
 <style>

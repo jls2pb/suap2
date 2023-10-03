@@ -51,15 +51,36 @@ require_once("../conexao.php");
     <div class="col-sm border rounded d-flex" style="margin: 10px;">
     <img style="width: 30%; padding: 7px;"src="../images/calendario.jpeg"> 
     <?php
-    $qdp = "SELECT COUNT(*) AS quantidade FROM agendamento";
-        $rqdp = $conexao->prepare($qdp);
-        $rqdp->execute();
-        $xr = $rqdp->fetchAll();
-        foreach ($xr as $key => $a) {
-          ?>
-    <p style="margin-top: 15px; color: black;">PACIENTES <br>AGENDADOS: <?= $a["quantidade"]; ?>  </p>   
-    <?php 
+$cont = 0;
+
+$sqlTabela = "SELECT cod FROM tabela"; // Substitua 'tabela' pelo nome da sua tabela
+$stmtTabela = $conexao->prepare($sqlTabela);
+$stmtTabela->execute();
+$resultado = $stmtTabela->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($resultado as $r) {
+    $cod = $r['cod'];
+    
+    $sqlProcedimentos = "SELECT * FROM procedimentos WHERE cod = :cod";
+    $stmtProcedimentos = $conexao->prepare($sqlProcedimentos);
+    $stmtProcedimentos->bindParam(':cod', $cod, PDO::PARAM_INT);
+    $stmtProcedimentos->execute();
+    $resultado2 = $stmtProcedimentos->fetchAll(PDO::FETCH_ASSOC);
+    
+    foreach ($resultado2 as $r2) {
+        $data_do_agendamento = $r2['data_do_agendamento'];
+        if ($data_do_agendamento !== NULL && $data_do_agendamento != '') {
+            $cont++;
         }
+    }
+}
+
+?>
+
+<p style="margin-top: 15px; color: black;">PACIENTES <br>AGENDADOS: <?= $cont; ?>  </p>
+
+    <?php 
+        
       ?>                         
     </div>
   </div>
