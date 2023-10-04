@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <div  class="p-0 m-0">
 
     <nav style="padding: 20px; background-color: #1E90FF; width: 100%;" class="navbar-expand-lg navbar-light ">
@@ -16,7 +19,7 @@
                     <a href="relatorio.php" class="link-dark rounded text-white"><b>NÃO COMPARECIMENTO</b></a>
                     </li>
                     <li class="nav-item ml-auto">
-                    <a href="ver_agendamentos.php" class="link-dark rounded text-white"><span class="bi bi-card-list"></span><b> VER TODOS OS AGENDAMENTOS</b></a>
+                    <a href="inicio_agendamento.php" class="link-dark rounded text-white"><span class="bi bi-card-list"></span><b>PROFISSIONAIS</b></a>
                     </li>
 
                     <li class="nav-item ml-auto">

@@ -2,17 +2,17 @@
 date_default_timezone_set('America/Sao_Paulo');
 require_once("head.php");
 session_start();
-if (isset($_SESSION['cpf_adm']) == FALSE) {
+if (isset($_SESSION['cpf_policlinica']) == FALSE) {
     header("Location:../index.php");
 }
 $id = $_GET['id'];
-$cpf_logado = $_SESSION['cpf_adm'];
+$cpf_logado = $_SESSION['cpf_policlinica'];
 ?>
 
 <?php
 include "head.php";
-include "menu_adm.php";
-include "navibar_adm.php";
+include "navibar.php";
+
 include "../footer.php";
 ?> <script src="../mascara.js"></script>
 <h2 class="mb-4">CADASTRO DE AGENDAMENTO</h2>
