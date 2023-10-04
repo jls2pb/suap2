@@ -7,16 +7,26 @@ $final_m = $_POST["final_manha"];
 
 $inicio_t = $_POST["inicio_tarde"];
 $final_t = $_POST["final_tarde"];
-
+$cpf = $_POST["cpf_logado"];
 
 
 $id = $_POST["id"];
 $id_profissional = $_POST["id_profissional"];
-
+$query_profissionais = "SELECT nome FROM profissionais WHERE id_profissional = $id_profissional";
+$result_profissionais = $conexao->prepare($query_profissionais);
+$result_profissionais->execute();
+$profissional = $result_profissionais->fetch(PDO::FETCH_ASSOC);
+$nome = $profissional['nome'];
 
 $sql = "UPDATE agenda_profissional SET dia = '$dia', inicio_manha = '$inicio_m', final_manha = '$final_m', inicio_tarde = '$inicio_t', final_tarde = '$final_t'  WHERE id_agenda = '$id'";
 $resultado = $conexao->prepare($sql);
-if($resultado->execute()){ ?>
+if($resultado->execute()){ 
+    $hoje = date('d/m/Y');
+    $hora = date('H:i');
+    $x = "EDITOU AGENDA"." ".$id;
+    $sql2 = "INSERT INTO tb_log(acao,nome_paciente,cpf_modificador,data_modificacao,hora,id_paciente) VALUES ('$x','$nome','$cpf','$hoje','$hora','$id')";
+    $resultado2 = $conexao->prepare($sql2);
+    $resultado2->execute();?>
     <script>
     alert("ATUALIZADO COM SUCESSO!");
     window.location = "tabela_agenda.php?id=<?php echo $id_profissional; ?>";

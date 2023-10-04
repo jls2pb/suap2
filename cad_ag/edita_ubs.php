@@ -30,7 +30,7 @@ if($resultado->execute()){
 
             <div class="form-group">
                 <label for="nome_uaps" class="form-label">NOME</label>
-                <input type="text" name="nome_uaps" class="form-control" id="nome_uaps" value="<?php echo $y["nome_uaps"]; ?>">
+                <input required type="text" name="nome_uaps" class="form-control" id="nome_uaps" value="<?php echo $y["nome_uaps"]; ?>">
             </div>
            
             

@@ -29,8 +29,10 @@ include "../footer.php";
     </div>
     <div class="col-sm">
     <form method = "POST" action = "cadastrar_tabela_adm.php">    
-        <strong>ACS:</strong>
-        <input type = "text" class="form-control" name = "acs" oninput="handleInput(event)">
+    <strong>ACS:</strong>
+    <input required type = "text" class="form-control" name = "acs" oninput="handleInput(event)">
+        <strong>CPF:</strong>
+        <input required type = "text" class="form-control" name = "cpf" oninput="handleInput(event)">
         <button type="submit" style = "margin-top:7px;background-color: #66a7ff;" class="btn text-white"><b>CADASTRAR</b></button>
         <a class="btn text-white btn-primary" style = "margin-top:7px;" href="tb_acs_adm.php" role="button"> VER MAIS </a>
     </form>

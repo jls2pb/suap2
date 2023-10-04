@@ -5,7 +5,7 @@ require_once("../conexao.php");
 $n_profissional = $_POST["n_profissional"];
 $area = $_POST["area"];
 $tempo = $_POST["tempo"];
-$cpf_logado = $_SESSION['cpf_cad_ag'];
+$cpf_logado = $_POST["session"]; 
 $sql = "INSERT INTO profissionais(nome, area, tempo_atendimento) VALUES ('$n_profissional','$area', '$tempo')";
 $resultado = $conexao->prepare($sql);
 if($resultado->execute()){
@@ -16,7 +16,7 @@ if($resultado->execute()){
     $sql2 = "INSERT INTO tb_log(acao,nome_paciente,cpf_modificador,data_modificacao,hora,id_paciente) VALUES ('$x','$n_profissional','$cpf_logado','$hoje','$hora','$cod')";
     $resultado2 = $conexao->prepare($sql2);
         if($resultado2->execute()){
-            header ("location: inicio_adm.php");
+            header ("location: inicio_cad_ag.php");
         }else{
             echo "erro ao registrar Log";
         }

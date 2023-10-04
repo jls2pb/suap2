@@ -28,7 +28,7 @@ if($resultado->execute()){
         <?php foreach ($x as $y) { ?>
             <div class="form-group">
                 <label for="procedimento" class="form-label">PROCEDIMENTO</label>
-                <input type="text" name="procedimento" class="form-control" id="procedimento" value="<?php echo $y["procedimento"]; ?>" />
+            <input required type="text" name="procedimento" class="form-control" id="procedimento" value="<?php echo $y["procedimento"]; ?>" />
             </div>
 
 
@@ -43,3 +43,12 @@ if($resultado->execute()){
         </div>
     </form>
 </div>
+
+<script>
+    $(document).ready(function () {
+        // Quando o usuário digitar algo no input, convertemos para maiúsculas
+        $('input').on('input', function () {
+            $(this).val($(this).val().toUpperCase());
+        });
+    });
+</script>

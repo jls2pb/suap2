@@ -73,7 +73,7 @@ if($resultado->execute()){
                 </div>
 
                     <div class="col">
-                     
+                <input type="hidden" name = "cpf_logado" value = "<?php echo $cpf_logado; ?>">     
                 <input type="hidden" name = "id" value = "<?php echo $id; ?>">
                 <?php
                 }

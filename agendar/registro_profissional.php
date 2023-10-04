@@ -4,7 +4,7 @@ require_once("../conexao.php");
 $n_profissional = $_POST["n_profissional"];
 $area = $_POST["area"];
 $tempo = $_POST["tempo"];
-$cpf_logado = $_SESSION['cpf_agendar'];
+$cpf_logado = $_POST["session"];
 $sql = "INSERT INTO profissionais(nome, area, tempo_atendimento) VALUES ('$n_profissional','$area', '$tempo')";
 $resultado = $conexao->prepare($sql);
 if($resultado->execute()){

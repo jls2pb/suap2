@@ -28,16 +28,16 @@ if($resultado->execute()){
         <?php foreach ($x as $y) { ?>
             <div class="form-group">
                 <label for="cnes" class="form-label">CNES</label>
-                <input type="number" name="cnes" class="form-control" id="cnes" value="<?php echo $y["cnes"]; ?>" />
+                <input required type="number" name="cnes" class="form-control" id="cnes" value="<?php echo $y["cnes"]; ?>" />
             </div>
 
             <div class="form-group">
                 <label for="nome_fantasia" class="form-label">NOME</label>
-                <input type="text" name="nome_fantasia" class="form-control" id="nome_fantasia" value="<?php echo $y["nome_fantasia"]; ?>">
+                <input required type="text" name="nome_fantasia" class="form-control" id="nome_fantasia" value="<?php echo $y["nome_fantasia"]; ?>">
             </div>
             <div class="form-group">
                 <label for="endereco_local" class="form-label">ENDEREÇO</label>
-                <input type="text" name="endereco_local" class="form-control" id="endereco_local" value="<?php echo $y["endereco_local"]; ?>">
+                <input required type="text" name="endereco_local" class="form-control" id="endereco_local" value="<?php echo $y["endereco_local"]; ?>">
             </div>
 
             <input type="hidden" name="id" value="<?php echo $y["cnes"]; ?>">

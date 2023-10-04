@@ -39,6 +39,7 @@ $resultado->execute();
         <input type="time" name="final_tarde" class="form-control form-control-lg" id="final_tarde" required>
     </div>
     <input type = "hidden" name = "id" value = "<?= $id; ?>">
+    <input type = "hidden" name = "cpf_logado" value = "<?= $cpf_logado; ?>">
     <button style="color:white;background-color: #66a7ff;" class="btn " type="submit"><b>CADASTRAR</b></button>
     <a class="link-offset-2 link-underline link-underline-opacity-0 btn btn-danger" style = "color:white" href="tabela_agenda.php?id=<?php echo $id; ?>" role="button">VOLTAR</a>
             <?php

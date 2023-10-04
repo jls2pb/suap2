@@ -58,6 +58,7 @@ if($resultado->execute()){
                     <div class="col">
                      
                 <input type="hidden" name = "id" value = "<?php echo $id; ?>">
+                <input type="hidden" name = "cpf" value = "<?php echo $cpf_logado; ?>">
                 <?php
                 }
                 ?>

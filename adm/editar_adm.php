@@ -43,9 +43,17 @@ if (isset($_POST['nome_fantasia'])) {
         <?php
     }}
 } else if (isset($_POST['nome'])) {
+    $ubs = $_POST['ubs'];
     $acs = $_POST['nome'];
     $id = $_POST['cod']; // Você precisa da chave primária (ID) do registro a ser atualizado
-    $sql = "UPDATE acs SET nome = '$acs' WHERE cod = $id";
+    $vinculo = $_POST['vinculo'];
+    $cns = $_POST['cns'];
+    $cpf = $_POST['cpf'];
+    $microarea = $_POST['microarea'];
+    $pessoas = $_POST['pessoas'];
+    $familias = $_POST['familias'];
+    $transporte = $_POST['transporte'];
+    $sql = "UPDATE acs SET ubs = '$ubs', nome = '$acs', vinculo = '$vinculo', cns = '$cns', cpf = '$cpf', microarea = '$microarea', pessoas = '$pessoas', familias = '$familias', transporte = '$transporte' WHERE cod = $id";
     $resultado = $conexao->prepare($sql);
     if ($resultado->execute()) {
         if ($resultado->execute()) {

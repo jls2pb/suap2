@@ -26,37 +26,37 @@ if($resultado->execute()){
         <?php foreach ($x as $y) { ?>
             <div class="form-group">
                 <label for="ubs" class="form-label">UBS</label>
-                <input type="text" name="cnes" class="form-control" id="cnes" value="<?php echo $y["ubs"]; ?>" />
+                <input required type="text" name="ubs" class="form-control" id="ubs" value="<?php echo $y["ubs"]; ?>" />
             </div>
 
             <div class="form-group">
                 <label for="nome" class="form-label">NOME</label>
-                <input type="text" name="nome" class="form-control" id="nome" value="<?php echo $y["nome"]; ?>">
+                <input required type="text" name="nome" class="form-control" id="nome" value="<?php echo $y["nome"]; ?>">
             </div>
             <div class="form-group">
                 <label for="vinculo" class="form-label">VÍNCULO</label>
-                <input type="text" name="vinculo" class="form-control" id="vinculo" value="<?php echo $y["vinculo"]; ?>" />
+                <input required type="text" name="vinculo" class="form-control" id="vinculo" value="<?php echo $y["vinculo"]; ?>" />
             </div>
             <div class="form-group">
                 <label for="cns" class="form-label">CNS</label>
-                <input type="number" name="cns" class="form-control" id="cns" value="<?php echo $y["cns"]; ?>" />
+                <input required type="number" name="cns" class="form-control" id="cns" value="<?php echo $y["cns"]; ?>" />
             </div>
             <div class="form-group">
                 <label for="cpf" class="form-label">CPF</label>
-                <input type="number" name="cpf" class="form-control" id="cpf" value="<?php echo $y["cpf"]; ?>" />
+                <input required type="number" name="cpf" class="form-control" id="cpf" value="<?php echo $y["cpf"]; ?>" />
             </div>
             <div class="form-group">
                 <label for="microarea" class="form-label">MICROÁREA</label>
-                <input type="number" name="microarea" class="form-control" id="microarea" value="<?php echo $y["microarea"]; ?>" />
+                <input required type="number" name="microarea" class="form-control" id="microarea" value="<?php echo $y["microarea"]; ?>" />
             </div>
 
             <div class="form-group">
                 <label for="pessoas" class="form-label">PESSOAS</label>
-                <input type="number" name="pessoas" class="form-control" id="pessoas" value="<?php echo $y["pessoas"]; ?>" />
+                <input required type="number" name="pessoas" class="form-control" id="pessoas" value="<?php echo $y["pessoas"]; ?>" />
             </div>
             <div class="form-group">
                 <label for="familias" class="form-label">FAMÍLIAS</label>
-                <input type="number" name="familias" class="form-control" id="familias" value="<?php echo $y["familias"]; ?>" />
+                <input required type="number" name="familias" class="form-control" id="familias" value="<?php echo $y["familias"]; ?>" />
             </div>
             <div class="form-group">
                 <label for="transporte" class="form-label">TRANSPORTE</label>

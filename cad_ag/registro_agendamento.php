@@ -20,6 +20,13 @@ $data_geracao = date('d/m/Y H:i:s');
 $sqlVerificar = "SELECT * FROM agendamento WHERE cod_profissional = $cod_profissional AND data_atendimento = '$dia' AND hora = '$horario'";
 $resultadoVerificar = $conexao->prepare($sqlVerificar);
 $resultadoVerificar->execute();
+
+$query_profissionais = "SELECT nome FROM profissionais WHERE id_profissional = $cod_profissional ";
+$result_profissionais = $conexao->prepare($query_profissionais);
+$result_profissionais->execute();
+$profissional = $result_profissionais->fetch(PDO::FETCH_ASSOC);
+$nome_profissional = $profissional['nome'];
+
 if ($resultadoVerificar->rowCount() > 0) {
     echo "<script>alert('Esse horário já está agendado. Por favor, escolha outro horário.'); window.history.back();</script>";
     exit; // Encerra o script em caso de horário duplicado
@@ -31,7 +38,13 @@ $resultado = $conexao->prepare($sql);
 if($resultado->execute()){
     $sql1 = "UPDATE procedimentos SET data_do_agendamento = '$dia' WHERE cod = $procedimento";
     $resultado1 = $conexao->prepare($sql1);
-    $resultado1->execute()
+    $resultado1->execute();
+    $hoje = date('d/m/Y');
+    $hora = date('H:i');
+    $x = "AGENDAMENTO ";
+    $sql2 = "INSERT INTO tb_log(acao,nome_paciente,cpf_modificador,data_modificacao,hora,id_paciente) VALUES ('$x','$paciente','$cpf_logado','$hoje','$hora','$cod_profissional')";
+    $resultado2 = $conexao->prepare($sql2);
+    $resultado2->execute();
    ?>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
 <style>

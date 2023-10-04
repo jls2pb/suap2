@@ -7,12 +7,16 @@ $final_m = $_POST["final_manha"];
 
 $inicio_t = $_POST["inicio_tarde"];
 $final_t = $_POST["final_tarde"];
-
+$cpf = $_POST["cpf_logado"];
 
 
 $id = $_POST["id"];
 $id_profissional = $_POST["id_profissional"];
-
+$query_profissionais = "SELECT nome FROM profissionais WHERE id_profissional = $id_profissional";
+$result_profissionais = $conexao->prepare($query_profissionais);
+$result_profissionais->execute();
+$profissional = $result_profissionais->fetch(PDO::FETCH_ASSOC);
+$nome = $profissional['nome'];
 
 $sql = "UPDATE agenda_profissional SET dia = '$dia', inicio_manha = '$inicio_m', final_manha = '$final_m', inicio_tarde = '$inicio_t', final_tarde = '$final_t'  WHERE id_agenda = '$id'";
 $resultado = $conexao->prepare($sql);

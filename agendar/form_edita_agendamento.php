@@ -140,6 +140,7 @@ if ($resultado->execute()) {
             </div>
         </div>
     </div>
+    <input type="hidden" name = "cpf_logado" value = "<?php echo $cpf_logado; ?>">     
     <input type="hidden" name="cod" value="<?php echo $agendamento['cod_profissional']; ?>">
     <input type="hidden" name="id" value="<?php echo $id; ?>">
     <button class="btn btn-primary " type="submit">SALVAR</button>

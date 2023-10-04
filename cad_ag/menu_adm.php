@@ -112,12 +112,16 @@ require_once("../conexao.php");
           <a href="inicio_agendamento.php" class="link-dark rounded"><span class=""></span><b>AGENDAMENTO</b></a></li>
           </li>
 
-    
+      
+
 
           <li>
             <a href="index_logado_adm.php"><span class="fa fa-sticky-note"></span><b> LISTAR PACIENTES</b></a>
           </li>
 
+         
+
+         
           <li>
 
             <a href="exibir_resultado_adm.php"><span class="bi bi-bar-chart-line-fill" ></i></span><b> RANKING </b></a>
