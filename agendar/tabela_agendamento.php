@@ -24,6 +24,7 @@ $id = $_GET['id'];
  $result_usuarios->execute();
 
 ?>
+<<<<<<< HEAD
 <script>
   function confirmarCancelamento(id) {
     var motivo = prompt("Por favor, digite o motivo para desmarcar:");
@@ -35,6 +36,9 @@ $id = $_GET['id'];
     }
   }
 </script>
+=======
+
+>>>>>>> dec07062a8b6b2781c7d128da6eb2de0a8430c8b
 <h2 class="mb-4">TABELA DE AGENDAMENTO</h2>
 <a style="" href="cadastrar_agendamento.php?id=<?php echo $id; ?>" class="btn btn-primary text-white float-right" role="button">CADASTRAR AGENDAMENTO</a>
 
@@ -66,6 +70,7 @@ if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
 
         // Use $row_profissional['nome'] para obter o nome do profissional
         $nome_profissional = $row_profissional['nome'];
+        $cod = $d["procedimento"];
 
         // Resto do seu código
 ?>
@@ -138,4 +143,15 @@ if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
                 
             ?>
         </tbody>
-        </table>
+        </table> <script>
+  function confirmarExclusao(id) {
+            var confirmacao = confirm("Tem certeza de que deseja excluir este registro?");
+            if (confirmacao) {
+                // Se o usuário confirmar, redirecione para o script de exclusão PHP
+                window.location = "excluir_agendamento.php?cod=<?php echo $cod;?>&id1=<?php echo $id; ?>&id=" + id;
+            } else {
+                // Se o usuário cancelar, não faça nada
+            }
+        }
+
+   </script>  

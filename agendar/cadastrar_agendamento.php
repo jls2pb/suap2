@@ -57,24 +57,23 @@ include "../footer.php";
     <div class="form-outline mb-4">
         <label class="form-label">DIA DO ATENDIMENTO: </label>
         <select class="form-control form-control-lg" name="dia" id="dia" onchange="carregarHorarios()">
-        <option value = "">Selecione uma data</option>
+        <option selected disabled value = "">Selecione uma data</option>
             <?php
             // Conexão com o banco de dados
             include "../conexao.php";
             $sql = "select * from agenda_profissional where id_profissional = '$id'";
             $resultado = $conexao->prepare($sql);
-            if ($resultado->execute()) {
+           if ($resultado->execute()) {
                 $x = $resultado->fetchAll();
+                $dataAtual = date('Y-m-d'); // Obtém a data atual no formato SQL (AAAA-MM-DD)
                 foreach ($x as $dado) {
-                    ?>
-                    <option value="<?php echo $dado['dia']; ?>">
-                    <?php 
-                    $dia = date('d/m/Y', strtotime($dado['dia']));
-                    echo $dia
+                    $dataDisponivel = $dado['dia']; // Data disponível no formato SQL (AAAA-MM-DD)
                     
-                    ?>
-                    </option>
-                    <?php
+                    // Verifique se a data disponível é posterior à data atual
+                    if ($dataDisponivel >= $dataAtual) {
+                        $formattedDate = date('d/m/Y', strtotime($dataDisponivel));
+                        echo "<option value=\"$dataDisponivel\">$formattedDate</option>";
+                    }
                 }
             }
             ?>
@@ -180,6 +179,7 @@ include "../footer.php";
                 }
             });
         }
+        
     });
 </script>
 

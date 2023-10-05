@@ -6,7 +6,8 @@ if(isset($_SESSION['cpf_policlinica'])){
     include "../footer.php";
     include "navibar.php";
     require_once("../conexao.php");
-
+    ?>
+    <?php
     $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
     $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
 
@@ -14,13 +15,16 @@ if(isset($_SESSION['cpf_policlinica'])){
     $limite_resultado = 6;
 
     // Calcular o início da visualização
+    $hoje = date('d/m/Y');
     $inicio = ($limite_resultado * $pagina) - $limite_resultado;
-    $query = "SELECT * FROM agendamento WHERE status = 0";
+    $query = "SELECT * FROM agendamento WHERE status = 0 AND data_atendimento = '$hoje' AND local_atendimento = 'POLICLINICA MUNICIPAL DE SAO GONÇALO DO AMARANTE' ORDER BY nome_paciente ASC LIMIT $limite_resultado OFFSET $inicio";
     $result = $conexao->prepare($query);
     $result->execute();
     
     ?>
     <br>
+    <a style="" href="ver_agendamentos.php" class="btn btn-primary text-white float-right" role="button">VER TODOS OS AGENDAMENTOS</a>
+
     <h2 style="padding-left: 10px;">TABELA DE AGENDAMENTOS EM ESPERA</h2>
 
     <table style="" class="table table-striped table-bordered table-sm table-responsive">
@@ -50,10 +54,15 @@ if(isset($_SESSION['cpf_policlinica'])){
                     $result_profissionais = $conexao->prepare($query_profissionais);
                     $result_profissionais->bindParam(':cod_profissional', $d['cod_profissional'], PDO::PARAM_INT);
                     $result_profissionais->execute();
+                    if ($result_profissionais && $result_profissionais->rowCount() > 0) {
                     $row_profissional = $result_profissionais->fetch(PDO::FETCH_ASSOC);
 
                     // Use $row_profissional['nome'] para obter o nome do profissional
-                    $nome_profissional = $row_profissional['nome'];
+                    $nome_profissional = $row_profissional['nome'];  }
+                    else {
+                        // Trate o caso em que a consulta não retornou nenhum resultado
+                        $nome_profissional = "Profissional não encontrado";
+                    }
             ?>
                     <tr>
                         <td><?php
@@ -76,7 +85,7 @@ if(isset($_SESSION['cpf_policlinica'])){
                         ?></td>
                         <td>
                             <a class="btn text-white" style="background-color: #66a7ff;" href="editar_agendamento.php?id=<?php echo $d["id_agendamento"];?>">COMPARECEU</a>
-                            <a class="btn text-white btn-danger" href="editar_comparecimento.php?id=<?php echo $d["id_agendamento"];?>">NÃO COMPARECEU</a>
+                            <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php echo $d['id_agendamento'] ; ?>)" >NÃO COMPARECEU</a>
                         </td>
                     </tr>
             <?php
@@ -120,3 +129,15 @@ if(isset($_SESSION['cpf_policlinica'])){
             header("location: ../index.php");
         }
         ?>
+        <script>
+  function confirmarExclusao(id) {
+            var confirmacao = confirm("CONFIRMAÇÃO DE NÃO COMPARECIMENTO:");
+            if (confirmacao) {
+                // Se o usuário confirmar, redirecione para o script de exclusão PHP
+                window.location = "editar_comparecimento.php?&id=" + id;
+            } else {
+                // Se o usuário cancelar, não faça nada
+            }
+        }
+
+   </script>  

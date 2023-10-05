@@ -18,14 +18,15 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
  $inicio = ($limite_resultado * $pagina) - $limite_resultado;
 
 
- $query_usuarios = "SELECT DISTINCT ON (nome_paciente) * FROM agendamento ORDER BY nome_paciente ASC LIMIT $limite_resultado OFFSET $inicio ";
+ $query_usuarios = "SELECT DISTINCT ON (nome_paciente) * FROM agendamento  WHERE local_atendimento = 'POLICLINICA MUNICIPAL DE SAO GONÇALO DO AMARANTE' ORDER BY nome_paciente ASC LIMIT $limite_resultado OFFSET $inicio";
  $result_usuarios = $conexao->prepare($query_usuarios);
  $result_usuarios->execute();
 
 
 ?>
+<a style="" href="inicio.php" class="btn btn-danger text-white float-right" role="button">VOLTAR</a>
 
-<table class="table table-striped table-responsive">
+<table class="table table-striped table-bordered table-sm table-responsive">
         <thead>
             <tr>
             <th scope="col">COD</th>
@@ -36,6 +37,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             <th scope="col">LOCAL DO ATENDIMENTO</th>
             <th scope="col">PROCEDIMENTO</th>
             <th scope="col">STATUS</th>
+            <th scope="col">AÇÕES</th>
             </tr>
         </thead>
         <tbody>
@@ -68,6 +70,10 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
                         echo "Não compareceu";
                     }
                     ?></td>
+                      <td>
+                            <a class="btn text-white" style="background-color: #66a7ff;" href="editar_agendamento.php?id=<?php echo $d["id_agendamento"];?>">COMPARECEU</a>
+                            <a class="btn text-white btn-danger" href="form_remarcar.php?id=<?=$d["id_agendamento"];?>" >REMARCAR</a>
+                        </td>
             
             </tr>
             <?php

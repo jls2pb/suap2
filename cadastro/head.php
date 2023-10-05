@@ -17,3 +17,11 @@
     <script src="../js/popper.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <script src="../js/main.js"></script>
+    <script>
+    $(document).ready(function () {
+        // Quando o usuário digitar algo no input, convertemos para maiúsculas
+        $('input').on('input', function () {
+            $(this).val($(this).val().toUpperCase());
+        });
+    });
+</script>

@@ -33,7 +33,8 @@ if(isset($_POST['local'])){
     }
 }else if(isset($_POST['acs'])){
     $acs = $_POST['acs'];
-        $sql = "INSERT INTO acs(cod, nome) VALUES ('$new_code', '$acs');";
+    $cpf = $_POST['cpf'];
+    $sql = "INSERT INTO acs(cod, nome, cpf) VALUES ('$new_code', '$acs', '$cpf');";
         $resultado = $conexao->prepare($sql);
         
         if ($resultado->execute()) {

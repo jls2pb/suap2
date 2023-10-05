@@ -50,7 +50,7 @@ if ($resultado->execute()) {
         </div>
         <div class="col">
             <label class="form-label">DATA DE ATENDIMENTO</label>
-            <select class="form-control form-control-lg" name="dia" id="dia" onchange="carregarHorarios()">
+            <select class="form-control form-control-lg" name="data_atendimento" id="dia" onchange="carregarHorarios()">
                 <option value="<?php echo $agendamento['data_atendimento']; ?>">
                 <?php
                 $d = date('d/m/Y', strtotime($agendamento['data_atendimento']));
@@ -140,6 +140,7 @@ if ($resultado->execute()) {
             </div>
         </div>
     </div>
+    <input type="hidden" name = "cpf_logado" value = "<?php echo $cpf_logado; ?>">     
     <input type="hidden" name="cod" value="<?php echo $agendamento['cod_profissional']; ?>">
     <input type="hidden" name="id" value="<?php echo $id; ?>">
     <button class="btn btn-primary " type="submit">SALVAR</button>

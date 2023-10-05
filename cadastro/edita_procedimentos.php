@@ -26,7 +26,7 @@ if($resultado->execute()){
         <?php foreach ($x as $y) { ?>
             <div class="form-group">
                 <label for="procedimento" class="form-label">PROCEDIMENTO</label>
-                <input type="text" name="procedimento" class="form-control" id="procedimento" value="<?php echo $y["procedimento"]; ?>" />
+                <input required type="text" name="procedimento" class="form-control" id="procedimento" value="<?php echo $y["procedimento"]; ?>" />
             </div>
 
 
