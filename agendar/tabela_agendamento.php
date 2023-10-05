@@ -25,19 +25,19 @@ $id = $_GET['id'];
 
 ?>
 <script>
-  function confirmarExclusao(id) {
-            var confirmacao = confirm("Tem certeza de que deseja excluir este registro?");
-            if (confirmacao) {
-                // Se o usuário confirmar, redirecione para o script de exclusão PHP
-                window.location = "excluir_agendamento.php?id1=<?php echo $id; ?>&id=" + id;
-            } else {
-                // Se o usuário cancelar, não faça nada
-            }
-        }
-
-   </script>  
+  function confirmarCancelamento(id) {
+    var motivo = prompt("Por favor, digite o motivo para desmarcar:");
+    if (motivo !== null) {
+      // Se o usuário inseriu um motivo (não cancelou o prompt), redirecione para o script de desmarcamento com o motivo
+      window.location = "desmarcar_agendamento.php?id1=<?php echo $id; ?>&id=" + id + "&motivo=" + encodeURIComponent(motivo);
+    } else {
+      // Se o usuário cancelar, não faça nada
+    }
+  }
+</script>
 <h2 class="mb-4">TABELA DE AGENDAMENTO</h2>
 <a style="" href="cadastrar_agendamento.php?id=<?php echo $id; ?>" class="btn btn-primary text-white float-right" role="button">CADASTRAR AGENDAMENTO</a>
+
 <table class="table table-striped">
         <thead>
             <tr>
@@ -94,8 +94,8 @@ if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
                     ?></td>
             <td class = "text-center">
                   <a class="btn text-white" style="background-color: #66a7ff;" href = "form_edita_agendamento.php?id=<?php echo $d["id_agendamento"];?>" role="button">EDITAR</a>
-                  <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php echo $d['id_agendamento'] ; ?>)" role="button">DESMARCAR</a>
                   <a class="btn text-white bg-info" href = "boleto.php?id=<?php echo $d["id_agendamento"];?>" role="button">BOLETO</a>
+                  <a class="btn text-white btn-danger" onclick="confirmarCancelamento(<?php echo $d['id_agendamento'] ; ?>)" role="button">DESMARCAR</a>
                 </td>
             </tr>
             <?php
