@@ -24,7 +24,7 @@ $id = $_GET['id'];
  $result_usuarios->execute();
 
 ?>
-<<<<<<< HEAD
+
 <script>
   function confirmarCancelamento(id) {
     var motivo = prompt("Por favor, digite o motivo para desmarcar:");
@@ -36,11 +36,11 @@ $id = $_GET['id'];
     }
   }
 </script>
-=======
 
->>>>>>> dec07062a8b6b2781c7d128da6eb2de0a8430c8b
 <h2 class="mb-4">TABELA DE AGENDAMENTO</h2>
-<a style="" href="cadastrar_agendamento.php?id=<?php echo $id; ?>" class="btn btn-primary text-white float-right" role="button">CADASTRAR AGENDAMENTO</a>
+
+<a style="" href="cadastrar_agendamento.php?id=<?php echo $id; ?>" class="btn btn-primary text-white float-right" role="button">CADASTRAR AGENDAMENTO </a>
+<a style="" href="agendamentos_desmarcados.php?id=<?php echo $id; ?>" class="btn btn-info text-white float-right" role="button"> AGENDAMENTO DESMARCADOS </a>
 
 <table class="table table-striped">
         <thead>
@@ -66,8 +66,11 @@ $row_profissional = $result_profissionais->fetch(PDO::FETCH_ASSOC);
 
 if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
     while ($d = $result_usuarios->fetch(PDO::FETCH_ASSOC)) {
+        if($d["status"] != 3 || $d['hora']!= NULL){
         extract($d);
+        
 
+        
         // Use $row_profissional['nome'] para obter o nome do profissional
         $nome_profissional = $row_profissional['nome'];
         $cod = $d["procedimento"];
@@ -104,6 +107,7 @@ if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
                 </td>
             </tr>
             <?php
+                        }
                     }
 
                     $query_qnt_registros = "SELECT COUNT(id_agendamento) AS num_result FROM agendamento";
