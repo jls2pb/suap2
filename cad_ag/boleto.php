@@ -22,10 +22,26 @@ foreach ($a as $k) {
     $local_atendimento = $k["local_atendimento"];
     $data_geracao = date('d/m/Y H:i:s');
 }
+?>
 
+<style>
+  @media print {
+            #print, #voltar {
+                display: none;
+            }
+            /* Estilo para o rodapé */
+            .rodape {
+               
+                border-top: 1px solid black;
+            }
+        }
+</style>  
 
+<button style="width: 100%;" id="print" onclick="printPage()">Imprimir<img style="width: 2%;" src="../images/printer.png"></button>
+   <a href="tabela_agendamento.php?id=<?php echo $cod_profissional;?>" ><button  style="width: 100%; background-color:#B22222;color: white;" id="voltar">Voltar</button><a>
+   <?php
    echo "<div class='row pt-1' style='color:black;'>";
-   echo "<img style='height: 100px; ' class='col-4' src='../images/logo_ti3.png'>";
+   echo "<img style='height: 100px; ' class='col-4' src='../images/logo_sm.png'>";
    echo "<div class='col-4 text-center pt-0'>";
    echo "<h5>SECRETARIA MUNICIPAL DE SAÚDE </h5>";
    echo "<h6>SÃO GONÇALO DO AMARANTE</h6>";
@@ -67,7 +83,7 @@ foreach ($a as $k) {
    echo "<b>Nº do Cartão Nacional: </b>$cns";
    echo "</div>";
    echo "<div class='col-4'>";
-   $nascimento = date('d/m/Y', strtotime($data_nascimento));
+   $nascimento = $data_nascimento;
    echo "<b>Nasc: </b>$nascimento";
    echo "</div>";
    echo "<div class='col-4'>";
@@ -133,8 +149,6 @@ foreach ($a as $k) {
    $id_usuario = $result['id_usuario'];
 
    ?>
-   <button style="width: 100%;" id="print" onclick="printPage()">Imprimir<img style="width: 2%;" src="../images/printer.png"></button>
-   <a href="tabela_agendamento.php?id=<?php echo $cod_profissional;?>" ><button  style="width: 100%; background-color:#B22222;color: white;" id="voltar">Voltar</button><a>
    <div class="rodape row">
    <div class=" col-7">Usuário responsável: <?php echo $id_usuario; ?></div>
 <div class="col-5">Data e Hora de Geração do Boleto: <?=$data_geracao?></div>

@@ -20,13 +20,6 @@ $data_geracao = date('d/m/Y H:i:s');
 $sqlVerificar = "SELECT * FROM agendamento WHERE cod_profissional = $cod_profissional AND data_atendimento = '$dia' AND hora = '$horario'";
 $resultadoVerificar = $conexao->prepare($sqlVerificar);
 $resultadoVerificar->execute();
-
-$query_profissionais = "SELECT nome FROM profissionais WHERE id_profissional = $cod_profissional ";
-$result_profissionais = $conexao->prepare($query_profissionais);
-$result_profissionais->execute();
-$profissional = $result_profissionais->fetch(PDO::FETCH_ASSOC);
-$nome_profissional = $profissional['nome'];
-
 if ($resultadoVerificar->rowCount() > 0) {
     echo "<script>alert('Esse horário já está agendado. Por favor, escolha outro horário.'); window.history.back();</script>";
     exit; // Encerra o script em caso de horário duplicado
@@ -46,8 +39,8 @@ if($resultado->execute()){
     $resultado2 = $conexao->prepare($sql2);
     $resultado2->execute();
    ?>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
-<style>
+    
+    <style>
   @media print {
             #print, #voltar {
                 display: none;
@@ -59,10 +52,15 @@ if($resultado->execute()){
             }
         }
 </style>  
+
+<button style="width: 100%;" id="print" onclick="printPage()">Imprimir<img style="width: 2%;" src="../images/printer.png"></button>
+   <a href="cadastrar_agendamento.php?id=<?php echo $cod_profissional;?>" ><button  style="width: 100%; background-color:#B22222;color: white;" id="voltar">Voltar</button><a>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+
    <?php
 
    echo "<div class='row pt-1' style='color:black;'>";
-   echo "<img style='height: 100px; ' class='col-4' src='../images/logo_ti3.png'>";
+   echo "<img style='height: 100px; ' class='col-4' src='../images/logo_sm.png'>";
    echo "<div class='col-4 text-center pt-0'>";
    echo "<h5>SECRETARIA MUNICIPAL DE SAÚDE </h5>";
    echo "<h6>SÃO GONÇALO DO AMARANTE</h6>";
@@ -104,7 +102,7 @@ if($resultado->execute()){
    echo "<b>Nº do Cartão Nacional: </b>$cns";
    echo "</div>";
    echo "<div class='col-4'>";
-   $nascimento = date('d/m/Y', strtotime($data_nascimento));
+   $nascimento = $data_nascimento;
    echo "<b>Nasc: </b>$nascimento";
    echo "</div>";
    echo "<div class='col-4'>";
@@ -170,8 +168,6 @@ if($resultado->execute()){
    $id_usuario = $result['id_usuario'];
 
    ?>
-   <button style="width: 100%;" id="print" onclick="printPage()">Imprimir<img style="width: 2%;" src="../images/printer.png"></button>
-   <a href="cadastrar_agendamento.php?id=<?php echo $cod_profissional;?>" ><button  style="width: 100%; background-color:#B22222;color: white;" id="voltar">Voltar</button><a>
    <div class="rodape row">
    <div class=" col-7">Usuário responsável: <?php echo $id_usuario; ?></div>
 <div class="col-5">Data e Hora de Geração do Boleto: <?=$data_geracao?></div>
