@@ -51,10 +51,12 @@ if(isset($_SESSION['cpf_policlinica'])){
                     extract($d);
 
                     $query_profissionais = "SELECT nome FROM profissionais WHERE id_profissional = :cod_profissional";
-                    $result_profissionais = $conexao->prepare($query_profissionais);
-                    $result_profissionais->bindParam(':cod_profissional', $d['cod_profissional'], PDO::PARAM_INT);
-                    $result_profissionais->execute();
-                    if ($result_profissionais && $result_profissionais->rowCount() > 0) {
+                $result_profissionais = $conexao->prepare($query_profissionais);
+                $result_profissionais->bindParam(':cod_profissional', $d['cod_profissional'], PDO::PARAM_INT);
+                $result_profissionais->execute();
+           
+
+                if ($result_profissionais && $result_profissionais->rowCount() > 0) {
                     $row_profissional = $result_profissionais->fetch(PDO::FETCH_ASSOC);
 
                     // Use $row_profissional['nome'] para obter o nome do profissional
@@ -63,6 +65,13 @@ if(isset($_SESSION['cpf_policlinica'])){
                         // Trate o caso em que a consulta não retornou nenhum resultado
                         $nome_profissional = "Profissional não encontrado";
                     }
+
+                    $query = "SELECT procedimento FROM procedimentos WHERE cod = :cod";
+                    $result = $conexao->prepare($query);
+                    $result->bindParam(':cod', $d['procedimento'], PDO::PARAM_INT);
+                    $result->execute();
+                    $row = $result->fetch(PDO::FETCH_ASSOC);
+                    $procedimento = $row['procedimento'];
             ?>
                     <tr>
                         <td><?php
@@ -77,7 +86,7 @@ if(isset($_SESSION['cpf_policlinica'])){
                         <td><?php echo $d["endereco_local"]; ?></td>
                         <td><?php echo $nome_profissional; ?></td>
                         <td><?php echo $d["local_atendimento"]; ?></td>
-                        <td><?php echo $d["procedimento"]; ?></td>
+                        <td><?php echo $procedimento; ?></td>
                         <td><?php $status = $d["status"]; 
                             if ($status == 0){
                                 echo "Em espera";

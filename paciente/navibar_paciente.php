@@ -3,8 +3,8 @@
     <nav style="padding: 20px; background-color: #1E90FF; width: 100%;" class="navbar-expand-lg navbar-light ">
 
         <div class="container-fluid">
- <img class="img-responsive img-fluid d-block d-lg-none" style="width: 75%;" src="../images/logo_clara.png">
-            <img class="img-responsive img-fluid d-none d-lg-block" style="width: 16%;" src="../images/logo_clara.png">
+ <img class="img-responsive img-fluid d-block d-lg-none" style="width: 75%;" src="../images/logo_sc.png">
+            <img class="img-responsive img-fluid d-none d-lg-block" style="width: 25%;" src="../images/logo_sc.png">
            
             <div  id="navbarSupportedContent">
 

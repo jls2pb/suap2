@@ -46,10 +46,24 @@ $result_procedimento->execute();
                 $result_profissionais = $conexao->prepare($query_profissionais);
                 $result_profissionais->bindParam(':cod_profissional', $d['cod_profissional'], PDO::PARAM_INT);
                 $result_profissionais->execute();
-                $row_profissional = $result_profissionais->fetch(PDO::FETCH_ASSOC);
+           
 
-                // Use $row_profissional['nome'] para obter o nome do profissional
-                $nome_profissional = $row_profissional['nome'];
+                if ($result_profissionais && $result_profissionais->rowCount() > 0) {
+                    $row_profissional = $result_profissionais->fetch(PDO::FETCH_ASSOC);
+
+                    // Use $row_profissional['nome'] para obter o nome do profissional
+                    $nome_profissional = $row_profissional['nome'];  }
+                    else {
+                        // Trate o caso em que a consulta não retornou nenhum resultado
+                        $nome_profissional = "Profissional não encontrado";
+                    }
+
+                    $query = "SELECT procedimento FROM procedimentos WHERE cod = :cod";
+                    $result = $conexao->prepare($query);
+                    $result->bindParam(':cod', $d['procedimento'], PDO::PARAM_INT);
+                    $result->execute();
+                    $row = $result->fetch(PDO::FETCH_ASSOC);
+                    $procedimento = $row['procedimento'];
         ?>
                 <tr>
                     <td><?php echo $d["data_atendimento"]; ?></td>
@@ -61,7 +75,7 @@ $result_procedimento->execute();
                     <td><?php echo $d["endereco_local"]; ?></td>
                     <td><?php echo $nome_profissional; ?></td>
                     <td><?php echo $d["local_atendimento"]; ?></td>
-                    <td><?php echo $d["procedimento"]; ?></td>
+                    <td><?php echo $procedimento; ?></td>
                 </tr>
         <?php
             }

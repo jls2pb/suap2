@@ -29,7 +29,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
 <table class="table table-striped table-bordered table-sm table-responsive">
         <thead>
             <tr>
-            <th scope="col">COD</th>
+            <th scope="col">PROFISSIONAL</th>
             <th scope="col">NOME DO PACIENTE</th>
             <th scope="col">DATA DO ATENDIMENTO</th>
             <th scope="col">HORA</th>
@@ -45,11 +45,32 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
               if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
                     while ($d = $result_usuarios->fetch(PDO::FETCH_ASSOC)) { 
                         extract($d); 
+                        $query_profissionais = "SELECT nome FROM profissionais WHERE id_profissional = :cod_profissional";
+                        $result_profissionais = $conexao->prepare($query_profissionais);
+                        $result_profissionais->bindParam(':cod_profissional', $d['cod_profissional'], PDO::PARAM_INT);
+                        $result_profissionais->execute();
+                   
         
+                        if ($result_profissionais && $result_profissionais->rowCount() > 0) {
+                            $row_profissional = $result_profissionais->fetch(PDO::FETCH_ASSOC);
+        
+                            // Use $row_profissional['nome'] para obter o nome do profissional
+                            $nome_profissional = $row_profissional['nome'];  }
+                            else {
+                                // Trate o caso em que a consulta não retornou nenhum resultado
+                                $nome_profissional = "Profissional não encontrado";
+                            }
+        
+                            $query = "SELECT procedimento FROM procedimentos WHERE cod = :cod";
+                            $result = $conexao->prepare($query);
+                            $result->bindParam(':cod', $d['procedimento'], PDO::PARAM_INT);
+                            $result->execute();
+                            $row = $result->fetch(PDO::FETCH_ASSOC);
+                            $procedimento = $row['procedimento'];
             ?>
             
             <tr>
-            <th scope="row"><?php echo $d["cod_usuario"];?></th>
+            <td><?php echo $nome_profissional;?></td>
             <td><?php echo $d["nome_paciente"]; ?></td>
             <td><?php 
             $data = date('d/m/Y', strtotime($d["data_atendimento"]));
@@ -58,7 +79,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             <td><?php echo $d["hora"]; ?></td>
             <td><?php echo $d["endereco_local"]; ?></td>
             <td><?php echo $d["local_atendimento"]; ?></td>
-            <td><?php echo $d["procedimento"]; ?></td>
+            <td><?php echo $procedimento; ?></td>
             <td><?php $status = $d["status"]; 
                     if ($status==0){
                         echo "Em espera";
