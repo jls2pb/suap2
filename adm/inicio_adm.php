@@ -53,26 +53,21 @@ require_once("../conexao.php");
     <?php
 $cont = 0;
 
-$sqlTabela = "SELECT cod FROM tabela"; // Substitua 'tabela' pelo nome da sua tabela
-$stmtTabela = $conexao->prepare($sqlTabela);
-$stmtTabela->execute();
-$resultado = $stmtTabela->fetchAll(PDO::FETCH_ASSOC);
+$sql = "SELECT t.cod, COUNT(p.data_do_agendamento) as cont
+        FROM tabela t
+        LEFT JOIN procedimentos p ON t.cod = p.cod
+        WHERE p.data_do_agendamento IS NOT NULL AND p.data_do_agendamento <> ''
+        GROUP BY t.cod";
+
+$stmt = $conexao->prepare($sql);
+$stmt->execute();
+$resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 foreach ($resultado as $r) {
     $cod = $r['cod'];
+    $cont = $r['cont'];
     
-    $sqlProcedimentos = "SELECT * FROM procedimentos WHERE cod = :cod";
-    $stmtProcedimentos = $conexao->prepare($sqlProcedimentos);
-    $stmtProcedimentos->bindParam(':cod', $cod, PDO::PARAM_INT);
-    $stmtProcedimentos->execute();
-    $resultado2 = $stmtProcedimentos->fetchAll(PDO::FETCH_ASSOC);
-    
-    foreach ($resultado2 as $r2) {
-        $data_do_agendamento = $r2['data_do_agendamento'];
-        if ($data_do_agendamento !== NULL && $data_do_agendamento != '') {
-            $cont++;
-        }
-    }
+    // Faça o que você precisa com $cod e $cont aqui
 }
 
 ?>
