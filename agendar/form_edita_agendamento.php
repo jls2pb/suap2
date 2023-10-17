@@ -105,7 +105,6 @@ if ($resultado->execute()) {
             <div class="form-outline mb-4">
                 <select required class="form-control form-control-lg" name="status">
                     <option selected disabled>
-                        O STATUS ATUAL É:
                         <?php
                         $status = $agendamento["status"];
                         if ($status == 0) {
