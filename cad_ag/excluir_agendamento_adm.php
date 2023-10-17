@@ -12,6 +12,15 @@ try {
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
     if ($stmt->execute()) {
+        $sql3 = "UPDATE procedimentos SET data_do_agendamento = '' WHERE cod = '$cod'";
+        $resultado3 = $conexao->prepare($sql3);
+        $resultado3->execute();
+    $hoje = date('d/m/Y');
+      $hora = date('H:i');
+      $x = "EXCLUIU AGENDAMENTO"." ".$id;
+      $sql2 = "INSERT INTO tb_log(acao,nome_paciente,cpf_modificador,data_modificacao,hora,id_paciente) VALUES ('$x','$nome','$cpf_logado','$hoje','$hora','$id')";
+      $resultado2 = $conexao->prepare($sql2);
+          $resultado2->execute();
         ?>
         <script>
         alert("EXCLUIDO COM SUCESSO!");

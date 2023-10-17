@@ -2,10 +2,10 @@
 
 session_start(); 
 $cpf_logado = $_SESSION['cpf_cad_ag'];
+require_once("head.php");
 include "menu_adm.php";
 include "navibar_adm.php";
 include "../footer.php";
-require_once("head.php");
 
 
 if(isset($_SESSION['cpf_cad_ag']) == FALSE){

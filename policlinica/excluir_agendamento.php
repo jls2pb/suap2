@@ -14,9 +14,9 @@ $nome = $profissional['nome_paciente'];
 $sql = "DELETE FROM agendamento WHERE id_agendamento = '$id'";
 $resultado = $conexao->prepare($sql);
 if($resultado->execute()){
-    $sql2 = "UPDATE procedimentos SET data_do_agendamento = '' WHERE cod = '$cod'";
-$resultado2 = $conexao->prepare($sql2);
-$resultado2->execute();
+    $sql3 = "UPDATE procedimentos SET data_do_agendamento = '' WHERE cod = '$cod'";
+        $resultado3 = $conexao->prepare($sql3);
+        $resultado3->execute();
 $hoje = date('d/m/Y');
   $hora = date('H:i');
   $x = "EXCLUIU AGENDAMENTO"." ".$id;

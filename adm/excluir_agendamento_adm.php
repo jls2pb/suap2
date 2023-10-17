@@ -12,6 +12,9 @@ try {
     $stmt->bindParam(':id', $id, PDO::PARAM_INT);
 
     if ($stmt->execute()) {
+        $sql3 = "UPDATE procedimentos SET data_do_agendamento = '' WHERE cod = '$cod'";
+        $resultado3 = $conexao->prepare($sql3);
+        $resultado3->execute();
         ?>
         <script>
         alert("EXCLUIDO COM SUCESSO!");
