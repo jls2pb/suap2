@@ -7,11 +7,12 @@ $id = $_GET['id'];
 $motivo = $_GET['motivo'];
 $hoje = date('d/m/Y');
     $hora = date('H:i');
-$sql = "SELECT cod_usuario, nome_paciente, cod_profissional FROM agendamento WHERE id_agendamento = $id";
+$sql = "SELECT cod_usuario, nome_paciente, cod_profissional, procedimento FROM agendamento WHERE id_agendamento = $id";
 $resultado = $conexao->prepare($sql);
 $resultado->execute();
 $dados = $resultado->fetchAll();
     foreach ($dados as $k) {
+        $proc = $k["procedimento"];
         $nome_paciente = $k["nome_paciente"];
         $id_paciente = $k["cod_usuario"];
         $cod_profissional = $k["cod_profissional"];
@@ -24,7 +25,11 @@ $dados = $resultado->fetchAll();
         $sql = "UPDATE agendamento SET hora = NULL, data_atendimento = NULL, status = 3 WHERE id_agendamento = $id";
         $resultado = $conexao->prepare($sql);
         if($resultado->execute()){
-            header("Location:tabela_agendamento.php?id=$cod_profissional");
+            $sql ="UPDATE procedimentos SET data_do_agendamento = NULL where id = $proc";
+            $result = $conexao->prepare($sql);
+            if($result->execute()){
+                header("Location:tabela_agendamento.php?id=$cod_profissional");
+            }
         }
         
     }

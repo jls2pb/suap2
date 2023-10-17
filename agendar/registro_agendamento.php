@@ -29,7 +29,7 @@ if ($resultadoVerificar->rowCount() > 0) {
 $sql = "INSERT INTO agendamento(cod_usuario, data_atendimento, hora, nome_paciente, sexo, endereco, cpf, endereco_local, cod_profissional,local_atendimento, procedimento, status) VALUES ($cod, '$dia', '$horario', '$paciente', '$sexo', '$endereco', '$cpf', '$endereco_local',$cod_profissional,'$local_atendimento',$procedimento, 0)";
 $resultado = $conexao->prepare($sql);
 if($resultado->execute()){
-    $sql1 = "UPDATE procedimentos SET data_do_agendamento = '$dia' WHERE cod = $procedimento";
+    $sql1 = "UPDATE procedimentos SET data_do_agendamento = '$dia' WHERE id = $procedimento";
     $resultado1 = $conexao->prepare($sql1);
     $resultado1->execute();
     $hoje = date('d/m/Y');
@@ -122,7 +122,7 @@ if($resultado->execute()){
     $profissional = $y['nome'];
    }
    echo "<b>Profissional: </b>$profissional <br>";
-   $sql = "select procedimento from procedimentos where cod = $procedimento";
+   $sql = "select procedimento from procedimentos where id = $procedimento";
    $resultado = $conexao->prepare($sql);
    $resultado->execute();
    $x = $resultado->fetchAll();
