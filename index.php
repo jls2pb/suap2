@@ -36,7 +36,16 @@ else if($r["cpf"] == $cpf && $r["senha"] == $senha && $r["id_tipo"] == 5){
   $_SESSION['cpf_policlinica'] = $cpf;
   Header("Location:policlinica/inicio.php");
 }
-  
+else if($r["cpf"] == $cpf && $r["senha"] == $senha && $r["id_tipo"] == 6){
+  session_start();
+  $_SESSION['cpf_caps'] = $cpf;
+  Header("Location:caps/inicio.php");
+}
+else if($r["cpf"] == $cpf && $r["senha"] == $senha && $r["id_tipo"] == 7){
+  session_start();
+  $_SESSION['cpf_cer'] = $cpf;
+  Header("Location:cer/inicio.php");
+}
   
   }
   ?>

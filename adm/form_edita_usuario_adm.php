@@ -73,6 +73,8 @@ $resultado2 = $conexao->query($sql2);
                       <option value="3" id="3">Cadastro</option>
                       <option value="4" id="4">Cadastro-Agendamento</option>
                       <option value="5" id="5">Policlínica</option>
+                      <option value="6" id="6">CAPS</option>
+                      <option value="7" id="7">CER</option>
                     </select>
                         
                         </div>
