@@ -56,7 +56,7 @@ $cont = 0;
 $sql = "SELECT t.cod, COUNT(p.data_do_agendamento) as cont
         FROM tabela t
         LEFT JOIN procedimentos p ON t.cod = p.cod
-        WHERE p.data_do_agendamento IS NOT NULL AND p.data_do_agendamento <> ''
+        WHERE p.data_do_agendamento IS NOT NULL AND p.data_do_agendamento != ''
         GROUP BY t.cod";
 
 $stmt = $conexao->prepare($sql);
@@ -65,7 +65,7 @@ $resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 foreach ($resultado as $r) {
     $cod = $r['cod'];
-    $cont = $r['cont'];
+    $cont += $r['cont'];
     
     // Faça o que você precisa com $cod e $cont aqui
 }
