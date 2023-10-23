@@ -59,7 +59,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             ?>
             
             <tr>
-            <th scope="row"><?php echo $d["cod_usuario"];?></th>
+            <th scope="row"><?php echo $d["id_agendamento"];?></th>
             <td><?php echo $d["nome_paciente"]; ?></td>
             <td><?php 
             $data = date('d/m/Y', strtotime($d["data_atendimento"]));
@@ -82,7 +82,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
                     ?></td>
             
             <td>
-                <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php $_GET['id'] = $d['cod_usuario']; echo $_GET['id']; ?>)" role="button"><b>EXCLUIR</b></a>
+                <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php $_GET['id'] = $d['id_agendamento']; echo $_GET['id']; ?>)" role="button"><b>EXCLUIR</b></a>
                 <a class="btn text-white bg-info" href = "imprimir.php?id=<?php echo $d["id_agendamento"];?>" role="button"><b>BOLETO</b></a>
             </td>
             </tr>
