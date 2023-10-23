@@ -91,7 +91,7 @@ if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
             <td><?php echo $d["hora"]; ?></td>
             <td><?php $status = $d["status"]; 
                     if ($status==0){
-                        echo "Em espera";
+                        echo "Agendado";
                     }
                     else if ($status==1) {
                         echo "Compareceu";

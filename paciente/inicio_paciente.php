@@ -66,7 +66,10 @@ $result_procedimento->execute();
                     $procedimento = $row['procedimento'];
         ?>
                 <tr>
-                    <td><?php echo $d["data_atendimento"]; ?></td>
+                    <td><?php
+                      $dia = date('d/m/Y', strtotime($d["data_atendimento"]));
+                      echo $dia; 
+                    ?></td>
                     <td><?php echo $d["hora"]; ?></td>
                     <td><?php echo $d["nome_paciente"]; ?></td>
                     <td><?php echo $d["sexo"]; ?></td>
@@ -84,7 +87,7 @@ $result_procedimento->execute();
             }  
         }
         else {
-          header("location: ../index.php");
+          header("location: index.php");
         }
         ?>
     </tbody>

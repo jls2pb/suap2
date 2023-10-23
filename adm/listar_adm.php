@@ -122,12 +122,14 @@ if($resultado->execute()){
             <th scope="col">COD</th>
             <th scope="col">NOME</th>
             <th scope="col">PROCEDIMENTO</th>
+            <th scope="col">PROFISSIONAL</th>
 		<th scope="col">ESPECIFICAÇÃO</th>
             <th scope="col">SOLICITAÇÃO </th>
             <th scope="col">ENTRADA(CAD)</th>
             <th scope="col">SAIDA</th>
             <th scope="col">AGENDAMENTO</th>
-            <th scope="col">LOCAL AG</th>
+            <th scope="col">LOCAL AGENDAMENTO</th>
+            <th scope="col">STATUS</th>
             <th scope="col">AÇÃO</th>
             </tr>
         </thead>
@@ -145,7 +147,7 @@ if($resultado->execute()){
                         $entrada = NULL;
                     }
                     if($y2["data_da_saida"] != NULL){
-                        $saida = date('d/m/Y', strtotime($y2["data_da_saida"])); 
+                        $saida = $y2["data_da_saida"]; 
                     }else{
                         $saida = NULL;
                     }
@@ -158,7 +160,8 @@ if($resultado->execute()){
             <tr>
             <th scope="row"><?php echo $y2["id"]; ?></th>
             <td><?php echo $y2["nome_paciente"]; ?></td>
-            <td><?php echo $y2["procedimento"]; ?></td>
+            <td><?php echo $y2["procedimento"]; ?></td> 
+           <td><?php echo $y2["profissional"]; ?></td>
 		<td><?php echo $y2["especificacao"]; ?></td>
                   <?php ?>
             <td><?php echo $solicitacao ?></td>
@@ -166,6 +169,20 @@ if($resultado->execute()){
             <td><?php echo $saida ?></td>
             <td><?php echo $agendamento ?></td>
             <td><?php echo $y2["local_do_agendamento"]; ?></td>
+            <td><?php 
+            $id = $y2["id"];
+              $sql = "SELECT * FROM agendamento WHERE procedimento = :id";
+$stmt = $conexao->prepare($sql);
+$stmt->bindParam(':id', $id, PDO::PARAM_INT);
+$stmt->execute();
+if ($stmt->rowCount() > 0) {
+  echo "Agendado";
+} else {
+  echo "Aguardando Agendamento";
+}
+
+            ?></td>
+          
             <td><a class="btn text-white" style = "background-color: DarkBlue" href="form_edita_procedimento_adm.php?id=<?php echo $y2['id'] ?>" role="button"> EDITAR </a></td>
             <td><a class="btn btn-danger text-white" role="button" onclick="cconfirmarExclusao(<?php echo $y2['id']; ?>)"> EXCLUIR </a></td>
             </tr>

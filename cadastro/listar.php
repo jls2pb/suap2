@@ -158,7 +158,8 @@ if($resultado->execute()){
             <tr>
             <th scope="row"><?php echo $y2["id"]; ?></th>
             <td><?php echo $y2["nome_paciente"]; ?></td>
-            <td><?php echo $y2["procedimento"]; ?></td>
+            <td><?php echo $y2["procedimento"]; ?></td> 
+           <td><?php echo $y2["profissional"]; ?></td>
 		<td><?php echo $y2["especificacao"]; ?></td>
             <td><?php echo $solicitacao ?></td>
             <td><?php echo $entrada ?></td>
