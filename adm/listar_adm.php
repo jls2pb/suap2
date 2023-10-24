@@ -10,6 +10,14 @@
         }
 
   </script>
+  <style>
+  /* Reduz o espaçamento entre as células da tabela */
+  .table.table-compact th,
+  .table.table-compact td {
+    padding: 10px; /* Reduz o espaçamento interno */
+    font-size: 15px; /* Tamanho da fonte menor */
+  }
+  </style>
    <?php 
 session_start();
 if(isset($_SESSION['cpf_adm']) == FALSE){
@@ -110,19 +118,22 @@ if($resultado->execute()){
         </div>
       </div> 
             <br>
-            <table class="table table-striped table-sm">
+            <table class="table table-striped table-compact">
         <thead>
             <tr>
             <th scope="col">COD</th>
             <th scope="col">NOME</th>
             <th scope="col">PROCEDIMENTO</th>
             <th scope="col">PROFISSIONAL</th>
-	        	<th scope="col">ESPECIFICAÇÃO</th>
             <th scope="col">SOLICITAÇÃO </th><br>
-           
+           <th scope="col">ENTRADA(CAD)</th>
+            <th scope="col">SAIDA</th>
+            <th scope="col">AGENDAMENTO</th>
+            <th scope="col">AÇÃO</th>
             </tr>
         </thead>
         <tbody>
+
                     <?php 
                       foreach ($x2 as $y2) {
                               if($y2["data_da_solicitacao"] != NULL){
@@ -158,46 +169,17 @@ if($resultado->execute()){
                   }
 
             </script> 
-                      <tr>
+  <tr>
                       <th scope="row"><?php echo $y2["id"]; ?></th>
                       <td><?php echo $y2["nome_paciente"]; ?></td>
                       <td><?php echo $y2["procedimento"]; ?></td> 
                     <td><?php echo $y2["profissional"]; ?></td>
-                    <td><?php echo $y2["especificacao"]; ?></td>
                     <td><?php echo $solicitacao ?></td>  
-        </tbody>
-      </table>
-
-              <table  class="table table-striped table-sm">
-              <thead>
-              <th scope="col">ENTRADA(CAD)</th>
-            <th scope="col">SAIDA</th>
-            <th scope="col">AGENDAMENTO</th>
-            <th scope="col">LOCAL AGENDAMENTO</th>
-            <th scope="col">STATUS</th>
-            <th scope="col">AÇÃO</th>
-              </thead>
-     <tbody>
             <td><?php echo $entrada ?></td>
             <td><?php echo $saida ?></td>
             <td><?php echo $agendamento ?></td>
-            <td><?php echo $y2["local_do_agendamento"]; ?></td>
-            <td><?php 
-            $id = $y2["id"];
-              $sql = "SELECT * FROM agendamento WHERE procedimento = :id";
-        $stmt = $conexao->prepare($sql);
-        $stmt->bindParam(':id', $id, PDO::PARAM_INT);
-        $stmt->execute();
-        if ($stmt->rowCount() > 0) {
-          echo "Agendado";
-        } else {
-          echo "Aguardando Agendamento";
-        }
-
-            ?></td>
-          
-            <td><a class="btn text-white" style = "background-color: DarkBlue" href="form_edita_procedimento_adm.php?id=<?php echo $y2['id'] ?>" role="button"> EDITAR </a></td>
-            <td><a class="btn btn-danger text-white" role="button" onclick="cconfirmarExclusao(<?php echo $y2['id']; ?>)"> EXCLUIR </a></td>
+            <td><a class="btn text-white" style = "background-color: DarkBlue" href="form_edita_procedimento_adm.php?id=<?php echo $y2['id'] ?>" role="button"> EDITAR </a>
+            <a class="btn btn-danger text-white" role="button" onclick="cconfirmarExclusao(<?php echo $y2['id']; ?>)"> EXCLUIR </a></td>
             </tr>
             <?php
             }
