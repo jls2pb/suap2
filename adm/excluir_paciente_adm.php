@@ -4,13 +4,19 @@ require_once("../conexao.php");
 session_start();
 $cpf_logado = $_SESSION['cpf_adm'];
 $id =  $_SESSION['id'];
+$sql_paciente = "SELECT nome_paciente FROM tabela WHERE cod = :id";
+$result_nome = $conexao->prepare($sql_paciente);
+$result_nome->bindParam(':id', $id, PDO::PARAM_INT);
+$result_nome->execute();
+$nome_paciente = $result_nome->fetch(PDO:: FETCH_ASSOC);
+$nome = $nome_paciente['nome_paciente'];
 $sql = "DELETE FROM tabela WHERE cod = '$id'";
 $resultado = $conexao->prepare($sql);
 if($resultado->execute()){
   $hoje = date('d/m/Y');
   $hora = date('H:i');
-  $x = "EXCLUIU"." ".$id;
-  $sql2 = "INSERT INTO tb_log(acao,nome_paciente,cpf_modificador,data_modificacao,hora,id_paciente) VALUES ('$x','$n_paciente','$cpf_logado','$hoje','$hora','$id')";
+  $x = "EXCLUIU PACIENTE";
+  $sql2 = "INSERT INTO tb_log(acao,nome_paciente,cpf_modificador,data_modificacao,hora,id_paciente) VALUES ('$x','$nome','$cpf_logado','$hoje','$hora','$id')";
   $resultado2 = $conexao->prepare($sql2);
       if($resultado2->execute()){
           header ("location:index_logado_adm.php");

@@ -1,5 +1,5 @@
 ﻿<?php 
-require_once("head.php");
+    require_once("head.php");
 session_start();
 if(isset($_SESSION['cpf_cadastro']) == FALSE){
     header("Location:../index.php");
