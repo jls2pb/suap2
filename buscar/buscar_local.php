@@ -1,10 +1,5 @@
 <?php
-   $host = "localhost";
-   $port = 5432;
-   $database = "suap";
-   $user = "postgres";
-   $password = "1234";
-   $pdo = new PDO("pgsql:host=$host;port=$port;dbname=$database;user=$user;password=$password");
+include "../conexao.php";
 
 if (isset($_GET['term'])) {
     $term = $_GET['term'];
