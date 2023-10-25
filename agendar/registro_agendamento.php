@@ -26,11 +26,23 @@ if ($resultadoVerificar->rowCount() > 0) {
 }
 
 
-$sql = "INSERT INTO agendamento(cod_usuario, data_atendimento, hora, nome_paciente, sexo, endereco, cpf, endereco_local, cod_profissional,local_atendimento, procedimento, status) VALUES ($cod, '$dia', '$horario', '$paciente', '$sexo', '$endereco', '$cpf', '$endereco_local',$cod_profissional,'$local_atendimento',$procedimento, 0)";
+$sql = "INSERT INTO agendamento (cod_usuario, data_atendimento, hora, nome_paciente, sexo, endereco, cpf, endereco_local, cod_profissional, local_atendimento, procedimento, status) VALUES (:cod, :dia, :horario, :paciente, :sexo, :endereco, :cpf, :endereco_local, :cod_profissional, :local_atendimento, :procedimento, 0)";
 $resultado = $conexao->prepare($sql);
+$resultado->bindValue(':cod', $cod);
+$resultado->bindValue(':dia', $dia);
+$resultado->bindValue(':horario', $horario);
+$resultado->bindValue(':paciente', $paciente);
+$resultado->bindValue(':sexo', $sexo);
+$resultado->bindValue(':endereco', $endereco);
+$resultado->bindValue(':cpf', $cpf);
+$resultado->bindValue(':endereco_local', $endereco_local);
+$resultado->bindValue(':cod_profissional', $cod_profissional);
+$resultado->bindValue(':local_atendimento', $local_atendimento);
+$resultado->bindValue(':procedimento', $procedimento);
+
 if($resultado->execute()){
     $hoje = date('d/m/Y');
-    $sql1 = "UPDATE procedimentos SET data_do_agendamento = '$dia', local_do_agendamento = '$local_atendimento', data_da_saida = '$hoje' WHERE cod = $procedimento";
+    $sql1 = "UPDATE procedimentos SET data_do_agendamento = '$dia', local_do_agendamento = '$local_atendimento', data_da_saida = '$hoje' WHERE id = $procedimento";
     $resultado1 = $conexao->prepare($sql1);
     $resultado1->execute();
     $hora = date('H:i');
