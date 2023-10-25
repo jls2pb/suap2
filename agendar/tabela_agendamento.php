@@ -122,7 +122,7 @@ if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
                     $maximo_link = 2;
                     ?>
                     <div class = "row">
-                    <div class = "col">        
+                <div class = "col">        
             <?php 
                if ($pagina > 1) {
                 echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='tabela_agendamento.php?page=1&cpf=$cpf_logado'>Primeira</a> ";
@@ -130,12 +130,12 @@ if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
     
             if ($pagina > 1) {
                 $pagina_anterior = $pagina - 1;
-                echo "<a href='tabela_agendamento.php?page=$pagina_anterior&cpf=$cpf_logado'><label style='font-size:30px;' title='Anterior'>&#8592</label></a> ";
+                echo "<a href='tabela_agendamento.php?page=$pagina_anterior&cpf=$cpf_logado' class='btn'><label style='font-size:30px;' title='Anterior'><span aria-hidden='true'>&laquo;</span></label></a> ";
             }
     
             if ($pagina < $qnt_pagina) {
                 $proxima_pagina = $pagina + 1;
-                echo "<a href='tabela_agendamento.php?page=$proxima_pagina&cpf=$cpf_logado'><label style='font-size:30px;' title='Próximo'>&#8594</label></a> ";
+                echo "<a href='tabela_agendamento.php?page=$proxima_pagina&cpf=$cpf_logado' class='btn'><label style='font-size:30px;' title='Próximo'><span aria-hidden='true'>&raquo;</span></label></a> ";
             }
     
             if ($pagina < $qnt_pagina) {
@@ -149,7 +149,7 @@ if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
             echo "<p style='color: #f00;'>Erro: Nenhum usuário encontrado!</p>";
              echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='tabela_agendamento.php?page=1&cpf=$cpf_logado'>Primeira</a> ";
              $pagina_anterior = $pagina - 1;
-             echo "<a href='tabela_agendamento.php?page=$pagina_anterior&cpf=$cpf_logado'><label style='font-size:30px;' title='Anterior'>&#8592</label></a> ";
+             echo "<a href='tabela_agendamento.php?page=$pagina_anterior&cpf=$cpf_logado' class='btn'><label style='font-size:30px;' title='Anterior'><span aria-hidden='true'>&laquo;</span></label></a> ";
         
         }  
                 
