@@ -22,7 +22,7 @@ try {
     $resultado->bindParam(':id', $id, PDO::PARAM_INT);
 
     if ($resultado->execute()) {
-        $sql3 = "UPDATE procedimentos SET data_do_agendamento = '' WHERE cod = :cod";
+        $sql3 = "UPDATE procedimentos SET data_do_agendamento = '' WHERE id = :cod";
         $resultado3 = $conexao->prepare($sql3);
         $resultado3->bindParam(':cod', $cod, PDO::PARAM_INT);
         $resultado3->execute();

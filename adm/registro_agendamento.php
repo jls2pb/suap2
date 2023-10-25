@@ -37,7 +37,7 @@ $sql = "INSERT INTO agendamento(cod_usuario, data_atendimento, hora, nome_pacien
 $resultado = $conexao->prepare($sql);
 if($resultado->execute()){
     $hoje = date('d/m/Y');
-    $sql1 = "UPDATE procedimentos SET data_do_agendamento = '$dia', local_do_agendamento = '$local_atendimento', data_da_saida = '$hoje', profissional = '$nome_profissional' WHERE cod = $procedimento";
+    $sql1 = "UPDATE procedimentos SET data_do_agendamento = '$dia', local_do_agendamento = '$local_atendimento', data_da_saida = '$hoje', profissional = '$nome_profissional' WHERE id = $procedimento";
     $resultado1 = $conexao->prepare($sql1);
     $resultado1->execute();
     $hora = date('H:i');
@@ -127,7 +127,7 @@ if($resultado->execute()){
     $profissional = $y['nome'];
    }
    echo "<b>Profissional: </b>$profissional <br>";
-   $sql = "select procedimento from procedimentos where cod = $procedimento";
+   $sql = "select procedimento from procedimentos where id = $procedimento";
    $resultado = $conexao->prepare($sql);
    $resultado->execute();
    $x = $resultado->fetchAll();
