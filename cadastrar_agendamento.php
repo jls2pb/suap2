@@ -2,17 +2,17 @@
 date_default_timezone_set('America/Sao_Paulo');
 require_once("head.php");
 session_start();
-if (isset($_SESSION['cpf_caps']) == FALSE) {
+if (isset($_SESSION['cpf_agendar']) == FALSE) {
     header("Location:../index.php");
 }
 $id = $_GET['id'];
-$cpf_logado = $_SESSION['cpf_caps'];
+$cpf_logado = $_SESSION['cpf_agendar'];
 ?>
 
 <?php
 include "head.php";
-include "navibar.php";
-
+include "menu_agendamento.php";
+include "navibar_agendar.php";
 include "../footer.php";
 ?> <script src="../mascara.js"></script>
 <h2 class="mb-4">CADASTRO DE AGENDAMENTO</h2>
@@ -101,7 +101,6 @@ include "../footer.php";
             <input type="text" name="endereco_local" class="form-control form-control-lg"  oninput="handleInput(event)" id="enderecolocal_input" list="">
         </div>
 </div> 
-
 <input type = "hidden" name = "cod_profissional" value = "<?php echo $id; ?>">
 <button class="btn btn-primary" type = "submit">CADASTRAR</button>
 <a class="btn btn-danger" role="button" href="tabela_agendamento.php?id=<?php echo $id; ?>">VOLTAR</a>

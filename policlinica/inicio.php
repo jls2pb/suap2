@@ -66,7 +66,7 @@ if(isset($_SESSION['cpf_policlinica'])){
                         $nome_profissional = "Profissional não encontrado";
                     }
 
-                    $query = "SELECT procedimento FROM procedimentos WHERE cod = :cod";
+                    $query = "SELECT procedimento FROM procedimentos WHERE id = :cod";
                     $result = $conexao->prepare($query);
                     $result->bindParam(':cod', $d['procedimento'], PDO::PARAM_INT);
                     $result->execute();
@@ -111,28 +111,42 @@ if(isset($_SESSION['cpf_policlinica'])){
                 // Máximo de link
                 $maximo_link = 2;
                 ?>
-                <div class="row">
-                    <div class="col">        
-                <?php 
+                 <div class = "row">
+                <div class = "col">        
+            <?php 
+               if ($pagina > 1) {
                 echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='inicio.php?page=1&cpf=$cpf_logado'>Primeira</a> ";
-
-                for ($pagina_anterior = $pagina - $maximo_link; $pagina_anterior <= $pagina - 1; $pagina_anterior++) {
-                    if ($pagina_anterior >= 1) {
-                        echo "<a href='inicio.php?page=$pagina_anterior&cpf=$cpf_logado'><label>$pagina_anterior</label></a> ";
-                    }
-                }
-
-                echo "$pagina ";
-
-                for ($proxima_pagina = $pagina + 1; $proxima_pagina <= $pagina + $maximo_link; $proxima_pagina++) {
-                    if ($proxima_pagina <= $qnt_pagina) {
-                        echo "<a href='inicio.php?page=$proxima_pagina&cpf=$cpf_logado'><label>$proxima_pagina</label></a> ";
-                    }
-                }
             }
-            else {
-                echo "<p style='color: #f00;'>Nenhum agendamento encontrado!</p>";
-            }  
+    
+            if ($pagina > 1) {
+                $pagina_anterior = $pagina - 1;
+                echo "<a href='inicio.php?page=$pagina_anterior&cpf=$cpf_logado' class='btn'><label style='font-size:30px;' title='Anterior'><span aria-hidden='true'>&laquo;</span></label></a> ";
+            }
+    
+            if ($pagina < $qnt_pagina) {
+                $proxima_pagina = $pagina + 1;
+                echo "<a href='inicio.php?page=$proxima_pagina&cpf=$cpf_logado' class='btn'><label style='font-size:30px;' title='Próximo'><span aria-hidden='true'>&raquo;</span></label></a> ";
+            }
+    
+            if ($pagina < $qnt_pagina) {
+                ?><div class="float-right"><?php
+                echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='inicio.php?page=$qnt_pagina&cpf=$cpf_logado'>Última</a> ";
+            ?></div> <?php
+            }
+
+            
+        } else {
+            echo "<p style='color: #f00;'>Erro: Nenhum usuário encontrado!</p>";
+             echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='inicio.php?page=1&cpf=$cpf_logado'>Primeira</a> ";
+             $pagina_anterior = $pagina - 1;
+             echo "<a href='inicio.php?page=$pagina_anterior&cpf=$cpf_logado' class='btn'><label style='font-size:30px;' title='Anterior'><span aria-hidden='true'>&laquo;</span></label></a> ";
+        
+        }  
+                
+            ?>
+                </div>
+            </div> 
+            <?php
         }
         else {
             header("location: ../index.php");

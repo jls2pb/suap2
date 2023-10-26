@@ -1,4 +1,15 @@
-﻿<?php 
+﻿<script>
+  function confirmarExclusao(id) {
+            var confirmacao = confirm("Tem certeza de que deseja excluir este registro?");
+            if (confirmacao) {
+                // Se o usuário confirmar, redirecione para o script de exclusão PHP
+                window.location = "excluir_paciente.php?id=" + id;
+            } else {
+                // Se o usuário cancelar, não faça nada
+            }
+        }
+</script>
+<?php 
 session_start();
 if(isset($_SESSION['cpf_cadastro']) == FALSE){
     header("Location:../index.php");
@@ -23,28 +34,15 @@ if($resultado->execute()){
     echo "erro ao coletar os dados";
 }
 ?>
-<script>
-  function confirmarExclusao(id) {
-            var confirmacao = confirm("Tem certeza de que deseja excluir este registro?");
-            if (confirmacao) {
-                // Se o usuário confirmar, redirecione para o script de exclusão PHP
-                window.location = "excluir_paciente.php?id=" + id;
-            } else {
-                // Se o usuário cancelar, não faça nada
-            }
-        }
+<style>
+  /* Reduz o espaçamento entre as células da tabela */
+  .table.table-compact th,
+  .table.table-compact td {
+    padding: 10px; /* Reduz o espaçamento interno */
+    font-size: 15px; /* Tamanho da fonte menor */
+  }
+  </style>
 
-        function cconfirmarExclusao(id) {
-            var confirmacao = confirm("Tem certeza de que deseja excluir este registro?");
-            if (confirmacao) {
-                // Se o usuário confirmar, redirecione para o script de exclusão PHP
-                window.location = "excluir_procedimento.php?id=" + id;
-            } else {
-                // Se o usuário cancelar, não faça nada
-            }
-        }
-
-   </script>  
 <h2 class="mb-4">DADOS COMPLETOS DO PACIENTE</h2>
 <div class = "container">
   <?php 
@@ -116,62 +114,73 @@ if($resultado->execute()){
         </div>
       </div> 
             <br>
-            <table class="table table-striped">
+            <table class="table table-striped table-compact">
         <thead>
             <tr>
             <th scope="col">COD</th>
             <th scope="col">NOME</th>
             <th scope="col">PROCEDIMENTO</th>
-		<th scope="col">ESPECIFICAÇÃO</th>
-            <th scope="col">SOLICITAÇÃO </th>
-            <th scope="col">ENTRADA(CAD)</th>
+            <th scope="col">PROFISSIONAL</th>
+            <th scope="col">SOLICITAÇÃO </th><br>
+           <th scope="col">ENTRADA(CAD)</th>
             <th scope="col">SAIDA</th>
             <th scope="col">AGENDAMENTO</th>
-            <th scope="col">LOCAL AG</th>
             <th scope="col">AÇÃO</th>
             </tr>
         </thead>
         <tbody>
-          <?php 
-            foreach ($x2 as $y2) {
-                    if($y2["data_da_solicitacao"] != NULL){
-                        $solicitacao = date('d/m/Y', strtotime($y2["data_da_solicitacao"]));
-                    }else{
-                        $solicitacao = NULL;
-                    }
-                    if($y2["data_de_entrada_cadastro"] != NULL){
-                        $entrada = date('d/m/Y', strtotime($y2["data_de_entrada_cadastro"]));
-                    }else{
-                        $entrada = NULL;
-                    }
-                    if($y2["data_da_saida"] != NULL){
-                        $saida = date('d/m/Y', strtotime($y2["data_da_saida"])); 
-                    }else{
-                        $saida = NULL;
-                    }
-                    if($y2["data_do_agendamento"] != NULL){
-                        $agendamento = date('d/m/Y', strtotime($y2["data_do_agendamento"]));  
-                    }else{
-                        $agendamento = NULL;
-                    }
-          ?>
-            <tr>
-            <th scope="row"><?php echo $y2["id"]; ?></th>
-            <td><?php echo $y2["nome_paciente"]; ?></td>
-            <td><?php echo $y2["procedimento"]; ?></td>
-		<td><?php echo $y2["especificacao"]; ?></td>
-            <td><?php echo $solicitacao ?></td>
+
+                    <?php 
+                      foreach ($x2 as $y2) {
+                              if($y2["data_da_solicitacao"] != NULL){
+                                  $solicitacao = date('d/m/Y', strtotime($y2["data_da_solicitacao"]));
+                              }else{
+                                  $solicitacao = NULL;
+                              }
+                              if($y2["data_de_entrada_cadastro"] != NULL){
+                                  $entrada = date('d/m/Y', strtotime($y2["data_de_entrada_cadastro"]));
+                              }else{
+                                  $entrada = NULL;
+                              }
+                              if($y2["data_da_saida"] != NULL){
+                                  $saida = $y2["data_da_saida"]; 
+                              }else{
+                                  $saida = NULL;
+                              }
+                              if($y2["data_do_agendamento"] != NULL){
+                                  $agendamento = date('d/m/Y', strtotime($y2["data_do_agendamento"]));  
+                              }else{
+                                  $agendamento = NULL;
+                              }
+                    ?>
+                    <script>
+                  function cconfirmarExclusao(id) {
+                      var confirmacao = confirm("Tem certeza de que deseja excluir este registro?");
+                      if (confirmacao) {
+                          // Se o usuário confirmar, redirecione para o script de exclusão PHP
+                          window.location = "excluir_procedimento.php?nome=<?=$y2['nome_paciente'];?>&id=" + id;
+                      } else {
+                          // Se o usuário cancelar, não faça nada
+                      }
+                  }
+
+            </script> 
+  <tr>
+                      <th scope="row"><?php echo $y2["id"]; ?></th>
+                      <td><?php echo $y2["nome_paciente"]; ?></td>
+                      <td><?php echo $y2["procedimento"]; ?></td> 
+                    <td><?php echo $y2["profissional"]; ?></td>
+                    <td><?php echo $solicitacao ?></td>  
             <td><?php echo $entrada ?></td>
             <td><?php echo $saida ?></td>
             <td><?php echo $agendamento ?></td>
-            <td><?php echo $y2["local_do_agendamento"]; ?></td>
-            <td><a class="btn text-white" style = "background-color: DarkBlue" href="form_edita_procedimento.php?id=<?php echo $y2['id'] ?>" role="button"> EDITAR </a></td>
-            <td><a  class="btn btn-danger text-white"  role="button"  onclick="cconfirmarExclusao(<?php echo $y2['id']; ?>)"> EXCLUIR </a></td>
+            <td><a class="btn text-white" style = "background-color: DarkBlue" href="form_edita_procedimento.php?id=<?php echo $y2['id'] ?>" role="button"> EDITAR </a>
+            <a class="btn btn-danger text-white" role="button" onclick="cconfirmarExclusao(<?php echo $y2['id']; ?>)"> EXCLUIR </a></td>
             </tr>
             <?php
             }
             ?>
-        </tbody>
+     </tbody>
         </table>
           </div>  
     </div>

@@ -1,6 +1,9 @@
 <?php 
 require_once("head.php");
 session_start();
+if(isset($_SESSION['cpf_policlinica']) == FALSE){
+    header("Location:../index.php");
+}
  $cpf_logado = $_SESSION['cpf_policlinica'];
 
 include "navibar.php";
@@ -110,28 +113,36 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             // Maximo de link
             $maximo_link = 2;
             ?>
-            <div class = "row">
+          <div class = "row">
                 <div class = "col">        
             <?php 
-            echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='ver_agendamentos.php?page=1&cpf=$cpf_logado '>Primeira</a> ";
-
-            for ($pagina_anterior = $pagina - $maximo_link; $pagina_anterior <= $pagina - 1; $pagina_anterior++) {
-                if ($pagina_anterior >= 1) {
-                    echo "<a href='ver_agendamentos.php?page=$pagina_anterior&cpf=$cpf_logado'><label>$pagina_anterior</label></a> ";
-                }
+               if ($pagina > 1) {
+                echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='ver_agendamentos.php?page=1&cpf=$cpf_logado'>Primeira</a> ";
             }
-
-            echo "$pagina ";
-
-            for ($proxima_pagina = $pagina + 1; $proxima_pagina <= $pagina + $maximo_link; $proxima_pagina++) {
-                if ($proxima_pagina <= $qnt_pagina) {
-                    echo "<a href='ver_agendamentos.php?page=$proxima_pagina&cpf=$cpf_logado'><label>$proxima_pagina</label></a> ";
-                }
+    
+            if ($pagina > 1) {
+                $pagina_anterior = $pagina - 1;
+                echo "<a href='ver_agendamentos.php?page=$pagina_anterior&cpf=$cpf_logado' class='btn'><label style='font-size:30px;' title='Anterior'><span aria-hidden='true'>&laquo;</span></label></a> ";
+            }
+    
+            if ($pagina < $qnt_pagina) {
+                $proxima_pagina = $pagina + 1;
+                echo "<a href='ver_agendamentos.php?page=$proxima_pagina&cpf=$cpf_logado' class='btn'><label style='font-size:30px;' title='Próximo'><span aria-hidden='true'>&raquo;</span></label></a> ";
+            }
+    
+            if ($pagina < $qnt_pagina) {
+                ?><div class="float-right"><?php
+                echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='ver_agendamentos.php?page=$qnt_pagina&cpf=$cpf_logado'>Última</a> ";
+            ?></div> <?php
             }
 
             
         } else {
             echo "<p style='color: #f00;'>Erro: Nenhum usuário encontrado!</p>";
+             echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='ver_agendamentos.php?page=1&cpf=$cpf_logado'>Primeira</a> ";
+             $pagina_anterior = $pagina - 1;
+             echo "<a href='ver_agendamentos.php?page=$pagina_anterior&cpf=$cpf_logado' class='btn'><label style='font-size:30px;' title='Anterior'><span aria-hidden='true'>&laquo;</span></label></a> ";
+        
         }  
                 
             ?>

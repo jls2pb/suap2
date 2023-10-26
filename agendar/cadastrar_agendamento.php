@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set('America/Sao_Paulo');
-require_once("head.php");
+
 session_start();
 if (isset($_SESSION['cpf_agendar']) == FALSE) {
     header("Location:../index.php");
