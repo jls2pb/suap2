@@ -4,7 +4,6 @@ require_once("../conexao.php");
 $data = $_POST["data_atendimento"];
 $hora = $_POST["horario"];
 $nome = $_POST["nome_paciente"];
-
 $sexo = $_POST["sexo"];
 $endereco = $_POST["endereco"];
 $cpf = $_POST["cpf"];
@@ -27,7 +26,7 @@ if($resultado->execute()){
     $row_profissional = $result_profissionais->fetch(PDO::FETCH_ASSOC);
     $procedimento = $row_profissional['procedimento'];
 
-    $sql3 = "UPDATE procedimentos SET data_do_agendamento = '$data' WHERE cod = '$procedimento'";
+    $sql3 = "UPDATE procedimentos SET data_do_agendamento = '$data' WHERE id = '$procedimento'";
     $resultado3 = $conexao->prepare($sql3);
     $resultado3->execute();
     $hoje = date('d/m/Y');

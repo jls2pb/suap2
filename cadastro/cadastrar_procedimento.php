@@ -47,9 +47,7 @@ include "../footer.php";
                     <div class="col">
                         <label class="form-label">Data da Solicitação</label>
                     </div>
-                    <div class="col">
-                        <label class="form-label">Data de Entrada(Cadastro)</label>
-                    </div>
+                    
                     <div class="col">
                         <label class="form-label">Data de Saida </label>
                     </div>
@@ -63,11 +61,7 @@ include "../footer.php";
                         <input type="date" name = "d_solicitacao" class="form-control form-control-lg" />
                         </div>
                     </div>
-                    <div class="col">
-                        <div class="form-outline mb-4">
-                        <input type="date" name = "d_entrada" class="form-control form-control-lg" />
-                        </div>
-                    </div>
+                    
                     <div class="col">
                         <div class="form-outline mb-4">
                         <input type="date" name = "d_saida" class="form-control form-control-lg" />

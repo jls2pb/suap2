@@ -27,6 +27,7 @@ if ($resultado->execute()) {
 }
 ?>
 
+
 <script src="../mascara.js"></script>
 <h2 class="mb-4">EDITAR AGENDAMENTO</h2>
 <form method="POST" action="editar_agendamento.php">

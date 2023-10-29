@@ -4,7 +4,7 @@ require_once("../conexao.php");
 $n_paciente = $_POST["n_paciente"];
 $procedimento = $_POST["procedimento"];
 $d_solicitacao = $_POST["d_solicitacao"];
-$d_entrada = $_POST["d_entrada"];
+$d_entrada = date('Y-m-d');
 $d_saida = $_POST["d_saida"];
 $d_agendamento = $_POST["d_agendamento"];
 $l_agendamento = $_POST["l_agendamento"];
