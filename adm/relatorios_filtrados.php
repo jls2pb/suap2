@@ -372,4 +372,12 @@ echo '<form method="POST" id="searchForm" class="search-form">
     }
 
     document.getElementById("pesquisa").addEventListener("input", searchTable);
+
+// Captura o evento "keydown" no campo de pesquisa
+document.getElementById("pesquisa").addEventListener("keydown", function(event) {
+    // Se a tecla pressionada for "Enter" (código 13), previna a ação padrão
+    if (event.keyCode === 13) {
+        event.preventDefault();
+    }
+});
 </script>
