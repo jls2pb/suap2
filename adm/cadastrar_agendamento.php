@@ -20,7 +20,7 @@ include "../footer.php";
 <div class="col-4">
         <div class="form-outline mb-4">
             <label class="form-label">NOME DO PACIENTE: </label>
-            <input type="text" name="paciente" class="form-control form-control-lg" oninput="handleInput(event)" id="paciente_input" list="paciente_list">
+            <input type="text" name="paciente" class="form-control form-control-lg" oninput="handleInput(event)" id="paciente_input" list="paciente_list" required>
             <datalist id="paciente_list"></datalist>
         </div>
     </div>

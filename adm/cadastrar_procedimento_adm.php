@@ -30,7 +30,7 @@ include "../footer.php";
                 <div class="col-8">     
           	        <div class="form-outline mb-4">
                         <label class="form-label">Procedimento</label>
-                        <input type="text" name = "procedimento" class="form-control form-control-lg" id="procedimento_input" list="procedimentos_list" oninput="handleInput(event)" placeholder="Digite o procedimento...">
+                        <input type="text" name = "procedimento" class="form-control form-control-lg" id="procedimento_input" list="procedimentos_list" oninput="handleInput(event)" placeholder="Digite o procedimento..." required>
                     <datalist id="procedimentos_list"></datalist>
 		            </div>
                 </div>
@@ -60,12 +60,12 @@ include "../footer.php";
                 <div class="row">
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="date" name = "d_solicitacao" class="form-control form-control-lg" />
+                        <input type="date" name = "d_solicitacao" class="form-control form-control-lg" required/>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="date" name = "d_entrada" class="form-control form-control-lg" />
+                        <input type="date" name = "d_entrada" class="form-control form-control-lg" required/>
                         </div>
                     </div>
                     <div class="col">
