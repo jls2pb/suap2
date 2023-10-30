@@ -1,11 +1,5 @@
 <?php
-   $host = "localhost";
-   $port = 5432;
-   $database = "suap";
-   $user = "postgres";
-   $password = "1234";
-   $pdo = new PDO("pgsql:host=$host;port=$port;dbname=$database;user=$user;password=$password");
-
+include "../conexao.php";
 if (isset($_GET['term'])) {
     $term = $_GET['term'];
 
@@ -13,7 +7,7 @@ if (isset($_GET['term'])) {
     if (strlen($term) >= 3) {
         // Consulta para obter os procedimentos que correspondem ao termo de pesquisa
         $sql = "SELECT cod, nome_paciente, cpf FROM tabela WHERE nome_paciente LIKE :term";
-        $stmt = $pdo->prepare($sql);
+        $stmt = $conexao->prepare($sql);
         $stmt->bindValue(':term', '%' . $term . '%', PDO::PARAM_STR);
         $stmt->execute();
         

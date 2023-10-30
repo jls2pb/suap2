@@ -217,13 +217,21 @@ if ($stmt->execute()) {
 
     if (isset($_POST['pacientes_excluidos'])) {
         // Execute uma consulta SQL para buscar os profissionais cadastrados
-        $sql1 = "SELECT * FROM tb_log WHERE acao = 'EXCLUIU PACIENTE'";
+        $sql1 = "SELECT * FROM tb_log WHERE acao = 'EXCLUIU PACIENTE' ORDER BY nome_paciente ASC";
         $stmt1 = $conexao->prepare($sql1);
         $stmt1->execute();
 
         // Verifique se há resultados
         if ($stmt1->rowCount() > 0) {
             echo "<h3>Pacientes Excluídos: " . $stmt1->rowCount() . "</h3>" ;
+            echo '<form method="POST" id="searchForm" class="search-form">
+            <div class="input-group container">
+                <div class="form-outline">
+                    <input autofocus style="width: 105%;" type="search" id="pesquisa" name="nome" class="form-control" placeholder="BUSCAR..." oninput="this.value = this.value.toUpperCase(); searchTable();" style="text-transform: uppercase;">
+                    <input type="hidden" name="uaps" value="<?php echo $uapsSelecionada; ?>">
+                </div>
+            </div>  
+        </form>';
             echo "<table class='table table-striped table-bordered'>";
             echo "<tr><th>ID</th><th>Nome do Paciente</th><th>CPF modificador</th><th>Data da Modificação</th><th>Hora da Modificação</th></tr>";
 
@@ -251,14 +259,23 @@ if ($stmt->execute()) {
 
         // Verifique se há resultados
         if ($stmt1->rowCount() > 0) {
-            echo "<h3>Pacientes Excluídos: " . $stmt1->rowCount() . "</h3>" ;
+            echo "<h3>Procedimentos Excluídos: " . $stmt1->rowCount() . "</h3>" ;
+           echo '<form method="POST" id="searchForm" class="search-form">
+            <div class="input-group container">
+                <div class="form-outline">
+                    <input autofocus style="width: 105%;" type="search" id="pesquisa" name="nome" class="form-control" placeholder="BUSCAR..." oninput="this.value = this.value.toUpperCase(); searchTable();" style="text-transform: uppercase;">
+                    <input type="hidden" name="uaps" value="<?php echo $uapsSelecionada; ?>">
+                </div>
+            </div>  
+        </form>';
             echo "<table class='table table-striped table-bordered'>";
-            echo "<tr><th>ID</th><th>Nome do Procedimento</th><th>CPF modificador</th><th>Data da Modificação</th><th>Hora da Modificação</th></tr>";
+            echo "<tr><th>ID</th><th>Ação</th><th>Paciente</th><th>CPF modificador</th><th>Data da Modificação</th><th>Hora da Modificação</th></tr>";
 
             // Loop através dos resultados e exiba-os na tabela
             while ($row1 = $stmt1->fetch(PDO::FETCH_ASSOC)) {
                 echo "<tr>";
                 echo "<td>" . $row1['id_log'] . "</td>";
+                echo "<td>" . $row1['acao'] . "</td>";
                 echo "<td>" . $row1['nome_paciente'] . "</td>";
                 echo "<td>" . $row1['cpf_modificador'] . "</td>";
                 echo "<td>" . $row1['data_modificacao'] . "</td>";
@@ -276,3 +293,35 @@ if ($stmt->execute()) {
     header("location: ../index.php");
 }
 ?>
+<script>
+    function removeAccents(str) {
+        return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
+
+    function searchTable() {
+        var searchTerm = removeAccents(document.getElementById("pesquisa").value.toLowerCase());
+        var tableRows = document.querySelectorAll("table tr");
+
+        tableRows.forEach(function (row) {
+            var cells = row.getElementsByTagName("td");
+            var rowVisible = false;
+
+            for (var i = 0; i < cells.length; i++) {
+                var cell = cells[i];
+                var cellText = removeAccents(cell.textContent.toLowerCase());
+
+                if (cellText.includes(searchTerm)) {
+                    rowVisible = true;
+                    break;
+                }
+            }
+
+            row.style.display = rowVisible ? "table-row" : "none";
+        });
+    }
+
+  
+    document.getElementById("pesquisa").addEventListener("input", searchTable);
+</script>
+
+           
