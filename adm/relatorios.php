@@ -27,7 +27,7 @@ if(isset($_SESSION['cpf_adm'])){
 </form>
 
 <h3>Buscar agendamentos</h3>
-<form action="relatorios_filtrados.php" method="POST">
+<form method="POST" action="relatorios_filtrados.php" >
   <div class="form-outline mb-4">
     <label>
       <input type="checkbox" name="agendamento" value="agendamento"> Quantidade de agendamentos
@@ -62,6 +62,19 @@ if(isset($_SESSION['cpf_adm'])){
     <label for="agenda_fim">Data de Término: </label>
     <input type="date" name="agenda_fim" id="agenda_fim"> <br>
   </div>
+  <button class="btn btn-primary" type="submit">Filtrar</button>
+</form>
+
+<h3>Buscar Exclusões</h3>
+<form method="POST" action="relatorios_filtrados.php">
+  <div class="form-outline mb-4">
+    <label>
+      <input type="checkbox" name="procedimentos_excluidos" value="procedimentos_excluidos"> Procedimentos
+    </label><br>
+    <label>
+      <input type="checkbox" name="pacientes_excluidos" value="pacientes_excluidos"> Pacientes
+    </label><br>
+    <hr></hr>
   <button class="btn btn-primary" type="submit">Filtrar</button>
 </form>
 

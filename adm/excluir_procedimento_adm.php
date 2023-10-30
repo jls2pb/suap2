@@ -21,7 +21,7 @@ $resultado8->execute();
 
   $hoje = date('d/m/Y');
   $hora = date('H:i');
-  $x = "EXCLUIU"." ".$procedimento;
+  $x = "EXCLUIU PROCEDIMENTO:"." ".$procedimento;
   $sql2 = "INSERT INTO tb_log(acao,nome_paciente,cpf_modificador,data_modificacao,hora,id_paciente) VALUES ('$x','$n_paciente','$cpf_logado','$hoje','$hora','$id')";
   $resultado2 = $conexao->prepare($sql2);
       if($resultado2->execute()){
