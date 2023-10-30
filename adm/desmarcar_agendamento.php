@@ -16,16 +16,14 @@ $dados = $resultado->fetchAll();
         $nome_paciente = $k["nome_paciente"];
         $id_paciente = $k["cod_usuario"];
         $cod_profissional = $k["cod_profissional"];
-        
-    }
-    $acao = "CANCELAMENTO AGENDAMENTO ".$id;
+        $acao = "CANCELAMENTO AGENDAMENTO ".$id;
     $sql = "INSERT INTO tb_log(acao,nome_paciente,cpf_modificador,data_modificacao,hora,id_paciente,motivo) VALUES('$acao','$nome_paciente','$cpf_logado','$hoje','$hora',$id_paciente,'$motivo')";
     $resultado = $conexao->prepare($sql);
     if($resultado->execute()){
         $sql = "UPDATE agendamento SET hora = NULL, data_atendimento = NULL, cod_profissional = NULL, status = 3 WHERE id_agendamento = $id";
         $resultado = $conexao->prepare($sql);
         if($resultado->execute()){
-            $sql ="UPDATE procedimentos SET data_do_agendamento = NULL, data_da_saida = NULL, local_do_atendimento = NULL where id = $proc";
+            $sql ="UPDATE procedimentos SET data_do_agendamento = '', data_da_saida = '', local_do_agendamento = '' where id = $proc";
             $result = $conexao->prepare($sql);
             if($result->execute()){
                 header("Location:tabela_agendamento.php?id=$cod_profissional");
@@ -33,4 +31,6 @@ $dados = $resultado->fetchAll();
         }
         
     }
+    }
+   
 ?>

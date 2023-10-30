@@ -224,7 +224,10 @@ if ($stmt->execute()) {
         // Verifique se há resultados
         if ($stmt1->rowCount() > 0) {
             echo "<h3>Pacientes Excluídos: " . $stmt1->rowCount() . "</h3>" ;
-            echo '<form method="POST" id="searchForm" class="search-form">
+            
+            echo "<table class='table table-striped table-bordered'>";
+            echo "<tr><th>ID</th><th>Nome do Paciente</th><th>CPF modificador</th><th>Data da Modificação</th><th>Hora da Modificação</th></tr>";
+echo '<form method="POST" id="searchForm" class="search-form">
             <div class="input-group container">
                 <div class="form-outline">
                     <input autofocus style="width: 105%;" type="search" id="pesquisa" name="nome" class="form-control" placeholder="BUSCAR..." oninput="this.value = this.value.toUpperCase(); searchTable();" style="text-transform: uppercase;">
@@ -232,9 +235,6 @@ if ($stmt->execute()) {
                 </div>
             </div>  
         </form>';
-            echo "<table class='table table-striped table-bordered'>";
-            echo "<tr><th>ID</th><th>Nome do Paciente</th><th>CPF modificador</th><th>Data da Modificação</th><th>Hora da Modificação</th></tr>";
-
             // Loop através dos resultados e exiba-os na tabela
             while ($row1 = $stmt1->fetch(PDO::FETCH_ASSOC)) {
                 echo "<tr>";
@@ -300,7 +300,7 @@ if ($stmt->execute()) {
 
     function searchTable() {
         var searchTerm = removeAccents(document.getElementById("pesquisa").value.toLowerCase());
-        var tableRows = document.querySelectorAll("table tr");
+        var tableRows = document.querySelectorAll("table td");
 
         tableRows.forEach(function (row) {
             var cells = row.getElementsByTagName("td");
