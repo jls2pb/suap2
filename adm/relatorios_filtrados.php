@@ -28,7 +28,6 @@ if (isset($_SESSION['cpf_adm'])) {
     echo "<h5>SECRETARIA MUNICIPAL DE SAÚDE </h5>";
     echo "<h6>SÃO GONÇALO DO AMARANTE</h6>";
     echo "<h7>AVENIDA CORONEL NECO MARTINS, 276</h7><br>";
-    echo "<h8>Comprovante de Agendamento</h8>";
     echo "</div>";
     echo "<div class='col-2'></div>";
     echo "<div class='text-right col-2 pt-0 pl-1'><img style='width: 100%;' src='../images/logo_sus.png'><br>";
