@@ -1,7 +1,8 @@
 <style>
 @media print {
     #print,
-    #voltar {
+    #voltar,
+    .search-form{
         display: none;
     }
 }
@@ -21,7 +22,19 @@ if (isset($_SESSION['cpf_adm'])) {
     $cpf_logado = $_SESSION['cpf_adm'];
 
     require_once("../conexao.php");
-
+    echo "<div class='row pt-1' style='color:black;'>";
+    echo "<img style='height: 100px; ' class='col-4' src='../images/logo_sm.png'>";
+    echo "<div class='col-4 text-center pt-0'>";
+    echo "<h5>SECRETARIA MUNICIPAL DE SAÚDE </h5>";
+    echo "<h6>SÃO GONÇALO DO AMARANTE</h6>";
+    echo "<h7>AVENIDA CORONEL NECO MARTINS, 276</h7><br>";
+    echo "<h8>Comprovante de Agendamento</h8>";
+    echo "</div>";
+    echo "<div class='col-2'></div>";
+    echo "<div class='text-right col-2 pt-0 pl-1'><img style='width: 100%;' src='../images/logo_sus.png'><br>";
+    echo "SUAP SESA</div>";
+    echo "</div>";
+    echo "<hr style='background-color: black;'>";
     // Inicializa as variáveis para os resultados
     $procedimentosEntrada = [];
     $agendamentos = [];
@@ -261,7 +274,44 @@ echo '<form method="POST" id="searchForm" class="search-form">
         if ($stmt1->rowCount() > 0) {
             echo "<h3>Procedimentos Excluídos: " . $stmt1->rowCount() . "</h3>" ;
            echo '<form method="POST" id="searchForm" class="search-form">
-            <div class="input-group container">
+            <div class="input-group container div_pesquisa">
+                <div class="form-outline">
+                    <input autofocus style="width: 105%;" type="search" id="pesquisa" name="nome" class="form-control" placeholder="BUSCAR..." oninput="this.value = this.value.toUpperCase(); searchTable();" style="text-transform: uppercase;">
+                    <input type="hidden" name="uaps" value="<?php echo $uapsSelecionada; ?>">
+                </div>
+            </div>  
+        </form>';
+            echo "<table class='table table-striped table-bordered'>";
+            echo "<tr><th>ID</th><th>Ação</th><th>Paciente</th><th>CPF modificador</th><th>Data da Modificação</th><th>Hora da Modificação</th></tr>";
+
+            // Loop através dos resultados e exiba-os na tabela
+            while ($row1 = $stmt1->fetch(PDO::FETCH_ASSOC)) {
+                echo "<tr>";
+                echo "<td>" . $row1['id_log'] . "</td>";
+                echo "<td>" . $row1['acao'] . "</td>";
+                echo "<td>" . $row1['nome_paciente'] . "</td>";
+                echo "<td>" . $row1['cpf_modificador'] . "</td>";
+                echo "<td>" . $row1['data_modificacao'] . "</td>";
+                echo "<td>" . $row1['hora'] . "</td>";
+
+                echo "</tr>";
+            }
+            echo "</table>";
+        } else {
+            echo "Nenhum resultado encontrado.";
+        }
+    }
+    if (isset($_POST['agendamentos_excluidos'])) {
+        // Execute uma consulta SQL para buscar os profissionais cadastrados
+        $sql1 = "SELECT * FROM tb_log WHERE acao LIKE 'CANCELAMENTO%'";
+        $stmt1 = $conexao->prepare($sql1);
+        $stmt1->execute();
+
+        // Verifique se há resultados
+        if ($stmt1->rowCount() > 0) {
+            echo "<h3>Procedimentos Excluídos: " . $stmt1->rowCount() . "</h3>" ;
+           echo '<form method="POST" id="searchForm" class="search-form">
+            <div class="input-group container div_pesquisa">
                 <div class="form-outline">
                     <input autofocus style="width: 105%;" type="search" id="pesquisa" name="nome" class="form-control" placeholder="BUSCAR..." oninput="this.value = this.value.toUpperCase(); searchTable();" style="text-transform: uppercase;">
                     <input type="hidden" name="uaps" value="<?php echo $uapsSelecionada; ?>">
@@ -300,9 +350,11 @@ echo '<form method="POST" id="searchForm" class="search-form">
 
     function searchTable() {
         var searchTerm = removeAccents(document.getElementById("pesquisa").value.toLowerCase());
-        var tableRows = document.querySelectorAll("table td");
+        var tableRows = document.querySelectorAll("table tr");
 
-        tableRows.forEach(function (row) {
+        // Comece o loop a partir da segunda linha (índice 1) para ignorar o cabeçalho
+        for (var rowIndex = 1; rowIndex < tableRows.length; rowIndex++) {
+            var row = tableRows[rowIndex];
             var cells = row.getElementsByTagName("td");
             var rowVisible = false;
 
@@ -317,11 +369,8 @@ echo '<form method="POST" id="searchForm" class="search-form">
             }
 
             row.style.display = rowVisible ? "table-row" : "none";
-        });
+        }
     }
 
-  
     document.getElementById("pesquisa").addEventListener("input", searchTable);
 </script>
-
-           

@@ -146,7 +146,7 @@ if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
             var confirmacao = confirm("Tem certeza de que deseja excluir este registro?");
             if (confirmacao) {
                 // Se o usuário confirmar, redirecione para o script de exclusão PHP
-                window.location = "excluir_agendamento.php?cod=<?php echo $cod;?>&id1=<?php echo $id; ?>&id=" + id;
+                window.location = "desmarcar_agendamento.php?cod=<?php echo $cod;?>&id1=<?php echo $id; ?>&id=" + id;
             } else {
                 // Se o usuário cancelar, não faça nada
             }

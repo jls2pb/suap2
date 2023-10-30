@@ -23,7 +23,7 @@ $dados = $resultado->fetchAll();
         $sql = "UPDATE agendamento SET hora = NULL, data_atendimento = NULL, cod_profissional = NULL, status = 3 WHERE id_agendamento = $id";
         $resultado = $conexao->prepare($sql);
         if($resultado->execute()){
-            $sql ="UPDATE procedimentos SET data_do_agendamento = '', data_da_saida = '', local_do_agendamento = '' where id = $proc";
+            $sql ="UPDATE procedimentos SET data_do_agendamento = '', data_da_saida = '', local_do_agendamento = '', profissional = '' where id = $proc";
             $result = $conexao->prepare($sql);
             if($result->execute()){
                 header("Location:tabela_agendamento.php?id=$cod_profissional");
