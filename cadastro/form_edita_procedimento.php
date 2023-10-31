@@ -12,6 +12,7 @@ if(isset($_SESSION['cpf_cadastro']) == FALSE){
 }
 
 
+
 require_once("../conexao.php");
 $id = $_GET["id"];
 $sql = "SELECT * FROM procedimentos WHERE id = $id ";
@@ -24,7 +25,7 @@ if($resultado->execute()){
 ?>
 
 <h2 class="mb-4">EDIÇÃO DE PROCEDIMENTO</h2>
-<form method = "POST" action = "edita_procedimento.php">  
+<form method = "POST" action = "edita_procedimento_adm.php">  
           <?php 
 
                 foreach ($x as $y) {

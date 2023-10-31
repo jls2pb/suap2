@@ -27,7 +27,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
 
 
 ?>
-<a style="" href="inicio.php" class="btn btn-danger text-white float-right" role="button">VOLTAR</a>
+<a style="margin: 23px;" href="inicio.php" class="btn btn-danger text-white float-right" role="button">VOLTAR</a>
 
 <table class="table table-striped table-bordered table-sm table-responsive">
         <thead>
@@ -40,7 +40,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             <th scope="col">LOCAL DO ATENDIMENTO</th>
             <th scope="col">PROCEDIMENTO</th>
             <th scope="col">STATUS</th>
-            <th scope="col">AÇÕES</th>
+       
             </tr>
         </thead>
         <tbody>
@@ -64,12 +64,20 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
                                 $nome_profissional = "Profissional não encontrado";
                             }
         
-                            $query = "SELECT procedimento FROM procedimentos WHERE cod = :cod";
+                            $query = "SELECT procedimento FROM procedimentos WHERE id = :cod";
                             $result = $conexao->prepare($query);
                             $result->bindParam(':cod', $d['procedimento'], PDO::PARAM_INT);
                             $result->execute();
-                            $row = $result->fetch(PDO::FETCH_ASSOC);
-                            $procedimento = $row['procedimento'];
+                            if ($result && $result->rowCount() > 0) {
+                                $row = $result->fetch(PDO::FETCH_ASSOC);
+            
+                                // Use $row_profissional['nome'] para obter o nome do profissional
+                                $nome_proc = $row['procedimento'];  }
+                                else {
+                                    // Trate o caso em que a consulta não retornou nenhum resultado
+                                    $nome_proc = "Procedimento não encontrado";
+                                }
+                           
             ?>
             
             <tr>
@@ -82,7 +90,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             <td><?php echo $d["hora"]; ?></td>
             <td><?php echo $d["endereco_local"]; ?></td>
             <td><?php echo $d["local_atendimento"]; ?></td>
-            <td><?php echo $procedimento; ?></td>
+            <td><?php echo $nome_proc; ?></td>
             <td><?php $status = $d["status"]; 
                     if ($status==0){
                         echo "Em espera";
@@ -94,10 +102,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
                         echo "Não compareceu";
                     }
                     ?></td>
-                      <td>
-                            <a class="btn text-white" style="background-color: #66a7ff;" href="editar_agendamento.php?id=<?php echo $d["id_agendamento"];?>">COMPARECEU</a>
-                            <a class="btn text-white btn-danger" href="form_remarcar.php?id=<?=$d["id_agendamento"];?>" >REMARCAR</a>
-                        </td>
+                      
             
             </tr>
             <?php

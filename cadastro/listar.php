@@ -24,6 +24,7 @@ include "navibar.php";
 include "../footer.php";
 
 
+
 require_once("../conexao.php");
 $nome_paciente = $_SESSION['id'];
 $sql = "SELECT * FROM tabela WHERE cod = '$nome_paciente'";
@@ -34,17 +35,11 @@ if($resultado->execute()){
     echo "erro ao coletar os dados";
 }
 ?>
-<style>
-  /* Reduz o espaçamento entre as células da tabela */
-  .table.table-compact th,
-  .table.table-compact td {
-    padding: 10px; /* Reduz o espaçamento interno */
-    font-size: 15px; /* Tamanho da fonte menor */
-  }
-  </style>
 
-<h2 class="mb-4">DADOS COMPLETOS DO PACIENTE</h2>
-<div class = "container">
+ 
+   <div class = "container mt-1"> 
+    <div class="">
+    <h2 class="mb-4">DADOS COMPLETOS DO PACIENTE</h2>
   <?php 
     foreach ($x as $y) {
       if($y["nascimento"] != NULL){
@@ -58,7 +53,7 @@ if($resultado->execute()){
         <div class="col-3 border "><strong>COD</strong></div>
         <div class="col-9 border "><strong>NOME PACIENTE</strong></div>
       </div>
-      <div class="row border ">
+      <div class="row">
         <div class="border col-3 "><?php echo $y["cod"]; ?></div>
         <div class="border col-9"><?php echo $y["nome_paciente"]; ?></div>
       </div>
@@ -68,7 +63,7 @@ if($resultado->execute()){
         <div class="col border "><strong>CNS</strong></div>
         <div class="col border "><strong>DATA NASCIMENTO</strong></div>
       </div>
-      <div class="row border">
+      <div class="row">
         <div class="col border "><?php echo $y["rg"]; ?></div>
         <div class="col border "><?php echo $y["cpf"]; ?></div>
         <div class="col border "><?php echo $y["cns"]; ?> </div>
@@ -91,6 +86,7 @@ if($resultado->execute()){
         <div class="col border ">  <?php echo $y["ubs"]; ?> </strong></div>
         <div class="col border "> <?php echo $y["celular"]; ?> </strong></div>
         <div class="col border "> <?php echo $y["telefone"]; ?> </div>
+</div>      
     <?php
         $id_usuario = $y["cod"];
     }
@@ -102,7 +98,7 @@ if($resultado->execute()){
       }else{
           echo "erro ao coletar os dados";
       }
-    ?> 
+    ?>  
       </div>
       <br>
       <div class="row text-center">
@@ -110,7 +106,7 @@ if($resultado->execute()){
           <a class="btn text-white" style = "background-color: DarkBlue" href="form_edita.php" role="button">EDITAR PACIENTE</a>
           <a class="btn btn-primary text-white" href="cadastrar_procedimento.php?n=<?php echo $y["nome_paciente"]; ?>" role="button">NOVO PROCEDIMENTO</a>
           <a class="btn btn-info text-white" href="listar_log.php" role="button">ATIVIDADES</a>
-          <a class="btn btn-danger text-white"  onclick="confirmarExclusao(<?php echo $y['cod']; ?>)">EXCLUIR CADASTRO</a>
+          <a class="btn btn-danger text-white" role="button" onclick="confirmarExclusao(<?php echo $y['cod']; ?>)">EXCLUIR CADASTRO</a>
         </div>
       </div> 
             <br>
@@ -143,7 +139,7 @@ if($resultado->execute()){
                                   $entrada = NULL;
                               }
                               if($y2["data_da_saida"] != NULL){
-                                  $saida = $y2["data_da_saida"]; 
+                                  $saida = date('d/m/Y', strtotime($y2["data_da_saida"]));
                               }else{
                                   $saida = NULL;
                               }
@@ -185,4 +181,3 @@ if($resultado->execute()){
           </div>  
     </div>
 </div>
-    

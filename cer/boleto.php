@@ -103,7 +103,7 @@ foreach ($a as $k) {
     $profissional = $y['nome'];
    }
    echo "<b>Profissional: </b>$profissional <br>";
-   $sql = "select procedimento from procedimentos where cod = $procedimento";
+   $sql = "select procedimento from procedimentos where id = $procedimento";
    $resultado = $conexao->prepare($sql);
    $resultado->execute();
    $x = $resultado->fetchAll();

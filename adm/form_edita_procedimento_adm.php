@@ -41,7 +41,7 @@ if($resultado->execute()){
                         $entrada = NULL;
                     }
                     if($y["data_da_saida"] != NULL){
-                        $saida = $y["data_da_saida"]; 
+                        $saida = date('Y-m-d', strtotime($y["data_da_saida"])); 
                     }else{
                         $saida = NULL;
                     }
@@ -102,7 +102,7 @@ if($resultado->execute()){
                     </div>
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="text" name = "d_saida" class="form-control form-control-lg" value = "<?php echo $saida ?>"/>
+                        <input type="date" name = "d_saida" class="form-control form-control-lg" value = "<?php echo $saida ?>"/>
                         </div>
                     </div>
                     <div class="col">

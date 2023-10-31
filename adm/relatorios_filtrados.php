@@ -1,3 +1,4 @@
+<link rel="icon" type="image/png" href="../images/icon.png" />
 <style>
 @media print {
     #print,
@@ -83,10 +84,11 @@ if ($stmt->execute()) {
 
 
     if (isset($_POST['agendar'])) {
+       
         $periodoInicio = $_POST['periodo_inicio'];
         $periodoFim = $_POST['periodo_fim'];
-
-            // Faça a consulta SQL para buscar procedimentos não agendados no período especificado
+ if($periodoInicio !== '' && $periodoFim !== '') {
+      // Faça a consulta SQL para buscar procedimentos não agendados no período especificado
         $query = "SELECT id, nome_paciente, procedimento FROM procedimentos WHERE id NOT IN (SELECT procedimento FROM agendamento) AND data_de_entrada_cadastro BETWEEN :periodoInicio AND :periodoFim";
         $stmt = $conexao->prepare($query);
         $stmt->bindParam(':periodoInicio', $periodoInicio, PDO::PARAM_STR);
@@ -96,6 +98,39 @@ if ($stmt->execute()) {
         } else {
             echo "Erro na consulta SQL de Procedimentos Não Agendados: " . $stmt->errorInfo();
         }
+        }
+        else if($periodoInicio !== '' && $periodoFim == '') {
+            $data = date('Y-m-d');
+            $query = "SELECT id, nome_paciente, procedimento FROM procedimentos WHERE id NOT IN (SELECT procedimento FROM agendamento) AND data_de_entrada_cadastro BETWEEN :periodoInicio AND :data";
+            $stmt = $conexao->prepare($query);
+            $stmt->bindParam(':periodoInicio', $periodoInicio, PDO::PARAM_STR);
+            $stmt->bindParam(':data', $data, PDO::PARAM_STR);
+            if ($stmt->execute()) {
+                $procedimentosNaoAgendados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } else {
+                echo "Erro na consulta SQL de Procedimentos Não Agendados: " . $stmt->errorInfo();
+            }
+        } else if($periodoFim !== '' && $periodoInicio == '') {
+            $data = '1970-01-01';
+            $query = "SELECT id, nome_paciente, procedimento FROM procedimentos WHERE id NOT IN (SELECT procedimento FROM agendamento) AND data_de_entrada_cadastro BETWEEN  :data AND :periodoFim";
+            $stmt = $conexao->prepare($query);
+            $stmt->bindParam(':periodoFim', $periodoFim, PDO::PARAM_STR);
+            $stmt->bindParam(':data', $data, PDO::PARAM_STR);
+            if ($stmt->execute()) {
+                $procedimentosNaoAgendados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            } else {
+                echo "Erro na consulta SQL de Procedimentos Não Agendados: " . $stmt->errorInfo();
+            }
+        }
+      else {
+        $query = "SELECT id, nome_paciente, procedimento FROM procedimentos WHERE id NOT IN (SELECT procedimento FROM agendamento)";
+        $stmt = $conexao->prepare($query);
+        if ($stmt->execute()) {
+            $procedimentosNaoAgendados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } else {
+            echo "Erro na consulta SQL de Procedimentos Não Agendados: " . $stmt->errorInfo();
+        }
+      }
 
             
             } 

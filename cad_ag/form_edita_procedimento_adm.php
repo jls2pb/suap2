@@ -13,6 +13,7 @@ if(isset($_SESSION['cpf_cad_ag']) == FALSE){
 }
 
 
+
 require_once("../conexao.php");
 $id = $_GET["id"];
 $sql = "SELECT * FROM procedimentos WHERE id = $id ";

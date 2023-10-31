@@ -77,7 +77,7 @@ if(isset($_SESSION['cpf_adm'])){
     <label>
       <input type="checkbox" name="agendamentos_excluidos" value="agendamentos_excluidos"> Agendamentos
     </label><br>
-    <hr></hr>
+
   <button class="btn btn-primary" type="submit">Filtrar</button>
 </div>
 </form>

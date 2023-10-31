@@ -20,6 +20,13 @@ $data_geracao = date('d/m/Y H:i:s');
 $sqlVerificar = "SELECT * FROM agendamento WHERE cod_profissional = $cod_profissional AND data_atendimento = '$dia' AND hora = '$horario'";
 $resultadoVerificar = $conexao->prepare($sqlVerificar);
 $resultadoVerificar->execute();
+
+$query_profissionais = "SELECT nome FROM profissionais WHERE id_profissional = $cod_profissional ";
+$result_profissionais = $conexao->prepare($query_profissionais);
+$result_profissionais->execute();
+$profissional = $result_profissionais->fetch(PDO::FETCH_ASSOC);
+$nome_profissional = $profissional['nome'];
+
 if ($resultadoVerificar->rowCount() > 0) {
     echo "<script>alert('Esse horário já está agendado. Por favor, escolha outro horário.'); window.history.back();</script>";
     exit; // Encerra o script em caso de horário duplicado
@@ -28,15 +35,9 @@ if ($resultadoVerificar->rowCount() > 0) {
 
 $sql = "INSERT INTO agendamento(cod_usuario, data_atendimento, hora, nome_paciente, sexo, endereco, cpf, endereco_local, cod_profissional,local_atendimento, procedimento, status) VALUES ($cod, '$dia', '$horario', '$paciente', '$sexo', '$endereco', '$cpf', '$endereco_local',$cod_profissional,'$local_atendimento',$procedimento, 0)";
 $resultado = $conexao->prepare($sql);
-
-$query_profissionais = "SELECT nome FROM profissionais WHERE id_profissional = $cod_profissional ";
-$result_profissionais = $conexao->prepare($query_profissionais);
-$result_profissionais->execute();
-$profissional = $result_profissionais->fetch(PDO::FETCH_ASSOC);
-$nome_profissional = $profissional['nome'];
 if($resultado->execute()){
-    $hoje = date('d/m/Y');
-    $sql1 = "UPDATE procedimentos SET data_do_agendamento = '$dia', local_do_agendamento = '$local_atendimento', data_da_saida = '$hoje',  profissional = '$nome_profissional' WHERE id = $procedimento";
+    $hoje = date('Y-m-d');
+    $sql1 = "UPDATE procedimentos SET data_do_agendamento = '$dia', local_do_agendamento = '$local_atendimento', data_da_saida = '$hoje', profissional = '$nome_profissional' WHERE id = $procedimento";
     $resultado1 = $conexao->prepare($sql1);
     $resultado1->execute();
     $hora = date('H:i');
@@ -44,9 +45,7 @@ if($resultado->execute()){
     $sql2 = "INSERT INTO tb_log(acao,nome_paciente,cpf_modificador,data_modificacao,hora,id_paciente) VALUES ('$x','$paciente','$cpf_logado','$hoje','$hora','$cod_profissional')";
     $resultado2 = $conexao->prepare($sql2);
     $resultado2->execute();
-   ?>
-    
-    <style>
+   ?><style>
   @media print {
             #print, #voltar {
                 display: none;
@@ -60,7 +59,7 @@ if($resultado->execute()){
 </style>  
 
 <button style="width: 100%;" id="print" onclick="printPage()">Imprimir<img style="width: 2%;" src="../images/printer.png"></button>
-   <a href="cadastrar_agendamento.php?id=<?php echo $cod_profissional;?>" ><button  style="width: 100%; background-color:#B22222;color: white;" id="voltar">Voltar</button><a>
+   <a href="tabela_agendamento.php?id=<?php echo $cod_profissional;?>" ><button  style="width: 100%; background-color:#B22222;color: white;" id="voltar">Voltar</button><a>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
 
    <?php
@@ -128,7 +127,7 @@ if($resultado->execute()){
     $profissional = $y['nome'];
    }
    echo "<b>Profissional: </b>$profissional <br>";
-   $sql = "select procedimento from procedimentos where cod = $procedimento";
+   $sql = "select procedimento from procedimentos where id = $procedimento";
    $resultado = $conexao->prepare($sql);
    $resultado->execute();
    $x = $resultado->fetchAll();
@@ -174,6 +173,7 @@ if($resultado->execute()){
    $id_usuario = $result['id_usuario'];
 
    ?>
+   
    <div class="rodape row">
    <div class=" col-7">Usuário responsável: <?php echo $id_usuario; ?></div>
 <div class="col-5">Data e Hora de Geração do Boleto: <?=$data_geracao?></div>
