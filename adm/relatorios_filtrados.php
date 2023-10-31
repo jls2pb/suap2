@@ -145,6 +145,14 @@ if ($stmt->execute()) {
         echo "O número de procedimentos com entrada são: " . $resultado['quantidade_entrada'];
         echo "<table class='table table-striped table-bordered table-sm table-responsive' border='1'>";
         echo "<tr><th>Cod</th><th>Nome do Paciente</th><th>Procedimento</th><th>Data de Entrada</th></tr>";
+        echo '<form method="POST" id="searchForm" class="search-form">
+            <div class="input-group container">
+                <div class="form-outline">
+                    <input autofocus style="width: 105%;" type="search" id="pesquisa" name="nome" class="form-control" placeholder="BUSCAR..." oninput="this.value = this.value.toUpperCase(); searchTable();" style="text-transform: uppercase;">
+                    <input type="hidden" name="uaps" value="<?php echo $uapsSelecionada; ?>">
+                </div>
+            </div>  
+        </form>';
         foreach ($procedimentosEntrada as $procedimento) {
             echo "<tr>";
             echo "<td>" . $procedimento['id'] . "</td>";
@@ -161,6 +169,14 @@ if ($stmt->execute()) {
         echo "<p>O número de procedimentos agendados são: $numProcedimentosAgendados</p>";
         echo "<table class='table table-striped table-bordered table-sm table-responsive' border='1'>";
         echo "<tr><th>ID</th><th>Nome do Paciente</th><th>Procedimento</th><th>Data de Atendimento</th><th>Local de Atendimento</th><th>Profissional</th></tr>";
+        echo '<form method="POST" id="searchForm" class="search-form">
+        <div class="input-group container">
+            <div class="form-outline">
+                <input autofocus style="width: 105%;" type="search" id="pesquisa" name="nome" class="form-control" placeholder="BUSCAR..." oninput="this.value = this.value.toUpperCase(); searchTable();" style="text-transform: uppercase;">
+                <input type="hidden" name="uaps" value="<?php echo $uapsSelecionada; ?>">
+            </div>
+        </div>  
+    </form>';
         foreach ($agendamentos as $agendamento) {
             echo "<tr>";
             echo "<td>" . $agendamento['id'] . "</td>";
@@ -214,7 +230,14 @@ if ($stmt->execute()) {
                 echo "<h2>Agenda do Profissional: $profissional_nome</h2>";
                 echo "<table class='table table-striped table-bordered table-lg table-responsive'>";
                 echo "<tr><th>ID Agenda</th><th>Nome do Profissional</th><th>Dia</th><th>Início Manhã</th><th>Final Manhã</th><th>Início Tarde</th><th>Final Tarde</th></tr>";
-
+                echo '<form method="POST" id="searchForm" class="search-form">
+                <div class="input-group container">
+                    <div class="form-outline">
+                        <input autofocus style="width: 105%;" type="search" id="pesquisa" name="nome" class="form-control" placeholder="BUSCAR..." oninput="this.value = this.value.toUpperCase(); searchTable();" style="text-transform: uppercase;">
+                        <input type="hidden" name="uaps" value="<?php echo $uapsSelecionada; ?>">
+                    </div>
+                </div>  
+            </form>';
                 // Loop através dos resultados e exiba-os na tabela
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     echo "<tr>";
@@ -246,7 +269,14 @@ if ($stmt->execute()) {
             echo "<h3>Profissionais Cadastrados</h3><p>Total de profissionais cadastrados: " . $stmtProfissionais->rowCount() . "</p>";
             echo "<table class='table table-striped table-bordered table-sm' border='1'>";
             echo "<tr><th>ID Profissional</th><th>Nome</th><th>Área</th><th>Tempo de Atendimento</th></tr>";
-
+            echo '<form method="POST" id="searchForm" class="search-form">
+            <div class="input-group container">
+                <div class="form-outline">
+                    <input autofocus style="width: 105%;" type="search" id="pesquisa" name="nome" class="form-control" placeholder="BUSCAR..." oninput="this.value = this.value.toUpperCase(); searchTable();" style="text-transform: uppercase;">
+                    <input type="hidden" name="uaps" value="<?php echo $uapsSelecionada; ?>">
+                </div>
+            </div>  
+        </form>';
             // Loop através dos resultados e exiba-os na tabela
             while ($rowProfissional = $stmtProfissionais->fetch(PDO::FETCH_ASSOC)) {
                 echo "<tr>";
