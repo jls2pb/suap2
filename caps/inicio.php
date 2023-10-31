@@ -15,11 +15,13 @@ if(isset($_SESSION['cpf_caps'])){
     $limite_resultado = 6;
 
     // Calcular o início da visualização
-    $hoje = date('d/m/Y');
+    $hoje = date('Y-m-d');
     $inicio = ($limite_resultado * $pagina) - $limite_resultado;
-    $query = "SELECT * FROM agendamento WHERE status = 0 AND data_atendimento = '$hoje' AND local_atendimento = 'CAPS II DE SAO GONCALO DO AMARANTE' ORDER BY nome_paciente ASC LIMIT $limite_resultado OFFSET $inicio";
+    $query = "SELECT * FROM agendamento WHERE status = 0 AND data_atendimento = :hoje AND local_atendimento = 'CAPS II DE SAO GONCALO DO AMARANTE' ORDER BY nome_paciente ASC LIMIT $limite_resultado OFFSET $inicio";
     $result = $conexao->prepare($query);
+    $result->bindValue(':hoje', $hoje, PDO::PARAM_STR);
     $result->execute();
+    
     
     ?>
     <br>
@@ -66,12 +68,12 @@ if(isset($_SESSION['cpf_caps'])){
                         $nome_profissional = "Profissional não encontrado";
                     }
 
-                    $query = "SELECT procedimento FROM procedimentos WHERE id = :cod";
-                    $result = $conexao->prepare($query);
-                    $result->bindParam(':cod', $d['procedimento'], PDO::PARAM_INT);
-                    $result->execute();
-                    $row = $result->fetch(PDO::FETCH_ASSOC);
-                    $procedimento = $row['procedimento'];
+                    $query1 = "SELECT procedimento FROM procedimentos WHERE id = :cod";
+                    $result1 = $conexao->prepare($query1);
+                    $result1->bindParam(':cod', $d['procedimento'], PDO::PARAM_INT);
+                    $result1->execute();
+                    $row1 = $result1->fetch(PDO::FETCH_ASSOC);
+                    $procedimento = $row1['procedimento'];
             ?>
                     <tr>
                         <td><?php
