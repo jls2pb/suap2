@@ -123,33 +123,33 @@ if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
                     ?>
                     <div class = "row">
                 <div class = "col">        
-            <?php 
+                <?php 
                if ($pagina > 1) {
-                echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='tabela_agendamento.php?page=1&cpf=$cpf_logado'>Primeira</a> ";
+                echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='tabela_agendamento.php?page=1&cpf=$cpf_logado&id=$id'>Primeira</a> ";
             }
     
             if ($pagina > 1) {
                 $pagina_anterior = $pagina - 1;
-                echo "<a href='tabela_agendamento.php?page=$pagina_anterior&cpf=$cpf_logado' class='btn'><label style='font-size:30px;' title='Anterior'><span aria-hidden='true'>&laquo;</span></label></a> ";
+                echo "<a href='tabela_agendamento.php?page=$pagina_anterior&cpf=$cpf_logado&id=$id' class='btn'><label style='font-size:30px;' title='Anterior'><span aria-hidden='true'>&laquo;</span></label></a> ";
             }
     
             if ($pagina < $qnt_pagina) {
                 $proxima_pagina = $pagina + 1;
-                echo "<a href='tabela_agendamento.php?page=$proxima_pagina&cpf=$cpf_logado' class='btn'><label style='font-size:30px;' title='Próximo'><span aria-hidden='true'>&raquo;</span></label></a> ";
+                echo "<a href='tabela_agendamento.php?page=$proxima_pagina&cpf=$cpf_logado&id=$id' class='btn'><label style='font-size:30px;' title='Próximo'><span aria-hidden='true'>&raquo;</span></label></a> ";
             }
     
             if ($pagina < $qnt_pagina) {
                 ?><div class="float-right"><?php
-                echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='tabela_agendamento.php?page=$qnt_pagina&cpf=$cpf_logado'>Última</a> ";
+                echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='tabela_agendamento.php?page=$qnt_pagina&cpf=$cpf_logado&id=$id'>Última</a> ";
             ?></div> <?php
             }
 
             
         } else {
             echo "<p style='color: #f00;'>Erro: Nenhum usuário encontrado!</p>";
-             echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='tabela_agendamento.php?page=1&cpf=$cpf_logado'>Primeira</a> ";
+             echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='tabela_agendamento.php?page=1&cpf=$cpf_logado&id=$id'>Primeira</a> ";
              $pagina_anterior = $pagina - 1;
-             echo "<a href='tabela_agendamento.php?page=$pagina_anterior&cpf=$cpf_logado' class='btn'><label style='font-size:30px;' title='Anterior'><span aria-hidden='true'>&laquo;</span></label></a> ";
+             echo "<a href='tabela_agendamento.php?page=$pagina_anterior&cpf=$cpf_logado&id=$id' class='btn'><label style='font-size:30px;' title='Anterior'><span aria-hidden='true'>&laquo;</span></label></a> ";
         
         }  
                 
