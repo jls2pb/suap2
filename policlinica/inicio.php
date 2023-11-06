@@ -95,7 +95,7 @@ if(isset($_SESSION['cpf_policlinica'])){
                             }
                         ?></td>
                         <td>
-                            <a class="btn text-white" style="background-color: #66a7ff;" href="editar_agendamento.php?id=<?php echo $d["id_agendamento"];?>">COMPARECEU</a>
+                            <a class="btn text-white" style="background-color: #66a7ff;" href="editar_comparecimento.php?status=1&id=<?php echo $d["id_agendamento"];?>">COMPARECEU</a>
                             <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php echo $d['id_agendamento'] ; ?>)" >NÃO COMPARECEU</a>
                         </td>
                     </tr>
@@ -159,7 +159,7 @@ if(isset($_SESSION['cpf_policlinica'])){
             var confirmacao = confirm("CONFIRMAÇÃO DE NÃO COMPARECIMENTO:");
             if (confirmacao) {
                 // Se o usuário confirmar, redirecione para o script de exclusão PHP
-                window.location = "editar_comparecimento.php?&id=" + id;
+                window.location = "editar_comparecimento.php?status=2&id=" + id;
             } else {
                 // Se o usuário cancelar, não faça nada
             }
