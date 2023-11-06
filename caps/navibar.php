@@ -19,11 +19,11 @@
                     <a href="relatorio.php" class="link-dark rounded text-white"><b>NÃO COMPARECIMENTO</b></a>
                     </li>
                     <li class="nav-item ml-auto">
-                    <a href="inicio_agendamento.php" class="link-dark rounded text-white"><span class="bi bi-card-list"></span><b>PROFISSIONAIS</b></a>
+                    <a href="inicio_agendamento.php" class="link-dark rounded text-white"><b>PROFISSIONAIS</b></a>
                     </li>
 
                     <li class="nav-item ml-auto">
-                    <a href="sair.php" class="link-dark rounded text-white"><span class="bi bi-door-open-fill"></span><b>SAIR</b></a></li>
+                    <a href="sair.php" class="link-dark rounded text-white"><b>SAIR</b></a></li>
                     </li>
 
                 </ul>

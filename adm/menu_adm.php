@@ -109,7 +109,7 @@ require_once("../conexao.php");
           </li>
           </ul></li>
           <li>
-          <a href="inicio_agendamento.php" class="link-dark rounded"><span class=""></span><b>AGENDAMENTO</b></a></li>
+          <a href="inicio_agendamento.php" class="link-dark rounded"><i class="bi bi-card-list"></i><b> AGENDAMENTO</b></a></li>
           </li>
 
           <li class="sub-menu-second">
