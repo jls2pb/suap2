@@ -74,6 +74,14 @@ if(isset($_SESSION['cpf_adm'])){
     <label>
       <input type="checkbox" name="pacientes_excluidos" value="pacientes_excluidos"> Pacientes
     </label><br>
+
+  <button class="btn btn-primary" type="submit">Filtrar</button>
+</div>
+</form>
+
+<h3>Buscar Cancelamentos</h3>
+<form method="POST" action="relatorios_filtrados.php">
+  <div class="form-outline mb-4">
     <label>
       <input type="checkbox" name="agendamentos_excluidos" value="agendamentos_excluidos"> Agendamentos
     </label><br>
