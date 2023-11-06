@@ -21,7 +21,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
  $inicio = ($limite_resultado * $pagina) - $limite_resultado;
 
 
- $query_usuarios = "SELECT DISTINCT ON (nome_paciente) * FROM agendamento  WHERE local_atendimento = 'POLICLINICA MUNICIPAL DE SAO GONÇALO DO AMARANTE' ORDER BY nome_paciente ASC LIMIT $limite_resultado OFFSET $inicio";
+ $query_usuarios = "SELECT DISTINCT ON (nome_paciente) * FROM agendamento  WHERE local_atendimento = 'CER MARIA DA CONCEICAO RODRIGUES DE ANDRADE' ORDER BY nome_paciente ASC LIMIT $limite_resultado OFFSET $inicio";
  $result_usuarios = $conexao->prepare($query_usuarios);
  $result_usuarios->execute();
 

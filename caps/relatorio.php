@@ -30,7 +30,7 @@ if (isset($_SESSION['cpf_caps'])) {
     echo "</div>";
     echo "<hr style='background-color: black;'>";
 
-        $query = "SELECT id_agendamento, nome_paciente, data_atendimento, hora, endereco_local, local_atendimento, status FROM agendamento WHERE status = 2";
+        $query = "SELECT id_agendamento, nome_paciente, data_atendimento, hora, endereco_local, local_atendimento, status FROM agendamento WHERE status = 2 AND local_atendimento = 'CAPS II DE SAO GONCALO DO AMARANTE'";
         $stmt = $conexao->prepare($query);
         $stmt->execute();
 

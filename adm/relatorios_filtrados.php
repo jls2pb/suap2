@@ -373,7 +373,7 @@ echo '<form method="POST" id="searchForm" class="search-form">
 
         // Verifique se há resultados
         if ($stmt1->rowCount() > 0) {
-            echo "<h3>Procedimentos Excluídos: " . $stmt1->rowCount() . "</h3>" ;
+            echo "<h3>Agendamentos Excluídos: " . $stmt1->rowCount() . "</h3>" ;
            echo '<form method="POST" id="searchForm" class="search-form">
             <div class="input-group container div_pesquisa">
                 <div class="form-outline">

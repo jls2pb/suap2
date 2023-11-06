@@ -1,11 +1,9 @@
 <?php 
 date_default_timezone_set('America/Sao_Paulo');
 require_once("../conexao.php");
+$status = $_GET["status"];
 $id = $_GET["id"];
-
-
-
-$sql = "UPDATE agendamento SET status = 2 WHERE id_agendamento = '$id'";
+$sql = "UPDATE agendamento SET status = '$status' WHERE id_agendamento = '$id'";
 $resultado = $conexao->prepare($sql);
 if($resultado->execute()){ ?>
     <script>
