@@ -65,6 +65,7 @@ foreach ($a as $k) {
     $mae = $y['nome_da_mae'];
     $cns = $y['cns'];
     $data_nascimento = $y['nascimento'];
+    $ubs = $y['ubs'];
    }
    echo "<div class='col-5'>";
    echo "<b>Nome: </b>$paciente";
@@ -72,13 +73,13 @@ foreach ($a as $k) {
    echo "<div class='col-5'>";
    echo "<b>Telefone: </b>$telefone <br>";
    echo "</div>";
-
+   
    echo "</div>";
-
+   
    echo "<b>Nome da mãe: </b>$mae <br>";
-
+   
    echo "<div class='row'>";
-
+   
    echo "<div class='col-4'>";
    echo "<b>Nº do Cartão Nacional: </b>$cns";
    echo "</div>";
@@ -89,10 +90,11 @@ foreach ($a as $k) {
    echo "<div class='col-4'>";
    echo "<b>Sexo: </b> $sexo <br>";
    echo "</div>";
-
+   
    echo "</div>";
-
+   
    echo "<b>End. Residencial: </b> $endereco <br>";
+   echo "<b>UBS: </b> $ubs <br>";
    echo "<b>Está agendado para: </b>$local_atendimento <br>";
    echo "<b>Endereço: </b>$endereco_local <br>";
    $sql = "select nome from profissionais where id_profissional = $cod_profissional";

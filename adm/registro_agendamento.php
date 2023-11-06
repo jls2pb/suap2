@@ -27,6 +27,7 @@ $result_profissionais->execute();
 $profissional = $result_profissionais->fetch(PDO::FETCH_ASSOC);
 $nome_profissional = $profissional['nome'];
 
+
 if ($resultadoVerificar->rowCount() > 0) {
     echo "<script>alert('Esse horário já está agendado. Por favor, escolha outro horário.'); window.history.back();</script>";
     exit; // Encerra o script em caso de horário duplicado
@@ -89,6 +90,7 @@ if($resultado->execute()){
     $mae = $y['nome_da_mae'];
     $cns = $y['cns'];
     $data_nascimento = $y['nascimento'];
+    $ubs = $y['ubs'];
    }
    echo "<div class='col-5'>";
    echo "<b>Nome: </b>$paciente";
@@ -117,6 +119,7 @@ if($resultado->execute()){
    echo "</div>";
    
    echo "<b>End. Residencial: </b> $endereco <br>";
+   echo "<b>UBS: </b> $ubs <br>";
    echo "<b>Está agendado para: </b>$local_atendimento <br>";
    echo "<b>Endereço: </b>$endereco_local <br>";
    $sql = "select nome from profissionais where id_profissional = $cod_profissional";

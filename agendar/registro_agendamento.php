@@ -89,6 +89,7 @@ if($resultado->execute()){
     $mae = $y['nome_da_mae'];
     $cns = $y['cns'];
     $data_nascimento = $y['nascimento'];
+    $ubs = $y['ubs'];
    }
    echo "<div class='col-5'>";
    echo "<b>Nome: </b>$paciente";
@@ -117,6 +118,7 @@ if($resultado->execute()){
    echo "</div>";
    
    echo "<b>End. Residencial: </b> $endereco <br>";
+   echo "<b>UBS: </b> $ubs <br>";
    echo "<b>Está agendado para: </b>$local_atendimento <br>";
    echo "<b>Endereço: </b>$endereco_local <br>";
    $sql = "select nome from profissionais where id_profissional = $cod_profissional";
