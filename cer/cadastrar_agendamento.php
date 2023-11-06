@@ -108,6 +108,7 @@ include "../footer.php";
 
 </form>
 
+
 <script>
     $(document).ready(function () {
         // Quando o usuário digitar algo no input, acionamos a função de busca
@@ -148,6 +149,7 @@ include "../footer.php";
                 // Atualize os procedimentos com base no código do paciente
                 atualizarProcedimentos(cod);
                 atualizarSexo(cpf);
+                atualizarEndereco(cpf);
             }
         });
 
@@ -202,7 +204,22 @@ include "../footer.php";
         }
     });
 }
-
+function atualizarEndereco(cpf) {
+    $.ajax({
+        url: '../buscar/buscar_endereco.php', 
+        type: 'GET',
+        data: { cpf: cpf },
+        dataType: 'json',
+        success: function (data) {
+            if (data) {
+                        $('#endereco_input').val(data.no_tipo_logradouro +' '+data.ds_logradouro+', '+data.nu_numero);
+                    } else {
+                        // Caso não seja encontrado um endereço correspondente, limpe o campo
+                        $('#endereco_input').val('');
+                    }
+        }
+    });
+}
 
     });
 </script>
