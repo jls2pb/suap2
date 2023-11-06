@@ -79,8 +79,8 @@ if ($resultado->execute()) {
             <label class="form-label">SEXO</label>
             <div class="form-outline mb-4">
                 <select required class="form-control form-control-lg" name="sexo">
-                    <option value="M" <?php if ($agendamento['sexo'] === 'M') echo 'selected'; ?>>MASCULINO</option>
-                    <option value="F" <?php if ($agendamento['sexo'] === 'F') echo 'selected'; ?>>FEMININO</option>
+                <option value="MASCULINO" <?php if ($agendamento['sexo'] === 'MASCULINO') echo 'selected'; ?>>MASCULINO</option>
+                    <option value="FEMININO" <?php if ($agendamento['sexo'] === 'FEMININO') echo 'selected'; ?>>FEMININO</option>
                 </select>
             </div>
         </div>

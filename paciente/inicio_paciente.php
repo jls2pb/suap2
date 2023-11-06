@@ -51,7 +51,7 @@ if(isset($_SESSION['cpf'])){
                 // Processar os dados do procedimento aqui
                 $solicitacao = ($d2["data_da_solicitacao"] != NULL) ? date('d/m/Y', strtotime($d2["data_da_solicitacao"])) : NULL;
                 $entrada = ($d2["data_de_entrada_cadastro"] != NULL) ? date('d/m/Y', strtotime($d2["data_de_entrada_cadastro"])) : NULL;
-                $saida = ($d2["data_da_saida"] != NULL) ? $d2["data_da_saida"] : NULL;
+                $saida = ($d2["data_da_saida"] != NULL ) ? date('d/m/Y', strtotime($d2["data_da_saida"])) : NULL;
                 $agendamento = ($d2["data_do_agendamento"] != NULL) ? date('d/m/Y', strtotime($d2["data_do_agendamento"])) : NULL;
         ?>
             <tr>

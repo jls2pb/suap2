@@ -28,10 +28,10 @@ include "../footer.php";
     <div class="col-4">
         <div class="form-outline mb-4">
             <label class="form-label">SEXO: </label>
-            <select class="form-control form-control-lg" name = "sexo">
+            <select class="form-control form-control-lg" name = "sexo" id="sexo">
             <option selected disabled value = ""> Selecione o sexo </option>
-                <option value = "M"> MASCULINO </option>
-                <option value = "F"> FEMININO </option>
+                <option value = "MASCULINO"> MASCULINO </option>
+                <option value = "FEMININO"> FEMININO </option>
             </select>    
         </div>
         </div>
@@ -135,7 +135,7 @@ include "../footer.php";
         });
 
         // Quando uma opção é selecionada no datalist
-        $('#paciente_input').on('blur', function () {
+        $('#paciente_input').on('change', function () {
             // Se o valor selecionado está em cache
             if (this.list.querySelector("option[value='" + this.value + "']")) {
                 var cpf = this.list.querySelector("option[value='" + this.value + "']").getAttribute('data-cpf');
@@ -147,6 +147,7 @@ include "../footer.php";
 
                 // Atualize os procedimentos com base no código do paciente
                 atualizarProcedimentos(cod);
+                atualizarSexo(cpf);
             }
         });
 
@@ -181,7 +182,28 @@ include "../footer.php";
                 }
             });
         }
-        
+
+        function atualizarSexo(cpf) {
+    // Realize uma solicitação AJAX para buscar o sexo com base no CPF
+    $.ajax({
+        url: '../buscar/buscar_sexo.php', // Substitua pelo URL correto para buscar o sexo com base no CPF do paciente
+        type: 'GET',
+        data: { cpf: cpf },
+        dataType: 'json',
+        success: function (data) {
+            // Verifique o valor do sexo (deve ser "M" ou "F")
+            if (data && (data.sexo === "MASCULINO" || data.sexo === "FEMININO")) {
+                // Se o valor é válido, selecione a opção apropriada no campo "SEXO"
+                $('#sexo option[value="' + data.sexo + '"]').prop('selected', true);
+            } else {
+                // Caso contrário, selecione a primeira opção (desabilitada)
+                $('#sexo option:first').prop('selected', true);
+            }
+        }
+    });
+}
+
+
     });
 </script>
 
