@@ -408,6 +408,45 @@ echo '<form method="POST" id="searchForm" class="search-form">
             echo "Nenhum resultado encontrado.";
         }
     }
+    if (isset($_POST['nao_comparecidos'])) {
+     
+            $query = "SELECT id_agendamento, nome_paciente, data_atendimento, hora, endereco_local, local_atendimento, status FROM agendamento WHERE status = 2";
+            $stmt = $conexao->prepare($query);
+            $stmt->execute();
+    
+            $agendamentos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            if (!empty($agendamentos)) {
+                echo '<form method="POST" id="searchForm" class="search-form">
+                <div class="input-group container">
+                    <div class="form-outline">
+                        <input autofocus style="width: 105%;" type="search" id="pesquisa" name="nome" class="form-control" placeholder="BUSCAR..." oninput="this.value = this.value.toUpperCase(); searchTable();" style="text-transform: uppercase;">
+                        <input type="hidden" name="uaps" value="<?php echo $uapsSelecionada; ?>">
+                    </div>
+                </div>  
+            </form>';
+                echo "<h3>Agendamentos de quem não compareceu</h3>";
+                
+                echo "<table class='table table-striped table-bordered table-sm table-responsive' border='1'>";
+                echo "<tr><th>Nome do Paciente</th><th>Data de Atendimento</th><th>Hora</th><th>Endereço Local</th><th>Local de Atendimento</th><th>Status</th></tr>";
+                foreach ($agendamentos as $agendamento) {
+                    echo "<tr>";
+                    
+                    $dia = date('d/m/Y', strtotime($agendamento["data_atendimento"]));
+                   
+            
+                    echo "<td>" . $agendamento['nome_paciente'] . "</td>";
+                    echo "<td>" . $dia . "</td>";
+                    echo "<td>" . $agendamento['hora'] . "</td>";
+                    echo "<td>" . $agendamento['endereco_local'] . "</td>";
+                    echo "<td>" . $agendamento['local_atendimento'] . "</td>";
+                    echo "<td>Não Compareceu</td>";
+                    echo "</tr>";
+                }
+                echo "</table> <br>";
+            } else {
+                echo "Nenhum resultado encontrado.";
+            }
+        }
 
 } else {
     header("location: ../index.php");
