@@ -21,7 +21,9 @@ require_once("../conexao.php");
         $xr = $rqdp->fetchAll();
         foreach ($xr as $key => $a) {
           ?>
-          <p style="margin-top: 15px; color: black;">PACIENTES <br>CADASTRADOS: <?= $a["quantidade"]; ?> </p>
+          <p style="margin-top: 15px; color: black;">PACIENTES <br>CADASTRADOS: <?php $cadastrados = $a["quantidade"];
+          echo $cadastrados;
+          ?> </p>
           <?php 
         }
       ?>
@@ -31,7 +33,7 @@ require_once("../conexao.php");
     <div class="col-sm border rounded d-flex" style="margin: 10px;">
     <img style="width: 30%; padding: 7px;"src="../images/espera.jpeg">
     <?php
-    $query = "SELECT COUNT(*) AS quantidade FROM tabela WHERE cpf NOT IN (SELECT cpf FROM agendamento)";
+    $query = "SELECT COUNT(DISTINCT cod) AS quantidade FROM procedimentos WHERE data_do_agendamento IS NULL OR data_do_agendamento = ''";
         $stmt = $conexao->prepare($query);
         $stmt->execute();
 
@@ -42,7 +44,9 @@ require_once("../conexao.php");
    
     foreach ($xr as $key => $a) {
 ?>  
-    <p style="margin-top: 15px; color: black;">PACIENTES EM <br> ESPERA: <?= $a["quantidade"]; ?> </p>
+    <p style="margin-top: 15px; color: black;">PACIENTES EM <br> ESPERA: <?php $espera = $a["quantidade"]; 
+    echo $espera;
+    ?> </p>
     </div>
     <?php
     }
@@ -50,33 +54,13 @@ require_once("../conexao.php");
 
     <div class="col-sm border rounded d-flex" style="margin: 10px;">
     <img style="width: 30%; padding: 7px;"src="../images/calendario.jpeg"> 
-    <?php
-$cont = 0;
-
-$sql = "SELECT t.cod, COUNT(p.data_do_agendamento) as cont
-        FROM tabela t
-        LEFT JOIN procedimentos p ON t.cod = p.cod
-        WHERE p.data_do_agendamento IS NOT NULL AND p.data_do_agendamento != ''
-        GROUP BY t.cod";
-
-$stmt = $conexao->prepare($sql);
-$stmt->execute();
-$resultado = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-foreach ($resultado as $r) {
-    $cod = $r['cod'];
-    $cont += $r['cont'];
     
-    // Faça o que você precisa com $cod e $cont aqui
-}
 
-?>
 
-<p style="margin-top: 15px; color: black;">PACIENTES <br>AGENDADOS: <?= $cont; ?>  </p>
-
-    <?php 
-        
-      ?>                         
+<p style="margin-top: 15px; color: black;">PACIENTES <br>AGENDADOS: <?php $result = $cadastrados-$espera;
+echo $result;
+?>  </p>
+                    
     </div>
   </div>
 
