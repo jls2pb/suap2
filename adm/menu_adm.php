@@ -109,7 +109,7 @@ require_once("../conexao.php");
           </li>
           </ul></li>
           <li>
-          <a href="inicio_agendamento.php" class="link-dark rounded"><i class="bi bi-card-list"></i><b> AGENDAMENTO</b></a></li>
+          <a href="inicio_agendamento.php" class="link-dark rounded"><span class="bi bi-card-list"></span><b> AGENDAMENTO</b></a></li>
           </li>
 
           <li class="sub-menu-second">
@@ -136,14 +136,14 @@ require_once("../conexao.php");
           </li>
 
           <li>
-            <a href="relatorios.php"><i class="bi bi-file-earmark-text"></i> <b> RELATÓRIOS</b></a>
+            <a href="relatorios.php"><span class="bi bi-file-earmark-text"></span> <b> RELATÓRIOS</b></a>
           </li>
           <li>
 
-            <a href="exibir_resultado_adm.php"><span class="bi bi-bar-chart-line-fill" ></i></span><b> RANKING </b></a>
+            <a href="exibir_resultado_adm.php"><span class="bi bi-bar-chart-line-fill" ></span><b> RANKING </b></a>
           </li>
           <li>
-            <a href="../sair.php"><span class="bi bi-door-open-fill" ></i></span><b> SAIR</b></a>
+            <a href="../sair.php"><span class="bi bi-door-open-fill" ></span><b> SAIR</b></a>
           </li>
         </ul>
 
