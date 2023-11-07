@@ -83,7 +83,7 @@ if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
                     ?></td>
             <td class = "text-center">
                   <a class="btn text-white" style="background-color: #66a7ff;" href = "form_edita_agendamento.php?id=<?php echo $d["id_agendamento"];?>" role="button">EDITAR</a>
-                  <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php echo $d['id_agendamento'] ; ?>)" role="button">DESMARCAR</a>
+                  <a class="btn text-white btn-danger" onclick="confirmarCancelamento(<?php echo $d['id_agendamento'] ; ?>)" role="button">DESMARCAR</a>
                   <a class="btn text-white bg-info" href = "boleto.php?id=<?php echo $d["id_agendamento"];?>" role="button">BOLETO</a>
                 </td>
             </tr>
@@ -101,7 +101,7 @@ if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
                     // Maximo de link
                     $maximo_link = 2;
                     ?>
-                     <div class = "row">
+                    <div class = "row">
                 <div class = "col">        
                 <?php 
                if ($pagina > 1) {
@@ -143,10 +143,21 @@ if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
             var confirmacao = confirm("Tem certeza de que deseja excluir este registro?");
             if (confirmacao) {
                 // Se o usuário confirmar, redirecione para o script de exclusão PHP
-                window.location = "desmarcar_agendamento.php?cod=<?php echo $cod;?>&id1=<?php echo $id; ?>&id=" + id;
+                window.location = "excluir_agendamento.php?cod=<?php echo $cod;?>&id1=<?php echo $id; ?>&id=" + id;
             } else {
                 // Se o usuário cancelar, não faça nada
             }
         }
 
    </script>  
+   <script>
+  function confirmarCancelamento(id) {
+    var motivo = prompt("Por favor, digite o motivo para desmarcar:");
+    if (motivo !== null) {
+      // Se o usuário inseriu um motivo (não cancelou o prompt), redirecione para o script de desmarcamento com o motivo
+      window.location = "desmarcar_agendamento.php?id1=<?php echo $id; ?>&id=" + id + "&motivo=" + encodeURIComponent(motivo);
+    } else {
+      // Se o usuário cancelar, não faça nada
+    }
+  }
+</script>

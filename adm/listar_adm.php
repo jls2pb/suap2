@@ -124,6 +124,7 @@ if($resultado->execute()){
             <th scope="col">COD</th>
             <th scope="col">NOME</th>
             <th scope="col">PROCEDIMENTO</th>
+            <th scope="col">STATUS</th>
             <th scope="col">PROFISSIONAL</th>
             <th scope="col">SOLICITAÇÃO </th><br>
            <th scope="col">ENTRADA(CAD)</th>
@@ -173,6 +174,30 @@ if($resultado->execute()){
                       <th scope="row"><?php echo $y2["id"]; ?></th>
                       <td><?php echo $y2["nome_paciente"]; ?></td>
                       <td><?php echo $y2["procedimento"]; ?></td> 
+                      <td>
+                        <?php
+                        $id = $y2['id'];
+                                $query = "SELECT status FROM agendamento WHERE procedimento = $id";
+                                $result = $conexao->prepare($query);
+                                $result->execute();
+                                if ($result && $result->rowCount() > 0) {
+                                $row = $result->fetch(PDO::FETCH_ASSOC);
+                                $status = $row['status'];
+                                if($status===0){
+                                  echo "AGENDADO";
+                                }
+                                elseif($status===1){
+                                  echo "COMPARECEU";
+                                }
+                                elseif($status===2){
+                                  echo "NÃO COMPARECEU";
+                                }  }
+
+                                else{
+                                  echo "AGUARDANDO";
+                                }
+                        ?>
+                      </td>
                     <td><?php echo $y2["profissional"]; ?></td>
                     <td><?php echo $solicitacao ?></td>  
             <td><?php echo $entrada ?></td>

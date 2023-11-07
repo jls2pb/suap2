@@ -151,13 +151,18 @@ if($resultado->execute()){
    
    echo "</div>";
    echo "</div>";
-   echo "<p style='color: black;' class='text-center'>$n_procedimento</p>";
    echo "<div class='row' style='color: black;'>";
-   echo "<div class='col-8 p-5'>";
+
+   echo "<div class='col-3 p-5'>";
    echo "Atenciosamente, <br> A coordenação";
    echo "</div>";
-   
-   echo "<div col-2>";
+
+echo "<div class='col-5'>";
+echo "<p>Observações</p>";
+echo "<textarea rows='5' cols='50' maxlenght='500'></textarea>";
+echo "</div>";
+
+   echo "<div col-4>";
    echo "<p><b>O paciente deverá retornar para:</b></p>";
    echo "<input type='checkbox' id='paciente' name='paciente' value='paciente'>
    <label for='paciente'>Mostrar resultado do exame em _ dias</label><br>";
@@ -168,7 +173,7 @@ if($resultado->execute()){
    echo "<input type='checkbox' id='paciente' name='paciente' value='paciente'>
    <label for='paciente'>Alta na especialidade</label><br>";
    echo "</div>";
-   echo "</div>";
+   echo "</div><br>";
    $sql2 = "SELECT id_usuario FROM usuario WHERE cpf =  '$cpf_logado'";
    $stmt = $conexao->prepare($sql2);
    $stmt->execute();
