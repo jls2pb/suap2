@@ -37,7 +37,7 @@ include "../footer.php";
 
         <div class="col-4">
         <div class="form-outline mb-4">
-            <label class="form-label">ENDEREÇO RESIDENCIAL</label>
+            <label class="form-label">ENDEREÇO RESIDENCIAL: </label>
             <input style="width: 150%;" type="text" name="endereco" class="form-control form-control-lg" oninput="handleInput(event)" id="endereco_input">
         </div>
         </div>      
