@@ -76,7 +76,7 @@ if ($resultado->execute()) {
                      }
                  }
                  ?>
-            </select>
+            </select
         </div>
         <div class="col">
             <label class="form-label">HORA</label>
@@ -122,9 +122,9 @@ if ($resultado->execute()) {
             <label class="form-label">STATUS</label>
             <div class="form-outline mb-4">
                 <select required class="form-control form-control-lg" name="status">
-                    <option value="0" <?php if ($agendamento['status'] === '0') echo 'selected'; ?>>Agendado</option>
-                    <option value="1" <?php if ($agendamento['status'] === '1') echo 'selected'; ?>>Compareceu</option>
-                    <option value="2" <?php if ($agendamento['status'] === '2') echo 'selected'; ?>>Não Compareceu</option>
+                    <option value="0" <?php if ($agendamento['status'] === 0) echo 'selected'; ?>>Agendado</option>
+                    <option value="1" <?php if ($agendamento['status'] === 1) echo 'selected'; ?>>Compareceu</option>
+                    <option value="2" <?php if ($agendamento['status'] === 2) echo 'selected'; ?>>Não Compareceu</option>
                 </select>
             </div>
         </div>

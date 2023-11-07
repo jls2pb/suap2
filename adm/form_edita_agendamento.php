@@ -100,8 +100,8 @@ if ($resultado->execute()) {
             <label class="form-label">SEXO</label>
             <div class="form-outline mb-4">
                 <select required class="form-control form-control-lg" name="sexo">
-                <option value="MASCULINO" <?php if ($agendamento['sexo'] === 'MASCULINO') echo 'selected'; ?>>MASCULINO</option>
-                    <option value="FEMININO" <?php if ($agendamento['sexo'] === 'FEMININO') echo 'selected'; ?>>FEMININO</option>
+                <option value="MASCULINO" <?php if ($agendamento['sexo'] === 'MASCULINO') {  echo 'selected'; }?>>MASCULINO</option>
+                    <option value="FEMININO" <?php if ($agendamento['sexo'] === 'FEMININO') {echo 'selected';} ?>>FEMININO</option>
                 </select>
             </div>
         </div>
@@ -124,9 +124,10 @@ if ($resultado->execute()) {
             <label class="form-label">STATUS</label>
             <div class="form-outline mb-4">
                 <select required class="form-control form-control-lg" name="status">
-                    <option value="0" <?php if ($agendamento['status'] === '0') echo 'selected'; ?>>Agendado</option>
-                    <option value="1" <?php if ($agendamento['status'] === '1') echo 'selected'; ?>>Compareceu</option>
-                    <option value="2" <?php if ($agendamento['status'] === '2') echo 'selected'; ?>>Não Compareceu</option>
+                   
+                    <option value="0" <?php if ($agendamento['status'] === 0) {echo 'selected';} ?>>Agendado</option>
+                    <option value="1" <?php if ($agendamento['status'] === 1) {echo 'selected';} ?>>Compareceu</option>
+                    <option value="2" <?php if ($agendamento['status'] === 2) {echo 'selected';} ?>>Não Compareceu</option>
                 </select>
             </div>
         </div>
