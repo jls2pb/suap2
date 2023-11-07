@@ -32,14 +32,14 @@ if(isset($_SESSION['cpf_policlinica'])){
     <table style="" class="table table-striped table-bordered table-sm table-responsive">
         <thead style="background-color: #66a7ff;" class="thead text-white">
             <tr>
-                <th scope="col">DATA DO ATENDIMENTO</th>
+                <th scope="col">DATA</th>
                 <th scope="col">HORA</th>
-                <th scope="col">NOME DO PACIENTE</th>
+                <th scope="col">PACIENTE</th>
                 <th scope="col">SEXO</th>
                 <th scope="col">ENDEREÇO RESIDENCIAL</th>
                 <th scope="col">CPF</th>
                 <th scope="col">ENDEREÇO LOCAL</th>
-                <th scope="col">NOME DO PROFISSIONAL</th>
+                <th scope="col">PROFISSIONAL</th>
                 <th scope="col">LOCAL DO ATENDIMENTO</th>
                 <th scope="col">PROCEDIMENTO</th>
                 <th scope="col">STATUS</th>
