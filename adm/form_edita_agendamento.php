@@ -56,8 +56,28 @@ if ($resultado->execute()) {
                 <?php
                 $d = date('d/m/Y', strtotime($agendamento['data_atendimento']));
                  echo $d; 
+
                  ?>
                  </option>
+                 <option disabled value="">Datas disponíveis:</option>
+                 <?php
+
+                 $sql9 = "select * from agenda_profissional where id_profissional = '$selectedProfissional'";
+                 $resultado9 = $conexao->prepare($sql9);
+                if ($resultado9->execute()) {
+                     $x = $resultado9->fetchAll();
+                     $dataAtual = date('Y-m-d'); // Obtém a data atual no formato SQL (AAAA-MM-DD)
+                     foreach ($x as $dado) {
+                         $dataDisponivel = $dado['dia']; // Data disponível no formato SQL (AAAA-MM-DD)
+                         
+                         // Verifique se a data disponível é posterior à data atual
+                         if ($dataDisponivel >= $dataAtual) {
+                             $formattedDate = date('d/m/Y', strtotime($dataDisponivel));
+                             echo "<option value=\"$dataDisponivel\">$formattedDate</option>";
+                         }
+                     }
+                 }
+                 ?>
             </select>
         </div>
         <div class="col">

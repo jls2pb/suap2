@@ -20,7 +20,7 @@ include "../footer.php";
 <div class="col-4">
         <div class="form-outline mb-4">
             <label class="form-label">NOME DO PACIENTE: </label>
-            <input type="text" name="paciente" class="form-control form-control-lg" oninput="handleInput(event)" id="paciente_input" list="paciente_list">
+            <input style="width: 150%;" type="text" name="paciente" class="form-control form-control-lg" oninput="handleInput(event)" id="paciente_input" list="paciente_list" required>
             <datalist id="paciente_list"></datalist>
         </div>
     </div>
@@ -28,7 +28,7 @@ include "../footer.php";
     <div class="col-4">
         <div class="form-outline mb-4">
             <label class="form-label">SEXO: </label>
-            <select class="form-control form-control-lg" name = "sexo" id="sexo">
+            <select style="width: 150%;" class="form-control form-control-lg" name = "sexo" id="sexo">
             <option selected disabled value = ""> Selecione o sexo </option>
                 <option value = "MASCULINO"> MASCULINO </option>
                 <option value = "FEMININO"> FEMININO </option>
@@ -39,13 +39,13 @@ include "../footer.php";
         <div class="col-4">
         <div class="form-outline mb-4">
             <label class="form-label">ENDEREÇO RESIDENCIAL</label>
-            <input type="text" name="endereco" class="form-control form-control-lg" oninput="handleInput(event)" id="endereco_input">
+            <input style="width: 150%;" type="text" name="endereco" class="form-control form-control-lg" oninput="handleInput(event)" id="endereco_input">
         </div>
         </div>      
     <div class="col-4">
         <div class="form-outline mb-4">
             <label class="form-label">PROCEDIMENTO: </label>
-            <select class="form-control form-control-lg" name="procedimento" id="procedimento">
+            <select style="width: 150%;" class="form-control form-control-lg" name="procedimento" id="procedimento">
                 <option  value="">Selecione um procedimento</option>
             </select>
         </div>
@@ -56,7 +56,7 @@ include "../footer.php";
     <div class="col-4">
     <div class="form-outline mb-4">
         <label class="form-label">DIA DO ATENDIMENTO: </label>
-        <select class="form-control form-control-lg" name="dia" id="dia" onchange="carregarHorarios()">
+        <select style="width: 150%;" class="form-control form-control-lg" name="dia" id="dia" onchange="carregarHorarios()">
         <option selected disabled value = "">Selecione uma data</option>
             <?php
             // Conexão com o banco de dados
@@ -83,7 +83,7 @@ include "../footer.php";
 <div class="col-4">
     <div class="form-outline mb-4">
         <label class="form-label">HORARIO DO ATENDIMENTO: </label>
-        <select class="form-control form-control-lg" name="horario" id="horario" required>
+        <select style="width: 150%;" class="form-control form-control-lg" name="horario" id="horario" required>
             <!-- Opções de horário serão carregadas dinamicamente aqui -->
         </select>
     </div>
@@ -91,17 +91,21 @@ include "../footer.php";
 <div class="col-4">
     <div class="form-outline mb-4">
     <label class="form-label">LOCAL DO ATENDIMENTO: </label>
-        <input type="text" name = "l_agendamento" list="local_list" oninput="handleInput(event)" id = "l_agendamento" class="form-control form-control-lg" />
+        <input style="width: 150%;"type="text" name = "l_agendamento" list="local_list" oninput="handleInput(event)" id = "l_agendamento" class="form-control form-control-lg" />
 		<datalist id="local_list"></datalist>
     </div>
 </div>
 <div class="col-4">
         <div class="form-outline mb-4">
             <label class="form-label">ENDEREÇO LOCAL DE ATENDIMENTO: </label>
-            <input type="text" name="endereco_local" class="form-control form-control-lg"  oninput="handleInput(event)" id="enderecolocal_input" list="">
+            <input style="width: 150%;" type="text" name="endereco_local" class="form-control form-control-lg"  oninput="handleInput(event)" id="enderecolocal_input" list="">
         </div>
 </div> 
-
+<style>
+    .btn {
+        margin-left: 15px;
+    }
+</style>
 <input type = "hidden" name = "cod_profissional" value = "<?php echo $id; ?>">
 <button class="btn btn-primary" type = "submit">CADASTRAR</button>
 <a class="btn btn-danger" role="button" href="tabela_agendamento.php?id=<?php echo $id; ?>">VOLTAR</a>
@@ -211,7 +215,7 @@ function atualizarEndereco(cpf) {
         dataType: 'json',
         success: function (data) {
             if (data) {
-                        $('#endereco_input').val(data.no_tipo_logradouro +' '+data.ds_logradouro+', '+data.nu_numero);
+                        $('#endereco_input').val(data.no_tipo_logradouro +' '+data.ds_logradouro+', '+data.nu_numero + ', ' + data.no_bairro);
                     } else {
                         // Caso não seja encontrado um endereço correspondente, limpe o campo
                         $('#endereco_input').val('');

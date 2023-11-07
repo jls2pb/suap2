@@ -5,9 +5,9 @@ require_once("../conexao.php");
 // Verifique se a solicitação POST contém o ID do profissional
 if (isset($_POST['profissional'])) {
     $idProfissional = $_POST['profissional'];
-
+$dataAtual = date('Y-m-d');
     // Consulta SQL para selecionar as datas disponíveis para o profissional
-    $sql = "SELECT DISTINCT dia FROM agenda_profissional WHERE id_profissional = :idProfissional";
+    $sql = "SELECT DISTINCT dia FROM agenda_profissional WHERE id_profissional = :idProfissional AND dia >= '$dataAtual'";
     $stmt = $conexao->prepare($sql);
     $stmt->bindParam(':idProfissional', $idProfissional, PDO::PARAM_INT);
 

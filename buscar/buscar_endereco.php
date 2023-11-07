@@ -10,7 +10,7 @@ if (isset($_GET['cpf'])) {
     $cpf = $_GET['cpf'];
 
     // Consulta para obter o sexo com base no CPF
-    $sql = "SELECT tp_logradouro ,ds_logradouro, nu_numero  FROM tb_cidadao WHERE nu_cpf = :cpf";
+    $sql = "SELECT tp_logradouro ,ds_logradouro, nu_numero, no_bairro  FROM tb_cidadao WHERE nu_cpf = :cpf";
     $stmt = $pdo->prepare($sql);
     $stmt->bindValue(':cpf', $cpf, PDO::PARAM_STR);
     $stmt->execute();
@@ -31,7 +31,7 @@ if (isset($_GET['cpf'])) {
      
     } else {
         // Retorne um valor padrão (ou vazio) se o sexo não for encontrado
-        echo json_encode(['endereco' => '']);
+        echo json_encode([$result => '']);
     }
 }
 ?>

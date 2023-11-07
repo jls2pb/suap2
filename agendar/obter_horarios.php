@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('America/Sao_Paulo');
 // Verifique se a solicitação é um POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Conexão com o banco de dados
@@ -42,6 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $resultado2->execute();
             $horariosAgendados = $resultado2->fetchAll(PDO::FETCH_COLUMN);
 
+            $horaAtual = strtotime('now');
+
             for ($horario = $inicioManha; $horario <= $finalManha; $horario += 60 * $tempoAtendimento) {
                 $horario_certo = date('H:i', $horario);
 
@@ -54,8 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $resultado3->execute();
                 $row = $resultado3->fetch(PDO::FETCH_ASSOC);
 
-                // Se o horário não estiver agendado, adicione-o aos horários disponíveis
-                if ($row['count'] == 0) {
+                // Verifique se o horário não está agendado e se é um horário futuro
+                if ($row['count'] == 0 && strtotime($horario_certo) > $horaAtual) {
                     $horariosDisponiveis[] = $horario_certo;
                 }
             }
@@ -72,8 +75,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $resultado4->execute();
                 $row = $resultado4->fetch(PDO::FETCH_ASSOC);
 
-                // Se o horário não estiver agendado, adicione-o aos horários disponíveis
-                if ($row['count'] == 0) {
+                // Verifique se o horário não está agendado e se é um horário futuro
+                if ($row['count'] == 0 && strtotime($horario_certo) > $horaAtual) {
                     $horariosDisponiveis[] = $horario_certo;
                 }
             }
