@@ -1,20 +1,22 @@
 <link rel="icon" type="image/png" href="../images/icon.png" />
+<script>
+function printPage() {
+    window.print();
+}
+</script>
 <style>
 @media print {
     #print,
     #voltar,
-    .search-form{
+    #searchForm,
+    .table-bordered{
         display: none;
     }
 }
 </style>
 <button style="width: 100%;" id="print" onclick="printPage()">Imprimir<img style="width: 2%;" src="../images/printer.png"></button>
 <a href="relatorios.php"><button style="width: 100%; background-color:#B22222;color: white;" id="voltar">Voltar</button><a>
-<script>
-function printPage() {
-    window.print();
-}
-</script>
+
 
 <?php
 require_once("head.php");
@@ -143,7 +145,7 @@ if ($stmt->execute()) {
     if (!empty($procedimentosEntrada)) {
         echo "<h3>Procedimentos com Entrada no Período</h3>";
         echo "O número de procedimentos com entrada são: " . $resultado['quantidade_entrada'];
-        echo "<table class='table table-striped table-bordered table-sm table-responsive' border='1'>";
+        echo "<table class='table table-striped table-bordered table-sm table-responsive'>";
         echo "<tr><th>Cod</th><th>Nome do Paciente</th><th>Procedimento</th><th>Data de Entrada</th></tr>";
         echo '<form method="POST" id="searchForm" class="search-form">
             <div class="input-group container">
@@ -157,8 +159,10 @@ if ($stmt->execute()) {
             echo "<tr>";
             echo "<td>" . $procedimento['id'] . "</td>";
             echo "<td>" . $procedimento['nome_paciente'] . "</td>";
-            echo "<td>" . $procedimento['procedimento'] . "</td>";
-            echo "<td>" . $procedimento['data_de_entrada_cadastro'] . "</td>";
+            echo "<td>" . $procedimento['procedimento'] . "</td>";  
+             $dia = date('d/m/Y', strtotime($procedimento['data_de_entrada_cadastro']));
+            echo "<td>" .  $dia . "</td>";
+         
             echo "</tr>";
         }
         echo "</table>";
@@ -182,7 +186,8 @@ if ($stmt->execute()) {
             echo "<td>" . $agendamento['id'] . "</td>";
             echo "<td>" . $agendamento['nome_paciente'] . "</td>";
             echo "<td>" . $agendamento['procedimento'] . "</td>";
-            echo "<td>" . $agendamento['data_do_agendamento'] . "</td>";
+            $dia = date('d/m/Y', strtotime($agendamento['data_do_agendamento']));
+            echo "<td>" . $dia . "</td>";
             echo "<td>" . $agendamento['local_do_agendamento'] . "</td>";
             echo "<td>" . $agendamento['profissional'] . "</td>";
             echo "</tr>";
@@ -243,7 +248,8 @@ if ($stmt->execute()) {
                     echo "<tr>";
                     echo "<td>" . $row['id_agenda'] . "</td>";
                     echo "<td>" . $row['nome_profissional'] . "</td>";
-                    echo "<td>" . $row['dia'] . "</td>";
+                    $dia = date('d/m/Y', strtotime($row['dia']));
+                    echo "<td>" . $dia . "</td>";
                     echo "<td>" . $row['inicio_manha'] . "</td>";
                     echo "<td>" . $row['final_manha'] . "</td>";
                     echo "<td>" . $row['inicio_tarde'] . "</td>";
