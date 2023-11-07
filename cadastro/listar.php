@@ -140,7 +140,7 @@ if($resultado->execute()){
                                   $entrada = NULL;
                               }
                               if($y2["data_da_saida"] != NULL){
-                                  $saida = date('d/m/Y', strtotime($y2["data_da_saida"]));
+                                $saida = $y2["data_da_saida"];
                               }else{
                                   $saida = NULL;
                               }
