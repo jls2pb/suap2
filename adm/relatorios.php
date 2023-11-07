@@ -44,7 +44,7 @@ if(isset($_SESSION['cpf_adm'])){
   <button class="btn btn-primary" type="submit">Filtrar</button>
 </form>
 
-<h3>Buscar Agenda Profissional</h3>
+<h3>Buscar Agendamentos do Dia do Profissional</h3>
 <form method="POST" action="relatorios_filtrados.php">
   <div class="form-outline mb-4">
     <label>
@@ -56,11 +56,10 @@ if(isset($_SESSION['cpf_adm'])){
     <datalist id="profissional_list"></datalist>
     <label>
     </label><br>
-    <label>Selecione o período da agenda do profissional respectivo</label><br>
-    <label for="agenda_inicio">Data de Início: </label>
+    <label>Selecione a data do agendamento</label><br>
+    <label for="agenda_inicio">Data: </label>
     <input  type="date" name="agenda_inicio" id="agenda_inicio"> <br>
-    <label for="agenda_fim">Data de Término: </label>
-    <input type="date" name="agenda_fim" id="agenda_fim"> <br>
+ 
   </div>
   <button class="btn btn-primary" type="submit">Filtrar</button>
 </form>

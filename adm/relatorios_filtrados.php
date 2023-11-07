@@ -8,8 +8,7 @@ function printPage() {
 @media print {
     #print,
     #voltar,
-    #searchForm,
-    .table-bordered{
+ {
         display: none;
     }
 }
@@ -214,27 +213,25 @@ if ($stmt->execute()) {
     if (isset($_POST['profissional_nome'])) {
         $profissional_nome = $_POST["profissional_nome"];
         $agenda_inicio = $_POST["agenda_inicio"];
-        $agenda_fim = $_POST["agenda_fim"];
-
+    
         try {
             // Execute uma consulta SQL para buscar os agendamentos com base nas informações fornecidas
-            $sql = "SELECT a.id_agenda, p.nome AS nome_profissional, a.dia, a.inicio_manha, a.final_manha, a.inicio_tarde, a.final_tarde
-                    FROM agenda_profissional AS a
-                    INNER JOIN profissionais AS p ON a.id_profissional = p.id_profissional
-                    WHERE p.nome = :profissional_nome
-                    AND a.dia BETWEEN :agenda_inicio AND :agenda_fim";
-
+            $sql = "SELECT proc.id, p.nome AS profissional, proc.nome_paciente, proc.procedimento, proc.data_do_agendamento, proc.local_do_agendamento, proc.profissional
+            FROM procedimentos AS proc
+            INNER JOIN profissionais AS p ON proc.profissional = p.nome
+            WHERE p.nome = :profissional_nome
+            AND proc.data_do_agendamento = :agenda_inicio";
+    
             $stmt = $conexao->prepare($sql);
             $stmt->bindParam(':profissional_nome', $profissional_nome, PDO::PARAM_STR);
             $stmt->bindParam(':agenda_inicio', $agenda_inicio, PDO::PARAM_STR);
-            $stmt->bindParam(':agenda_fim', $agenda_fim, PDO::PARAM_STR);
             $stmt->execute();
-
+    
             // Verifique se há resultados
             if ($stmt->rowCount() > 0) {
-                echo "<h2>Agenda do Profissional: $profissional_nome</h2>";
+                echo "<h2>Data marcada com o profissional: $profissional_nome</h2>";
                 echo "<table class='table table-striped table-bordered table-lg table-responsive'>";
-                echo "<tr><th>ID Agenda</th><th>Nome do Profissional</th><th>Dia</th><th>Início Manhã</th><th>Final Manhã</th><th>Início Tarde</th><th>Final Tarde</th></tr>";
+                echo "<tr><th>ID</th><th>Nome do Profissional</th><th>Nome do Paciente</th><th>Procedimento</th><th>Data do Agendamento</th><th>Local do Agendamento</th></tr>";
                 echo '<form method="POST" id="searchForm" class="search-form">
                 <div class="input-group container">
                     <div class="form-outline">
@@ -246,14 +243,14 @@ if ($stmt->execute()) {
                 // Loop através dos resultados e exiba-os na tabela
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     echo "<tr>";
-                    echo "<td>" . $row['id_agenda'] . "</td>";
-                    echo "<td>" . $row['nome_profissional'] . "</td>";
-                    $dia = date('d/m/Y', strtotime($row['dia']));
+                    echo "<td>" . $row['id'] . "</td>";
+                    echo "<td>" . $row['profissional'] . "</td>";
+                    echo "<td>" . $row['nome_paciente'] . "</td>";
+                    echo "<td>" . $row['procedimento'] . "</td>";
+                    $dia = date('d/m/Y', strtotime($row['data_do_agendamento']));
                     echo "<td>" . $dia . "</td>";
-                    echo "<td>" . $row['inicio_manha'] . "</td>";
-                    echo "<td>" . $row['final_manha'] . "</td>";
-                    echo "<td>" . $row['inicio_tarde'] . "</td>";
-                    echo "<td>" . $row['final_tarde'] . "</td>";
+                    echo "<td>" . $row['local_do_agendamento'] . "</td>";
+                   
                     echo "</tr>";
                 }
                 echo "</table>";
@@ -261,8 +258,11 @@ if ($stmt->execute()) {
                 echo "Nenhum resultado encontrado.";
             }
         } catch (PDOException $e) {
+            // Trate erros, se necessário
         }
     }
+    
+    
 
     if (isset($_POST['profissional'])) {
         // Execute uma consulta SQL para buscar os profissionais cadastrados
