@@ -12,7 +12,7 @@ $timezone = new DateTimeZone('America/Sao_Paulo');
  
  $dado = $_POST["nome"];
 
- $query_usuarios ="SELECT * FROM tabela WHERE nome_paciente LIKE '%$dado%' OR rg LIKE '%$dado%' OR cns LIKE '%$dado%' OR cpf LIKE '%$dado%' OR nascimento LIKE '%$dado%'";
+ $query_usuarios ="SELECT * FROM local_atendimento WHERE nome_paciente LIKE '%$dado%' OR rg LIKE '%$dado%' OR cns LIKE '%$dado%' OR cpf LIKE '%$dado%' OR nascimento LIKE '%$dado%'";
  $result_usuarios = $conexao->prepare($query_usuarios);
  $result_usuarios->execute();
 

@@ -1,4 +1,4 @@
-﻿<?php 
+<?php 
 require_once("head.php");
 session_start();
 if(isset($_SESSION['cpf_adm'])){
@@ -10,16 +10,17 @@ include "../footer.php";
 require_once("../conexao.php");
 
 $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
- $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
+$pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
 
- //Setar a quantidade de registros por página
- $limite_resultado = 6;
+//Setar a quantidade de registros por página
+$limite_resultado = 6;
 
- // Calcular o inicio da visualização
- $inicio = ($limite_resultado * $pagina) - $limite_resultado;
+// Calcular o inicio da visualização
+$inicio = ($limite_resultado * $pagina) - $limite_resultado;
 
+ $dado = $_POST["nome"];
 
- $query_usuarios = "SELECT DISTINCT ON (procedimento) * FROM procedimento_medico ORDER BY procedimento ASC LIMIT $limite_resultado OFFSET $inicio ";
+ $query_usuarios = "SELECT * FROM procedimento_medico WHERE procedimento LIKE '%$dado%' ";
  $result_usuarios = $conexao->prepare($query_usuarios);
  $result_usuarios->execute();
 

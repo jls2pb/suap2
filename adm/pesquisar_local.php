@@ -1,15 +1,14 @@
-<?php 
-require_once("head.php");
+<?php
 session_start();
-if(isset($_SESSION['cpf_adm'])){
- $cpf_logado = $_SESSION['cpf_adm'];
-include "menu_adm.php";
-include "navibar_adm.php";
+if($_SESSION['cpf_adm']){
+    $cpf_logado = $_SESSION['cpf_adm'];
+    require_once("head.php");
+    include "menu_adm.php";
+    include "navibar_adm.php";
+    include "../footer.php";
+    require_once("../conexao.php");
 
-include "../footer.php";
-require_once("../conexao.php");
-
-$pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
+    $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
  $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
 
  //Setar a quantidade de registros por página
@@ -17,13 +16,12 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
 
  // Calcular o inicio da visualização
  $inicio = ($limite_resultado * $pagina) - $limite_resultado;
+    $dado = $_POST["nome"];
 
+    $query_usuarios = "SELECT * FROM local_atendimento WHERE CAST(cnes AS TEXT) LIKE '%$dado%' OR nome_fantasia LIKE '%$dado%' OR endereco_local LIKE '%$dado%' ";
 
- $query_usuarios = "SELECT DISTINCT ON (nome_fantasia) * FROM local_atendimento ORDER BY nome_fantasia ASC LIMIT $limite_resultado OFFSET $inicio ";
- $result_usuarios = $conexao->prepare($query_usuarios);
- $result_usuarios->execute();
-
-
+    $result_usuarios = $conexao->prepare($query_usuarios);
+    $result_usuarios->execute();
 ?>
 <script>
  function confirmarExclusao(id) {
@@ -36,7 +34,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             }
         }
         </script>
-    <form method = "POST" action = "pesquisar_local.php">    
+    <form method = "POST" action = "">    
     <div class="input-group justify-content-end">
         <div class="form-outline">
             <input type="search" id="pesquisa" name="nome" class="form-control" oninput="handleInput(event)" placeholder="BUSCAR LOCAL" />
@@ -46,7 +44,6 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             <i class="bi bi-search"></i>
         </button>
     </div>
-    </form>
     <br>
 <table class="table table-striped">
         <thead>
@@ -54,7 +51,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             <th scope="col">CNES</th>
             <th scope="col">NOME DO LOCAL</th>
             <th scope="col">ENDEREÇO DO LOCAL</th>
-            
+            <th scope="col"><center> AÇÃO </center></th>
             </tr>
         </thead>
         <tbody>
@@ -70,11 +67,10 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             <td><?php echo $d["nome_fantasia"]; ?></td>
             <td><?php echo $d["endereco_local"]; ?></td>
             <td>
+            <center>
                 <a class="btn text-white btn-primary" href="edita_local.php?id=<?php echo $d['cnes'];?>" role="button"><b>EDITAR</b></a>
-            </td>
-
-            <td>
                 <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php $_GET['local_ag'] = $d['cnes']; echo $_GET['local_ag']; ?>)" role="button"><b>EXCLUIR</b></a>
+            </center>
             </td>
             </tr>
             <?php
@@ -131,8 +127,9 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
         <script src="../mascara.js"></script>
     </div>
 </div>
-<?php 
-}else{
-    header("Location:../index.php");
+
+
+<?php
 }
 ?>
+
