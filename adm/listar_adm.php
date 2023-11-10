@@ -194,7 +194,11 @@ if($resultado->execute()){
                                 }  }
 
                                 else{
-                                  echo "AGUARDANDO";
+                                  if($agendamento != NULL ){
+                                    echo "AGENDADO";
+                                  }else{
+                                    echo "AGUARDANDO AGENDAMENTO";
+                                  }
                                 }
                         ?>
                       </td>
