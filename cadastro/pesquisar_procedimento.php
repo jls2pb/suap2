@@ -1,25 +1,26 @@
-﻿<?php 
+<?php 
 require_once("head.php");
 session_start();
-if(isset($_SESSION['cpf_cad_ag'])){
- $cpf_logado = $_SESSION['cpf_cad_ag'];
-include "menu_adm.php";
-include "navibar_adm.php";
+if(isset($_SESSION['cpf_cadastro'])){
+ $cpf_logado = $_SESSION['cpf_cadastro'];
+include "menu.php";
+include "navibar.php";
 
 include "../footer.php";
 require_once("../conexao.php");
 
 $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
- $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
+$pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
 
- //Setar a quantidade de registros por página
- $limite_resultado = 6;
+//Setar a quantidade de registros por página
+$limite_resultado = 6;
 
- // Calcular o inicio da visualização
- $inicio = ($limite_resultado * $pagina) - $limite_resultado;
+// Calcular o inicio da visualização
+$inicio = ($limite_resultado * $pagina) - $limite_resultado;
 
+ $dado = $_POST["nome"];
 
- $query_usuarios = "SELECT DISTINCT ON (procedimento) * FROM procedimento_medico ORDER BY procedimento ASC LIMIT $limite_resultado OFFSET $inicio ";
+ $query_usuarios = "SELECT * FROM procedimento_medico WHERE procedimento LIKE '%$dado%' ";
  $result_usuarios = $conexao->prepare($query_usuarios);
  $result_usuarios->execute();
 
@@ -93,31 +94,31 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
                 <div class = "col">        
             <?php 
                if ($pagina > 1) {
-                echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='tb_procedimentos_adm.php?page=1&cpf=$cpf_logado'>Primeira</a> ";
+                echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='tb_procedimentos.php?page=1&cpf=$cpf_logado'>Primeira</a> ";
             }
     
             if ($pagina > 1) {
                 $pagina_anterior = $pagina - 1;
-                echo "<a href='tb_procedimentos_adm.php?page=$pagina_anterior&cpf=$cpf_logado' class='btn'><label style='font-size:30px;' title='Anterior'><span aria-hidden='true'>&laquo;</span></label></a> ";
+                echo "<a href='tb_procedimentos.php?page=$pagina_anterior&cpf=$cpf_logado' class='btn'><label style='font-size:30px;' title='Anterior'><span aria-hidden='true'>&laquo;</span></label></a> ";
             }
     
             if ($pagina < $qnt_pagina) {
                 $proxima_pagina = $pagina + 1;
-                echo "<a href='tb_procedimentos_adm.php?page=$proxima_pagina&cpf=$cpf_logado' class='btn'><label style='font-size:30px;' title='Próximo'><span aria-hidden='true'>&raquo;</span></label></a> ";
+                echo "<a href='tb_procedimentos.php?page=$proxima_pagina&cpf=$cpf_logado' class='btn'><label style='font-size:30px;' title='Próximo'><span aria-hidden='true'>&raquo;</span></label></a> ";
             }
     
             if ($pagina < $qnt_pagina) {
                 ?><div class="float-right"><?php
-                echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='tb_procedimentos_adm.php?page=$qnt_pagina&cpf=$cpf_logado'>Última</a> ";
+                echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='tb_procedimentos.php?page=$qnt_pagina&cpf=$cpf_logado'>Última</a> ";
             ?></div> <?php
             }
 
             
         } else {
             echo "<p style='color: #f00;'>Erro: Nenhum usuário encontrado!</p>";
-             echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='tb_procedimentos_adm.php?page=1&cpf=$cpf_logado'>Primeira</a> ";
+             echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='tb_procedimentos.php?page=1&cpf=$cpf_logado'>Primeira</a> ";
              $pagina_anterior = $pagina - 1;
-             echo "<a href='tb_procedimentos_adm.php?page=$pagina_anterior&cpf=$cpf_logado' class='btn'><label style='font-size:30px;' title='Anterior'><span aria-hidden='true'>&laquo;</span></label></a> ";
+             echo "<a href='tb_procedimentos.php?page=$pagina_anterior&cpf=$cpf_logado' class='btn'><label style='font-size:30px;' title='Anterior'><span aria-hidden='true'>&laquo;</span></label></a> ";
         
         }  
                 

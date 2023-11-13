@@ -1,6 +1,6 @@
 <?php 
 include "head.php";
-require_once("../conexao.php");
+require_once("../../conexao.php");
 
 
 if(isset($_POST["cpf"])){
@@ -21,7 +21,7 @@ if(isset($_POST["cpf"])){
   }
 
   ?>
-  <link href="css/style.css">
+  <link href="../../css/style.css">
     <script>
       window.alert("ERRO AO EFETUAR LOGIN!");
     </script>
@@ -39,10 +39,10 @@ if(isset($_POST["cpf"])){
 
                     <div class="row">
                     <div class="col d-flex align-items-center justify-content-center">
-                        <img src="images/logo_ti2.png" width = "250px" >
+                        <img src="../../images/logo_ti2.png" width = "250px" >
                       </div>
                       <div class="col text-center">
-                        <img src="images/iconw2.png" width = "152px">
+                        <img src="../../images/iconw2.png" width = "152px">
                       </div>
                       
                     </div>
@@ -85,7 +85,7 @@ if(isset($_POST["cpf"])){
         body {
             margin: 0;
             padding: 0;
-            background-image: url("images/imagem.jpg");
+            background-image: url("../../images/imagem.jpg");
             background-repeat: no-repeat;
             background-size: cover;
             background-attachment: fixed; /* Isso mantém a imagem fixa na tela */

@@ -1,13 +1,14 @@
 <?php 
+require_once("head.php");
 session_start();
-if(isset($_SESSION['cpf_cadastro']) == FALSE){
-    header("Location:../index.php");
-}
-$cpf_logado = $_SESSION['cpf_cadastro'];
-include "head.php";
+if(isset($_SESSION['cpf_cadastro'])){
+ $cpf_logado = $_SESSION['cpf_cadastro'];
 include "menu.php";
 include "navibar.php";
+
 include "../footer.php";
+require_once("../conexao.php");
+
 $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
  $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
 
@@ -35,19 +36,27 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             }
         }
         </script>
+<form method = "POST" action = "pesquisar_acs.php">    
+    <div class="input-group justify-content-end">
+        <div class="form-outline">
+            <input type="search" id="pesquisa" name="nome" class="form-control" oninput="handleInput(event)" placeholder="BUSCAR ACS" />
+            <input type="hidden" name="cpf" value="<?php echo $cpf_logado ?>">
+        </div>
+        <button style="background-color: #66a7ff; color: white;" type="submit" class="btn">
+            <i class="bi bi-search"></i>
+        </button>
+    </div>
+    </form>
 <table class="table table-striped">
         <thead>
             <tr>
             <th scope="col">UBS</th>
             <th scope="col">NOME</th>
-            <th scope="col">VÍNCULO</th>
             <th scope="col">CNS</th>
-            <th scope="col">CPF</th>
             <th scope="col">MICROAREA</th>
             <th scope="col">PESSOAS</th>
             <th scope="col">FAMÍLIAS</th>
-            <th scope="col">TRANSPORTE</th>
-            
+            <th scope="col" colspan = "2"><center> AÇÃO </center> </th>
             </tr>
         </thead>
         <tbody>
@@ -55,19 +64,17 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
               if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
                     while ($d = $result_usuarios->fetch(PDO::FETCH_ASSOC)) { 
                         extract($d); 
-        
+        		if($d["nome"] != NULL){
             ?>
             
             <tr>
             <th scope="row"><?php echo $d["ubs"];?></th>
             <td><?php echo $d["nome"]; ?></td>
-            <td><?php echo $d["vinculo"]; ?></td>
             <td><?php echo $d["cns"]; ?></td>
-            <td><?php echo $d["cpf"]; ?></td>
             <td><?php echo $d["microarea"]; ?></td>
             <td><?php echo $d["pessoas"]; ?></td>
             <td><?php echo $d["familias"]; ?></td>
-            <td><?php echo $d["transporte"]; ?></td>
+
             <td>
                 <a class="btn text-white btn-primary" href="edita_acs.php?id=<?php echo $d['cod'];?>" role="button"><b>EDITAR</b></a>
             </td>
@@ -77,7 +84,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             </tr>
             <?php
                     }
-
+		}
             $query_qnt_registros = "SELECT COUNT(cod) AS num_result FROM acs";
             $result_qnt_registros = $conexao->prepare($query_qnt_registros);
             $result_qnt_registros->execute();
@@ -89,7 +96,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             // Maximo de link
             $maximo_link = 2;
             ?>
-             <div class = "row">
+              <div class = "row">
                 <div class = "col">        
             <?php 
                if ($pagina > 1) {
@@ -129,3 +136,8 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
         <script src="../mascara.js"></script>
     </div>
 </div>
+<?php 
+}else{
+    header("Location:../index.php");
+}
+?>

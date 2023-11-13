@@ -36,6 +36,18 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             }
         }
         </script>
+    <form method = "POST" action = "pesquisar_local.php">    
+    <div class="input-group justify-content-end">
+        <div class="form-outline">
+            <input type="search" id="pesquisa" name="nome" class="form-control" oninput="handleInput(event)" placeholder="BUSCAR LOCAL" />
+            <input type="hidden" name="cpf" value="<?php echo $cpf_logado ?>">
+        </div>
+        <button style="background-color: #66a7ff; color: white;" type="submit" class="btn">
+            <i class="bi bi-search"></i>
+        </button>
+    </div>
+    </form>
+    <br>
 <table class="table table-striped">
         <thead>
             <tr>
@@ -79,7 +91,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             // Maximo de link
             $maximo_link = 2;
             ?>
-             <div class = "row">
+            <div class = "row">
                 <div class = "col">        
             <?php 
                if ($pagina > 1) {
