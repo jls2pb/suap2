@@ -10,7 +10,7 @@ include "../footer.php";
 
 
 if(isset($_SESSION['cpf_adm']) == FALSE){
-    header("Location:../index.php");
+    header("Location:index.php");
 }
 
 

@@ -2,7 +2,7 @@
 date_default_timezone_set('America/Sao_Paulo');
 session_start();
 if(isset($_SESSION['cpf_adm']) == FALSE){
-    header("Location:../index.php");
+    header("Location:index.php");
 }
 $cpf_logado = $_SESSION['cpf_adm'];
 require_once("head.php");

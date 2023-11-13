@@ -86,7 +86,18 @@ require_once("../conexao.php");
 </div>
    
 
-        <ul class="list-unstyled components mb-5">
+
+<div  class="p-0 m-0">
+
+    <nav style="padding: 20px; background-color: #1E90FF; width: 100%;" class="navbar-expand-lg navbar-light ">
+
+        <div class="container-fluid">
+ <img class="img-responsive img-fluid d-block d-lg-none " style="width: 75%;" src="../images/logo_clara.png">
+            <img class="img-responsive img-fluid d-none d-lg-block" style="width: 16%;" src="../images/logo_clara.png">
+           
+            <div  id="navbarSupportedContent">
+
+               <ul class="list-unstyled components mb-5">
           
           <li>
             <a href="inicio_adm.php"><span class="fa fa-home"></span><b> INÍCIO</b></a>
@@ -146,15 +157,13 @@ require_once("../conexao.php");
             <a href="../sair.php"><span class="bi bi-door-open-fill" ></span><b> SAIR</b></a>
           </li>
         </ul>
-
-        <div class="footer">
-        	<p>
-				
-					</p>
+            </div>
         </div>
-    	</nav>
-       
-      
+    </nav>
+    <script src="mascara.js"></script>
+</div>
+
+
       
       <script>
 $(document).ready(function () {

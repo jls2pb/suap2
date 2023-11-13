@@ -131,6 +131,6 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
 </div>
 <?php 
 }else{
-    header("Location:../index.php");
+    header("Location:index.php");
 }
 ?>

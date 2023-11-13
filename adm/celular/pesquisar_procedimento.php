@@ -132,6 +132,6 @@ $inicio = ($limite_resultado * $pagina) - $limite_resultado;
 </div>
 <?php 
 }else{
-    header("Location:../index.php");
+    header("Location:index.php");
 }
 ?>

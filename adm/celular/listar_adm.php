@@ -21,7 +21,7 @@
    <?php 
 session_start();
 if(isset($_SESSION['cpf_adm']) == FALSE){
-    header("Location:../index.php");
+    header("Location:index.php");
 }
 if(isset($_GET["id"])){
   $_SESSION['id'] = $_GET["id"];

@@ -449,7 +449,7 @@ echo '<form method="POST" id="searchForm" class="search-form">
         }
 
 } else {
-    header("location: ../index.php");
+    header("location: index.php");
 }
 ?>
 <script>

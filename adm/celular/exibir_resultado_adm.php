@@ -99,7 +99,7 @@ $hoje = date('d/m/Y');
 
 <?php 
 }else{
-    header("Location:../index.php");
+    header("Location:index.php");
 }
 include "../footer.php";
 ?>

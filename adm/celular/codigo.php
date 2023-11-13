@@ -62,6 +62,6 @@ if (isset($_SESSION['data_geracao'])) {
 
 <?php
 } else {
-    header("location: ../index.php");
+    header("location: index.php");
 }
 ?>
