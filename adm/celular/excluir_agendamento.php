@@ -1,6 +1,6 @@
 <?php
 date_default_timezone_set('America/Sao_Paulo');
-require_once("../conexao.php");
+require_once("../../conexao.php");
 session_start();
 $cpf_logado = $_SESSION['cpf_adm'];
 $cod = $_GET['cod'];

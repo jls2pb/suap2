@@ -5,7 +5,7 @@ $cpf_logado = $_SESSION['cpf_adm'];
 include "head.php";
 include "menu_adm.php";
 include "navibar_adm.php";
-include "../footer.php";
+include "../../footer.php";
 ?>
 <h2 class="mb-4">CADASTROS</h2>
 <div class="row">

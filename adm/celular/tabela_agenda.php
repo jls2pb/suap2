@@ -5,8 +5,8 @@ $cpf_logado = $_SESSION['cpf_adm'];
 include "menu_adm.php";
 include "navibar_adm.php";
 
-include "../footer.php";
-require_once("../conexao.php");
+include "../../footer.php";
+require_once("../../conexao.php");
 ?>
 <?php
 $id = $_GET['id'];
@@ -38,7 +38,7 @@ $id = $_GET['id'];
    </script>  
 <h2 class="mb-4">TABELA DE AGENDA DOS PROFISSIONAIS</h2>
 <a style="" href="cadastrar_agenda.php?id=<?php echo $id; ?>" class="btn btn-primary text-white float-right" role="button">CADASTRAR AGENDA</a>
-<table class="table table-striped">
+<table class="table table-responsive  table-striped">
         <thead>
             <tr>
             <th scope="col">ID DA AGENDA</th>

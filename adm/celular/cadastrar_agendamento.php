@@ -12,8 +12,8 @@ $cpf_logado = $_SESSION['cpf_adm'];
 include "head.php";
 include "menu_adm.php";
 include "navibar_adm.php";
-include "../footer.php";
-?> <script src="../mascara.js"></script>
+include "../../footer.php";
+?> <script src="../../mascara.js"></script>
 <h2 class="mb-4">CADASTRO DE AGENDAMENTO</h2>
 <form method="POST" action="registro_agendamento.php">
 <div class="col-4">
@@ -59,7 +59,7 @@ include "../footer.php";
         <option selected disabled value = "">Selecione uma data</option>
             <?php
             // Conexão com o banco de dados
-            include "../conexao.php";
+            include "../../conexao.php";
             $sql = "select * from agenda_profissional where id_profissional = '$id'";
             $resultado = $conexao->prepare($sql);
            if ($resultado->execute()) {
@@ -190,7 +190,7 @@ include "../footer.php";
         function atualizarSexo(cpf) {
     // Realize uma solicitação AJAX para buscar o sexo com base no CPF
     $.ajax({
-        url: '../buscar/buscar_sexo.php', // Substitua pelo URL correto para buscar o sexo com base no CPF do paciente
+        url: '../../buscar/buscar_sexo.php', // Substitua pelo URL correto para buscar o sexo com base no CPF do paciente
         type: 'GET',
         data: { cpf: cpf },
         dataType: 'json',
@@ -208,7 +208,7 @@ include "../footer.php";
 }
 function atualizarEndereco(cpf) {
     $.ajax({
-        url: '../buscar/buscar_endereco.php', 
+        url: '../../buscar/buscar_endereco.php', 
         type: 'GET',
         data: { cpf: cpf },
         dataType: 'json',
@@ -274,7 +274,7 @@ function atualizarEndereco(cpf) {
                 if (term.length >= 3) {
                     // Realizamos a solicitação AJAX para buscar os procedimentos
                     $.ajax({
-                        url: '../buscar/buscar_local.php',
+                        url: '../../buscar/buscar_local.php',
                         type: 'GET',
                         data: {term: term},
                         dataType: 'json',
@@ -309,7 +309,7 @@ function atualizarEndereco(cpf) {
             
             // Realize uma solicitação AJAX para buscar o endereço correspondente
             $.ajax({
-                url: '../buscar/buscar_endereco_local.php', // Substitua pelo URL correto para buscar o endereço
+                url: '../../buscar/buscar_endereco_local.php', // Substitua pelo URL correto para buscar o endereço
                 type: 'GET',
                 data: { local: localSelecionado },
                 dataType: 'json',

@@ -6,9 +6,9 @@ if(isset($_SESSION['cpf_adm']) == FALSE){
 require_once("head.php");
 include "menu_adm.php";
 include "navibar_adm.php";
-include "../footer.php";
+include "../../footer.php";
 
-require_once("../conexao.php");
+require_once("../../conexao.php");
 $id = $_GET['id'];
 $sql = "SELECT * FROM usuario WHERE id_usuario = $id LIMIT 1";
 $resultado = $conexao->prepare($sql);

@@ -9,9 +9,9 @@ $cpf_logado = $_SESSION['cpf_adm'];
 require_once("head.php");
 include "menu_adm.php";
 include "navibar_adm.php";
-include "../footer.php";
+include "../../footer.php";
 
-require_once("../conexao.php");
+require_once("../../conexao.php");
 
 $id = $_GET['id'];
 
@@ -28,7 +28,7 @@ if ($resultado->execute()) {
 ?>
 
 
-<script src="../mascara.js"></script>
+<script src="../../mascara.js"></script>
 <h2 class="mb-4">EDITAR AGENDAMENTO</h2>
 <form method="POST" action="editar_agendamento.php">
     <div class="row">

@@ -9,8 +9,8 @@ $cpf_logado = $_SESSION['cpf_adm'];
 include "head.php";
 include "menu_agendamento.php";
 include "navibar_agendar.php";
-include "../footer.php";
-?> <script src="../mascara.js"></script>
+include "../../footer.php";
+?> <script src="../../mascara.js"></script>
 <h2 class="mb-4">CADASTRO DE AGENDAMENTO</h2>
 <form method="POST" action="registro_agendamento.php">
     <div class="col-4">
@@ -56,7 +56,7 @@ include "../footer.php";
         <option value = "">Selecione uma data</option>
             <?php
             // Conexão com o banco de dados
-            include "../conexao.php";
+            include "../../conexao.php";
             $sql = "select * from agenda_profissional where id_profissional = '$id'";
             $resultado = $conexao->prepare($sql);
             if ($resultado->execute()) {
@@ -227,7 +227,7 @@ include "../footer.php";
                 if (term.length >= 3) {
                     // Realizamos a solicitação AJAX para buscar os procedimentos
                     $.ajax({
-                        url: '../buscar/buscar_local.php',
+                        url: '../../buscar/buscar_local.php',
                         type: 'GET',
                         data: {term: term},
                         dataType: 'json',

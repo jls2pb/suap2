@@ -9,7 +9,7 @@ include "menu_adm.php";
 include "navibar_adm.php";
 
 
-require_once("../conexao.php");
+require_once("../../conexao.php");
 $sql = "SELECT * FROM uaps ORDER BY nome_uaps ASC";
 $resultado = $conexao->prepare($sql);
 $resultado->execute();
@@ -113,7 +113,7 @@ $resultado->execute();
                 <a class="link-offset-2 link-underline link-underline-opacity-0 btn btn-danger" style = "color:white" href="inicio_adm.php" role="button">VOLTAR</a>
             </div>
             <?php
-            include "../footer.php";
+            include "../../footer.php";
             ?>
             </form>
 
@@ -124,7 +124,7 @@ $resultado->execute();
 
     </div>
 </div>
-<script src="../mascara.js"></script>
+<script src="../../mascara.js"></script>
 <script>
     new FormMask(document.querySelector("#cpf"), "___.___.___-__", "_", [".", "-"])
     new FormMask(document.querySelector("#cel"), "(__)_____-____", "_", ["(", ")", "-"])
@@ -136,7 +136,7 @@ $resultado->execute();
                 var term = $(this).val();
                 if (term.length >= 3) {
                     $.ajax({
-                        url: '../buscar/buscar_cidadao.php',
+                        url: '../../buscar/buscar_cidadao.php',
                         type: 'GET',
                         data: {term: term},
                         dataType: 'json',
@@ -179,7 +179,7 @@ $resultado->execute();
                 if (term.length >= 3) {
                     // Realizamos a solicitação AJAX para buscar os procedimentos
                     $.ajax({
-                        url: '../buscar/buscar_acs.php',
+                        url: '../../buscar/buscar_acs.php',
                         type: 'GET',
                         data: {term: term},
                         dataType: 'json',

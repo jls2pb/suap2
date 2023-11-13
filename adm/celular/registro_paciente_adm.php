@@ -1,6 +1,6 @@
 <?php 
 date_default_timezone_set('America/Sao_Paulo');
-require_once("../conexao.php");
+require_once("../../conexao.php");
 $n_paciente = $_POST["n_paciente"];
 $rg = $_POST["rg"];
 $cpf = $_POST["cpf"];

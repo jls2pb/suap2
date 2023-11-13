@@ -29,11 +29,11 @@ if(isset($_GET["id"])){
 require_once("head.php");
 include "menu_adm.php";
 include "navibar_adm.php";
-include "../footer.php";
+include "../../footer.php";
 
 
 
-require_once("../conexao.php");
+require_once("../../conexao.php");
 $nome_paciente = $_SESSION['id'];
 $sql = "SELECT * FROM tabela WHERE cod = '$nome_paciente'";
 $resultado = $conexao->prepare($sql);
@@ -118,7 +118,7 @@ if($resultado->execute()){
         </div>
       </div> 
             <br>
-            <table class="table table-striped table-compact">
+            <table class="table table-responsive  table-striped table-compact">
         <thead>
             <tr>
             <th scope="col">COD</th>

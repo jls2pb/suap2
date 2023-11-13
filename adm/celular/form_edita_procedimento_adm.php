@@ -5,7 +5,7 @@ $cpf_logado = $_SESSION['cpf_adm'];
 require_once("head.php");
 include "menu_adm.php";
 include "navibar_adm.php";
-include "../footer.php";
+include "../../footer.php";
 
 
 
@@ -14,7 +14,7 @@ if(isset($_SESSION['cpf_adm']) == FALSE){
 }
 
 
-require_once("../conexao.php");
+require_once("../../conexao.php");
 $id = $_GET["id"];
 $sql = "SELECT * FROM procedimentos WHERE id = $id ";
 $resultado = $conexao->prepare($sql);
@@ -154,7 +154,7 @@ if($resultado->execute()){
             </form>
     </div>
 </div>
-<script src="../mascara.js"></script>
+<script src="../../mascara.js"></script>
 <script>
         $(document).ready(function() {
             // Quando o usuário digitar algo no input, acionamos a função de busca
@@ -163,7 +163,7 @@ if($resultado->execute()){
                 if (term.length >= 3) {
                     // Realizamos a solicitação AJAX para buscar os procedimentos
                     $.ajax({
-                        url: '../buscar/buscar_procedimentos.php',
+                        url: '../../buscar/buscar_procedimentos.php',
                         type: 'GET',
                         data: {term: term},
                         dataType: 'json',

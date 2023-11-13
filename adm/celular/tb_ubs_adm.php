@@ -6,8 +6,8 @@ if(isset($_SESSION['cpf_adm'])){
 include "menu_adm.php";
 include "navibar_adm.php";
 
-include "../footer.php";
-require_once("../conexao.php");
+include "../../footer.php";
+require_once("../../conexao.php");
 
 $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
  $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
@@ -36,7 +36,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             }
         }
         </script>
-<table class="table table-striped">
+<table class="table table-responsive  table-striped">
         <thead>
             <tr>
             <th scope="col">UAPS</th>
@@ -116,7 +116,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             </div> 
         </tbody>
         </table>
-        <script src="../mascara.js"></script>
+        <script src="../../mascara.js"></script>
     </div>
 </div>
 <?php 

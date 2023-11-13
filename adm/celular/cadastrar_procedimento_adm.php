@@ -13,7 +13,7 @@ $n = $_GET["n"];
 include "head.php";
 include "menu_adm.php";
 include "navibar_adm.php";
-include "../footer.php";
+include "../../footer.php";
 ?>
 <h2 class="mb-4">CADASTRO DE PROCEDIMENTO</h2>
 <form method = "POST" action = "registro_procedimento_adm.php">  
@@ -119,7 +119,7 @@ include "../footer.php";
     </div>
 </div>
 
-<script src="../mascara.js"></script>
+<script src="../../mascara.js"></script>
 <script>
         $(document).ready(function() {
             // Quando o usuário digitar algo no input, acionamos a função de busca
@@ -128,7 +128,7 @@ include "../footer.php";
                 if (term.length >= 3) {
                     // Realizamos a solicitação AJAX para buscar os procedimentos
                     $.ajax({
-                        url: '../buscar/buscar_procedimentos.php',
+                        url: '../../buscar/buscar_procedimentos.php',
                         type: 'GET',
                         data: {term: term},
                         dataType: 'json',
@@ -154,7 +154,7 @@ include "../footer.php";
                 if (term.length >= 3) {
                     // Realizamos a solicitação AJAX para buscar os procedimentos
                     $.ajax({
-                        url: '../buscar/buscar_local.php',
+                        url: '../../buscar/buscar_local.php',
                         type: 'GET',
                         data: {term: term},
                         dataType: 'json',

@@ -1,6 +1,6 @@
 <?php 
 date_default_timezone_set('America/Sao_Paulo');
-require_once("../conexao.php");
+require_once("../../conexao.php");
 $nome = $_POST["nome"];
 $area = $_POST["area"];
 $tempo_atendimento = $_POST["tempo_atendimento"];

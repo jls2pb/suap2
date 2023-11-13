@@ -5,10 +5,10 @@ if(isset($_SESSION['cpf_adm'])){
   $cpf_logado = $_SESSION['cpf_adm'];
   include "menu_adm.php";
   include "navibar_adm.php";
-  include "../footer.php";
-  require_once("../conexao.php");
+  include "../../footer.php";
+  require_once("../../conexao.php");
 ?>
-<script src="../mascara.js"></script>
+<script src="../../mascara.js"></script>
 
 <h3>Buscar procedimentos</h3>
 <form action="relatorios_filtrados.php" method="POST">

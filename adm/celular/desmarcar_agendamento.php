@@ -1,7 +1,7 @@
 <?php 
 session_start();
 date_default_timezone_set('America/Sao_Paulo');
-include "../conexao.php";
+include "../../conexao.php";
 $cpf_logado = $_SESSION['cpf_adm'];
 $id = $_GET['id'];
 $motivo = $_GET['motivo'];

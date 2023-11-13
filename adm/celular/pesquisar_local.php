@@ -5,8 +5,8 @@ if($_SESSION['cpf_adm']){
     require_once("head.php");
     include "menu_adm.php";
     include "navibar_adm.php";
-    include "../footer.php";
-    require_once("../conexao.php");
+    include "../../footer.php";
+    require_once("../../conexao.php");
 
     $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
  $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
@@ -45,7 +45,7 @@ if($_SESSION['cpf_adm']){
         </button>
     </div>
     <br>
-<table class="table table-striped">
+<table class="table table-responsive  table-striped">
         <thead>
             <tr>
             <th scope="col">CNES</th>
@@ -124,7 +124,7 @@ if($_SESSION['cpf_adm']){
             </div> 
         </tbody>
         </table>
-        <script src="../mascara.js"></script>
+        <script src="../../mascara.js"></script>
     </div>
 </div>
 

@@ -8,7 +8,7 @@ $timezone = new DateTimeZone('America/Sao_Paulo');
  include "head.php";
  include "menu_adm.php";
  include "navibar_adm.php";
- require_once("../conexao.php");
+ require_once("../../conexao.php");
  
  $dado = $_POST["nome"];
 
@@ -20,7 +20,7 @@ $timezone = new DateTimeZone('America/Sao_Paulo');
 
 <h2 class="mb-4">SUAP - Sistema Unico de Acompanhamento de Procedimentos</h2>
 
-<table class="table table-striped">
+<table class="table table-responsive  table-striped">
         <thead>
             <tr>
             <th scope="col">COD</th>

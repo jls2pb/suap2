@@ -3,11 +3,11 @@
 if(isset($_SESSION['cpf_adm']) == FALSE){
     header("Location:index.php");
 }$cpf_logado = $_SESSION['cpf_adm'];
-require_once("../conexao.php");
+require_once("../../conexao.php");
 require_once("head.php");
 include "menu_adm.php";
 include "navibar_adm.php";
-include "../footer.php";
+include "../../footer.php";
 
 
  $dado = $_SESSION['id'];
@@ -19,7 +19,7 @@ include "../footer.php";
 
 <h2 class="mb-4">AÇÕES REALIZADAS</h2>
 <p><a class="link-offset-2 link-underline link-underline-opacity-0" href="listar_adm.php">VOLTAR</a></p>
-<table class="table table-striped">
+<table class="table table-responsive  table-striped">
         <thead>
             <tr>
             <th scope="col">COD</th>

@@ -6,7 +6,7 @@ $cpf_logado = $_SESSION['cpf_adm'];
 include "head.php";
 include "menu_adm.php";
 include "navibar_adm.php";
-include "../conexao.php";
+include "../../conexao.php";
 
 $hoje = date('d/m/Y');
 ?>
@@ -17,7 +17,7 @@ $hoje = date('d/m/Y');
         }, 30000); // 30000 milissegundos = 30 segundos
 </script>
 
-<table class="table table-striped">
+<table class="table table-striped table-responsive">
   <thead>
     <tr>
       <th scope="col">COLABORADOR</th>
@@ -101,5 +101,5 @@ $hoje = date('d/m/Y');
 }else{
     header("Location:index.php");
 }
-include "../footer.php";
+include "../../footer.php";
 ?>

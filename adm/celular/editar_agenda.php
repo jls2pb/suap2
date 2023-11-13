@@ -1,6 +1,6 @@
 <?php 
 date_default_timezone_set('America/Sao_Paulo');
-require_once("../conexao.php");
+require_once("../../conexao.php");
 $dia = $_POST["dia"];
 $inicio_m = $_POST["inicio_manha"];
 $final_m = $_POST["final_manha"];

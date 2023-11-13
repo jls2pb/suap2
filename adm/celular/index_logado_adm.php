@@ -6,11 +6,11 @@ if(isset($_SESSION['cpf_adm']) == FALSE){
 require_once("head.php");
 include "menu_adm.php";
 include "navibar_adm.php";
-include "../footer.php";
+include "../../footer.php";
 
 
 
-require_once("../conexao.php");
+require_once("../../conexao.php");
  $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
  $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
  $cpf_logado = $_SESSION['cpf_adm'];
@@ -27,7 +27,7 @@ require_once("../conexao.php");
 
 ?>
 
-<table class="table table-striped">
+<table class="table table-responsive  table-striped">
         <thead>
             <tr>
             <th scope="col">COD</th>
@@ -111,7 +111,7 @@ require_once("../conexao.php");
             </div> 
         </tbody>
         </table>
-        <script src="../mascara.js"></script>
+        <script src="../../mascara.js"></script>
     </div>
 </div>
 

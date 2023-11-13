@@ -6,8 +6,8 @@ if(isset($_SESSION['cpf_adm'])){
 
 include "menu_adm.php";
 include "navibar_adm.php";
-include "../footer.php";
-require_once("../conexao.php");
+include "../../footer.php";
+require_once("../../conexao.php");
 $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
  $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
  $cpf_logado = $_SESSION['cpf_adm'];
@@ -42,7 +42,7 @@ a {
             });
         });
     </script>
-<table class="table table-striped">
+<table class="table table-striped table-responsive">
         <thead>
             <tr>
             <th scope="col">ID</th>

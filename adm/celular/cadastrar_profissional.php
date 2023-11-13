@@ -10,7 +10,7 @@ include "navibar_adm.php";
 
 
 
-require_once("../conexao.php");
+require_once("../../conexao.php");
 $sql = "SELECT * FROM uaps ORDER BY nome_uaps ASC";
 $resultado = $conexao->prepare($sql);
 $resultado->execute();
@@ -33,7 +33,7 @@ $resultado->execute();
     <button style="color:white;background-color: #66a7ff;" class="btn " type="submit"><b>CADASTRAR</b></button>
                <a class="link-offset-2 link-underline link-underline-opacity-0 btn btn-danger" style = "color:white" href="inicio_adm.php" role="button">VOLTAR</a> 
             <?php
-            include "../footer.php";
+            include "../../footer.php";
             ?>
             </form>
 

@@ -3,7 +3,7 @@ date_default_timezone_set('America/Sao_Paulo');
 // Verifique se a solicitação é um POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Conexão com o banco de dados
-    include "../conexao.php";
+    include "../../conexao.php";
     session_start();
     
     // Obter o dia selecionado pelo usuário da solicitação POST

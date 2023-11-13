@@ -6,13 +6,13 @@ if(isset($_SESSION['cpf_adm'])){
 include "menu_adm.php";
 include "navibar_adm.php";
 
-include "../footer.php";
-require_once("../conexao.php");
+include "../../footer.php";
+require_once("../../conexao.php");
 ?>
 <div class="container">
   <div class="row">
     <div class="col-sm border rounded d-flex" style="margin: 10px;">
-    <img style=" width: 30%; padding: 7px;"src="../images/paciente.jpeg">
+    <img style=" width: 30%; padding: 7px;"src="../../images/paciente.jpeg">
       <?php 
      
         $qdp = "SELECT COUNT(*) AS quantidade FROM tabela";
@@ -31,7 +31,7 @@ require_once("../conexao.php");
     
     </div>
     <div class="col-sm border rounded d-flex" style="margin: 10px;">
-    <img style="width: 30%; padding: 7px;"src="../images/espera.jpeg">
+    <img style="width: 30%; padding: 7px;"src="../../images/espera.jpeg">
     <?php
     $query = "SELECT COUNT(DISTINCT cod) AS quantidade FROM procedimentos WHERE data_do_agendamento IS NULL OR data_do_agendamento = ''";
         $stmt = $conexao->prepare($query);
@@ -53,7 +53,7 @@ require_once("../conexao.php");
     ?>
 
     <div class="col-sm border rounded d-flex" style="margin: 10px;">
-    <img style="width: 30%; padding: 7px;"src="../images/calendario.jpeg"> 
+    <img style="width: 30%; padding: 7px;"src="../../images/calendario.jpeg"> 
     
 
 
@@ -67,7 +67,7 @@ echo $result;
 
   <div class="row">
     <div class="col-sm border rounded d-flex" style="margin: 10px;">
-    <img style="margin-right: 5px; width: 30%; padding: 7px;"src="../images/p_cadastrado.jpeg">
+    <img style="margin-right: 5px; width: 30%; padding: 7px;"src="../../images/p_cadastrado.jpeg">
     <?php 
       $qdp = "SELECT COUNT(*) AS quantidade FROM procedimentos";
       $rqdp = $conexao->prepare($qdp);
@@ -83,7 +83,7 @@ echo $result;
     
     </div>
     <div class="col-sm border rounded d-flex" style="margin: 10px;">
-    <img style="width: 30%; padding: 7px;"src="../images/p_espera.jpeg">
+    <img style="width: 30%; padding: 7px;"src="../../images/p_espera.jpeg">
     <?php 
       $qdp = "SELECT COUNT(*) AS quantidade FROM procedimentos WHERE data_do_agendamento IS NULL OR data_do_agendamento = ''";
       
@@ -99,7 +99,7 @@ echo $result;
     ?>
     </div>
     <div class="col-sm border rounded d-flex" style="margin: 10px;">
-    <img style="width: 30%; padding: 7px;"src="../images/p_agendado.jpeg">
+    <img style="width: 30%; padding: 7px;"src="../../images/p_agendado.jpeg">
     
     <?php 
       $qdp = "SELECT COUNT(*) AS quantidade FROM procedimentos WHERE data_do_agendamento IS NOT NULL AND data_do_agendamento != ''";

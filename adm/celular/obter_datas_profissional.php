@@ -1,6 +1,6 @@
 <?php
 // Inclua o arquivo de conexão com o banco de dados
-require_once("../conexao.php");
+require_once("../../conexao.php");
 
 // Verifique se a solicitação POST contém o ID do profissional
 if (isset($_POST['profissional'])) {

@@ -1,6 +1,6 @@
 <?php 
 date_default_timezone_set('America/Sao_Paulo');
-require_once("../conexao.php");
+require_once("../../conexao.php");
 $data = $_POST["data_atendimento"];
 $horario = $_POST["horario"];
 $nome = $_POST["nome_paciente"];

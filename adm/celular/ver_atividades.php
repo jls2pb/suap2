@@ -5,8 +5,8 @@ session_start();
 include "menu_adm.php";
 include "navibar_adm.php";
 
-include "../footer.php";
-require_once("../conexao.php");
+include "../../footer.php";
+require_once("../../conexao.php");
 ?>
 <?php
  $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
@@ -25,7 +25,7 @@ require_once("../conexao.php");
 ?>
 
 <h2 class="mb-4">AÇÕES REALIZADAS</h2>
-<table class="table table-striped">
+<table class="table table-responsive  table-striped">
         <thead>
             <tr>
             <th scope="col">COD</th>

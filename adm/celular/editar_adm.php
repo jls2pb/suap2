@@ -1,5 +1,5 @@
 <?php
-include "../conexao.php";
+include "../../conexao.php";
 $cpf_logado = $_POST['cpf_logado'];
 if (isset($_POST['nome_fantasia'])) {
     $local = $_POST['nome_fantasia'];

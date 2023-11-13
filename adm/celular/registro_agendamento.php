@@ -1,5 +1,5 @@
 <?php 
-include "../conexao.php";
+include "../../conexao.php";
 require_once("head.php");
 session_start();
 date_default_timezone_set('America/Sao_Paulo');
@@ -59,14 +59,14 @@ if($resultado->execute()){
         }
 </style>  
 
-<button style="width: 100%;" id="print" onclick="printPage()">Imprimir<img style="width: 2%;" src="../images/printer.png"></button>
+<button style="width: 100%;" id="print" onclick="printPage()">Imprimir<img style="width: 2%;" src="../../images/printer.png"></button>
    <a href="tabela_agendamento.php?id=<?php echo $cod_profissional;?>" ><button  style="width: 100%; background-color:#B22222;color: white;" id="voltar">Voltar</button><a>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
 
    <?php
 
    echo "<div class='row pt-1' style='color:black;'>";
-   echo "<img style='height: 100px; ' class='col-4' src='../images/logo_sm.png'>";
+   echo "<img style='height: 100px; ' class='col-4' src='../../images/logo_sm.png'>";
    echo "<div class='col-4 text-center pt-0'>";
    echo "<h5>SECRETARIA MUNICIPAL DE SAÚDE </h5>";
    echo "<h6>SÃO GONÇALO DO AMARANTE</h6>";
@@ -74,7 +74,7 @@ if($resultado->execute()){
    echo "<h8>Comprovante de Agendamento</h8>";
    echo "</div>";
    echo "<div class='col-2'></div>";
-   echo "<div class='text-right col-2 pt-0 pl-1'><img style='width: 100%;' src='../images/logo_sus.png'><br>";
+   echo "<div class='text-right col-2 pt-0 pl-1'><img style='width: 100%;' src='../../images/logo_sus.png'><br>";
    echo "SUAP SESA</div>";
    echo "</div>";
    echo "<hr style='background-color: black;'>";
