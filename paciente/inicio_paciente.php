@@ -32,39 +32,27 @@ if(isset($_SESSION['cpf'])){
     <table class="table table-striped table-bordered table-sm table-responsive">
         <thead style="background-color: #66a7ff;" class="thead text-white">
             <tr>
-                <th scope="col">COD</th>
-                <th scope="col">NOME</th>
                 <th scope="col">PROCEDIMENTO</th>
+				<th scope="col">STATUS</th>
                 <th scope="col">PROFISSIONAL</th>
-                <th scope="col">SOLICITAÇÃO</th>
-                <th scope="col">ENTRADA(CAD)</th>
-                <th scope="col">SAIDA</th>
-                <th scope="col">AGENDAMENTO</th>
+                <th scope="col">DATA DA CONSULTA</th>
                 <th scope="col">LOCAL AGENDAMENTO</th>
-                <th scope="col">STATUS</th>
+                
             </tr>
         </thead>
         <tbody>
         <?php 
         if (($result_procedimento) && ($result_procedimento->rowCount() > 0)) {
             while ($d2 = $result_procedimento->fetch(PDO::FETCH_ASSOC)) {
-                // Processar os dados do procedimento aqui
-                $solicitacao = ($d2["data_da_solicitacao"] != NULL) ? date('d/m/Y', strtotime($d2["data_da_solicitacao"])) : NULL;
-                $entrada = ($d2["data_de_entrada_cadastro"] != NULL) ? date('d/m/Y', strtotime($d2["data_de_entrada_cadastro"])) : NULL;
-                $saida = ($d2["data_da_saida"] != NULL ) ? date('d/m/Y', strtotime($d2["data_da_saida"])) : NULL;
+                if($d2["procedimento"] != NULL){
+
+               
+               
                 $agendamento = ($d2["data_do_agendamento"] != NULL) ? date('d/m/Y', strtotime($d2["data_do_agendamento"])) : NULL;
         ?>
             <tr>
-                <th scope="row"><?php echo $d2["id"]; ?></th>
-                <td><?php echo $d2["nome_paciente"]; ?></td>
-                <td><?php echo $d2["procedimento"]; ?></td> 
-                <td><?php echo $d2["profissional"]; ?></td>
-                <td><?php echo $solicitacao ?></td>  
-                <td><?php echo $entrada ?></td>
-                <td><?php echo $saida ?></td>
-                <td><?php echo $agendamento ?></td>
-                <td><?php echo $d2["local_do_agendamento"]; ?></td>
-                <td>
+                <td><?php echo $d2["procedimento"]; ?></td>
+				<td>
                 <?php 
                     $id = $d2["id"];
                     $sql = "SELECT * FROM agendamento WHERE procedimento = :id";
@@ -74,13 +62,23 @@ if(isset($_SESSION['cpf'])){
                     if ($stmt->rowCount() > 0) {
                         echo "Agendado";
                     } else {
-                        echo "Aguardando Agendamento";
+                        if($agendamento != NULL){
+                            echo "Agendado";
+                        }else{
+                            echo "Aguardando Agendamento";
+                        }
+                        
                     }
                 ?>
-                </td>
+                </td>	
+                <td><?php echo $d2["profissional"]; ?></td>
+                <td><?php echo $agendamento ?></td>
+                <td><?php echo $d2["local_do_agendamento"]; ?></td>
+                
             </tr>
         <?php
             }
+        }
         } else {
             echo "<tr><td colspan='10' style='color: #f00;'>Nenhum agendamento encontrado!</td></tr>";
         }  
