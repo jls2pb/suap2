@@ -1,18 +1,13 @@
 <?php 
-
 session_start(); 
+if(isset($_SESSION['cpf_adm']) == FALSE){
+    header("Location:../index.php");
+}
 $cpf_logado = $_SESSION['cpf_adm'];
 require_once("head.php");
 include "menu_adm.php";
 include "navibar_adm.php";
 include "../footer.php";
-
-
-
-if(isset($_SESSION['cpf_adm']) == FALSE){
-    header("Location:../index.php");
-}
-
 
 require_once("../conexao.php");
 $id = $_GET["id"];
@@ -23,6 +18,8 @@ if($resultado->execute()){
 }else{
     echo "erro ao coletar os dados";
 }
+
+
 ?>
 
 <h2 class="mb-4">EDIÇÃO DE PROCEDIMENTO</h2>
@@ -50,8 +47,7 @@ if($resultado->execute()){
                     }else{
                         $agendamento = NULL;
                     }
-            ?>  
-            <div class="form-outline mb-4">
+            ?>   <div class="form-outline mb-4">
             <label class="form-label">Nome do Paciente</label>
             <input type="text" name = "paciente" class="form-control form-control-lg" value = "<?php echo $y['nome_paciente'] ?>"  disabled=""/>
             </div>
@@ -61,7 +57,7 @@ if($resultado->execute()){
             <input type="text" name = "profissional" class="form-control form-control-lg" value = "<?php echo $y['profissional'] ?>" />
             </div>
 		<div class="row">
-                <div class="col-8">     
+                <div class="col-6">     
           	        <div class="form-outline mb-4">
                         <label class="form-label">Procedimento</label>
                         <input type="text" name = "procedimento" class="form-control form-control-lg" id="procedimento_input" list="procedimentos_list" oninput="handleInput(event)" value = "<?php echo $y['procedimento'] ?>">
@@ -74,7 +70,48 @@ if($resultado->execute()){
                         <input type="text" name = "especificacao" oninput="handleInput(event)" class="form-control form-control-lg" value = "<?php echo $y['especificacao'] ?>"/>
                     </div>
                 </div>
+                <div class="col">
+                        <label class="form-label">Status</label>
+                        <div class="form-outline mb-4">
+                <select class="form-control form-control-lg" name="status" id="status">
+                    <?php
+                    $query = "SELECT status FROM agendamento WHERE procedimento = $id";
+                    $result = $conexao->prepare($query);
+                    $result->execute();  
+
+                    $query1 = "SELECT status FROM procedimentos WHERE id = $id";
+                    $result1 = $conexao->prepare($query1);
+                    $result1->execute();
+
+                    $status = -1; // Inicialize a variável de status com um valor padrão
+                    $statusTable = ""; // Inicialize a variável para armazenar a tabela do status
+
+                    if ($result && $result->rowCount() > 0) {
+                        $row = $result->fetch(PDO::FETCH_ASSOC);
+                        $status = $row['status'];
+                        $statusTable = "agendamento";
+                    } elseif ($result1 && $result1->rowCount() > 0) {
+                        $row1 = $result1->fetch(PDO::FETCH_ASSOC);
+                        $status = $row1['status'];
+                        $statusTable = "procedimentos";
+                    }
+                    ?>
+
+                    <?php if ($statusTable === "agendamento") : ?>
+                        <option value="0" <?php if ($status === 0) {echo 'selected';} ?>>Agendado</option>
+                        <option value="1" <?php if ($status === 1) {echo 'selected';} ?>>Compareceu</option>
+                        <option value="2" <?php if ($status === 2) {echo 'selected';} ?>>Não Compareceu</option>
+                    <?php elseif ($statusTable === "procedimentos") : ?>
+                        <option value="3" <?php if ($status === 3) {echo 'selected';} ?>>Aguardando agendamento</option>
+                        <option value="4" <?php if ($status === 4) {echo 'selected';} ?>>Retorno de referência</option>
+                    <?php endif; ?>
+
+                </select>
+                
             </div>
+                    </div>
+            </div>
+            
                 <div class="row">
                     <div class="col">
                         <label class="form-label">Data da Solicitação</label>

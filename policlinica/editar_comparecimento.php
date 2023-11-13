@@ -13,7 +13,7 @@ if($resultado->execute()){
     $proc = $row['procedimento'];
 
     if ($status==2) { 
-    $sql1 = "UPDATE procedimentos SET observacao = 'NÃO COMPARECEU' WHERE id = '$proc'";
+    $sql1 = "UPDATE procedimentos SET observacao = 'NÃO COMPARECEU', status = '$status' WHERE id = '$proc'";
 $resultado1 = $conexao->prepare($sql1);
 $resultado1->execute();
     }

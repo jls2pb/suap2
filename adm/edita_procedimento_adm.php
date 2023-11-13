@@ -12,11 +12,17 @@ $l_agendamento = $_POST["l_agendamento"];
 $obs = $_POST["obs"];
 $cpf_logado = $_POST["cpf_logado"];
 $id = $_POST["id"];
+$status = $_POST["status"];
 $cod = $_POST["cod"];
 $especificacao = $_POST["especificacao"];
-$sql = "UPDATE procedimentos SET nome_paciente = '$n_paciente', procedimento = '$procedimento', data_da_solicitacao = '$d_solicitacao', data_de_entrada_cadastro = '$d_entrada', data_da_saida = '$d_saida', data_do_agendamento = '$d_agendamento', local_do_agendamento = '$l_agendamento', observacao = '$obs', profissional = '$profissional', especificacao = '$especificacao' WHERE id = '$id'";
+$sql = "UPDATE procedimentos SET nome_paciente = '$n_paciente', procedimento = '$procedimento', data_da_solicitacao = '$d_solicitacao', data_de_entrada_cadastro = '$d_entrada', data_da_saida = '$d_saida', data_do_agendamento = '$d_agendamento', local_do_agendamento = '$l_agendamento', observacao = '$obs', profissional = '$profissional', especificacao = '$especificacao', status = '$status' WHERE id = '$id'";
 $resultado = $conexao->prepare($sql);
-if($resultado->execute()){
+    if($status != ''){
+        $sql1 = "UPDATE agendamento SET status = $status WHERE procedimento = $id";
+        $resultado1 = $conexao->prepare($sql1);
+    
+    }
+if($resultado->execute() && $resultado1->execute()){   
     $hoje = date('d/m/Y');
     $hora = date('H:i');
     $nome = "PROCEDIMENTO"." ".$id;

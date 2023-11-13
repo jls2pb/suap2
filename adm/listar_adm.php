@@ -175,28 +175,46 @@ if($resultado->execute()){
                       <td><?php echo $y2["nome_paciente"]; ?></td>
                       <td><?php echo $y2["procedimento"]; ?></td> 
                       <td>
-                        <?php
-                        $id = $y2['id'];
-                                $query = "SELECT status FROM agendamento WHERE procedimento = $id";
-                                $result = $conexao->prepare($query);
-                                $result->execute();
-                                if ($result && $result->rowCount() > 0) {
-                                $row = $result->fetch(PDO::FETCH_ASSOC);
-                                $status = $row['status'];
-                                if($status===0){
-                                  echo "AGENDADO";
-                                }
-                                elseif($status===1){
-                                  echo "COMPARECEU";
-                                }
-                                elseif($status===2){
-                                  echo "NÃO COMPARECEU";
-                                }  }
+                      <?php
+                      $id = $y2['id'];
+                      $query = "SELECT status FROM agendamento WHERE procedimento = $id";
+                      $result = $conexao->prepare($query);
+                      $result->execute();
 
-                                else{
-                                  echo "AGUARDANDO";
-                                }
-                        ?>
+                      $query1 = "SELECT status FROM procedimentos WHERE id = $id";
+                      $result1 = $conexao->prepare($query1);
+                      $result1->execute();
+
+                      $statusArray = [];
+
+                      if ($result && $result->rowCount() > 0) {
+                          $statusRow = $result->fetch(PDO::FETCH_ASSOC);
+                          $statusArray[] = $statusRow['status'];
+                      } elseif ($result1 && $result1->rowCount() > 0) {
+                          $statusRow1 = $result1->fetch(PDO::FETCH_ASSOC);
+                          $statusArray[] = $statusRow1['status'];
+                      }
+
+                      if (count($statusArray) > 0) {
+                          // Os resultados das duas consultas estão em $statusArray
+                          foreach ($statusArray as $status) {
+                              if ($status === 0) {
+                                  echo "AGENDADO";
+                              } elseif ($status === 1) {
+                                  echo "COMPARECEU";
+                              } elseif ($status === 2) {
+                                  echo "NÃO COMPARECEU";
+                              } elseif ($status === 3) {
+                                  echo "AGUARDANDO AGENDAMENTO";
+                              } elseif ($status === 4) {
+                                  echo "RETORNO DE REFERÊNCIA";
+                              }
+                          }
+                      } else {
+                          echo "AGUARDANDO";
+                      }
+                      ?>
+
                       </td>
                     <td><?php echo $y2["profissional"]; ?></td>
                     <td><?php echo $solicitacao ?></td>  

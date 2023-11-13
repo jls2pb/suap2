@@ -4,6 +4,9 @@ $timezone = new DateTimeZone('America/Sao_Paulo');
 
 
  session_start();
+ if(isset($_SESSION['cpf_adm']) == FALSE){
+    header("Location:../index.php");
+}
  $cpf_logado = $_SESSION['cpf_adm'];
  include "head.php";
  include "menu_adm.php";
