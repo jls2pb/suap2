@@ -1,7 +1,7 @@
 <?php 
 session_start();
 if(isset($_SESSION['cpf_agendar']) == FALSE){
-    header("Location:..index.php");
+    header("Location:../index.php");
 }
 $cpf_logado = $_SESSION['cpf_agendar'];
 require_once("head.php");
