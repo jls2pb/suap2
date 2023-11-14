@@ -119,7 +119,7 @@ include "../footer.php";
             if (term.length >= 3) {
                 // Realizamos a solicitação AJAX para buscar os pacientes
                 $.ajax({
-                    url: 'buscar_paciente.php',
+                    url: '../buscar/buscar_paciente.php',
                     type: 'GET',
                     data: { term: term },
                     dataType: 'json',
@@ -170,7 +170,7 @@ include "../footer.php";
         function atualizarProcedimentos(cod) {
             // Realize uma solicitação AJAX para buscar os procedimentos com base no código (cod)
             $.ajax({
-                url: 'buscar_procedimentos.php', // Substitua pelo URL correto para buscar procedimentos com base no código de paciente
+                url: '../buscar/buscar_procedimentos.php', // Substitua pelo URL correto para buscar procedimentos com base no código de paciente
                 type: 'GET',
                 data: { cod: cod },
                 dataType: 'json',

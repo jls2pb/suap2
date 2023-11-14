@@ -128,7 +128,7 @@ include "../footer.php";
                 if (term.length >= 3) {
                     // Realizamos a solicitação AJAX para buscar os procedimentos
                     $.ajax({
-                        url: '../buscar/buscar_procedimentos.php',
+                        url: '../buscar/buscar_procedimento_medico.php',
                         type: 'GET',
                         data: {term: term},
                         dataType: 'json',

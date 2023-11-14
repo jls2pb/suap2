@@ -61,12 +61,15 @@
     </style>
 </head>
 <body>
+    
     <div class="p-0 m-0">
         <nav style="padding: 20px; background-color: #1E90FF; width: 100%;" class="navbar-expand-lg navbar-light ">
             <div class="container-fluid">
+           
+
                 <img class="img-responsive img-fluid d-block d-lg-none" style="width: 75%;" src="../../images/logo_clara.png">
                 <img class="img-responsive img-fluid d-none d-lg-block" style="width: 16%;" src="../../images/logo_clara.png">
-                <div id="navbarSupportedContent">
+                <div id="navbarSupportedContent" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav ml-auto">
                         <li class="nav-item ml-auto">
                             <a href="inicio_adm.php" class="link-dark rounded text-white"><span class="fa fa-home"></span><b> INÍCIO</b></a>
@@ -129,5 +132,6 @@
             $(this).parent(".sub-menu-second").children("ul").slideToggle("100");
             $(this).find("span.right").toggleClass("fa-caret-up fa-caret-down");
         });
+        
     });
 </script>

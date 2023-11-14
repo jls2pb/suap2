@@ -284,8 +284,7 @@ CREATE TABLE public.procedimentos (
     usuario text,
     profissional text,
     cod integer,
-    especificacao text,
-    status integer
+    especificacao text
 );
 
 
