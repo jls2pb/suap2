@@ -119,7 +119,7 @@ if($resultado->execute()){
       </div> 
             <br>
             <table class="table table-striped table-compact">
-        <thead>
+        <thead class="tetx-center">
             <tr>
             <th scope="col">COD</th>
             <th scope="col">NOME</th>
@@ -133,7 +133,7 @@ if($resultado->execute()){
             <th scope="col">AÇÃO</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="text-center">
 
                     <?php 
                       foreach ($x2 as $y2) {
@@ -230,8 +230,8 @@ if($resultado->execute()){
             <td><?php echo $entrada ?></td>
             <td><?php echo $saida ?></td>
             <td><?php echo $agendamento ?></td>
-            <td><a class="btn text-white" style = "background-color: DarkBlue; font-size:13px;" href="form_edita_procedimento_adm.php?id=<?php echo $y2['id'] ?>" role="button"> EDITAR </a>
-            <a class="btn btn-danger text-white" style="font-size:13px;" role="button" onclick="cconfirmarExclusao(<?php echo $y2['id']; ?>)"> EXCLUIR </a></td>
+            <td class="d-flex"><a class="btn text-white m-1" style = "background-color: DarkBlue; font-size:13px;" href="form_edita_procedimento_adm.php?id=<?php echo $y2['id'] ?>" role="button"> EDITAR </a>
+            <a class="btn btn-danger text-white m-1" style="font-size:13px;" role="button" onclick="cconfirmarExclusao(<?php echo $y2['id']; ?>)"> EXCLUIR </a></td>
             </tr>
             <?php
             }
