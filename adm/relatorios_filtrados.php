@@ -7,7 +7,7 @@ function printPage() {
 <style>
 @media print {
     #print,
-    #voltar,
+    #voltar
  {
         display: none;
     }
