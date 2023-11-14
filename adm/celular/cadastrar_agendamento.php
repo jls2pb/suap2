@@ -27,7 +27,7 @@ include "../../footer.php";
     <div class="col-4">
         <div class="form-outline mb-4">
             <label class="form-label">SEXO: </label>
-            <select style="width: 150%;" class="form-control form-control-lg" name = "sexo" id="sexo">
+            <select style="width: 150%;" class="form-control form-control-lg" name = "sexo" id="sexo" required>
             <option selected disabled value = ""> Selecione o sexo </option>
                 <option value = "MASCULINO"> MASCULINO </option>
                 <option value = "FEMININO"> FEMININO </option>
