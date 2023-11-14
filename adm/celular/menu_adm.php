@@ -39,8 +39,14 @@
         /* Estilos para o submenu */
         nav ul ul {
             background: rgba(0, 0, 0, 0.2);
+            display: none;
+            position: absolute;
+            z-index: 1;
         }
-        nav ul li ul li a {
+        nav ul li:hover > ul {
+            display: inherit;
+        }
+        nav ul li ul li {
             border-left: 4px solid transparent;
             padding: 10px 20px;
         }
@@ -57,64 +63,72 @@
             li.nav-item:nth-child(5) {
                 clear: both;
             }
+            nav ul ul {
+                display: none;
+                position: static;
+            }
         }
     </style>
 </head>
 <body>
-    
     <div class="p-0 m-0">
         <nav style="padding: 20px; background-color: #1E90FF; width: 100%;" class="navbar-expand-lg navbar-light ">
             <div class="container-fluid">
-           
-
                 <img class="img-responsive img-fluid d-block d-lg-none" style="width: 75%;" src="../../images/logo_clara.png">
                 <img class="img-responsive img-fluid d-none d-lg-block" style="width: 16%;" src="../../images/logo_clara.png">
-                <div id="navbarSupportedContent" class="collapse navbar-collapse">
+                <div id="navbarSupportedContent">
                     <ul class="nav navbar-nav ml-auto">
-                        <li class="nav-item ml-auto">
-                            <a href="inicio_adm.php" class="link-dark rounded text-white"><span class="fa fa-home"></span><b> INÍCIO</b></a>
-                        </li>
                         <li class="nav-item ml-auto sub-menu-second">
-                            <a style="cursor: pointer;" class="link-dark rounded text-white"><span class="bi bi-pencil-square"></span><b>CADASTRO </b><div class="fa fa-caret-down right"></div></a>
+                            <a style="cursor: pointer;" class="link-dark rounded text-white"><span class="fa fa-bars"></span></a>
                             <ul>
                                 <li class="nav-item ml-auto">
-                                    <a href="cadastrar_paciente_adm.php" class="link-dark rounded text-white"><span class="fa fa-user"></span><b>NOVO PACIENTE</b></a>
+                                    <a href="inicio_adm.php" class="link-dark rounded text-white"><span class="fa fa-home"></span><b> INÍCIO</b></a>
                                 </li>
-                                <li class="nav-item ml-auto"><a href="forms_tabela_adm.php" class="link-dark rounded text-white"><span class="bi bi-table"></span><b>TABELAS</b></a></li>
+                                <li class="nav-item ml-auto sub-menu-second">
+                                    <a style="cursor: pointer;" class="link-dark rounded text-white"><span class="bi bi-pencil-square"></span><b>CADASTRO </b><div class="fa fa-caret-down right"></div></a>
+                                    <ul>
+                                        <li class="nav-item ml-auto">
+                                            <a href="cadastrar_paciente_adm.php" class="link-dark rounded text-white"><span class="fa fa-user"></span><b>NOVO PACIENTE</b></a>
+                                        </li>
+                                        <li class="nav-item ml-auto">
+                                            <a href="forms_tabela_adm.php" class="link-dark rounded text-white"><span class="bi bi-table"></span><b>TABELAS</b></a>
+                                        </li>
+                                        <li class="nav-item ml-auto">
+                                            <a href="cadastrar_profissional.php" class="link-dark rounded text-white"><img style="width: 5%;" src="../../images/medico.png"><b>NOVO PROFISSIONAL</b></a>
+                                        </li>
+                                    </ul>
+                                </li>
                                 <li class="nav-item ml-auto">
-                                    <a href="cadastrar_profissional.php" class="link-dark rounded text-white"><img style="width: 5%;" src="../../images/medico.png"><b>NOVO PROFISSIONAL</b></a>
+                                    <a href="inicio_agendamento.php" class="link-dark rounded text-white"><span class="bi bi-card-list"></span><b> AGENDAMENTO</b></a>
+                                </li>
+                                <li class="nav-item ml-auto sub-menu-second">
+                                    <a style="cursor: pointer;" class="link-dark rounded text-white"><span class="bi bi-eye"></span><b>VISUALIZAR </b><div class="fa fa-caret-down right"></div></a>
+                                    <ul>
+                                        <li class="nav-item ml-auto">
+                                            <a href="ver_atividades.php" class="link-dark rounded text-white"><img style="width: 9%;" src="../../images/checklist.png"><b>VER ATIVIDADES</b></a>
+                                        </li>
+                                        <li class="nav-item ml-auto">
+                                            <a href="ver_usuarios.php" class="link-dark rounded text-white"><span class="bi bi-person"></span><b>VER USUÁRIOS</b></a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item ml-auto">
+                                    <a href="index_logado_adm.php" class="link-dark rounded text-white"><span class="fa fa-sticky-note"></span><b> LISTAR PACIENTES</b></a>
+                                </li>
+                                <li class="nav-item ml-auto">
+                                    <a href="codigo.php" class="link-dark rounded text-white">  <img class="img-responsive img-fluid d-inline d-lg-none"  style="width: 10%;" src="../../images/pin.png">
+                                    <img class="img-responsive img-fluid d-none d-lg-inline"  style="width: 3%;" src="../../images/pin.png"><b> GERAR CÓDIGO</b></a>
+                                </li>
+                                <li class="nav-item ml-auto">
+                                    <a href="relatorios.php" class="link-dark rounded text-white"><span class="bi bi-file-earmark-text"></span> <b> RELATÓRIOS</b></a>
+                                </li>
+                                <li class="nav-item ml-auto">
+                                    <a href="exibir_resultado_adm.php" class="link-dark rounded text-white"><span class="bi bi-bar-chart-line-fill" ></span><b> RANKING </b></a>
+                                </li>
+                                <li class="nav-item ml-auto">
+                                    <a href="sair.php" class="link-dark rounded text-white"><span class="bi bi-door-open-fill" ></span><b> SAIR</b></a>
                                 </li>
                             </ul>
-                        </li>
-                        <li class="nav-item ml-auto">
-                            <a href="inicio_agendamento.php" class="link-dark rounded text-white"><span class="bi bi-card-list"></span><b> AGENDAMENTO</b></a>
-                        </li>
-                        <li class="nav-item ml-auto sub-menu-second">
-                            <a style="cursor: pointer;" class="link-dark rounded text-white"><span class="bi bi-eye"></span><b>VISUALIZAR </b><div class="fa fa-caret-down right"></div></a>
-                            <ul>
-                                <li class="nav-item ml-auto">
-                                    <a href="ver_atividades.php" class="link-dark rounded text-white"><img style="width: 9%;" src="../../images/checklist.png"><b>VER ATIVIDADES</b></a>
-                                </li>
-                                <li class="nav-item ml-auto">
-                                    <a href="ver_usuarios.php" class="link-dark rounded text-white"><span class="bi bi-person"></span><b>VER USUÁRIOS</b></a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-item ml-auto">
-                            <a href="index_logado_adm.php" class="link-dark rounded text-white"><span class="fa fa-sticky-note"></span><b> LISTAR PACIENTES</b></a>
-                        </li>
-                        <li class="nav-item ml-auto" style="width:50%;">
-                            <a href="codigo.php" class="link-dark rounded text-white">  <img class="img-responsive img-fluid d-inline d-lg-none"  style="width: 15%;" src="../../images/pin.png">
-                <img class="img-responsive img-fluid d-none d-lg-inline"  style="width: 3%;" src="../../images/pin.png"><b> GERAR CÓDIGO</b></a>
-                        </li>
-                        <li class="nav-item ml-auto">
-                            <a href="relatorios.php" class="link-dark rounded text-white"><span class="bi bi-file-earmark-text"></span> <b> RELATÓRIOS</b></a>
-                        </li>
-                        <li class="nav-item ml-auto">
-                            <a href="exibir_resultado_adm.php" class="link-dark rounded text-white"><span class="bi bi-bar-chart-line-fill" ></span><b> RANKING </b></a>
-                        </li>
-                        <li class="nav-item ml-auto">
-                            <a href="sair.php" class="link-dark rounded text-white"><span class="bi bi-door-open-fill" ></span><b> SAIR</b></a>
                         </li>
                     </ul>
                 </div>
@@ -132,6 +146,5 @@
             $(this).parent(".sub-menu-second").children("ul").slideToggle("100");
             $(this).find("span.right").toggleClass("fa-caret-up fa-caret-down");
         });
-        
     });
 </script>
