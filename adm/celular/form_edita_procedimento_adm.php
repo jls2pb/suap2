@@ -100,7 +100,12 @@ if($resultado->execute()){
                         <option value="2" <?php if ($status === 2) {echo 'selected';} ?>>Não Compareceu</option>
                     <?php elseif ($statusTable === "procedimentos") : ?>
                         <option value="3" <?php if ($status === 3) {echo 'selected';} ?>>Aguardando agendamento</option>
-                        <option value="4" <?php if ($status === 4) {echo 'selected';} ?>>Retorno de referência</option>
+                        <option value="4" <?php if ($status === 4) {echo 'selected';} ?>>Devolvida à UAPS</option>
+                        <option value="5" <?php if ($status === 5) {echo 'selected';} ?>>Retirada do setor</option>
+                        <option value="6" <?php if ($status === 6) {echo 'selected';} ?>>Encaminhada à Policlínica Municipal</option>
+                        <option value="7" <?php if ($status === 7) {echo 'selected';} ?>>Encaminhada ao HGLAS</option>
+                        <option value="8" <?php if ($status === 8) {echo 'selected';} ?>>Encaminhada ao CAPS</option>
+                        <option value="9" <?php if ($status === 9) {echo 'selected';} ?>>Encaminhada ao CER</option>
                     <?php endif; ?>
 
                 </select>

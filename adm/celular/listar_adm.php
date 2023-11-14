@@ -15,7 +15,7 @@
   .table.table-compact th,
   .table.table-compact td {
     padding: 10px; /* Reduz o espaçamento interno */
-    font-size: 15px; /* Tamanho da fonte menor */
+    font-size: 13.5px; /* Tamanho da fonte menor */
   }
   </style>
    <?php 
@@ -45,9 +45,9 @@ if($resultado->execute()){
 ?>
 
  
-   <div class = "container mt-1"> 
+   <div class = "container mt-1" style="font-size:13.5px;"> 
     <div class="">
-    <h2 class="mb-4">DADOS COMPLETOS DO PACIENTE</h2>
+    <h3 class="mb-4">DADOS COMPLETOS DO PACIENTE</h3>
   <?php 
     foreach ($x as $y) {
       if($y["nascimento"] != NULL){
@@ -111,10 +111,10 @@ if($resultado->execute()){
       <br>
       <div class="row text-center">
         <div class="col">
-          <a class="btn text-white" style = "background-color: DarkBlue" href="form_edita_adm.php" role="button">EDITAR PACIENTE</a>
-          <a class="btn btn-primary text-white" href="cadastrar_procedimento_adm.php?n=<?php echo $y["nome_paciente"]; ?>" role="button">NOVO PROCEDIMENTO</a>
-          <a class="btn btn-info text-white" href="listar_log_adm.php" role="button">ATIVIDADES</a>
-          <a class="btn btn-danger text-white" role="button" onclick="confirmarExclusao(<?php echo $y['cod']; ?>)">EXCLUIR CADASTRO</a>
+          <a class="btn text-white" style = "background-color: DarkBlue; font-size:13px;" href="form_edita_adm.php" role="button">EDITAR PACIENTE</a>
+          <a class="btn btn-primary text-white" style="font-size:13px;" href="cadastrar_procedimento_adm.php?n=<?php echo $y["nome_paciente"]; ?>" role="button">NOVO PROCEDIMENTO</a>
+          <a class="btn btn-info text-white" style="font-size:13px;" href="listar_log_adm.php" role="button">ATIVIDADES</a>
+          <a class="btn btn-danger text-white" style="font-size:13px;" role="button" onclick="confirmarExclusao(<?php echo $y['cod']; ?>)">EXCLUIR CADASTRO</a>
         </div>
       </div> 
             <br>
@@ -198,18 +198,28 @@ if($resultado->execute()){
                       if (count($statusArray) > 0) {
                           // Os resultados das duas consultas estão em $statusArray
                           foreach ($statusArray as $status) {
-                              if ($status === 0) {
-                                  echo "AGENDADO";
-                              } elseif ($status === 1) {
-                                  echo "COMPARECEU";
-                              } elseif ($status === 2) {
-                                  echo "NÃO COMPARECEU";
-                              } elseif ($status === 3) {
-                                  echo "AGUARDANDO AGENDAMENTO";
-                              } elseif ($status === 4) {
-                                  echo "RETORNO DE REFERÊNCIA";
-                              }
-                          }
+                            if ($status === 0) {
+                                echo "AGENDADO";
+                            } elseif ($status === 1) {
+                                echo "COMPARECEU";
+                            } elseif ($status === 2) {
+                                echo "NÃO COMPARECEU";
+                            } elseif ($status === 3) {
+                                echo "AGUARDANDO AGENDAMENTO";
+                            } elseif ($status === 4) {
+                                echo "DEVOLVIDA À UAPS";
+                            } elseif ($status === 5) {
+                              echo "RETIRADA DO SETOR";
+                            } elseif ($status === 6) {
+                                echo "ENCAMINHADA À POLICLÍNICA";
+                            } elseif ($status === 7) {
+                                echo "ENCAMINHADA AO HGLAS";
+                            } elseif ($status === 8) {
+                                echo "ENCAMINHADA AO CAPS";
+                            } elseif ($status === 9) {
+                              echo "ENCAMINHADA AO CER";
+                           }
+                        }
                       } else {
                           echo "AGUARDANDO";
                       }
@@ -220,8 +230,8 @@ if($resultado->execute()){
             <td><?php echo $entrada ?></td>
             <td><?php echo $saida ?></td>
             <td><?php echo $agendamento ?></td>
-            <td><a class="btn text-white" style = "background-color: DarkBlue" href="form_edita_procedimento_adm.php?id=<?php echo $y2['id'] ?>" role="button"> EDITAR </a>
-            <a class="btn btn-danger text-white" role="button" onclick="cconfirmarExclusao(<?php echo $y2['id']; ?>)"> EXCLUIR </a></td>
+            <td><a class="btn text-white" style="background-color: DarkBlue; font-size:13px;" href="form_edita_procedimento_adm.php?id=<?php echo $y2['id'] ?>" role="button"> EDITAR </a>
+            <a class="btn btn-danger text-white" style="font-size:13px;" role="button" onclick="cconfirmarExclusao(<?php echo $y2['id']; ?>)"> EXCLUIR </a></td>
             </tr>
             <?php
             }
