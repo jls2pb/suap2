@@ -25,11 +25,11 @@ if(isset($_SESSION['cpf_policlinica'])){
     
     ?>
     <br>
-    <a style="" href="ver_agendamentos.php" class="btn btn-primary text-white float-right" role="button">VER TODOS OS AGENDAMENTOS</a>
+    <a href="ver_agendamentos.php" class="btn btn-primary text-white float-right" role="button">VER TODOS OS AGENDAMENTOS</a>
 
     <h2 style="padding-left: 10px;">TABELA DE AGENDAMENTOS EM ESPERA</h2>
 
-    <table style="" class="table table-striped table-bordered table-sm table-responsive">
+    <table class="table table-striped table-bordered table-sm table-responsive">
         <thead style="background-color: #66a7ff;" class="thead text-white">
             <tr>
                 <th scope="col">DATA</th>

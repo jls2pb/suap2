@@ -27,7 +27,7 @@ include "../footer.php";
     <div class="col-4">
         <div class="form-outline mb-4">
             <label class="form-label">SEXO: </label>
-            <select style="width: 150%;" class="form-control form-control-lg" name = "sexo" id="sexo">
+            <select style="width: 150%;" class="form-control form-control-lg" name = "sexo" id="sexo" required>
             <option selected disabled value = ""> Selecione o sexo </option>
                 <option value = "MASCULINO"> MASCULINO </option>
                 <option value = "FEMININO"> FEMININO </option>
@@ -119,7 +119,7 @@ include "../footer.php";
             if (term.length >= 3) {
                 // Realizamos a solicitação AJAX para buscar os pacientes
                 $.ajax({
-                    url: 'buscar_paciente.php',
+                    url: '../buscar/buscar_paciente.php',
                     type: 'GET',
                     data: { term: term },
                     dataType: 'json',
@@ -170,7 +170,7 @@ include "../footer.php";
         function atualizarProcedimentos(cod) {
             // Realize uma solicitação AJAX para buscar os procedimentos com base no código (cod)
             $.ajax({
-                url: 'buscar_procedimentos.php', // Substitua pelo URL correto para buscar procedimentos com base no código de paciente
+                url: '../buscar/buscar_procedimentos.php', // Substitua pelo URL correto para buscar procedimentos com base no código de paciente
                 type: 'GET',
                 data: { cod: cod },
                 dataType: 'json',

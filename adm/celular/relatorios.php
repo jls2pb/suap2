@@ -101,7 +101,7 @@ $('#profissional_input').on('input', function () {
       $('#profissional_list').empty();
         // Realizamos a solicitação AJAX para buscar os profissionais
         $.ajax({
-            url: 'buscar_profissional.php',
+            url: '../buscar/buscar_profissional.php',
             type: 'GET',
             data: { term: term },
             dataType: 'json',
