@@ -1,7 +1,7 @@
 <?php 
 session_start();
 if(isset($_SESSION['cpf_cad_ag']) == FALSE){
-    header("Location:..index.php");
+    header("Location:../index.php");
 }
 $cpf_logado = $_SESSION['cpf_cad_ag'];
 require_once("head.php");

@@ -8,6 +8,8 @@ include "head.php";
 include "menu.php";
 include "navibar.php";
 include "../footer.php";
+require_once("../conexao.php");
+
 $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
  $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
 
@@ -21,6 +23,8 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
  $query_usuarios = "SELECT DISTINCT ON (nome_fantasia) * FROM local_atendimento ORDER BY nome_fantasia ASC LIMIT $limite_resultado OFFSET $inicio ";
  $result_usuarios = $conexao->prepare($query_usuarios);
  $result_usuarios->execute();
+
+
 ?>
 <script>
  function confirmarExclusao(id) {
@@ -33,6 +37,18 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             }
         }
         </script>
+    <form method = "POST" action = "pesquisar_local.php">    
+    <div class="input-group justify-content-end">
+        <div class="form-outline">
+            <input type="search" id="pesquisa" name="nome" class="form-control" oninput="handleInput(event)" placeholder="BUSCAR LOCAL" />
+            <input type="hidden" name="cpf" value="<?php echo $cpf_logado ?>">
+        </div>
+        <button style="background-color: #66a7ff; color: white;" type="submit" class="btn">
+            <i class="bi bi-search"></i>
+        </button>
+    </div>
+    </form>
+    <br>
 <table class="table table-striped">
         <thead>
             <tr>
@@ -54,7 +70,6 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             <th scope="row"><?php echo $d["cnes"];?></th>
             <td><?php echo $d["nome_fantasia"]; ?></td>
             <td><?php echo $d["endereco_local"]; ?></td>
-          
             <td>
                 <a class="btn text-white btn-primary" href="edita_local.php?id=<?php echo $d['cnes'];?>" role="button"><b>EDITAR</b></a>
             </td>

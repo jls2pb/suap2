@@ -1,19 +1,26 @@
-<?php
-  include "../conexao.php";
-if (isset($_GET['term'])) {
-    $term = $_GET['term'];
+﻿<?php
+$host = "localhost";
+$port = 5432;
+$database = "suap";
+$user = "postgres";
+$password = "1234";
+$pdo = new PDO("pgsql:host=$host;port=$port;dbname=$database;user=$user;password=$password");
 
-    // Verifique se o termo de pesquisa possui pelo menos 3 letras
-    if (strlen($term) >= 3) {
-        // Consulta para obter os procedimentos que correspondem ao termo de pesquisa
-        $sql = "SELECT procedimento FROM procedimento_medico WHERE procedimento LIKE :term";
-        $stmt = $conexao->prepare($sql);
-        $stmt->bindValue(':term', '%' . $term . '%', PDO::PARAM_STR);
-        $stmt->execute();
+if (isset($_GET['cod'])) {
+    $cod = $_GET['cod'];
 
-        // Retorne os procedimentos encontrados em um array JSON
-        $procedimentos = $stmt->fetchAll(PDO::FETCH_COLUMN);
-        echo json_encode($procedimentos);
-    }
+    // Consulta para obter os procedimentos com base no código (cod) e status igual a 1
+    $sql = "SELECT p.id, p.procedimento FROM procedimentos p
+    LEFT JOIN agendamento a ON p.id = a.procedimento AND a.status != 1
+    WHERE p.cod = :cod AND (p.data_do_agendamento IS NULL OR p.data_do_agendamento = '')";
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindValue(':cod', $cod, PDO::PARAM_INT);
+    $stmt->execute();
+    
+    // Retorne os procedimentos encontrados em um array associativo
+    $procedimentos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    echo json_encode($procedimentos);
 }
+
+
 ?>

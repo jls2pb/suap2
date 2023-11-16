@@ -7,14 +7,14 @@ function printPage() {
 <style>
 @media print {
     #print,
-    #voltar,
+    #voltar
  {
         display: none;
     }
 }
 </style>
 <button style="width: 100%;" id="print" onclick="printPage()">Imprimir<img style="width: 2%;" src="../images/printer.png"></button>
-<a href="relatorios.php"><button style="width: 100%; background-color:#B22222;color: white;" id="voltar">Voltar</button><a>
+<a href="relatorios.php"><button style="width: 100%; background-color:#B22222;color: white;" id="voltar">Voltar</button></a>
 
 
 <?php

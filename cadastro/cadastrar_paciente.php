@@ -87,7 +87,7 @@ $resultado->execute();
                     <div class="col">
                         <div class="form-outline mb-4">
                             <select class="form-control form-control-lg" name = "ubs" id="ubs">
-			    	<option value = ""> SELECIONE A UNIDADE </option>
+			    	<option value=""> SELECIONE A UNIDADE </option>
                             <?php 
                             foreach ($resultado as $r) {
                              ?>

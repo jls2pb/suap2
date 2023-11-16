@@ -35,10 +35,12 @@ $sql_verificar2 = "SELECT cod FROM tabela WHERE cpf = '$a'";
 $resultado_verificar = $conexao->query($sql_verificar);
 $resultado_verificar2 = $conexao->query($sql_verificar2);
 function validateCPF($cpf) {
-    // Remove caracteres especiais e espaços em branco
+    // Remove caracteres especiais e espaços em branco   
+    if ($cpf != '') {
     $cpf = preg_replace('/[^0-9]/', '', $cpf);
 
     // Verifica se o CPF possui 11 dígitos
+ 
     if (strlen($cpf) != 11) {
         return false;
     }
@@ -70,8 +72,10 @@ function validateCPF($cpf) {
     } else {
         return false;
     }
+} else {
+    return true;
 }
-
+}
 if($resultado_verificar->rowCount() > 0 && $resultado_verificar2->rowCount() > 0) {
     ?>
     <script>

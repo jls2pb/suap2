@@ -1,13 +1,14 @@
 <?php 
+require_once("head.php");
 session_start();
-if(isset($_SESSION['cpf_cadastro']) == FALSE){
-    header("Location:../index.php");
-}
-$cpf_logado = $_SESSION['cpf_cadastro'];
-include "head.php";
+if(isset($_SESSION['cpf_cadastro'])){
+ $cpf_logado = $_SESSION['cpf_cadastro'];
 include "menu.php";
 include "navibar.php";
+
 include "../footer.php";
+require_once("../conexao.php");
+
 $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
  $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
 
@@ -21,8 +22,9 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
  $query_usuarios = "SELECT DISTINCT ON (procedimento) * FROM procedimento_medico ORDER BY procedimento ASC LIMIT $limite_resultado OFFSET $inicio ";
  $result_usuarios = $conexao->prepare($query_usuarios);
  $result_usuarios->execute();
-?>
 
+
+?>
 <script>
  function confirmarExclusao(id) {
             var confirmacao = confirm("Tem certeza de que deseja excluir este registro?");
@@ -34,33 +36,48 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             }
         }
         </script>
+<form method = "POST" action = "pesquisar_procedimento.php">    
+    <div class="input-group justify-content-end">
+        <div class="form-outline">
+            <input type="search" id="pesquisa" name="nome" class="form-control" oninput="handleInput(event)" placeholder="BUSCAR PROCEDIMENTO" />
+            <input type="hidden" name="cpf" value="<?php echo $cpf_logado ?>">
+        </div>
+        <button style="background-color: #66a7ff; color: white;" type="submit" class="btn">
+            <i class="bi bi-search"></i>
+        </button>
+    </div>
+    </form>        
 <table class="table table-striped">
         <thead>
             <tr>
             <th scope="col">PROCEDIMENTO</th>
-            
+            <th scope="col" colspan="2"><center>AÇÃO</center></th>
             </tr>
         </thead>
         <tbody>
             <?php 
               if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
                     while ($d = $result_usuarios->fetch(PDO::FETCH_ASSOC)) { 
+
                         extract($d); 
+			if($d["procedimento"] != NULL){
         
             ?>
             
             <tr>
             <td><?php echo $d["procedimento"]; ?></td>
             <td>
-                <a class="btn text-white btn-primary" href="edita_procedimentos.php?id=<?php echo $d['id_procedimento'];?>" role="button"><b>EDITAR</b></a>
+     
+		        <a class="btn text-white btn-primary" href="edita_procedimentos.php?id=<?php echo $d['id_procedimento'];?>" role="button"><b>EDITAR</b></a>
             </td>
             <td>
-                <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php echo $d['id_procedimento']; ?>)" role="button"><b>EXCLUIR</b></a>
+		        <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php echo $d['id_procedimento']; ?>)" role="button"><b>EXCLUIR</b></a>
+        
             </td>
             </tr>
             <?php
                     }
-
+		}
             $query_qnt_registros = "SELECT COUNT(procedimento) AS num_result FROM procedimento_medico";
             $result_qnt_registros = $conexao->prepare($query_qnt_registros);
             $result_qnt_registros->execute();
@@ -72,7 +89,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             // Maximo de link
             $maximo_link = 2;
             ?>
-            <div class = "row">
+              <div class = "row">
                 <div class = "col">        
             <?php 
                if ($pagina > 1) {
@@ -112,3 +129,8 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
         <script src="../mascara.js"></script>
     </div>
 </div>
+<?php 
+}else{
+    header("Location:../index.php");
+}
+?>

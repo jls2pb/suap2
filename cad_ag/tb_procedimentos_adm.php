@@ -36,11 +36,22 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             }
         }
         </script>
+<form method = "POST" action = "pesquisar_procedimento.php">    
+    <div class="input-group justify-content-end">
+        <div class="form-outline">
+            <input type="search" id="pesquisa" name="nome" class="form-control" oninput="handleInput(event)" placeholder="BUSCAR PROCEDIMENTO" />
+            <input type="hidden" name="cpf" value="<?php echo $cpf_logado ?>">
+        </div>
+        <button style="background-color: #66a7ff; color: white;" type="submit" class="btn">
+            <i class="bi bi-search"></i>
+        </button>
+    </div>
+    </form>        
 <table class="table table-striped">
         <thead>
             <tr>
             <th scope="col">PROCEDIMENTO</th>
-            
+            <th scope="col" colspan="2"><center>AÇÃO</center></th>
             </tr>
         </thead>
         <tbody>
@@ -56,12 +67,12 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             <tr>
             <td><?php echo $d["procedimento"]; ?></td>
             <td>
-		<a class="btn text-white btn-primary" href="edita_procedimentos.php?id=<?php echo $d['id_procedimento'];?>" role="button"><b>EDITAR</b></a>
-                
+     
+		        <a class="btn text-white btn-primary" href="edita_procedimentos.php?id=<?php echo $d['id_procedimento'];?>" role="button"><b>EDITAR</b></a>
             </td>
             <td>
-		<a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php echo $d['id_procedimento']; ?>)" role="button"><b>EXCLUIR</b></a>
-                
+		        <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php echo $d['id_procedimento']; ?>)" role="button"><b>EXCLUIR</b></a>
+        
             </td>
             </tr>
             <?php
@@ -78,7 +89,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             // Maximo de link
             $maximo_link = 2;
             ?>
-         <div class = "row">
+              <div class = "row">
                 <div class = "col">        
             <?php 
                if ($pagina > 1) {

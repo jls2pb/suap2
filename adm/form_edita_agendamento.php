@@ -122,14 +122,24 @@ if ($resultado->execute()) {
         </div>
         <div class="col">
             <label class="form-label">STATUS</label>
-            <div class="form-outline mb-4">
+           
                 <select required class="form-control form-control-lg" name="status">
-                   
-                    <option value="0" <?php if ($agendamento['status'] === 0) {echo 'selected';} ?>>Agendado</option>
-                    <option value="1" <?php if ($agendamento['status'] === 1) {echo 'selected';} ?>>Compareceu</option>
-                    <option value="2" <?php if ($agendamento['status'] === 2) {echo 'selected';} ?>>Não Compareceu</option>
+                   <?php 
+                        $query = "SELECT status FROM agendamento WHERE procedimento = $id";
+                        $result = $conexao->prepare($query);
+                        $result->execute();
+                        if ($result && $result->rowCount() > 0) {
+                        $row = $result->fetch(PDO::FETCH_ASSOC);
+                        $status = $row['status'];
+                   ?>
+                    <option value="0" <?php if ($status === 0) {echo 'selected';} ?>>Agendado</option>
+                    <option value="1" <?php if ($status === 1) {echo 'selected';} ?>>Compareceu</option>
+                    <option value="2" <?php if ($status === 2) {echo 'selected';} ?>>Não Compareceu</option>
+                    <?php
+                         }
+                    ?>
                 </select>
-            </div>
+           
         </div>
     </div>
     <div class="row">
