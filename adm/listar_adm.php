@@ -185,21 +185,21 @@ if($resultado->execute()){
                                 $status = $row['status'];
                                 if($status===0){
                                   echo "AGENDADO";
-                                }
-                                elseif($status===1){
+                                }elseif($status===1){
                                   echo "COMPARECEU";
-                                }
-                                elseif($status===2){
+                                }elseif($status===2){
                                   echo "NÃO COMPARECEU";
-                                }  }
-
-                                else{
+                                }else{
                                   if($agendamento != NULL ){
                                     echo "AGENDADO";
                                   }else{
                                     echo "AGUARDANDO AGENDAMENTO";
                                   }
                                 }
+                              
+                              }
+
+                                
                         ?>
                       </td>
                     <td><?php echo $y2["profissional"]; ?></td>
