@@ -83,7 +83,7 @@ if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
                     ?></td>
             <td class = "text-center">
                   <a class="btn text-white" style="background-color: #66a7ff; font-size:10px; " href = "form_edita_agendamento.php?id=<?php echo $d["id_agendamento"];?>" role="button">EDITAR</a>
-                  <a class="btn text-white btn-danger text-white" style="font-size:10px;margin:5px; onclick="confirmarCancelamento(<?php echo $d['id_agendamento'] ; ?>)"  role="button">DESMARCAR</a>
+                  <a class="btn text-white btn-danger text-white" style="font-size:10px;margin:5px;" onclick="confirmarCancelamento(<?php echo $d['id_agendamento'] ; ?>)"  role="button">DESMARCAR</a>
                   <a class="btn text-white bg-info text-white" style="font-size:10px;margin:5px;" href = "boleto.php?id=<?php echo $d["id_agendamento"];?>" role="button">BOLETO</a>
                 </td>
             </tr>

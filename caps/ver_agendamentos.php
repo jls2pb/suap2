@@ -92,7 +92,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             <td><?php echo $d["local_atendimento"]; ?></td>
             <td><?php echo $nome_proc; ?></td>
             <td> <?php
-                      $id = $d['id'];
+                      $id = $d['procedimento'];
                       $query = "SELECT status FROM agendamento WHERE procedimento = $id";
                       $result = $conexao->prepare($query);
                       $result->execute();

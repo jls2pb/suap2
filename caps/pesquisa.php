@@ -7,7 +7,8 @@ if(isset($_SESSION['cpf_caps'])){
     include "navibar.php";
     require_once("../conexao.php");
     ?>
-    <?php
+    <?php    
+    $dado = $_POST["nome"];
     $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
     $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
 
@@ -17,19 +18,23 @@ if(isset($_SESSION['cpf_caps'])){
     // Calcular o início da visualização
     $hoje = date('Y-m-d');
     $inicio = ($limite_resultado * $pagina) - $limite_resultado;
-    $query = "SELECT * FROM agendamento WHERE status = 0 AND data_atendimento = :hoje AND local_atendimento = 'CAPS II DE SAO GONCALO DO AMARANTE' ORDER BY nome_paciente ASC LIMIT $limite_resultado OFFSET $inicio";
+    $query = "SELECT * FROM agendamento WHERE status = 0 AND data_atendimento = :hoje AND local_atendimento = 'CAPS II DE SAO GONCALO DO AMARANTE' AND nome_paciente LIKE '%$dado%' ORDER BY nome_paciente ASC LIMIT $limite_resultado OFFSET $inicio";
     $result = $conexao->prepare($query);
     $result->bindValue(':hoje', $hoje, PDO::PARAM_STR);
     $result->execute();
 	
 	
-    
+
+
     
     ?>
     <br>
+    
     <a style="font-size:10px;" href="ver_agendamentos.php" class="btn btn-primary text-white float-right" role="button">VER TODOS OS AGENDAMENTOS</a>
+    
 
     <h4 style="padding-left: 10px;">TABELA DE AGENDAMENTOS EM ESPERA</h4>
+	
 	
     <ul class="nav navbar-nav ml-auto">
                 <li class="nav-item">
@@ -49,7 +54,6 @@ if(isset($_SESSION['cpf_caps'])){
                         </form> 
                 </li>
               </ul>
-
     <table class="table table-striped table-bordered table-sm table-responsive" style="font-size:12px;">
         <thead style="background-color: #66a7ff;" class="thead text-white">
             <tr>
