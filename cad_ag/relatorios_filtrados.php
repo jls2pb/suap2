@@ -218,23 +218,22 @@ if ($stmt->execute()) {
         $agenda_inicio = $_POST["agenda_inicio"];
     
         try {
-            // Execute uma consulta SQL para buscar os agendamentos com base nas informações fornecidas
-            $sql = "SELECT proc.id, p.nome AS profissional, proc.nome_paciente, proc.procedimento, proc.data_do_agendamento, proc.local_do_agendamento, proc.profissional
-            FROM procedimentos AS proc
-            INNER JOIN profissionais AS p ON proc.profissional = p.nome
-            WHERE p.nome = :profissional_nome
-            AND proc.data_do_agendamento = :agenda_inicio";
+            $sql = "SELECT proc.id, p.nome AS profissional, proc.nome_paciente, proc.procedimento, proc.data_do_agendamento, proc.local_do_agendamento, proc.profissional, a.hora
+                FROM procedimentos AS proc
+                INNER JOIN profissionais AS p ON proc.profissional = p.nome
+                LEFT JOIN agendamento AS a ON proc.id = a.procedimento
+                WHERE p.nome = :profissional_nome
+                AND proc.data_do_agendamento = :agenda_inicio";
     
             $stmt = $conexao->prepare($sql);
             $stmt->bindParam(':profissional_nome', $profissional_nome, PDO::PARAM_STR);
             $stmt->bindParam(':agenda_inicio', $agenda_inicio, PDO::PARAM_STR);
             $stmt->execute();
     
-            // Verifique se há resultados
             if ($stmt->rowCount() > 0) {
                 echo "<h2>Data marcada com o profissional: $profissional_nome</h2>";
                 echo "<table class='table table-striped table-bordered table-lg table-responsive'>";
-                echo "<tr><th>ID</th><th>Nome do Profissional</th><th>Nome do Paciente</th><th>Procedimento</th><th>Data do Agendamento</th><th>Local do Agendamento</th></tr>";
+                echo "<tr><th>ID</th><th>Nome do Paciente</th><th>Procedimento</th><th>Data do Agendamento</th><th>Hora</th><th>Local do Agendamento</th></tr>";
                 echo '<form method="POST" id="searchForm" class="search-form">
                 <div class="input-group container">
                     <div class="form-outline">
@@ -243,17 +242,15 @@ if ($stmt->execute()) {
                     </div>
                 </div>  
             </form>';
-                // Loop através dos resultados e exiba-os na tabela
                 while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
                     echo "<tr>";
                     echo "<td>" . $row['id'] . "</td>";
-                    echo "<td>" . $row['profissional'] . "</td>";
                     echo "<td>" . $row['nome_paciente'] . "</td>";
                     echo "<td>" . $row['procedimento'] . "</td>";
                     $dia = date('d/m/Y', strtotime($row['data_do_agendamento']));
                     echo "<td>" . $dia . "</td>";
+                    echo "<td>" . $row['hora'] . "</td>";
                     echo "<td>" . $row['local_do_agendamento'] . "</td>";
-                   
                     echo "</tr>";
                 }
                 echo "</table>";

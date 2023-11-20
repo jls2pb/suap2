@@ -150,7 +150,7 @@ $('#paciente_input').on('change', function () {
         var nomePaciente = selectedOption.first().text().split(' - ')[0]; // Obtém o nome do paciente
         var cod = selectedOption.attr('data-cod');
         var cpf = selectedOption.attr('data-cpf');
-        
+        $('#cod').val(cod);
         atualizarProcedimentos(cod);
         atualizarSexo(cpf);
         atualizarEndereco(cpf);
