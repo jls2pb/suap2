@@ -27,9 +27,26 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
 
 
 ?>
-<a style="margin: 23px;" href="inicio.php" class="btn btn-danger text-white float-right" role="button">VOLTAR</a>
-
-<table class="table table-striped table-bordered table-sm table-responsive">
+<a style="margin: 23px; font-size:10px;" href="inicio.php" class="btn btn-danger text-white float-right" role="button">VOLTAR</a>
+<ul class="nav navbar-nav ml-auto">
+                <li class="nav-item">
+                <form method = "POST" action = "pesquisa.php">
+                        <div class="input-group">
+                          
+                            <div class="form-outline">
+                                <input type="search" id="pesquisa" name = "dado" class="form-control" oninput="handleInput(event)" placeholder = "BUSCAR PACIENTE"/>
+                                <input type = "hidden" name = "cpf" value = "<?php echo $cpf_logado?>">
+                            </div>
+                            
+                            <button style="background-color: #66a7ff; color: white;" type="submit" class="btn">
+                            <i class="bi bi-search"></i>
+                            </button>
+                            </div>
+                            
+                        </form> 
+                </li>
+              </ul>
+<table class="table table-striped table-bordered table-sm table-responsive"  style="font-size:12px;">
         <thead>
             <tr>
             <th scope="col">PROFISSIONAL</th>
@@ -92,29 +109,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             <td><?php echo $d["local_atendimento"]; ?></td>
             <td><?php echo $nome_proc; ?></td>
             <td> <?php
-                      $id = $d['procedimento'];
-                      $query = "SELECT status FROM agendamento WHERE procedimento = $id";
-                      $result = $conexao->prepare($query);
-                      $result->execute();
-
-                      $query1 = "SELECT status FROM procedimentos WHERE id = $id";
-                      $result1 = $conexao->prepare($query1);
-                      $result1->execute();
-
-                      $statusArray = [];
-
-                      if ($result && $result->rowCount() > 0) {
-                          $statusRow = $result->fetch(PDO::FETCH_ASSOC);
-                          $statusArray[] = $statusRow['status'];
-                      } elseif ($result1 && $result1->rowCount() > 0) {
-                          $statusRow1 = $result1->fetch(PDO::FETCH_ASSOC);
-                          $statusArray[] = $statusRow1['status'];
-                      }
-                      
-
-                      if (count($statusArray) > 0) {
-                          // Os resultados das duas consultas estão em $statusArray
-                          foreach ($statusArray as $status) {
+                     
                             if ($status === 0) {
                                 echo "AGENDADO";
                             } elseif ($status === 1) {
@@ -136,10 +131,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
                             } elseif ($status === 9) {
                               echo "ENCAMINHADA AO CER";
                            }
-                        }
-                      } else {
-                          echo "AGUARDANDO";
-                      }
+                      
                       ?></td>
                       
             

@@ -10,9 +10,7 @@ nav ul {
 	margin: 0;
 	padding: 0;
 }
-nav ul li {
-  /* Sub Menu */
-}
+
 nav ul li a {
 	display: block;
 	padding: 10px 15px;
@@ -118,7 +116,9 @@ require_once("../conexao.php");
           <li>
             <a  style="font-size:12px;" href="index_logado_adm.php"><span class="fa fa-sticky-note"></span><b> LISTAR PACIENTES</b></a>
           </li>
-
+          <li>
+            <a href="relatorios.php" style="font-size:12px;"><span class="bi bi-file-earmark-text"></span> <b> RELATÓRIOS</b></a>
+          </li>
          
 
          

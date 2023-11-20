@@ -115,57 +115,52 @@ include "../footer.php";
     $(document).ready(function () {
         // Quando o usuário digitar algo no input, acionamos a função de busca
         $('#paciente_input').on('input', function () {
-            var term = $(this).val();
-            if (term.length >= 3) {
-                // Realizamos a solicitação AJAX para buscar os pacientes
-                $.ajax({
-                    url: '../buscar/buscar_paciente.php',
-                    type: 'GET',
-                    data: { term: term },
-                    dataType: 'json',
-                    success: function (data) {
-                        // Limpa o datalist antes de preencher com as novas opções
-                        $('#paciente_list').empty();
+    var term = $(this).val();
+    if (term.length >= 3) {
+        var inputField = $(this); // Armazena a referência do campo de entrada do paciente
 
-                        // Preenche o datalist com as opções retornadas pela busca
-                        data.forEach(function (paciente) {
-                            // Paciente é um objeto que contém nome, cpf e cod
-                            $('#paciente_list').append('<option value="' + paciente.nome_paciente + '" data-cpf="' + paciente.cpf + '" data-cod="' + paciente.cod + '">');
-                        });
-                    }
+        // Realizamos a solicitação AJAX para buscar os pacientes
+        $.ajax({
+            url: '../buscar/buscar_paciente.php',
+            type: 'GET',
+            data: { term: term },
+            dataType: 'json',
+            success: function (data) {
+                // Limpa o datalist antes de preencher com as novas opções
+                $('#paciente_list').empty();
+
+                // Preenche o datalist com as opções retornadas pela busca
+                data.forEach(function (paciente) {
+                    // Paciente é um objeto que contém nome, cpf e cod
+                    $('#paciente_list').append('<option value="' + paciente.cod + '" data-cpf="' + paciente.cpf + '" data-cod="' + paciente.cod + '">'+ paciente.nome_paciente + ' - ' + paciente.nascimento + '</option>');
                 });
+
+                // Define o valor digitado de volta no campo de entrada do paciente
+                inputField.val(term);
             }
         });
+    }
+});
+$('#paciente_input').on('change', function () {
+    var selectedPacienteCod = $(this).val();
+    var selectedOption = $("datalist option[value='" + selectedPacienteCod + "']");
 
-        // Quando uma opção é selecionada no datalist
-        $('#paciente_input').on('change', function () {
-            // Se o valor selecionado está em cache
-            if (this.list.querySelector("option[value='" + this.value + "']")) {
-                var cpf = this.list.querySelector("option[value='" + this.value + "']").getAttribute('data-cpf');
-                var cod = this.list.querySelector("option[value='" + this.value + "']").getAttribute('data-cod');
+    if (selectedOption.length > 0) {
+        var nomePaciente = selectedOption.first().text().split(' - ')[0]; // Obtém o nome do paciente
+        var cod = selectedOption.attr('data-cod');
+        var cpf = selectedOption.attr('data-cpf');
+        
+        atualizarProcedimentos(cod);
+        atualizarSexo(cpf);
+        atualizarEndereco(cpf);
 
-                // Atualize os valores dos campos de entrada com o CPF e o código
-                $('#cpf').val(cpf);
-                $('#cod').val(cod);
 
-                // Atualize os procedimentos com base no código do paciente
-                atualizarProcedimentos(cod);
-                atualizarSexo(cpf);
-                atualizarEndereco(cpf);
-            }
-        });
-
-        // Quando o usuário seleciona um paciente no datalist
-        $('#paciente_input').on('change', function () {
-            var selectedOption = this.querySelector("option:checked");
-
-            if (selectedOption) {
-                var cod = selectedOption.getAttribute('data-cod');
-
-                // Atualize o campo de seleção de procedimentos com base no código (cod)
-                atualizarProcedimentos(cod);
-            }
-        });
+        setTimeout(function() {
+            console.log(": ", nomePaciente);
+                $('#paciente_input').val(nomePaciente);
+             }, 100); 
+                }
+});
 
         function atualizarProcedimentos(cod) {
             // Realize uma solicitação AJAX para buscar os procedimentos com base no código (cod)
