@@ -89,11 +89,56 @@ if(isset($_SESSION['cpf_cer'])){
                         <td><?php echo $nome_profissional; ?></td>
                         <td><?php echo $d["local_atendimento"]; ?></td>
                         <td><?php echo $procedimento; ?></td>
-                        <td><?php $status = $d["status"]; 
-                            if ($status == 0){
-                                echo "Em espera";
-                            }
-                        ?></td>
+                        <td> <?php
+                      $id = $d['id'];
+                      $query = "SELECT status FROM agendamento WHERE procedimento = $id";
+                      $result = $conexao->prepare($query);
+                      $result->execute();
+
+                      $query1 = "SELECT status FROM procedimentos WHERE id = $id";
+                      $result1 = $conexao->prepare($query1);
+                      $result1->execute();
+
+                      $statusArray = [];
+
+                      if ($result && $result->rowCount() > 0) {
+                          $statusRow = $result->fetch(PDO::FETCH_ASSOC);
+                          $statusArray[] = $statusRow['status'];
+                      } elseif ($result1 && $result1->rowCount() > 0) {
+                          $statusRow1 = $result1->fetch(PDO::FETCH_ASSOC);
+                          $statusArray[] = $statusRow1['status'];
+                      }
+                      
+
+                      if (count($statusArray) > 0) {
+                          // Os resultados das duas consultas estão em $statusArray
+                          foreach ($statusArray as $status) {
+                            if ($status === 0) {
+                                echo "AGENDADO";
+                            } elseif ($status === 1) {
+                                echo "COMPARECEU";
+                            } elseif ($status === 2) {
+                                echo "NÃO COMPARECEU";
+                            } elseif ($status === 3) {
+                                echo "AGUARDANDO AGENDAMENTO";
+                            } elseif ($status === 4) {
+                                echo "DEVOLVIDA À UAPS";
+                            } elseif ($status === 5) {
+                              echo "RETIRADA DO SETOR";
+                            } elseif ($status === 6) {
+                                echo "ENCAMINHADA À POLICLÍNICA";
+                            } elseif ($status === 7) {
+                                echo "ENCAMINHADA AO HGLAS";
+                            } elseif ($status === 8) {
+                                echo "ENCAMINHADA AO CAPS";
+                            } elseif ($status === 9) {
+                              echo "ENCAMINHADA AO CER";
+                           }
+                        }
+                      } else {
+                          echo "AGUARDANDO";
+                      }
+                      ?></td>
                         <td>
                         <a class="btn text-white" style="background-color: #66a7ff;" href="editar_comparecimento.php?status=1&id=<?php echo $d["id_agendamento"];?>">COMPARECEU</a>
                             <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php echo $d['id_agendamento'] ; ?>)" >NÃO COMPARECEU</a>
