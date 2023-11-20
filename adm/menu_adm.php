@@ -89,38 +89,38 @@ require_once("../conexao.php");
         <ul class="list-unstyled components mb-5">
           
           <li>
-            <a href="inicio_adm.php"><span class="fa fa-home"></span><b> INÍCIO</b></a>
+            <a href="inicio_adm.php" style="font-size:12px;"><span class="fa fa-home"></span><b> INÍCIO</b></a> 
           </li>
           
           <li class="sub-menu-second">
-          <a style="cursor: pointer;" class="link-dark rounded"><span class="bi bi-pencil-square"></span><b>CADASTRO </b><div class="fa fa-caret-down right"></div></a>
+          <a style="cursor: pointer; font-size:12px" class="link-dark rounded"><span class="bi bi-pencil-square"></span><b>CADASTRO </b><div class="fa fa-caret-down right"></div></a>
           
           <ul>
 
           <li>
-          <a href="cadastrar_paciente_adm.php" class="link-dark rounded"><span class="fa fa-user"></span><b>NOVO PACIENTE</b></a></li>
+          <a href="cadastrar_paciente_adm.php" style="font-size:12px;" class="link-dark rounded"><span class="fa fa-user"></span><b>NOVO PACIENTE</b></a></li>
           </li>
         
-          <li><a href="forms_tabela_adm.php" class="link-dark rounded"><span class="bi bi-table"></span><b>TABELAS</b></a></li>
+          <li><a href="forms_tabela_adm.php" style="font-size:12px;" class="link-dark rounded"><span class="bi bi-table"></span><b>TABELAS</b></a></li>
           </li>
 
           <li>
-          <a href="cadastrar_profissional.php" class="link-dark rounded"><img style="width: 14%;" src="../images/medico.png"><b>NOVO PROFISSIONAL</b></a></li>
+          <a href="cadastrar_profissional.php" style="font-size:12px;" class="link-dark rounded"><img style="width: 10%;" src="../images/medico.png"><b>NOVO PROFISSIONAL</b></a></li>
           </li>
           </ul></li>
           <li>
-          <a href="inicio_agendamento.php" class="link-dark rounded"><span class="bi bi-card-list"></span><b> AGENDAMENTO</b></a></li>
+          <a href="inicio_agendamento.php" style="font-size:12px;" class="link-dark rounded"><span class="bi bi-card-list"></span><b> AGENDAMENTO</b></a></li>
           </li>
 
           <li class="sub-menu-second">
-          <a style="cursor: pointer;" class="link-dark rounded"><span class="bi bi-eye"></span><b>VISUALIZAR </b><div class="fa fa-caret-down right"></div></a>
+          <a style="cursor: pointer; font-size:12px;" class="link-dark rounded"><span class="bi bi-eye"></span><b>VISUALIZAR </b><div class="fa fa-caret-down right"></div></a>
           
       <ul>
       <li>
-          <a href="ver_atividades.php" class="link-dark rounded"><img style="width: 15%;" src="../images/checklist.png"><b>VER ATIVIDADES</b></a></li>
+          <a href="ver_atividades.php" style="font-size:12px;" class="link-dark rounded"><img style="width: 11%;" src="../images/checklist.png"><b>VER ATIVIDADES</b></a></li>
           </li>
           <li>
-          <a href="ver_usuarios.php" class="link-dark rounded"><span class="bi bi-person"></span><b>VER USUÁRIOS</b></a></li>
+          <a href="ver_usuarios.php" style="font-size:12px;" class="link-dark rounded"><span class="bi bi-person"></span><b>VER USUÁRIOS</b></a></li>
           </li>
          
           </li>
@@ -128,22 +128,22 @@ require_once("../conexao.php");
 </li>
 
           <li>
-            <a href="index_logado_adm.php"><span class="fa fa-sticky-note"></span><b> LISTAR PACIENTES</b></a>
+            <a href="index_logado_adm.php" style="font-size:12px;"><span class="fa fa-sticky-note"></span><b> LISTAR PACIENTES</b></a>
           </li>
 
           <li>
-            <a href="codigo.php"><img style="width: 12%; margin-right: 5px;"src="../images/pin.png"><b>GERAR CÓDIGO</b></a>
+            <a href="codigo.php" style="font-size:12px;" ><img style="width: 12%; margin-right: 5px;"src="../images/pin.png"><b>GERAR CÓDIGO</b></a>
           </li>
 
           <li>
-            <a href="relatorios.php"><span class="bi bi-file-earmark-text"></span> <b> RELATÓRIOS</b></a>
+            <a href="relatorios.php" style="font-size:12px;"><span class="bi bi-file-earmark-text"></span> <b> RELATÓRIOS</b></a>
           </li>
           <li>
 
-            <a href="exibir_resultado_adm.php"><span class="bi bi-bar-chart-line-fill" ></span><b> RANKING </b></a>
+            <a href="exibir_resultado_adm.php" style="font-size:12px;"><span class="bi bi-bar-chart-line-fill" ></span><b> RANKING </b></a>
           </li>
           <li>
-            <a href="../sair.php"><span class="bi bi-door-open-fill" ></span><b> SAIR</b></a>
+            <a href="../sair.php" style="font-size:12px;"><span class="bi bi-door-open-fill" ></span><b> SAIR</b></a>
           </li>
         </ul>
 

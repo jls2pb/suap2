@@ -28,9 +28,9 @@ $id = $_GET['id'];
 ?>
 <a style="margin: 10px;" href="inicio_agendamento.php" class="btn btn-danger text-white float-right" role="button">VOLTAR</a>
 
-<h2 class="mb-4">TABELA DE AGENDAMENTO</h2>
+<h4 class="mb-4">TABELA DE AGENDAMENTO</h4>
 <a style="" href="cadastrar_agendamento.php?id=<?php echo $id; ?>" class="btn btn-primary text-white float-right" role="button">CADASTRAR AGENDAMENTO</a>
-<table class="table table-striped">
+<table class="table table-striped table-compact" style="font-size:12px;">
         <thead>
             <tr>
            
@@ -86,9 +86,9 @@ if (($result_usuarios) AND ($result_usuarios->rowCount() != 0)) {
                     }
                     ?></td>
             <td class = "text-center">
-                  <a class="btn text-white" style="background-color: #66a7ff;" href = "form_edita_agendamento.php?id=<?php echo $d["id_agendamento"];?>" role="button">EDITAR</a>
-                  <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php echo $d['id_agendamento'] ; ?>)" role="button">DESMARCAR</a>
-                  <a class="btn text-white bg-info" href = "boleto.php?id=<?php echo $d["id_agendamento"];?>" role="button">BOLETO</a>
+                  <a class="btn text-white" style="background-color: #66a7ff; font-size:10px;" href = "form_edita_agendamento.php?id=<?php echo $d["id_agendamento"];?>" role="button">EDITAR</a>
+                  <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php echo $d['id_agendamento'] ; ?>)" role="button" style="font-size:10px;">DESMARCAR</a>
+                  <a class="btn text-white bg-info" href = "boleto.php?id=<?php echo $d["id_agendamento"];?>" role="button" style="font-size:10px;">BOLETO</a>
                 </td>
             </tr>
             <?php

@@ -53,14 +53,14 @@ require_once("../conexao.php");
 
 </li>
           <li >
-            <a href="inicio_agendamento.php"><span class="fa fa-home"></span><b> INÍCIO</b></a>
+            <a style="font-size:12px;" href="inicio_agendamento.php"><span class="fa fa-home"></span><b> INÍCIO</b></a>
           </li>
           <li>
-          <a href="cadastrar_profissional.php" class="link-dark rounded"><img style="width: 14%;" src="../images/medico.png"><b>NOVO PROFISSIONAL</b></a></li>
+          <a style="font-size:12px;" href="cadastrar_profissional.php" class="link-dark rounded"><img style="width: 14%;" src="../images/medico.png"><b>NOVO PROFISSIONAL</b></a></li>
           </li>
           </li>
           <li>
-            <a href="../sair.php"><span class="bi bi-door-open-fill" ></i></span><b> SAIR</b></a>
+            <a style="font-size:12px;" href="../sair.php"><span class="bi bi-door-open-fill" ></i></span><b> SAIR</b></a>
           </li>
         </ul>
 

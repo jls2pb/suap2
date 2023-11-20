@@ -111,14 +111,14 @@ if($resultado->execute()){
       <br>
       <div class="row text-center">
         <div class="col">
-          <a class="btn text-white" style = "background-color: DarkBlue; font-size:13px;" href="form_edita.php" role="button">EDITAR PACIENTE</a>
-          <a class="btn btn-primary text-white" style="font-size:13px;" href="cadastrar_procedimento.php?n=<?php echo $y["nome_paciente"]; ?>" role="button">NOVO PROCEDIMENTO</a>
-          <a class="btn btn-info text-white" style="font-size:13px;" href="listar_log.php" role="button">ATIVIDADES</a>
-          <a class="btn btn-danger text-white" style="font-size:13px;" role="button" onclick="confirmarExclusao(<?php echo $y['cod']; ?>)">EXCLUIR CADASTRO</a>
+          <a class="btn text-white" style = "background-color: DarkBlue; font-size:10px;" href="form_edita.php" role="button">EDITAR PACIENTE</a>
+          <a class="btn btn-primary text-white" style="font-size:10px;" href="cadastrar_procedimento.php?n=<?php echo $y["nome_paciente"]; ?>" role="button">NOVO PROCEDIMENTO</a>
+          <a class="btn btn-info text-white" style="font-size:10px;" href="listar_log.php" role="button">ATIVIDADES</a>
+          <a class="btn btn-danger text-white" style="font-size:10px;" role="button" onclick="confirmarExclusao(<?php echo $y['cod']; ?>)">EXCLUIR CADASTRO</a>
         </div>
       </div> 
             <br>
-            <table class="table table-striped table-compact">
+            <table class="table table-striped table-compact" style="font-size:12px;">
         <thead class="text-center">
             <tr>
             <th scope="col">COD</th>
@@ -148,10 +148,12 @@ if($resultado->execute()){
                                   $entrada = NULL;
                               }
                               if($y2["data_da_saida"] != NULL){
-                                $saida = $y2["data_da_saida"];
+								  $saida = date('d/m/Y', strtotime( $y2["data_da_saida"]));
+                                 
                               }else{
                                   $saida = NULL;
                               }
+
                               if($y2["data_do_agendamento"] != NULL){
                                   $agendamento = date('d/m/Y', strtotime($y2["data_do_agendamento"]));  
                               }else{
@@ -231,8 +233,8 @@ if($resultado->execute()){
             <td><?php echo $entrada ?></td>
             <td><?php echo $saida ?></td>
             <td><?php echo $agendamento ?></td>
-            <td class="d-flex"><a class="btn text-white m-1" style="background-color: DarkBlue; font-size:13px;" href="form_edita_procedimento.php?id=<?php echo $y2['id'] ?>" role="button"> EDITAR </a>
-            <a class="btn btn-danger text-white m-1 class="text-center"" style="font-size:13px;" role="button" onclick="cconfirmarExclusao(<?php echo $y2['id']; ?>)"> EXCLUIR </a></td>
+            <td class="d-flex"><a class="btn text-white m-1" style="background-color: DarkBlue; font-size:10px;" href="form_edita_procedimento.php?id=<?php echo $y2['id'] ?>" role="button"> EDITAR </a>
+            <a class="btn btn-danger text-white m-1 class="text-center"" style="font-size:10px;" role="button" onclick="cconfirmarExclusao(<?php echo $y2['id']; ?>)"> EXCLUIR </a></td>
             </tr>
             <?php
             }

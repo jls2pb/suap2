@@ -27,7 +27,7 @@ require_once("../conexao.php");
 
 ?>
 
-<table class="table table-striped">
+            <table class="table table-striped table-compact" style="font-size:12px;">
         <thead>
             <tr>
             <th scope="col">COD</th>
@@ -57,7 +57,7 @@ require_once("../conexao.php");
             <td><?php echo $d["cpf"]; ?></td>
             <td><?php echo $d["nascimento"] ?></td>
             <td>
-                <a class="btn text-white" style="background-color: #66a7ff;" href = "listar_adm.php?id=<?php echo $d["cod"];?>" role="button">VER MAIS</a>
+                <a class="btn text-white" style="background-color: #66a7ff; font-size:10px; " href = "listar_adm.php?id=<?php echo $d["cod"];?>" role="button">VER MAIS</a>
             </td>
             </tr>
             <?php

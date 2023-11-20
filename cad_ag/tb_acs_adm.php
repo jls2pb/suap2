@@ -47,7 +47,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
         </button>
     </div>
     </form>
-<table class="table table-striped">
+<table class="table table-striped table-compact" style="font-size:12px;">
         <thead>
             <tr>
             <th scope="col">UBS</th>
@@ -76,10 +76,10 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             <td><?php echo $d["familias"]; ?></td>
 
             <td>
-                <a class="btn text-white btn-primary" href="edita_acs.php?id=<?php echo $d['cod'];?>" role="button"><b>EDITAR</b></a>
+                <a class="btn text-white btn-primary" style="font-size:10px;" href="edita_acs.php?id=<?php echo $d['cod'];?>" role="button"><b>EDITAR</b></a>
             </td>
             <td>
-                <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php $_GET['id'] = $d['cod']; echo $_GET['id']; ?>)" role="button"><b>EXCLUIR</b></a>
+                <a class="btn text-white btn-danger" style="font-size:10px;" onclick="confirmarExclusao(<?php $_GET['id'] = $d['cod']; echo $_GET['id']; ?>)" role="button"><b>EXCLUIR</b></a>
             </td>
             </tr>
             <?php

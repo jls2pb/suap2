@@ -23,6 +23,7 @@ foreach ($a as $k) {
     $data_geracao = date('d/m/Y H:i:s');
 }
 ?>
+
 <style>
   @media print {
             #print, #voltar {
@@ -72,13 +73,13 @@ foreach ($a as $k) {
    echo "<div class='col-5'>";
    echo "<b>Telefone: </b>$telefone <br>";
    echo "</div>";
-
+   
    echo "</div>";
-
+   
    echo "<b>Nome da mãe: </b>$mae <br>";
-
+   
    echo "<div class='row'>";
-
+   
    echo "<div class='col-4'>";
    echo "<b>Nº do Cartão Nacional: </b>$cns";
    echo "</div>";
@@ -89,9 +90,9 @@ foreach ($a as $k) {
    echo "<div class='col-4'>";
    echo "<b>Sexo: </b> $sexo <br>";
    echo "</div>";
-
+   
    echo "</div>";
-
+   
    echo "<b>End. Residencial: </b> $endereco <br>";
    echo "<b>UBS: </b> $ubs <br>";
    echo "<b>Está agendado para: </b>$local_atendimento <br>";
@@ -104,7 +105,7 @@ foreach ($a as $k) {
     $profissional = $y['nome'];
    }
    echo "<b>Profissional: </b>$profissional <br>";
-   $sql = "select procedimento from procedimentos where id = $procedimento";
+   $sql = "select procedimento from procedimentos where cod = $procedimento";
    $resultado = $conexao->prepare($sql);
    $resultado->execute();
    $x = $resultado->fetchAll();
@@ -125,8 +126,6 @@ foreach ($a as $k) {
 
    echo "</div>";
    echo "</div>";
- 
-
    echo "<div class='row' style='color: black;'>";
 
    echo "<div class='col-3 p-5'>";
@@ -157,7 +156,6 @@ echo "</div>";
    $id_usuario = $result['id_usuario'];
 
    ?>
-   
    <div class="rodape row">
    <div class=" col-7">Usuário responsável: <?php echo $id_usuario; ?></div>
 <div class="col-5">Data e Hora de Geração do Boleto: <?=$data_geracao?></div>

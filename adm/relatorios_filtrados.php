@@ -5,16 +5,19 @@ function printPage() {
 }
 </script>
 <style>
-@media print {
-    #print,
-    #voltar
- {
-        display: none;
-    }
-}
+  @media print {
+            #print, #voltar {
+                display: none;
+            }
+            /* Estilo para o rodapé */
+            .rodape {
+               
+                border-top: 1px solid black;
+            }
+        }
 </style>
 <button style="width: 100%;" id="print" onclick="printPage()">Imprimir<img style="width: 2%;" src="../images/printer.png"></button>
-<a href="relatorios.php"><button style="width: 100%; background-color:#B22222;color: white;" id="voltar">Voltar</button></a>
+<a href="relatorios.php"><button style="width: 100%; background-color:#B22222;color: white;" id="voltar">Voltar</button><a>
 
 
 <?php
@@ -342,7 +345,7 @@ echo '<form method="POST" id="searchForm" class="search-form">
 
         // Verifique se há resultados
         if ($stmt1->rowCount() > 0) {
-            echo "<h3>Procedimentos Excluídos: " . $stmt1->rowCount() . "</h3>" ;
+            echo "<h5>Procedimentos Excluídos: " . $stmt1->rowCount() . "</h5>" ;
            echo '<form method="POST" id="searchForm" class="search-form">
             <div class="input-group container div_pesquisa">
                 <div class="form-outline">
@@ -379,7 +382,7 @@ echo '<form method="POST" id="searchForm" class="search-form">
 
         // Verifique se há resultados
         if ($stmt1->rowCount() > 0) {
-            echo "<h3>Agendamentos Desmarcados: " . $stmt1->rowCount() . "</h3>" ;
+            echo "<h5>Agendamentos Desmarcados: " . $stmt1->rowCount() . "</h5>" ;
            echo '<form method="POST" id="searchForm" class="search-form">
             <div class="input-group container div_pesquisa">
                 <div class="form-outline">
@@ -424,7 +427,7 @@ echo '<form method="POST" id="searchForm" class="search-form">
                     </div>
                 </div>  
             </form>';
-                echo "<h3>Agendamentos de quem não compareceu</h3>";
+                echo "<h5>Agendamentos de quem não compareceu</h5>";
                 
                 echo "<table class='table table-striped table-bordered table-sm table-responsive' border='1'>";
                 echo "<tr><th>Nome do Paciente</th><th>Data de Atendimento</th><th>Hora</th><th>Endereço Local</th><th>Local de Atendimento</th><th>Status</th></tr>";

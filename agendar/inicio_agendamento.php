@@ -42,7 +42,7 @@ a {
             });
         });
     </script>
-<table class="table table-striped">
+<table class="table table-striped table-compact" style="font-size:12px;">
         <thead>
             <tr>
             <th scope="col">ID</th>

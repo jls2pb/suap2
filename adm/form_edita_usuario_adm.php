@@ -20,7 +20,7 @@ if($resultado->execute()){
     echo "erro ao coletar os dados";
 }
 ?>
-<h2 class="mb-4">EDITAR USUÁRIO</h2>
+<h4 class="mb-4">EDITAR USUÁRIO</h4>
 <form method = "POST" action = "edita_usuario_adm.php">  
             <?php 
                 foreach ($x as $y) { 
@@ -31,29 +31,29 @@ $resultado2 = $conexao->query($sql2);
             ?>
             
             <div class="form-outline mb-4">
-            <label class="form-label">Nome do Usuário</label>
-            <input type="text" name = "n_usuario" class="form-control form-control-lg" value = "<?php echo $y["nome"]; ?>" />
+            <label class="form-label" style="font-size:12px;">Nome do Usuário</label>
+            <input type="text" name = "n_usuario" class="form-control form-control-lg" value = "<?php echo $y["nome"]; ?>" style="font-size:12px;"/>
             </div>
                 <div class="row">
                     <div class="col">
-                        <label class="form-label">CPF</label>
+                        <label class="form-label" style="font-size:12px;">CPF</label>
                     </div>
                     <div class="col">
-                        <label class="form-label">FUNÇÃO</label>
+                        <label class="form-label" style="font-size:12px;">FUNÇÃO</label>
                     </div>
                    
                 </div>
                 <div class="row">
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="text" name = "cpf" class="form-control form-control-lg" value = "<?php echo $y["cpf"]; ?>" />
+                        <input type="text" name = "cpf" class="form-control form-control-lg" value = "<?php echo $y["cpf"]; ?>" style="font-size:12px;"/>
                         </div>
                     </div>
                 
                     <div class="col">
                         <div class="form-outline mb-4">
 
-                        <select  class="form-control " name="funcao" required>
+                        <select  class="form-control " name="funcao" style="font-size:12px;" required>
                     <option value="" selected disabled>A função atual é: <?php 
          $nome_tipo = $y["id_tipo"];
         $sql2 = "SELECT nome_tipo FROM tipo_usuario WHERE id_tipo ='$nome_tipo' ";
@@ -86,8 +86,8 @@ $resultado2 = $conexao->query($sql2);
                 }
                 ?>
                 <input type = "hidden" name = "cpf_logado" value = "<?php echo $cpf_logado ?>">    
-                <button class="btn btn-primary " type="submit">SALVAR</button>
-                <button class="btn btn-danger "><a class="link-offset-2 link-underline link-underline-opacity-0" style = "color:white" href="ver_usuarios.php">VOLTAR</a></button>    
+                <button class="btn btn-primary " type="submit" style="font-size:10px;">SALVAR</button>
+                <button class="btn btn-danger "><a class="link-offset-2 link-underline link-underline-opacity-0" style = "color:white; font-size:10px;" href="ver_usuarios.php">VOLTAR</a></button>    
             </div>
             </form>
     </div>

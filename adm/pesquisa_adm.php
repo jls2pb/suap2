@@ -21,9 +21,9 @@ $timezone = new DateTimeZone('America/Sao_Paulo');
 
 ?>
 
-<h2 class="mb-4">SUAP - Sistema Unico de Acompanhamento de Procedimentos</h2>
+<h4 class="mb-4">SUAP - Sistema Unico de Acompanhamento de Procedimentos</h4>
 
-<table class="table table-striped">
+<table class="table table-striped table-compact" style="font-size:12px;">
         <thead>
             <tr>
             <th scope="col">COD</th>
@@ -49,7 +49,7 @@ $timezone = new DateTimeZone('America/Sao_Paulo');
                         <td><?php echo $d["cpf"]; ?></td>
                         <td><?php echo $d["nascimento"]; ?></td>
                         <td>
-                        <a class="btn" style="color: white; background-color: #66a7ff;" href = "listar_adm.php?id=<?php echo $d["cod"];?>" role="button">VER MAIS</a>      
+                        <a class="btn" style="color: white; background-color: #66a7ff; font-size:10px; " href = "listar_adm.php?id=<?php echo $d["cod"];?>" role="button">VER MAIS</a>      
                         </td>
                         </tr>
                     <?php

@@ -89,34 +89,34 @@ require_once("../conexao.php");
         <ul class="list-unstyled components mb-5">
           
           <li>
-            <a href="inicio_cad_ag.php"><span class="fa fa-home"></span><b> INÍCIO</b></a>
+            <a  style="font-size:12px;" href="inicio_cad_ag.php"><span class="fa fa-home"></span><b> INÍCIO</b></a>
           </li>
           
           <li class="sub-menu-second">
-          <a style="cursor: pointer;" class="link-dark rounded"><span class="bi bi-pencil-square"></span><b>CADASTRO </b><div class="fa fa-caret-down right"></div></a>
+          <a style="cursor: pointer; font-size:12px;" class="link-dark rounded"><span class="bi bi-pencil-square"></span><b>CADASTRO </b><div class="fa fa-caret-down right"></div></a>
           
           <ul>
 
           <li>
-          <a href="cadastrar_paciente_adm.php" class="link-dark rounded"><span class="fa fa-user"></span><b>NOVO PACIENTE</b></a></li>
+          <a  style="font-size:12px;" href="cadastrar_paciente_adm.php" class="link-dark rounded"><span class="fa fa-user"></span><b>NOVO PACIENTE</b></a></li>
           </li>
         
-          <li><a href="forms_tabela_adm.php" class="link-dark rounded"><span class="bi bi-table"></span><b>TABELAS</b></a></li>
+          <li><a  style="font-size:12px;" href="forms_tabela_adm.php" class="link-dark rounded"><span class="bi bi-table"></span><b>TABELAS</b></a></li>
           </li>
 
           <li>
-          <a href="cadastrar_profissional.php" class="link-dark rounded"><img style="width: 14%;" src="../images/medico.png"><b>NOVO PROFISSIONAL</b></a></li>
+          <a  style="font-size:12px;" href="cadastrar_profissional.php" class="link-dark rounded"><img style="width: 12%;" src="../images/medico.png"><b>NOVO PROFISSIONAL</b></a></li>
           </li>
           </ul></li>
           <li>
-          <a href="inicio_agendamento.php" class="link-dark rounded"><i class="bi bi-card-list"></i><b> AGENDAMENTO</b></a></li>
+          <a  style="font-size:12px;" href="inicio_agendamento.php" class="link-dark rounded"><i class="bi bi-card-list"></i><b> AGENDAMENTO</b></a></li>
           </li>
 
       
 
 
           <li>
-            <a href="index_logado_adm.php"><span class="fa fa-sticky-note"></span><b> LISTAR PACIENTES</b></a>
+            <a  style="font-size:12px;" href="index_logado_adm.php"><span class="fa fa-sticky-note"></span><b> LISTAR PACIENTES</b></a>
           </li>
 
          
@@ -124,10 +124,10 @@ require_once("../conexao.php");
          
           <li>
 
-            <a href="exibir_resultado_adm.php"><span class="bi bi-bar-chart-line-fill" ></i></span><b> RANKING </b></a>
+            
           </li>
           <li>
-            <a href="../sair.php"><span class="bi bi-door-open-fill" ></i></span><b> SAIR</b></a>
+            <a  style="font-size:12px;" href="../sair.php"><span class="bi bi-door-open-fill" ></i></span><b> SAIR</b></a>
           </li>
         </ul>
 

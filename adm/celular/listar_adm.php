@@ -45,7 +45,7 @@ if($resultado->execute()){
 ?>
 
  
-   <div class = "container mt-1" style="font-size:13.5px;"> 
+   <div class = "container mt-1" style="font-size:11px;"> 
     <div class="">
     <h3 class="mb-4">DADOS COMPLETOS DO PACIENTE</h3>
   <?php 

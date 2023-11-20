@@ -15,7 +15,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
  $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
 
  //Setar a quantidade de registros por página
- $limite_resultado = 6;
+ $limite_resultado = 20;
 
  // Calcular o inicio da visualização
  $inicio = ($limite_resultado * $pagina) - $limite_resultado;
@@ -27,14 +27,14 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
 
 
 ?>
-<a style="margin: 23px;" href="inicio.php" class="btn btn-danger text-white float-right" role="button">VOLTAR</a>
+<a style="margin: 23px; font-size:10px;" href="inicio.php" class="btn btn-danger text-white float-right" role="button">VOLTAR</a>
 
-<table class="table table-striped table-bordered table-sm table-responsive">
+<table class="table table-striped table-bordered table-sm table-responsive" style="font-size:12px;">
         <thead>
             <tr>
             <th scope="col">PROFISSIONAL</th>
             <th scope="col">NOME DO PACIENTE</th>
-            <th scope="col">DATA DO ATENDIMENTO</th>
+            <th scope="col">DATA</th>
             <th scope="col">HORA</th>
             <th scope="col">ENDEREÇO DO LOCAL</th>
             <th scope="col">LOCAL DO ATENDIMENTO</th>
@@ -122,31 +122,31 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
                 <div class = "col">        
             <?php 
                if ($pagina > 1) {
-                echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='ver_agendamentos.php?page=1&cpf=$cpf_logado'>Primeira</a> ";
+                echo "<a class='btn' style='color: white; background-color: #66a7ff; font-size:12px;' href='ver_agendamentos.php?page=1&cpf=$cpf_logado'>Primeira</a> ";
             }
     
             if ($pagina > 1) {
                 $pagina_anterior = $pagina - 1;
-                echo "<a href='ver_agendamentos.php?page=$pagina_anterior&cpf=$cpf_logado' class='btn'><label style='font-size:30px;' title='Anterior'><span aria-hidden='true'>&laquo;</span></label></a> ";
+                echo "<a href='ver_agendamentos.php?page=$pagina_anterior&cpf=$cpf_logado' class='btn'><label style='font-size:20px;' title='Anterior'><span aria-hidden='true'>&laquo;</span></label></a> ";
             }
     
             if ($pagina < $qnt_pagina) {
                 $proxima_pagina = $pagina + 1;
-                echo "<a href='ver_agendamentos.php?page=$proxima_pagina&cpf=$cpf_logado' class='btn'><label style='font-size:30px;' title='Próximo'><span aria-hidden='true'>&raquo;</span></label></a> ";
+                echo "<a href='ver_agendamentos.php?page=$proxima_pagina&cpf=$cpf_logado' class='btn'><label style='font-size:20px;' title='Próximo'><span aria-hidden='true'>&raquo;</span></label></a> ";
             }
     
             if ($pagina < $qnt_pagina) {
                 ?><div class="float-right"><?php
-                echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='ver_agendamentos.php?page=$qnt_pagina&cpf=$cpf_logado'>Última</a> ";
+                echo "<a class='btn' style='color: white; background-color: #66a7ff; font-size:12px;' href='ver_agendamentos.php?page=$qnt_pagina&cpf=$cpf_logado'>Última</a> ";
             ?></div> <?php
             }
 
             
         } else {
-            echo "<p style='color: #f00;'>Erro: Nenhum usuário encontrado!</p>";
-             echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='ver_agendamentos.php?page=1&cpf=$cpf_logado'>Primeira</a> ";
+            echo "<p style='color: #f00; font-size:10px;'>Erro: Nenhum usuário encontrado!</p>";
+             echo "<a class='btn' style='color: white; background-color: #66a7ff; font-size:10px;' href='ver_agendamentos.php?page=1&cpf=$cpf_logado'>Primeira</a> ";
              $pagina_anterior = $pagina - 1;
-             echo "<a href='ver_agendamentos.php?page=$pagina_anterior&cpf=$cpf_logado' class='btn'><label style='font-size:30px;' title='Anterior'><span aria-hidden='true'>&laquo;</span></label></a> ";
+             echo "<a href='ver_agendamentos.php?page=$pagina_anterior&cpf=$cpf_logado' class='btn'><label style='font-size:20px;' title='Anterior'><span aria-hidden='true'>&laquo;</span></label></a> ";
         
         }  
                 

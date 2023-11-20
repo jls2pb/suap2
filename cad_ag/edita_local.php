@@ -23,21 +23,21 @@ if($resultado->execute()){
 ?>
 
 <div class="container">
-    <h2 class="mb-4">EDITAR LOCAL DE AGENDAMENTO</h2>
+    <h4 class="mb-4">EDITAR LOCAL DE AGENDAMENTO</h4>
     <form method="POST" action="editar_adm.php">  
         <?php foreach ($x as $y) { ?>
             <div class="form-group">
-                <label for="cnes" class="form-label">CNES</label>
-                <input required type="number" name="cnes" class="form-control" id="cnes" value="<?php echo $y["cnes"]; ?>" />
+                <label for="cnes" style="font-size:12px;" class="form-label">CNES</label>
+                <input required type="number" name="cnes" style="font-size:12px;" class="form-control" id="cnes" value="<?php echo $y["cnes"]; ?>" />
             </div>
 
             <div class="form-group">
-                <label for="nome_fantasia" class="form-label">NOME</label>
-                <input required type="text" name="nome_fantasia" class="form-control" id="nome_fantasia" value="<?php echo $y["nome_fantasia"]; ?>">
+                <label for="nome_fantasia" style="font-size:12px;" class="form-label">NOME</label>
+                <input required type="text" name="nome_fantasia" style="font-size:12px;" class="form-control" id="nome_fantasia" value="<?php echo $y["nome_fantasia"]; ?>">
             </div>
             <div class="form-group">
-                <label for="endereco_local" class="form-label">ENDEREÇO</label>
-                <input required type="text" name="endereco_local" class="form-control" id="endereco_local" value="<?php echo $y["endereco_local"]; ?>">
+                <label for="endereco_local" style="font-size:12px;" class="form-label">ENDEREÇO</label>
+                <input required type="text" name="endereco_local" style="font-size:12px;" class="form-control" id="endereco_local" value="<?php echo $y["endereco_local"]; ?>">
             </div>
 
             <input type="hidden" name="id" value="<?php echo $y["cnes"]; ?>">
@@ -46,8 +46,8 @@ if($resultado->execute()){
         <input type="hidden" name="cpf_logado" value="<?php echo $cpf_logado ?>">    
 
         <div class="form-group">
-            <button class="btn btn-primary" type="submit">SALVAR</button>
-            <a class="btn btn-danger" href="tb_local_ag_adm.php">VOLTAR</a>
+            <button class="btn btn-primary" style="font-size:10px;" type="submit">SALVAR</button>
+            <a class="btn btn-danger" style="font-size:10px;" href="tb_local_ag_adm.php">VOLTAR</a>
         </div>
     </form>
 </div>

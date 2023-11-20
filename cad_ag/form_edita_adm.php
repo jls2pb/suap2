@@ -21,7 +21,7 @@ if($resultado->execute()){
     echo "erro ao coletar os dados";
 }
 ?>
-<h2 class="mb-4">EDITAR PACIENTE</h2>
+<h4 class="mb-4">EDITAR PACIENTE</h>
 <form method = "POST" action = "edita_paciente_adm.php">  
             <?php 
                 foreach ($x as $y) {
@@ -46,74 +46,74 @@ if($resultado->execute()){
             ?>
             
             <div class="form-outline mb-4">
-            <label class="form-label">Nome do Paciente</label>
-            <input type="text" name = "n_paciente" class="form-control form-control-lg" value = "<?php echo $y["nome_paciente"]; ?>" />
+            <label class="form-label" style="font-size:12px;">Nome do Paciente</label>
+            <input type="text" name = "n_paciente" class="form-control form-control-lg" value = "<?php echo $y["nome_paciente"]; ?>" style="font-size:12px;"/>
             </div>
                 <div class="row">
                     <div class="col">
-                        <label class="form-label">RG</label>
+                        <label class="form-label" style="font-size:12px;">RG</label>
                     </div>
                     <div class="col">
-                        <label class="form-label">CPF</label>
+                        <label class="form-label" style="font-size:12px;">CPF</label>
                     </div>
                     <div class="col">
-                        <label class="form-label">CNS</label>
+                        <label class="form-label" style="font-size:12px;">CNS</label>
                     </div>
                     <div class="col">
-                        <label class="form-label">Data de Nascimento</label>
+                        <label class="form-label" style="font-size:12px;">Data de Nascimento</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="text" name = "rg" class="form-control form-control-lg" value = "<?php echo $y["rg"]; ?>" />
+                        <input type="text" name = "rg" class="form-control form-control-lg" value = "<?php echo $y["rg"]; ?>" style="font-size:12px;"/>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="text" name = "cpf" class="form-control form-control-lg" value = "<?php echo $y["cpf"]; ?>" />
+                        <input type="text" name = "cpf" class="form-control form-control-lg" value = "<?php echo $y["cpf"]; ?>" style="font-size:12px;"/>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="text" name = "cns" class="form-control form-control-lg" value = "<?php echo $y["cns"]; ?>" />
+                        <input type="text" name = "cns" class="form-control form-control-lg" value = "<?php echo $y["cns"]; ?>" style="font-size:12px;"/>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="date" name = "nascimento" class="form-control form-control-lg" value = "<?php echo $ab; ?>" />
+                        <input type="date" name = "nascimento" class="form-control form-control-lg" value = "<?php echo $ab; ?>" style="font-size:12px;"/>
                         </div>
                     </div>
                 </div>
                 <div class="form-outline mb-4">
-                    <label class="form-label">Nome da Mãe</label>
-                    <input type="text" name = "n_mae" class="form-control form-control-lg" value = "<?php echo $y["nome_da_mae"]; ?>" />
+                    <label class="form-label" style="font-size:12px;">Nome da Mãe</label>
+                    <input type="text" name = "n_mae" class="form-control form-control-lg" value = "<?php echo $y["nome_da_mae"]; ?>" style="font-size:12px;"/>
                 </div>
                 <div class="row">
                     <div class="col">
 
-                        <label class="form-label">ACS</label>
+                        <label class="form-label" style="font-size:12px;">ACS</label>
 
                     </div>
                     <div class="col">
-                        <label class="form-label">UBS</label>
+                        <label class="form-label" style="font-size:12px;">UBS</label>
                     </div>
                     <div class="col">
-                        <label class="form-label">CELULAR</label>
+                        <label class="form-label" style="font-size:12px;">CELULAR</label>
                     </div>
                     <div class="col">
-                        <label class="form-label">TELEFONE</label>
+                        <label class="form-label" style="font-size:12px;">TELEFONE</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="text" name = "acs" class="form-control form-control-lg" value = "<?php echo $y["acs"]; ?>" />
+                        <input type="text" name = "acs" class="form-control form-control-lg" value = "<?php echo $y["acs"]; ?>" style="font-size:12px;"/>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-outline mb-4">
-                         <select class="form-control form-control-lg" name = "ubs" id="ubs">
+                         <select class="form-control form-control-lg" name = "ubs" id="ubs" style="font-size:12px;">
                          <option value = "<?php echo $y['ubs']; ?>"><?php echo $y["ubs"]; ?></option>
                             <?php 
                             foreach ($resultado2 as $r) {
@@ -127,12 +127,12 @@ if($resultado->execute()){
                     </div>
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="text" name = "celular" class="form-control form-control-lg" value = "<?php echo $y["celular"]; ?>" />
+                        <input type="text" name = "celular" class="form-control form-control-lg" value = "<?php echo $y["celular"]; ?>" style="font-size:12px;"/>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="text" name = "telefone" class="form-control form-control-lg" value = "<?php echo $y["telefone"]; ?>" />
+                        <input type="text" name = "telefone" class="form-control form-control-lg" value = "<?php echo $y["telefone"]; ?>" style="font-size:12px;"/>
                         </div>
                     </div>
                 </div>
@@ -141,8 +141,8 @@ if($resultado->execute()){
                 }
                 ?>
                 <input type = "hidden" name = "cpf_logado" value = "<?php echo $cpf_logado ?>">    
-                <button class="btn btn-primary " type="submit">SALVAR</button>
-                <button class="btn btn-danger "><a class="link-offset-2 link-underline link-underline-opacity-0" style = "color:white" href="listar_adm.php">VOLTAR</a></button>    
+                <button class="btn btn-primary " type="submit" style="font-size:10px;">SALVAR</button>
+                <button class="btn btn-danger "><a class="link-offset-2 link-underline link-underline-opacity-0" style = "color:white; font-size:10px;" href="listar_adm.php">VOLTAR</a></button>    
             </div>
             </form>
     </div>

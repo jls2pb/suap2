@@ -24,8 +24,8 @@ require_once("../conexao.php");
 
 ?>
 
-<h2 class="mb-4">AÇÕES REALIZADAS</h2>
-<table class="table table-striped">
+<h4 class="mb-4">AÇÕES REALIZADAS</h4>
+<table class="table table-striped table-compact" style="font-size:12px;">
         <thead>
             <tr>
             <th scope="col">COD</th>

@@ -28,12 +28,12 @@ if ($resultado->execute()) {
 ?>
 
 <script src="../mascara.js"></script>
-<h2 class="mb-4">EDITAR AGENDAMENTO</h2>
+<h4 class="mb-4">EDITAR AGENDAMENTO</h4>
 <form method="POST" action="editar_agendamento.php">
     <div class="row">
         <div class="col">
             <label class="form-label">PROFISSIONAL</label>
-            <select name="profissional" id="profissional" class="form-control form-control-lg" onchange="carregarDatas()">
+            <select name="profissional" id="profissional" class="form-control form-control-lg" onchange="carregarDatas()" style="font-size:12px;">
                 <?php
                 $selectedProfissional = $agendamento['cod_profissional'];
                 $sql = "SELECT id_profissional, nome FROM profissionais";
@@ -50,7 +50,7 @@ if ($resultado->execute()) {
         </div>
         <div class="col">
             <label class="form-label">DATA DE ATENDIMENTO</label>
-            <select class="form-control form-control-lg" name="data_atendimento" id="dia" onchange="carregarHorarios()">
+            <select class="form-control form-control-lg" name="data_atendimento" id="dia" onchange="carregarHorarios()" style="font-size:12px;">
                 <option value="<?php echo $agendamento['data_atendimento']; ?>">
                 <?php
                 $d = date('d/m/Y', strtotime($agendamento['data_atendimento']));
@@ -81,7 +81,7 @@ if ($resultado->execute()) {
         </div>
         <div class="col">
             <label class="form-label">HORA</label>
-            <select class="form-control form-control-lg" name="horario" id="horario" required>
+            <select class="form-control form-control-lg"  style="font-size:12px;" name="horario" id="horario" required>
                 <option value = "<?= $agendamento['hora'] ?>"> <?= $agendamento['hora'] ?> </option>
             </select>
         </div>
@@ -92,13 +92,13 @@ if ($resultado->execute()) {
             <label class="form-label">NOME DO PACIENTE</label>
             <div class="form-outline mb-4">
                 <input type="text" name="nome_paciente" class="form-control form-control-lg"
-                    value="<?php echo $agendamento["nome_paciente"]; ?>" />
+                    value="<?php echo $agendamento["nome_paciente"]; ?>"  style="font-size:12px;" />
             </div>
         </div>
         <div class="col">
             <label class="form-label">SEXO</label>
             <div class="form-outline mb-4">
-                <select required class="form-control form-control-lg" name="sexo">
+                <select required class="form-control form-control-lg" name="sexo" style="font-size:12px;">
                 <option value="MASCULINO" <?php if ($agendamento['sexo'] === 'MASCULINO') echo 'selected'; ?>>MASCULINO</option>
                     <option value="FEMININO" <?php if ($agendamento['sexo'] === 'FEMININO') echo 'selected'; ?>>FEMININO</option>
                 </select>
@@ -110,19 +110,19 @@ if ($resultado->execute()) {
     <div class="form-outline mb-4">
         <label class="form-label">ENDEREÇO RESIDENCIAL</label>
         <input type="text" name="endereco" class="form-control form-control-lg"
-            value="<?php echo $agendamento['endereco']; ?>" />
+            value="<?php echo $agendamento['endereco']; ?>"  style="font-size:12px;" />
     </div>
 
     <div class="row">
         <div class="form-outline mb-4 col">
             <label class="form-label">CPF</label>
             <input type="text" name="cpf" class="form-control form-control-lg"
-                value="<?php echo $agendamento["cpf"]; ?>" />
+                value="<?php echo $agendamento["cpf"]; ?>"  style="font-size:12px;" />
         </div>
         <div class="col">
             <label class="form-label">STATUS</label>
             <div class="form-outline mb-4">
-                <select required class="form-control form-control-lg" name="status">
+                <select required class="form-control form-control-lg" name="status" style="font-size:12px;">
                     <option value="0" <?php if ($agendamento['status'] === 0) echo 'selected'; ?>>Agendado</option>
                     <option value="1" <?php if ($agendamento['status'] === 1) echo 'selected'; ?>>Compareceu</option>
                     <option value="2" <?php if ($agendamento['status'] === 2) echo 'selected'; ?>>Não Compareceu</option>
@@ -135,24 +135,24 @@ if ($resultado->execute()) {
             <label class="form-label">ENDEREÇO DO ATENDIMENTO</label>
             <div class="form-outline mb-4">
                 <input type="text" name="endereco_local" class="form-control form-control-lg"
-                    value="<?php echo $agendamento["endereco_local"]; ?>" />
+                    value="<?php echo $agendamento["endereco_local"]; ?>"  style="font-size:12px;"/>
             </div>
         </div>
         <div class="col">
             <label class="form-label">LOCAL DO ATENDIMENTO</label>
             <div class="form-outline mb-4">
                 <input type="text" name="local_atendimento" class="form-control form-control-lg"
-                    value="<?php echo $agendamento["local_atendimento"]; ?>" />
+                    value="<?php echo $agendamento["local_atendimento"]; ?>"  style="font-size:12px;"/>
             </div>
         </div>
     </div>
     <input type="hidden" name="cod" value="<?php echo $agendamento['cod_profissional']; ?>">
     <input type="hidden" name="id" value="<?php echo $id; ?>">
     <input type="hidden" name="cpf_logado" value="<?php echo $cpf_logado; ?>">
-    <button class="btn btn-primary " type="submit">SALVAR</button>
+    <button class="btn btn-primary "  style="font-size:10px;" type="submit">SALVAR</button>
     <a class="link-offset-2 link-underline link-underline-opacity-0 btn btn-danger"
-        style="color:white"
-        href="tabela_agendamento.php?id=<?php echo $agendamento['cod_profissional']; ?>">VOLTAR</a>
+        style="color:white;font-size:10px;" 
+        href="tabela_agendamento.php?id=<?php echo $agendamento['cod_profissional']; ?>">VOLTAR</a> 
 </form>
 
 <script>

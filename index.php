@@ -80,18 +80,18 @@ else if($r["cpf"] == $cpf && $r["senha"] == $senha && $r["id_tipo"] == 7){
               <form method = "POST" action = "">
                   <input type="hidden" id="nome" name = "nome" class="form-control form-control-lg" required/>
                   <div class="form-outline mb-4">
-                  <label class="form-label" for="cpf" style="color: black;">CPF: </label>    
-                  <input type="text" id="cpf" name = "cpf" class="form-control form-control-lg" required/>
+                  <label class="form-label" for="cpf" style="color: black; font-size:15px;">CPF: </label>    
+                  <input type="text" id="cpf" name = "cpf" class="form-control form-control-lg" style="font-size:15px;"required/>
                   </div>
 
                   <div class="form-outline mb-4">
-                  <label class="form-label" for="senha" style="color: black;">SENHA: </label> </b>
-                  <input type="password" id="senha" name = "senha" class="form-control form-control-lg" required/>
+                  <label class="form-label" for="senha" style="color: black; font-size:15px;">SENHA: </label> </b>
+                  <input type="password" id="senha" name = "senha" class="form-control form-control-lg" style="font-size:15px;"required/>
                   </div>
 
-                  <button style="background-color: DarkBlue; color: white;"class="btn  btn-lg btn-block" type="submit">ENTRAR</button>
+                  <button style="background-color: DarkBlue; color: white; font-size:15px;"class="btn  btn-lg btn-block" type="submit" >ENTRAR</button>
               
-                  <a class="btn btn-primary  btn-lg btn-block" href="form_cad_usuario.php" role="button">CADASTRAR</a>
+                  <a class="btn btn-primary  btn-lg btn-block" href="form_cad_usuario.php" role="button" style="font-size:15px;">CADASTRAR</a>
                 
               </form>
         </div>

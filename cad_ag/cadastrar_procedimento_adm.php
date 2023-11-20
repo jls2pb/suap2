@@ -15,29 +15,29 @@ include "menu_adm.php";
 include "navibar_adm.php";
 include "../footer.php";
 ?>
-<h2 class="mb-4">CADASTRO DE PROCEDIMENTO</h2>
+<h4 class="mb-4">CADASTRO DE PROCEDIMENTO</h4>
 <form method = "POST" action = "registro_procedimento_adm.php">  
             <div class="form-outline mb-4">
-            <label class="form-label">Nome do Paciente</label>
-            <input type="text" name = "paciente" class="form-control form-control-lg" value = "<?php echo $n ?>"  disabled=""/>
+            <label class="form-label" style="font-size:12px;">Nome do Paciente</label>
+            <input type="text" name = "paciente" class="form-control form-control-lg" value = "<?php echo $n ?>"  disabled="" style="font-size:12px;"/>
             </div>
 
             <div class="form-outline mb-4">
-            <label class="form-label">Profissional</label>
-            <input type="text" name = "profissional" class="form-control form-control-lg" oninput="handleInput(event)"/>
+            <label class="form-label" style="font-size:12px;">Profissional</label>
+            <input type="text" name = "profissional" class="form-control form-control-lg" oninput="handleInput(event)" style="font-size:12px;"/>
             </div>
             <div class="row">
                 <div class="col-8">     
           	        <div class="form-outline mb-4">
-                        <label class="form-label">Procedimento</label>
-                        <input type="text" name = "procedimento" class="form-control form-control-lg" id="procedimento_input" list="procedimentos_list" oninput="handleInput(event)" placeholder="Digite o procedimento...">
+                        <label class="form-label" style="font-size:12px;">Procedimento</label>
+                        <input type="text" name = "procedimento" class="form-control form-control-lg" id="procedimento_input" list="procedimentos_list" oninput="handleInput(event)" placeholder="Digite o procedimento..." style="font-size:12px;">
                     <datalist id="procedimentos_list"></datalist>
 		            </div>
                 </div>
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <label class="form-label">Especificação</label>    
-                        <input type="text" name = "especificacao" oninput="handleInput(event)" class="form-control form-control-lg" />
+                        <label class="form-label" style="font-size:12px;">Especificação</label>    
+                        <input type="text" name = "especificacao" oninput="handleInput(event)" class="form-control form-control-lg" style="font-size:12px;"/>
                     </div>
                 </div>
             </div>            
@@ -45,58 +45,58 @@ include "../footer.php";
 
                 <div class="row">
                     <div class="col">
-                        <label class="form-label">Data da Solicitação</label>
+                        <label class="form-label" style="font-size:12px;">Data da Solicitação</label>
                     </div>
                     <div class="col">
-                        <label class="form-label">Data de Entrada(Cadastro)</label>
+                        <label class="form-label" style="font-size:12px;">Data de Entrada(Cadastro)</label>
                     </div>
                     <div class="col">
-                        <label class="form-label">Data de Saida </label>
+                        <label class="form-label" style="font-size:12px;">Data de Saida </label>
                     </div>
                     <div class="col">
-                        <label class="form-label">Data do Agendamento</label>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <div class="form-outline mb-4">
-                        <input type="date" name = "d_solicitacao" class="form-control form-control-lg" />
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-outline mb-4">
-                        <input type="date" name = "d_entrada" class="form-control form-control-lg" />
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-outline mb-4">
-                        <input type="date" name = "d_saida" class="form-control form-control-lg" />
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-outline mb-4">
-                        <input type="date" name = "d_agendamento" class="form-control form-control-lg" />
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col">
-                        <label class="form-label">Local do Agendamento</label>
-                    </div>
-                    <div class="col">
-                        <label class="form-label">Observações</label>
+                        <label class="form-label" style="font-size:12px;">Data do Agendamento</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <div class="form-outline mb-4">
-                            <input type="text" name = "l_agendamento" list="local_list" oninput="handleInput(event)" id = "l_agendamento" class="form-control form-control-lg" />
+                        <input type="date" name = "d_solicitacao" class="form-control form-control-lg" style="font-size:12px;"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-outline mb-4">
+                        <input type="date" name = "d_entrada" class="form-control form-control-lg" style="font-size:12px;"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-outline mb-4">
+                        <input type="date" name = "d_saida" class="form-control form-control-lg" style="font-size:12px;"/>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-outline mb-4">
+                        <input type="date" name = "d_agendamento" class="form-control form-control-lg" style="font-size:12px;"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <label class="form-label" style="font-size:12px;">Local do Agendamento</label>
+                    </div>
+                    <div class="col">
+                        <label class="form-label" style="font-size:12px;">Observações</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-outline mb-4">
+                            <input type="text" name = "l_agendamento" list="local_list" oninput="handleInput(event)" id = "l_agendamento" class="form-control form-control-lg" style="font-size:12px;"/>
 			                <datalist id="local_list"></datalist>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-outline mb-4">
-                            <input type="text" name = "obs" class="form-control form-control-lg" />
+                            <input type="text" name = "obs" class="form-control form-control-lg" style="font-size:12px;"/>
                         </div>
                     </div>
 
@@ -112,8 +112,8 @@ include "../footer.php";
                 <input type = "hidden" name = "n" value = "<?php echo $n; ?>" >
                 <input type = "hidden" name = "n_paciente" value = "<?php echo $nome; ?>" >
                 <input type = "hidden" name = "cpf_logado" value = "<?php echo $cpf_logado; ?>" >
-                <button class="btn btn-primary " type="submit">CADASTRAR</button>
-                <button class="btn btn-danger "><a class="link-offset-2 link-underline link-underline-opacity-0" style = "color:white" href="listar_adm.php">VOLTAR</a></button>    
+                <button class="btn btn-primary " type="submit" style="font-size:10px;">CADASTRAR</button>
+                <button class="btn btn-danger "><a class="link-offset-2 link-underline link-underline-opacity-0" style = "color:white; font-size:10px;" href="listar_adm.php">VOLTAR</a></button>    
             </div>
             </form> 
     </div>

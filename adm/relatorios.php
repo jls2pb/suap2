@@ -10,7 +10,7 @@ if(isset($_SESSION['cpf_adm'])){
 ?>
 <script src="../mascara.js"></script>
 
-<h3>Buscar procedimentos</h3>
+<h5>Buscar procedimentos</h5>
 <form action="relatorios_filtrados.php" method="POST">
   <div class="form-outline mb-4">
     <label>
@@ -23,10 +23,10 @@ if(isset($_SESSION['cpf_adm'])){
     <label for="data_fim">Data de Término: </label>
     <input required type="date" name="data_fim" id="data_fim"> <br>
   </div>
-  <button class="btn btn-primary" type="submit">Filtrar</button>
+  <button class="btn btn-primary" style = "color:white; font-size:10px; type="submit">Filtrar</button>
 </form>
 
-<h3>Buscar agendamentos</h3>
+<h5>Buscar agendamentos</h5>
 <form method="POST" action="relatorios_filtrados.php" >
   <div class="form-outline mb-4">
     <label>
@@ -41,18 +41,18 @@ if(isset($_SESSION['cpf_adm'])){
     <label for="periodo_fim">Período final: </label>
     <input type="date" name="periodo_fim" id="periodo_fim" value="<?php echo $periodoFim; ?>"> <br>
   </div>
-  <button class="btn btn-primary" type="submit">Filtrar</button>
+  <button class="btn btn-primary" style = "color:white; font-size:10px; type="submit">Filtrar</button>
 </form>
 
-<h3>Buscar Agendamentos do Dia do Profissional</h3>
+<h5>Buscar Agendamentos do Dia do Profissional</h5>
 <form method="POST" action="relatorios_filtrados.php">
   <div class="form-outline mb-4">
     <label>
       <input type="checkbox" name="profissional" value="profissional"> Quantos profissionais são
     </label><br>
     <hr></hr>
-    <label class="form-label">NOME DO PROFISSIONAL: </label>
-    <input type="text" name="profissional_nome" class="form-control form-control-lg" id="profissional_input" list="profissional_list">
+    <label style = "font-size:12px; class="form-label">NOME DO PROFISSIONAL: </label>
+    <input style = "font-size:12px; type="text" name="profissional_nome" class="form-control form-control-lg" id="profissional_input" list="profissional_list">
     <datalist id="profissional_list"></datalist>
     <label>
     </label><br>
@@ -61,10 +61,10 @@ if(isset($_SESSION['cpf_adm'])){
     <input  type="date" name="agenda_inicio" id="agenda_inicio"> <br>
  
   </div>
-  <button class="btn btn-primary" type="submit">Filtrar</button>
+  <button class="btn btn-primary" style = "color:white; font-size:10px; type="submit">Filtrar</button>
 </form>
 
-<h3>Buscar Específicos</h3>
+<h5>Buscar Específicos</h5>
 <form method="POST" action="relatorios_filtrados.php">
   <div class="form-outline mb-4">
     <label>
@@ -79,7 +79,7 @@ if(isset($_SESSION['cpf_adm'])){
     <label>
     <input type="checkbox" name="nao_comparecidos" value="nao_comparecidos"> Agendamentos não comparecidos
     </label><br>
-  <button class="btn btn-primary" type="submit">Filtrar</button>
+  <button class="btn btn-primary" style = "color:white; font-size:10px; type="submit">Filtrar</button>
 </div>
 </form>
 

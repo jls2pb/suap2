@@ -49,7 +49,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
     </div>
     </form>
     <br>
-<table class="table table-striped">
+<table class="table table-striped table-compact" style="font-size:12px;">
         <thead>
             <tr>
             <th scope="col">CNES</th>
@@ -71,11 +71,11 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             <td><?php echo $d["nome_fantasia"]; ?></td>
             <td><?php echo $d["endereco_local"]; ?></td>
             <td>
-                <a class="btn text-white btn-primary" href="edita_local.php?id=<?php echo $d['cnes'];?>" role="button"><b>EDITAR</b></a>
+                <a class="btn text-white btn-primary" href="edita_local.php?id=<?php echo $d['cnes'];?>" role="button" style="font-size:10px;" ><b>EDITAR</b></a>
             </td>
 
             <td>
-                <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php $_GET['local_ag'] = $d['cnes']; echo $_GET['local_ag']; ?>)" role="button"><b>EXCLUIR</b></a>
+                <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php $_GET['local_ag'] = $d['cnes']; echo $_GET['local_ag']; ?>)" role="button" style="font-size:10px;"><b>EXCLUIR</b></a>
             </td>
             </tr>
             <?php

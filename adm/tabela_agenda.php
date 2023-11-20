@@ -36,9 +36,9 @@ $id = $_GET['id'];
         }
 
    </script>  
-<h2 class="mb-4">TABELA DE AGENDA DOS PROFISSIONAIS</h2>
+<h4 class="mb-4">TABELA DE AGENDA DOS PROFISSIONAIS</h4>
 <a style="" href="cadastrar_agenda.php?id=<?php echo $id; ?>" class="btn btn-primary text-white float-right" role="button">CADASTRAR AGENDA</a>
-<table class="table table-striped">
+<table class="table table-striped table-compact" style="font-size:12px;">
         <thead>
             <tr>
             <th scope="col">ID DA AGENDA</th>
@@ -81,8 +81,8 @@ $nome_profissional = $profissional['nome'];
             <td><?php echo $d["inicio_tarde"]; ?></td>
             <td><?php echo $d["final_tarde"]; ?></td>
             <td>
-            <a class="btn text-white" style="background-color: #66a7ff;" href = "form_edita_agenda.php?id=<?php echo $d["id_agenda"];?>" role="button">EDITAR</a>
-                  <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php echo $d['id_agenda'] ; ?>)" role="button">EXCLUIR</a>
+            <a class="btn text-white" style="background-color: #66a7ff; font-size:10px; " href = "form_edita_agenda.php?id=<?php echo $d["id_agenda"];?>" role="button">EDITAR</a>
+                  <a class="btn text-white btn-danger text-white" style="font-size:10px;margin:5px; onclick="confirmarExclusao(<?php echo $d['id_agenda'] ; ?>)" role="button">EXCLUIR</a>
             </td>
             </tr>
             <?php

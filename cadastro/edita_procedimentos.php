@@ -21,12 +21,12 @@ if($resultado->execute()){
 ?>
 
 <div class="container">
-    <h2 class="mb-4">EDITAR PROCEDIMENTO</h2>
+    <h4 class="mb-4">EDITAR PROCEDIMENTO</h4>
     <form method="POST" action="editar.php">  
         <?php foreach ($x as $y) { ?>
             <div class="form-group">
-                <label for="procedimento" class="form-label">PROCEDIMENTO</label>
-                <input required type="text" name="procedimento" class="form-control" id="procedimento" value="<?php echo $y["procedimento"]; ?>" />
+                <label for="procedimento" class="form-label" style="font-size:12px;">PROCEDIMENTO</label>
+                <input required type="text" name="procedimento" class="form-control" id="procedimento" value="<?php echo $y["procedimento"]; ?>" style="font-size:12px;"/>
             </div>
 
 
@@ -36,8 +36,8 @@ if($resultado->execute()){
         <input type="hidden" name="cpf_logado" value="<?php echo $cpf_logado ?>">    
 
         <div class="form-group">
-            <button class="btn btn-primary" type="submit">SALVAR</button>
-            <a class="btn btn-danger" href="tb_procedimentos.php">VOLTAR</a>
+            <button class="btn btn-primary" type="submit" style="font-size:10px;">SALVAR</button>
+            <a class="btn btn-danger" href="tb_procedimentos.php" style="font-size:10px;">VOLTAR</a>
         </div>
     </form>
 </div>

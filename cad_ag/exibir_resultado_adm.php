@@ -17,26 +17,7 @@ $hoje = date('d/m/Y');
         }, 30000); // 30000 milissegundos = 30 segundos
 </script>
 
-<?php 
-$qdp = "SELECT COUNT(*) AS quantidade FROM tb_log WHERE acao = 'CADASTRADO'";
-$rqdp = $conexao->prepare($qdp);
-$rqdp->execute();
-$xr = $rqdp->fetchAll();
-foreach ($xr as $key => $a) {
-  echo "<h5>PACIENTES CADASTRADOS: ".$a["quantidade"]." </h5>";
-}
-
-$qdp = "SELECT COUNT(*) AS quantidade FROM tb_log WHERE acao LIKE '%NOVO PROCEDIMENTO%'";
-$rqdp = $conexao->prepare($qdp);
-$rqdp->execute();
-$xr = $rqdp->fetchAll();
-foreach ($xr as $key => $a) {
-  echo "<h5>PROCEDIMENTOS CADASTRADOS: ".$a["quantidade"]." </h5>";
-}
-
-?>
-
-<table class="table table-striped">
+<table class="table table-striped table-compact" style="font-size:12px;">
   <thead>
     <tr>
       <th scope="col">COLABORADOR</th>
