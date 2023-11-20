@@ -32,10 +32,19 @@ if(isset($_SESSION['cpf'])){
     <table class="table table-striped table-bordered table-sm table-responsive">
         <thead style="background-color: #66a7ff;" class="thead text-white">
             <tr>
+<<<<<<< HEAD
+                
+=======
+>>>>>>> a6bb4abff2b6acea0d5727b9b3c60b6a0a90ef8b
                 <th scope="col">PROCEDIMENTO</th>
 				<th scope="col">STATUS</th>
                 <th scope="col">PROFISSIONAL</th>
+<<<<<<< HEAD
+                <th scope="col">SOLICITAÇÃO</th>
+                <th scope="col">AGENDAMENTO</th>
+=======
                 <th scope="col">DATA DA CONSULTA</th>
+>>>>>>> a6bb4abff2b6acea0d5727b9b3c60b6a0a90ef8b
                 <th scope="col">LOCAL AGENDAMENTO</th>
                 
             </tr>
@@ -47,12 +56,29 @@ if(isset($_SESSION['cpf'])){
                 if($d2["procedimento"] != NULL){
 
                
+<<<<<<< HEAD
+                // Processar os dados do procedimento aqui
+                $solicitacao = ($d2["data_da_solicitacao"] != NULL) ? date('d/m/Y', strtotime($d2["data_da_solicitacao"])) : NULL;
+                $entrada = ($d2["data_de_entrada_cadastro"] != NULL) ? date('d/m/Y', strtotime($d2["data_de_entrada_cadastro"])) : NULL;
+                $saida = ($d2["data_da_saida"] != NULL ) ? date('d/m/Y', strtotime($d2["data_da_saida"])) : NULL;
+                $agendamento = ($d2["data_do_agendamento"] != NULL) ? date('d/m/Y', strtotime($d2["data_do_agendamento"])) : NULL;
+        ?>
+            <tr>
+                <td><?php echo $d2["procedimento"]; ?></td> 
+                <td><?php echo $d2["profissional"]; ?></td>
+                <td><?php echo $solicitacao ?></td>  
+               
+                <td><?php echo $agendamento ?></td>
+                <td><?php echo $d2["local_do_agendamento"]; ?></td>
+                <td>
+=======
                
                 $agendamento = ($d2["data_do_agendamento"] != NULL) ? date('d/m/Y', strtotime($d2["data_do_agendamento"])) : NULL;
         ?>
             <tr>
                 <td><?php echo $d2["procedimento"]; ?></td>
 				<td>
+>>>>>>> a6bb4abff2b6acea0d5727b9b3c60b6a0a90ef8b
                 <?php 
                     $id = $d2["id"];
                     $sql = "SELECT * FROM agendamento WHERE procedimento = :id";
@@ -63,7 +89,11 @@ if(isset($_SESSION['cpf'])){
                         echo "Agendado";
                     } else {
                         if($agendamento != NULL){
+<<<<<<< HEAD
+                            echo "Agendamento";
+=======
                             echo "Agendado";
+>>>>>>> a6bb4abff2b6acea0d5727b9b3c60b6a0a90ef8b
                         }else{
                             echo "Aguardando Agendamento";
                         }
