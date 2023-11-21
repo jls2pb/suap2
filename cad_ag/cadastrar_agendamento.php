@@ -21,7 +21,7 @@ include "../footer.php";
         <div class="form-outline mb-4">
             <label class="form-label">NOME DO PACIENTE: </label>
             <input style="width: 150%;" type="text" name="paciente" class="form-control form-control-lg" oninput="handleInput(event)" id="paciente_input" list="paciente_list" required>
-            <datalist id="paciente_list"></datalist>
+            <ul id="paciente_list"></ul>
         </div>
     </div>
      
@@ -38,7 +38,7 @@ include "../footer.php";
 
         <div class="col-4">
         <div class="form-outline mb-4">
-            <label class="form-label">ENDEREÇO RESIDENCIAL</label>
+            <label class="form-label">ENDEREÇO RESIDENCIAL: </label>
             <input style="width: 150%;" type="text" name="endereco" class="form-control form-control-lg" oninput="handleInput(event)" id="endereco_input">
         </div>
         </div>      
@@ -114,60 +114,34 @@ include "../footer.php";
 
 <script>
     $(document).ready(function () {
-        // Quando o usuário digitar algo no input, acionamos a função de busca
-        var delayTimer;
-
-$('#paciente_input').on('input', function () {
-    clearTimeout(delayTimer);
-    var term = $(this).val();
-
-    delayTimer = setTimeout(function () {
-        if (term.length >= 3) {
-            var inputField = $(this);
-
-            // Realize a solicitação AJAX para buscar os pacientes
-            $.ajax({
-                url: '../buscar/buscar_paciente.php',
-                type: 'GET',
-                data: { term: term },
-                dataType: 'json',
-                success: function (data) {
-                    // Limpa o datalist antes de preencher com as novas opções
-                    $('#paciente_list').empty();
-
-                    // Preenche o datalist com as opções retornadas pela busca
-                    data.forEach(function (paciente) {
-                        // Paciente é um objeto que contém nome, cpf e cod
-                        $('#paciente_list').append('<option value="' + paciente.cod + '" data-cpf="' + paciente.cpf + '" data-cod="' + paciente.cod + '">'+ paciente.nome_paciente + ' - ' + paciente.nascimento + '</option>');
+        $('#paciente_input').on('input', function () {
+            var term = $(this).val();
+                if (term.length >= 3) {
+                    $.ajax({
+                        url: '../buscar/buscar_paciente.php',
+                        type: 'GET',
+                        data: {term: term},
+                        dataType: 'json',
+                        success: function(data) {
+                            $('#paciente_list').empty();
+                            data.forEach(function(paciente) {
+                                $('#paciente_list').append('<li data-nome_paciente="' + paciente.nome_paciente +'" data-nascimento="' + paciente.nascimento +'" data-cod="' + paciente.cod +'" data-cpf="' + paciente.cpf +'">' + paciente.nome_paciente + " <br> "+paciente.nascimento + '</li>');
+                            });
+                        }
                     });
-
-                    // Define o valor digitado de volta no campo de entrada do paciente
-                    inputField.val(term);
                 }
             });
-        }
-    }, 200); // Espera 300 milissegundos (0.3 segundos) antes de realizar a busca
-});
-$('#paciente_input').on('change', function () {
-    var selectedPacienteCod = $(this).val();
-    var selectedOption = $("datalist option[value='" + selectedPacienteCod + "']");
 
-    if (selectedOption.length > 0) {
-        var nomePaciente = selectedOption.first().text().split(' - ')[0]; // Obtém o nome do paciente
-        var cod = selectedOption.attr('data-cod');
-        var cpf = selectedOption.attr('data-cpf');
-        $('#cod').val(cod);
-        atualizarProcedimentos(cod);
-        atualizarSexo(cpf);
-        atualizarEndereco(cpf);
-
-
-        setTimeout(function() {
-            console.log(": ", nomePaciente);
-                $('#paciente_input').val(nomePaciente);
-                 }, 110); 
-                }
-});
+            $('#paciente_list').on('click', 'li', function() {
+                var nome = $(this).data('nome_paciente');
+                var cod = $(this).data('cod');
+                var cpf = $(this).data('cpf');
+                $('#paciente_input').val(nome);
+                $('#cod').val(cod);
+                atualizarProcedimentos(cod);
+                atualizarSexo(cpf);
+                atualizarEndereco(cpf);
+            });
 
         function atualizarProcedimentos(cod) {
             // Realize uma solicitação AJAX para buscar os procedimentos com base no código (cod)

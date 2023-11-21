@@ -102,7 +102,6 @@ if($resultado->execute()){
                         <option value="1" <?php if ($status === 1) {echo 'selected';} ?>>Compareceu</option>
                         <option value="2" <?php if ($status === 2) {echo 'selected';} ?>>Não Compareceu</option>
                     <?php elseif ($statusTable === "procedimentos") : ?>
-						<option value="0" <?php if ($status === 0) {echo 'selected';} ?>>Agendado</option>
                         <option value="3" <?php if ($status === 3) {echo 'selected';} ?>>Aguardando agendamento</option>
                         <option value="4" <?php if ($status === 4) {echo 'selected';} ?>>Devolvida à UAPS</option>
                         <option value="5" <?php if ($status === 5) {echo 'selected';} ?>>Retirada do setor</option>
