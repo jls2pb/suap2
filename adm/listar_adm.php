@@ -145,12 +145,19 @@ if($resultado->execute()){
                               }else{
                                   $entrada = NULL;
                               }
-                              if($y2["data_da_saida"] != NULL){
-				 $saida = date('d/m/Y', strtotime( $y2["data_da_saida"]));
-                                 
-                              }else{
-                                  $saida = NULL;
-                              }                              if($y2["data_do_agendamento"] != NULL){
+                              if ($y2["data_da_saida"] != NULL) {
+                                // Verifica se a data está no formato d/m/Y
+                                if (strpos($y2["data_da_saida"], '/') !== false) {
+                                    $saida = $y2["data_da_saida"];
+                                } else {
+                                    // Verifica se a data está no formato Y-m-d
+                                    $saida = date('d/m/Y', strtotime($y2["data_da_saida"]));
+                                }
+                            } else {
+                                $saida = NULL;
+                            }
+                                                   
+                              if($y2["data_do_agendamento"] != NULL){
                                   $agendamento = date('d/m/Y', strtotime($y2["data_do_agendamento"]));  
                               }else{
                                   $agendamento = NULL;
