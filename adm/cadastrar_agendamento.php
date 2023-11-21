@@ -114,32 +114,38 @@ include "../footer.php";
 <script>
     $(document).ready(function () {
         // Quando o usuário digitar algo no input, acionamos a função de busca
-        $('#paciente_input').on('input', function () {
+        var delayTimer;
+
+$('#paciente_input').on('input', function () {
+    clearTimeout(delayTimer);
     var term = $(this).val();
-    if (term.length >= 3) {
-        var inputField = $(this); // Armazena a referência do campo de entrada do paciente
 
-        // Realizamos a solicitação AJAX para buscar os pacientes
-        $.ajax({
-            url: '../buscar/buscar_paciente.php',
-            type: 'GET',
-            data: { term: term },
-            dataType: 'json',
-            success: function (data) {
-                // Limpa o datalist antes de preencher com as novas opções
-                $('#paciente_list').empty();
+    delayTimer = setTimeout(function () {
+        if (term.length >= 3) {
+            var inputField = $(this);
 
-                // Preenche o datalist com as opções retornadas pela busca
-                data.forEach(function (paciente) {
-                    // Paciente é um objeto que contém nome, cpf e cod
-                    $('#paciente_list').append('<option value="' + paciente.cod + '" data-cpf="' + paciente.cpf + '" data-cod="' + paciente.cod + '">'+ paciente.nome_paciente + ' - ' + paciente.nascimento + '</option>');
-                });
+            // Realize a solicitação AJAX para buscar os pacientes
+            $.ajax({
+                url: '../buscar/buscar_paciente.php',
+                type: 'GET',
+                data: { term: term },
+                dataType: 'json',
+                success: function (data) {
+                    // Limpa o datalist antes de preencher com as novas opções
+                    $('#paciente_list').empty();
 
-                // Define o valor digitado de volta no campo de entrada do paciente
-                inputField.val(term);
-            }
-        });
-    }
+                    // Preenche o datalist com as opções retornadas pela busca
+                    data.forEach(function (paciente) {
+                        // Paciente é um objeto que contém nome, cpf e cod
+                        $('#paciente_list').append('<option value="' + paciente.cod + '" data-cpf="' + paciente.cpf + '" data-cod="' + paciente.cod + '">'+ paciente.nome_paciente + ' - ' + paciente.nascimento + '</option>');
+                    });
+
+                    // Define o valor digitado de volta no campo de entrada do paciente
+                    inputField.val(term);
+                }
+            });
+        }
+    }, 200); // Espera 300 milissegundos (0.3 segundos) antes de realizar a busca
 });
 $('#paciente_input').on('change', function () {
     var selectedPacienteCod = $(this).val();
@@ -158,7 +164,7 @@ $('#paciente_input').on('change', function () {
         setTimeout(function() {
             console.log(": ", nomePaciente);
                 $('#paciente_input').val(nomePaciente);
-                 }, 200); 
+                 }, 110); 
                 }
 });
 
