@@ -10,9 +10,7 @@ nav ul {
 	margin: 0;
 	padding: 0;
 }
-nav ul li {
-  /* Sub Menu */
-}
+
 nav ul li a {
 	display: block;
 	padding: 10px 15px;

@@ -37,9 +37,16 @@ if($resultado->execute()){
                     }else{
                         $entrada = NULL;
                     }
-                    if($y["data_da_saida"] != NULL){
-                        $saida = date('Y-m-d', strtotime($y["data_da_saida"])); 
-                    }else{
+                    if ($y["data_da_saida"] != NULL) {
+                        // Verifica se a data está no formato d/m/Y
+                      
+                        if (strpos($y["data_da_saida"], '-') !== false) {
+                            $saida = date('Y-m-d', strtotime($y["data_da_saida"]));
+                        } else {
+                              $data = DateTime::createFromFormat('d/m/Y', $y['data_da_saida']);
+                        $saida = $data->format('Y-m-d');
+                        }
+                    } else {
                         $saida = NULL;
                     }
                     if($y["data_do_agendamento"] != NULL){
@@ -190,7 +197,7 @@ if($resultado->execute()){
                 </div>
                 <button class="btn btn-primary" style="font-size:10px;" type="submit">SALVAR</button>
             
-                <button class="btn btn-danger text-white" style="font-size:10px;"><a  class="link-offset-2 link-underline link-underline-opacity-0" style = "color:white" href="listar_adm.php">VOLTAR</a></button>    
+               <a class="btn btn-danger text-white link-offset-2 link-underline link-underline-opacity-0" style="font-size:10px;color:white" href="listar_adm.php">VOLTAR</a> 
                 
             </div>
             </form>

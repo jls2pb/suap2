@@ -82,7 +82,7 @@ $nome_profissional = $profissional['nome'];
             <td><?php echo $d["final_tarde"]; ?></td>
             <td>
             <a class="btn text-white" style="background-color: #66a7ff; font-size:10px; " href = "form_edita_agenda.php?id=<?php echo $d["id_agenda"];?>" role="button">EDITAR</a>
-                  <a class="btn text-white btn-danger text-white" style="font-size:10px;margin:5px; onclick="confirmarExclusao(<?php echo $d['id_agenda'] ; ?>)" role="button">EXCLUIR</a>
+                  <a class="btn text-white btn-danger text-white" style="font-size:10px;margin:5px;" onclick="confirmarExclusao(<?php echo $d['id_agenda'] ; ?>)" role="button">EXCLUIR</a>
             </td>
             </tr>
             <?php

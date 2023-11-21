@@ -141,6 +141,7 @@ include "../footer.php";
                 atualizarProcedimentos(cod);
                 atualizarSexo(cpf);
                 atualizarEndereco(cpf);
+                $('#paciente_list').empty();
             });
 
         function atualizarProcedimentos(cod) {
