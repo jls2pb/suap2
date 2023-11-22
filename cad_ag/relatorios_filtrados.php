@@ -223,7 +223,7 @@ if ($stmt->execute()) {
                 INNER JOIN profissionais AS p ON proc.profissional = p.nome
                 LEFT JOIN agendamento AS a ON proc.id = a.procedimento
                 WHERE p.nome = :profissional_nome
-                AND proc.data_do_agendamento = :agenda_inicio";
+                AND proc.data_do_agendamento = :agenda_inicio ORDER BY hora ASC";
     
             $stmt = $conexao->prepare($sql);
             $stmt->bindParam(':profissional_nome', $profissional_nome, PDO::PARAM_STR);
