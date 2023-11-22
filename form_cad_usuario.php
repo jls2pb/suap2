@@ -27,7 +27,7 @@ include "head.php";
           <form method = "POST" action = "cadastrar_usuario.php">
                     <div class="form-outline mb-3">
                       
-                    <input style="" type="text" id="nome" name = "nome" class="form-control" placeholder="Digite seu nome completo" required/>
+                    <input type="text" id="nome" name = "nome" class="form-control" placeholder="Digite seu nome completo" required/>
                     </div>
                     <div class="form-outline mb-3">
                     
@@ -47,6 +47,7 @@ include "head.php";
                       <option value="5" id="5">Policlínica</option>
                       <option value="6" id="6">CAPS</option>
                       <option value="7" id="7">CER</option>
+                      <option value="8" id="8">UAPS</option>
                     </select>
                     </div>
                     <div class="form-outline mb-3">

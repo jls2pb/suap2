@@ -45,6 +45,10 @@ else if($r["cpf"] == $cpf && $r["senha"] == $senha && $r["id_tipo"] == 7){
   session_start();
   $_SESSION['cpf_cer'] = $cpf;
   Header("Location:cer/inicio.php");
+}else if($r["cpf"] == $cpf && $r["senha"] == $senha && $r["id_tipo"] == 8){
+  session_start();
+  $_SESSION['cpf_uaps'] = $cpf;
+  Header("Location:uaps/inicio.php");
 }
   
   }

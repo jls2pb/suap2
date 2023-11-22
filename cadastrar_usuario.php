@@ -27,9 +27,9 @@ if ($resultado2->rowCount() > 0) {
         ?>
         <script>
             window.alert("CADASTRO REALIZADO COM SUCESSO, REALIZE O LOGIN!");
+            window.location = "index.php";
         </script>
         <?php
-        Header("Location:index.php");
     } else {
         ?>
         <script>
