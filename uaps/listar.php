@@ -101,42 +101,17 @@ if($resultado->execute()){
             <table class="table table-striped table-compact" style="font-size:10px;">
         <thead class="text-center">
             <tr>
-            <th scope="col">COD</th>
 			<th scope="col">PROCEDIMENTO</th>
             <th scope="col">STATUS</th>
             <th scope="col">PROFISSIONAL</th>
-            <th scope="col">SOLICITAÇÃO </th><br>
-            <th scope="col">ENTRADA(CAD)</th>
-            <th scope="col">SAIDA</th>
-            <th scope="col">AGENDAMENTO</th>
+            <th scope="col">DATA DO ATENDIMENTO</th>
+            <th scope="col">LOCAL AGENDAMENTO</th>
             </tr>
         </thead>
         <tbody class="text-center">
 
                     <?php 
-                      foreach ($x2 as $y2) {
-                              if($y2["data_da_solicitacao"] != NULL){
-                                  $solicitacao = date('d/m/Y', strtotime($y2["data_da_solicitacao"]));
-                              }else{
-                                  $solicitacao = NULL;
-                              }
-                              if($y2["data_de_entrada_cadastro"] != NULL){
-                                  $entrada = date('d/m/Y', strtotime($y2["data_de_entrada_cadastro"]));
-                              }else{
-                                  $entrada = NULL;
-                              }
-                              if ($y2["data_da_saida"] != NULL) {
-                                // Verifica se a data está no formato d/m/Y
-                                if (strpos($y2["data_da_saida"], '/') !== false) {
-                                    $saida = $y2["data_da_saida"];
-                                } else {
-                                    // Verifica se a data está no formato Y-m-d
-                                    $saida = date('d/m/Y', strtotime($y2["data_da_saida"]));
-                                }
-                            } else {
-                                $saida = NULL;
-                            }
-                                                   
+                      foreach ($x2 as $y2) {             
                               if($y2["data_do_agendamento"] != NULL){
                                   $agendamento = date('d/m/Y', strtotime($y2["data_do_agendamento"]));  
                               }else{
@@ -145,7 +120,6 @@ if($resultado->execute()){
                     ?>
                   
   <tr>
-                      <th scope="row"><?php echo $y2["id"]; ?></th>
                       <td><?php echo $y2["procedimento"]; ?></td> 
                       <td>
                       <?php
@@ -201,10 +175,8 @@ if($resultado->execute()){
 
                       </td>
                     <td><?php echo $y2["profissional"]; ?></td>
-                    <td><?php echo $solicitacao ?></td>  
-            <td><?php echo $entrada ?></td>
-            <td><?php echo $saida ?></td>
             <td><?php echo $agendamento ?></td>
+            <td><?php echo $y2["local_do_agendamento"]; ?></td>
             </tr>
             <?php
             }
