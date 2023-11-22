@@ -21120,6 +21120,7 @@ INSERT INTO public.tipo_usuario VALUES (4, 'cadastro-agendamento');
 INSERT INTO public.tipo_usuario VALUES (5, 'policlinica');
 INSERT INTO public.tipo_usuario VALUES (6, 'caps');
 INSERT INTO public.tipo_usuario VALUES (7, 'cer');
+INSERT INTO public.tipo_usuario VALUES (8, 'uaps');
 
 
 --
