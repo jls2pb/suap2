@@ -47,7 +47,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
         </button>
     </div>
     </form>        
-<table class="table table-striped">
+<table class="table table-striped table-compact" style="font-size:12px;">
         <thead>
             <tr>
             <th scope="col">PROCEDIMENTO</th>
@@ -68,10 +68,10 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             <td><?php echo $d["procedimento"]; ?></td>
             <td>
      
-		        <a class="btn text-white btn-primary" href="edita_procedimentos.php?id=<?php echo $d['id_procedimento'];?>" role="button"><b>EDITAR</b></a>
+		        <a class="btn text-white btn-primary" style="font-size:10px;" href="edita_procedimentos.php?id=<?php echo $d['id_procedimento'];?>" role="button"><b>EDITAR</b></a>
             </td>
             <td>
-		        <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php echo $d['id_procedimento']; ?>)" role="button"><b>EXCLUIR</b></a>
+		        <a class="btn text-white btn-danger" style="font-size:10px;" onclick="confirmarExclusao(<?php echo $d['id_procedimento']; ?>)" role="button"><b>EXCLUIR</b></a>
         
             </td>
             </tr>

@@ -15,7 +15,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
  $pagina = (!empty($pagina_atual)) ? $pagina_atual : 1;
 
  //Setar a quantidade de registros por página
- $limite_resultado = 6;
+ $limite_resultado = 20;
 
  // Calcular o inicio da visualização
  $inicio = ($limite_resultado * $pagina) - $limite_resultado;
@@ -27,14 +27,31 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
 
 
 ?>
-<a style="margin: 23px;" href="inicio.php" class="btn btn-danger text-white float-right" role="button">VOLTAR</a>
-
-<table class="table table-striped table-bordered table-sm table-responsive">
+<a style="margin: 23px; font-size:10px;" href="inicio.php" class="btn btn-danger text-white float-right" role="button">VOLTAR</a>
+<ul class="nav navbar-nav ml-auto">
+                <li class="nav-item">
+                <form method = "POST" action = "pesquisa.php">
+                        <div class="input-group">
+                          
+                            <div class="form-outline">
+                                <input type="search" id="pesquisa" name = "dado" class="form-control" oninput="handleInput(event)" placeholder = "BUSCAR PACIENTE"/>
+                                <input type = "hidden" name = "cpf" value = "<?php echo $cpf_logado?>">
+                            </div>
+                            
+                            <button style="background-color: #66a7ff; color: white;" type="submit" class="btn">
+                            <i class="bi bi-search"></i>
+                            </button>
+                            </div>
+                            
+                        </form> 
+                </li>
+              </ul>
+<table class="table table-striped table-bordered table-sm table-responsive" style="font-size:12px;">
         <thead>
             <tr>
             <th scope="col">PROFISSIONAL</th>
             <th scope="col">NOME DO PACIENTE</th>
-            <th scope="col">DATA DO ATENDIMENTO</th>
+            <th scope="col">DATA</th>
             <th scope="col">HORA</th>
             <th scope="col">ENDEREÇO DO LOCAL</th>
             <th scope="col">LOCAL DO ATENDIMENTO</th>
@@ -91,17 +108,31 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             <td><?php echo $d["endereco_local"]; ?></td>
             <td><?php echo $d["local_atendimento"]; ?></td>
             <td><?php echo $nome_proc; ?></td>
-            <td><?php $status = $d["status"]; 
-                    if ($status==0){
-                        echo "Em espera";
-                    }
-                    else if ($status==1) {
-                        echo "Compareceu";
-                    }
-                    else {
-                        echo "Não compareceu";
-                    }
-                    ?></td>
+            <td> <?php
+                    
+                            if ($status === 0) {
+                                echo "AGENDADO";
+                            } elseif ($status === 1) {
+                                echo "COMPARECEU";
+                            } elseif ($status === 2) {
+                                echo "NÃO COMPARECEU";
+                            } elseif ($status === 3) {
+                                echo "AGUARDANDO AGENDAMENTO";
+                            } elseif ($status === 4) {
+                                echo "DEVOLVIDA À UAPS";
+                            } elseif ($status === 5) {
+                              echo "RETIRADA DO SETOR";
+                            } elseif ($status === 6) {
+                                echo "ENCAMINHADA À POLICLÍNICA";
+                            } elseif ($status === 7) {
+                                echo "ENCAMINHADA AO HGLAS";
+                            } elseif ($status === 8) {
+                                echo "ENCAMINHADA AO CAPS";
+                            } elseif ($status === 9) {
+                              echo "ENCAMINHADA AO CER";
+                           }
+                    
+                      ?></td>
                       
             
             </tr>
@@ -122,31 +153,31 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
                 <div class = "col">        
             <?php 
                if ($pagina > 1) {
-                echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='ver_agendamentos.php?page=1&cpf=$cpf_logado'>Primeira</a> ";
+                echo "<a class='btn' style='color: white; background-color: #66a7ff; font-size:12px;' href='ver_agendamentos.php?page=1&cpf=$cpf_logado'>Primeira</a> ";
             }
     
             if ($pagina > 1) {
                 $pagina_anterior = $pagina - 1;
-                echo "<a href='ver_agendamentos.php?page=$pagina_anterior&cpf=$cpf_logado' class='btn'><label style='font-size:30px;' title='Anterior'><span aria-hidden='true'>&laquo;</span></label></a> ";
+                echo "<a href='ver_agendamentos.php?page=$pagina_anterior&cpf=$cpf_logado' class='btn'><label style='font-size:20px;' title='Anterior'><span aria-hidden='true'>&laquo;</span></label></a> ";
             }
     
             if ($pagina < $qnt_pagina) {
                 $proxima_pagina = $pagina + 1;
-                echo "<a href='ver_agendamentos.php?page=$proxima_pagina&cpf=$cpf_logado' class='btn'><label style='font-size:30px;' title='Próximo'><span aria-hidden='true'>&raquo;</span></label></a> ";
+                echo "<a href='ver_agendamentos.php?page=$proxima_pagina&cpf=$cpf_logado' class='btn'><label style='font-size:20px;' title='Próximo'><span aria-hidden='true'>&raquo;</span></label></a> ";
             }
     
             if ($pagina < $qnt_pagina) {
                 ?><div class="float-right"><?php
-                echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='ver_agendamentos.php?page=$qnt_pagina&cpf=$cpf_logado'>Última</a> ";
+                echo "<a class='btn' style='color: white; background-color: #66a7ff; font-size:12px;' href='ver_agendamentos.php?page=$qnt_pagina&cpf=$cpf_logado'>Última</a> ";
             ?></div> <?php
             }
 
             
         } else {
-            echo "<p style='color: #f00;'>Erro: Nenhum usuário encontrado!</p>";
-             echo "<a class='btn' style='color: white; background-color: #66a7ff;' href='ver_agendamentos.php?page=1&cpf=$cpf_logado'>Primeira</a> ";
+            echo "<p style='color: #f00; font-size:10px;'>Erro: Nenhum usuário encontrado!</p>";
+             echo "<a class='btn' style='color: white; background-color: #66a7ff; font-size:10px;' href='ver_agendamentos.php?page=1&cpf=$cpf_logado'>Primeira</a> ";
              $pagina_anterior = $pagina - 1;
-             echo "<a href='ver_agendamentos.php?page=$pagina_anterior&cpf=$cpf_logado' class='btn'><label style='font-size:30px;' title='Anterior'><span aria-hidden='true'>&laquo;</span></label></a> ";
+             echo "<a href='ver_agendamentos.php?page=$pagina_anterior&cpf=$cpf_logado' class='btn'><label style='font-size:20px;' title='Anterior'><span aria-hidden='true'>&laquo;</span></label></a> ";
         
         }  
                 

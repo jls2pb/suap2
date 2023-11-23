@@ -27,9 +27,26 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
 
 
 ?>
-<a style="margin: 23px;" href="inicio.php" class="btn btn-danger text-white float-right" role="button">VOLTAR</a>
-
-<table class="table table-striped table-bordered table-sm table-responsive">
+<a style="margin: 23px; font-size:10px;" href="inicio.php" class="btn btn-danger text-white float-right" role="button">VOLTAR</a>
+<ul class="nav navbar-nav ml-auto">
+                <li class="nav-item">
+                <form method = "POST" action = "pesquisa.php">
+                        <div class="input-group">
+                          
+                            <div class="form-outline">
+                                <input type="search" id="pesquisa" name = "dado" class="form-control" oninput="handleInput(event)" placeholder = "BUSCAR PACIENTE"/>
+                                <input type = "hidden" name = "cpf" value = "<?php echo $cpf_logado?>">
+                            </div>
+                            
+                            <button style="background-color: #66a7ff; color: white;" type="submit" class="btn">
+                            <i class="bi bi-search"></i>
+                            </button>
+                            </div>
+                            
+                        </form> 
+                </li>
+              </ul>
+<table class="table table-striped table-bordered table-sm table-responsive"  style="font-size:12px;">
         <thead>
             <tr>
             <th scope="col">PROFISSIONAL</th>
@@ -91,17 +108,31 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             <td><?php echo $d["endereco_local"]; ?></td>
             <td><?php echo $d["local_atendimento"]; ?></td>
             <td><?php echo $nome_proc; ?></td>
-            <td><?php $status = $d["status"]; 
-                    if ($status==0){
-                        echo "Em espera";
-                    }
-                    else if ($status==1) {
-                        echo "Compareceu";
-                    }
-                    else {
-                        echo "Não compareceu";
-                    }
-                    ?></td>
+            <td> <?php
+                     
+                            if ($status === 0) {
+                                echo "AGENDADO";
+                            } elseif ($status === 1) {
+                                echo "COMPARECEU";
+                            } elseif ($status === 2) {
+                                echo "NÃO COMPARECEU";
+                            } elseif ($status === 3) {
+                                echo "AGUARDANDO AGENDAMENTO";
+                            } elseif ($status === 4) {
+                                echo "DEVOLVIDA À UAPS";
+                            } elseif ($status === 5) {
+                              echo "RETIRADA DO SETOR";
+                            } elseif ($status === 6) {
+                                echo "ENCAMINHADA À POLICLÍNICA";
+                            } elseif ($status === 7) {
+                                echo "ENCAMINHADA AO HGLAS";
+                            } elseif ($status === 8) {
+                                echo "ENCAMINHADA AO CAPS";
+                            } elseif ($status === 9) {
+                              echo "ENCAMINHADA AO CER";
+                           }
+                      
+                      ?></td>
                       
             
             </tr>

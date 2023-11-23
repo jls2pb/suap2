@@ -22,7 +22,7 @@ if($resultado->execute()){
 
 ?>
 
-<h2 class="mb-4">EDIÇÃO DE PROCEDIMENTO</h2>
+<h4 class="mb-4">EDIÇÃO DE PROCEDIMENTO</h4>
 <form method="POST" action="edita_procedimento_adm.php">  
           <?php 
 
@@ -37,9 +37,16 @@ if($resultado->execute()){
                     }else{
                         $entrada = NULL;
                     }
-                    if($y["data_da_saida"] != NULL){
-                        $saida = date('Y-m-d', strtotime($y["data_da_saida"])); 
-                    }else{
+                    if ($y["data_da_saida"] != NULL) {
+                        // Verifica se a data está no formato d/m/Y
+                      
+                        if (strpos($y["data_da_saida"], '-') !== false) {
+                            $saida = date('Y-m-d', strtotime($y["data_da_saida"]));
+                        } else {
+                              $data = DateTime::createFromFormat('d/m/Y', $y['data_da_saida']);
+                        $saida = $data->format('Y-m-d');
+                        }
+                    } else {
                         $saida = NULL;
                     }
                     if($y["data_do_agendamento"] != NULL){
@@ -49,31 +56,31 @@ if($resultado->execute()){
                     }
             ?>   <div class="form-outline mb-4">
             <label class="form-label">Nome do Paciente</label>
-            <input type="text" name = "paciente" class="form-control form-control-lg" value = "<?php echo $y['nome_paciente'] ?>"  disabled=""/>
+            <input type="text" name = "paciente" style="font-size:12px;" class="form-control form-control-lg" value = "<?php echo $y['nome_paciente'] ?>"  disabled=""/>
             </div>
 
             <div class="form-outline mb-4">
             <label class="form-label">Profissional</label>
-            <input type="text" name = "profissional" class="form-control form-control-lg" value = "<?php echo $y['profissional'] ?>" />
+            <input type="text" name = "profissional" style="font-size:12px;" class="form-control form-control-lg" value = "<?php echo $y['profissional'] ?>" />
             </div>
 		<div class="row">
                 <div class="col-6">     
           	        <div class="form-outline mb-4">
                         <label class="form-label">Procedimento</label>
-                        <input type="text" name = "procedimento" class="form-control form-control-lg" id="procedimento_input" list="procedimentos_list" oninput="handleInput(event)" value = "<?php echo $y['procedimento'] ?>">
+                        <input type="text" name = "procedimento" style="font-size:12px;" class="form-control form-control-lg" id="procedimento_input" list="procedimentos_list" oninput="handleInput(event)" value = "<?php echo $y['procedimento'] ?>">
                     <datalist id="procedimentos_list"></datalist>
 		            </div>
                 </div>
                     <div class="col">
                         <div class="form-outline mb-4">
                         <label class="form-label">Especificação</label>    
-                        <input type="text" name = "especificacao" oninput="handleInput(event)" class="form-control form-control-lg" value = "<?php echo $y['especificacao'] ?>"/>
+                        <input type="text" name = "especificacao" style="font-size:12px;" oninput="handleInput(event)" class="form-control form-control-lg" value = "<?php echo $y['especificacao'] ?>"/>
                     </div>
                 </div>
                 <div class="col">
                         <label class="form-label">Status</label>
                         <div class="form-outline mb-4">
-                <select class="form-control form-control-lg" name="status" id="status">
+                <select class="form-control form-control-lg" name="status" id="status" style="font-size:12px;">
                     <?php
                     $query = "SELECT status FROM agendamento WHERE procedimento = $id";
                     $result = $conexao->prepare($query);
@@ -134,22 +141,22 @@ if($resultado->execute()){
                 <div class="row">
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="date" name = "d_solicitacao" class="form-control form-control-lg" value = "<?php echo $solicitacao ?>"/>
+                        <input type="date" style="font-size:12px;" name = "d_solicitacao" class="form-control form-control-lg" value = "<?php echo $solicitacao ?>"/>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="date" name = "d_entrada" class="form-control form-control-lg" value = "<?php echo $entrada ?>" />
+                        <input type="date" style="font-size:12px;" name = "d_entrada" class="form-control form-control-lg" value = "<?php echo $entrada ?>" />
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="date" name = "d_saida" class="form-control form-control-lg" value = "<?php echo $saida ?>"/>
+                        <input type="date" style="font-size:12px;" name = "d_saida" class="form-control form-control-lg" value = "<?php echo $saida ?>"/>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="date" name = "d_agendamento" class="form-control form-control-lg" value = "<?php echo $agendamento ?>"/>
+                        <input type="date" style="font-size:12px;" name = "d_agendamento" class="form-control form-control-lg" value = "<?php echo $agendamento ?>"/>
                         </div>
                     </div>
                 </div>
@@ -164,12 +171,12 @@ if($resultado->execute()){
                 <div class="row">
                     <div class="col">
                         <div class="form-outline mb-4">
-                            <input type="text" name = "l_agendamento" class="form-control form-control-lg" value = "<?php echo $y['local_do_agendamento'] ?>"/>
+                            <input type="text" style="font-size:12px;" name = "l_agendamento" class="form-control form-control-lg" value = "<?php echo $y['local_do_agendamento'] ?>"/>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-outline mb-4">
-                            <input type="text" name = "obs" class="form-control form-control-lg" value = "<?php echo $y['observacao'] ?>"/>
+                            <input type="text" style="font-size:12px;" name = "obs" class="form-control form-control-lg" value = "<?php echo $y['observacao'] ?>"/>
                         </div>
                     </div>
 
@@ -188,9 +195,9 @@ if($resultado->execute()){
             ?>  
                     
                 </div>
-                <button class="btn btn-primary" type="submit">EDITAR</button>
+                <button class="btn btn-primary" style="font-size:10px;" type="submit">SALVAR</button>
             
-                <button class="btn btn-danger"><a class="link-offset-2 link-underline link-underline-opacity-0" style = "color:white" href="listar_adm.php">VOLTAR</a></button>    
+               <a class="btn btn-danger text-white link-offset-2 link-underline link-underline-opacity-0" style="font-size:10px;color:white" href="listar_adm.php">VOLTAR</a> 
                 
             </div>
             </form>

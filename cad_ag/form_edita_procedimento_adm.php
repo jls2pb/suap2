@@ -1,18 +1,13 @@
 <?php 
-
 session_start(); 
+if(isset($_SESSION['cpf_cad_ag']) == FALSE){
+    header("Location:../index.php");
+}
 $cpf_logado = $_SESSION['cpf_cad_ag'];
 require_once("head.php");
 include "menu_adm.php";
 include "navibar_adm.php";
 include "../footer.php";
-
-
-if(isset($_SESSION['cpf_cad_ag']) == FALSE){
-    header("Location:../index.php");
-}
-
-
 
 require_once("../conexao.php");
 $id = $_GET["id"];
@@ -23,10 +18,12 @@ if($resultado->execute()){
 }else{
     echo "erro ao coletar os dados";
 }
+
+
 ?>
 
-<h2 class="mb-4">EDIÇÃO DE PROCEDIMENTO</h2>
-<form method = "POST" action = "edita_procedimento_adm.php">  
+<h4 class="mb-4">EDIÇÃO DE PROCEDIMENTO</h4>
+<form method="POST" action="edita_procedimento_adm.php">  
 <?php 
 
 foreach ($x as $y) {
@@ -40,9 +37,16 @@ foreach ($x as $y) {
     }else{
         $entrada = NULL;
     }
-    if($y["data_da_saida"] != NULL){
-        $saida = date('Y-m-d', strtotime($y["data_da_saida"])); 
-    }else{
+    if ($y["data_da_saida"] != NULL) {
+        // Verifica se a data está no formato d/m/Y
+      
+        if (strpos($y["data_da_saida"], '-') !== false) {
+            $saida = date('Y-m-d', strtotime($y["data_da_saida"]));
+        } else {
+              $data = DateTime::createFromFormat('d/m/Y', $y['data_da_saida']);
+        $saida = $data->format('Y-m-d');
+        }
+    } else {
         $saida = NULL;
     }
     if($y["data_do_agendamento"] != NULL){
@@ -52,67 +56,67 @@ foreach ($x as $y) {
     }
 ?>   <div class="form-outline mb-4">
 <label class="form-label">Nome do Paciente</label>
-<input type="text" name = "paciente" class="form-control form-control-lg" value = "<?php echo $y['nome_paciente'] ?>"  disabled=""/>
+<input type="text" name = "paciente" style="font-size:12px;" class="form-control form-control-lg" value = "<?php echo $y['nome_paciente'] ?>"  disabled=""/>
 </div>
 
 <div class="form-outline mb-4">
 <label class="form-label">Profissional</label>
-<input type="text" name = "profissional" class="form-control form-control-lg" value = "<?php echo $y['profissional'] ?>" />
+<input type="text" name = "profissional" style="font-size:12px;" class="form-control form-control-lg" value = "<?php echo $y['profissional'] ?>" />
 </div>
 <div class="row">
 <div class="col-6">     
       <div class="form-outline mb-4">
         <label class="form-label">Procedimento</label>
-        <input type="text" name = "procedimento" class="form-control form-control-lg" id="procedimento_input" list="procedimentos_list" oninput="handleInput(event)" value = "<?php echo $y['procedimento'] ?>">
+        <input type="text" name = "procedimento" style="font-size:12px;" class="form-control form-control-lg" id="procedimento_input" list="procedimentos_list" oninput="handleInput(event)" value = "<?php echo $y['procedimento'] ?>">
     <datalist id="procedimentos_list"></datalist>
     </div>
 </div>
     <div class="col">
         <div class="form-outline mb-4">
         <label class="form-label">Especificação</label>    
-        <input type="text" name = "especificacao" oninput="handleInput(event)" class="form-control form-control-lg" value = "<?php echo $y['especificacao'] ?>"/>
+        <input type="text" name = "especificacao" style="font-size:12px;" oninput="handleInput(event)" class="form-control form-control-lg" value = "<?php echo $y['especificacao'] ?>"/>
     </div>
 </div>
 <div class="col">
         <label class="form-label">Status</label>
         <div class="form-outline mb-4">
-<select class="form-control form-control-lg" name="status" id="status">
-                    <?php
-                    $query = "SELECT status FROM agendamento WHERE procedimento = $id";
-                    $result = $conexao->prepare($query);
-                    $result->execute();  
+<select class="form-control form-control-lg" name="status" id="status" style="font-size:12px;">
+    <?php
+    $query = "SELECT status FROM agendamento WHERE procedimento = $id";
+    $result = $conexao->prepare($query);
+    $result->execute();  
 
-                    $query1 = "SELECT status FROM procedimentos WHERE id = $id";
-                    $result1 = $conexao->prepare($query1);
-                    $result1->execute();
+    $query1 = "SELECT status FROM procedimentos WHERE id = $id";
+    $result1 = $conexao->prepare($query1);
+    $result1->execute();
 
-                    $status = -1; // Inicialize a variável de status com um valor padrão
-                    $statusTable = ""; // Inicialize a variável para armazenar a tabela do status
+    $status = -1; 
+    $statusTable = ""; 
 
-                    if ($result && $result->rowCount() > 0) {
-                        $row = $result->fetch(PDO::FETCH_ASSOC);
-                        $status = $row['status'];
-                        $statusTable = "agendamento";
-                    } elseif ($result1 && $result1->rowCount() > 0) {
-                        $row1 = $result1->fetch(PDO::FETCH_ASSOC);
-                        $status = $row1['status'];
-                        $statusTable = "procedimentos";
-                    }
-                    ?>
+    if ($result && $result->rowCount() > 0) {
+        $row = $result->fetch(PDO::FETCH_ASSOC);
+        $status = $row['status'];
+        $statusTable = "agendamento";
+    } elseif ($result1 && $result1->rowCount() > 0) {
+        $row1 = $result1->fetch(PDO::FETCH_ASSOC);
+        $status = $row1['status'];
+        $statusTable = "procedimentos";
+    }
+    ?>
 
-                    <?php if ($statusTable === "agendamento") : ?>
-                        <option value="0" <?php if ($status === 0) {echo 'selected';} ?>>Agendado</option>
-                        <option value="1" <?php if ($status === 1) {echo 'selected';} ?>>Compareceu</option>
-                        <option value="2" <?php if ($status === 2) {echo 'selected';} ?>>Não Compareceu</option>
-                    <?php elseif ($statusTable === "procedimentos") : ?>
-                        <option value="3" <?php if ($status === 3) {echo 'selected';} ?>>Aguardando agendamento</option>
-                        <option value="4" <?php if ($status === 4) {echo 'selected';} ?>>Devolvida à UAPS</option>
-                        <option value="5" <?php if ($status === 5) {echo 'selected';} ?>>Retirada do setor</option>
-                        <option value="6" <?php if ($status === 6) {echo 'selected';} ?>>Encaminhada à Policlínica Municipal</option>
-                        <option value="7" <?php if ($status === 7) {echo 'selected';} ?>>Encaminhada ao HGLAS</option>
-                        <option value="8" <?php if ($status === 8) {echo 'selected';} ?>>Encaminhada ao CAPS</option>
-                        <option value="9" <?php if ($status === 9) {echo 'selected';} ?>>Encaminhada ao CER</option>
-                    <?php endif; ?>
+    <?php if ($statusTable === "agendamento") : ?>
+        <option value="0" <?php if ($status === 0) {echo 'selected';} ?>>Agendado</option>
+        <option value="1" <?php if ($status === 1) {echo 'selected';} ?>>Compareceu</option>
+        <option value="2" <?php if ($status === 2) {echo 'selected';} ?>>Não Compareceu</option>
+    <?php elseif ($statusTable === "procedimentos") : ?>
+        <option value="3" <?php if ($status === 3) {echo 'selected';} ?>>Aguardando agendamento</option>
+        <option value="4" <?php if ($status === 4) {echo 'selected';} ?>>Devolvida à UAPS</option>
+        <option value="5" <?php if ($status === 5) {echo 'selected';} ?>>Retirada do setor</option>
+        <option value="6" <?php if ($status === 6) {echo 'selected';} ?>>Encaminhada à Policlínica Municipal</option>
+        <option value="7" <?php if ($status === 7) {echo 'selected';} ?>>Encaminhada ao HGLAS</option>
+        <option value="8" <?php if ($status === 8) {echo 'selected';} ?>>Encaminhada ao CAPS</option>
+        <option value="9" <?php if ($status === 9) {echo 'selected';} ?>>Encaminhada ao CER</option>
+    <?php endif; ?>
 
 </select>
 
@@ -137,22 +141,22 @@ foreach ($x as $y) {
 <div class="row">
     <div class="col">
         <div class="form-outline mb-4">
-        <input type="date" name = "d_solicitacao" class="form-control form-control-lg" value = "<?php echo $solicitacao ?>"/>
+        <input type="date" style="font-size:12px;" name = "d_solicitacao" class="form-control form-control-lg" value = "<?php echo $solicitacao ?>"/>
         </div>
     </div>
     <div class="col">
         <div class="form-outline mb-4">
-        <input type="date" name = "d_entrada" class="form-control form-control-lg" value = "<?php echo $entrada ?>" />
+        <input type="date" style="font-size:12px;" name = "d_entrada" class="form-control form-control-lg" value = "<?php echo $entrada ?>" />
         </div>
     </div>
     <div class="col">
         <div class="form-outline mb-4">
-        <input type="date" name = "d_saida" class="form-control form-control-lg" value = "<?php echo $saida ?>"/>
+        <input type="date" style="font-size:12px;" name = "d_saida" class="form-control form-control-lg" value = "<?php echo $saida ?>"/>
         </div>
     </div>
     <div class="col">
         <div class="form-outline mb-4">
-        <input type="date" name = "d_agendamento" class="form-control form-control-lg" value = "<?php echo $agendamento ?>"/>
+        <input type="date" style="font-size:12px;" name = "d_agendamento" class="form-control form-control-lg" value = "<?php echo $agendamento ?>"/>
         </div>
     </div>
 </div>
@@ -167,12 +171,12 @@ foreach ($x as $y) {
 <div class="row">
     <div class="col">
         <div class="form-outline mb-4">
-            <input type="text" name = "l_agendamento" class="form-control form-control-lg" value = "<?php echo $y['local_do_agendamento'] ?>"/>
+            <input type="text" style="font-size:12px;" name = "l_agendamento" class="form-control form-control-lg" value = "<?php echo $y['local_do_agendamento'] ?>"/>
         </div>
     </div>
     <div class="col">
         <div class="form-outline mb-4">
-            <input type="text" name = "obs" class="form-control form-control-lg" value = "<?php echo $y['observacao'] ?>"/>
+            <input type="text" style="font-size:12px;" name = "obs" class="form-control form-control-lg" value = "<?php echo $y['observacao'] ?>"/>
         </div>
     </div>
 
@@ -191,9 +195,9 @@ foreach ($x as $y) {
 ?>  
     
 </div>
-<button class="btn btn-primary" type="submit">EDITAR</button>
-                <button class="btn btn-danger"><a class="link-offset-2 link-underline link-underline-opacity-0" style = "color:white" href="listar_adm.php">VOLTAR</a></button>    
-                
+<button class="btn btn-primary" style="font-size:10px;" type="submit">SALVAR</button>
+
+<a class="btn btn-danger text-white link-offset-2 link-underline link-underline-opacity-0" style="font-size:10px;color:white" href="listar_adm.php">VOLTAR</a>
             </div>
             </form>
     </div>

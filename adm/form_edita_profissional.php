@@ -22,35 +22,35 @@ if($resultado->execute()){
 }
 ?>
 <script src="../mascara.js"></script>
-<h2 class="mb-4">EDITAR PROFISSIONAL</h2>
+<h4 class="mb-4">EDITAR PROFISSIONAL</h4>
 <form method = "POST" action = "editar_profissional.php">  
             <?php 
                 foreach ($x as $y) {                    
             ?>
             
             <div class="form-outline mb-4">
-            <label class="form-label">NOME</label>
-            <input type="text" name = "nome" class="form-control form-control-lg" value = "<?php echo $y["nome"]; ?>" />
+            <label class="form-label"style="font-size:12px;">NOME</label>
+            <input type="text" name = "nome" class="form-control form-control-lg" value = "<?php echo $y["nome"]; ?>" style="font-size:12px;"/>
             </div>
                 <div class="row">
                     <div class="col">
-                        <label class="form-label">ÁREA</label>
+                        <label class="form-label" style="font-size:12px;">ÁREA</label>
                     </div>
                     <div class="col">
-                        <label class="form-label">TEMPO DE ATENDIMENTO</label>
+                        <label class="form-label" style="font-size:12px;">TEMPO DE ATENDIMENTO</label>
                     </div>
                     
                 </div>
                 <div class="row">
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="text" name = "area" class="form-control form-control-lg" value = "<?php echo $y["area"]; ?>" />
+                        <input type="text" name = "area" class="form-control form-control-lg" value = "<?php echo $y["area"]; ?>" style="font-size:12px;"/>
                         </div>
                     </div>
                   
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="number" name = "tempo_atendimento" class="form-control form-control-lg" value = "<?php echo $y['tempo_atendimento']; ?>" />
+                        <input type="number" name = "tempo_atendimento" class="form-control form-control-lg" value = "<?php echo $y['tempo_atendimento']; ?>" style="font-size:12px;"/>
                         </div>
                     </div>
                 </div>
@@ -63,8 +63,8 @@ if($resultado->execute()){
                 }
                 ?>
                 
-                <button class="btn btn-primary " type="submit">SALVAR</button>
-               <a class="link-offset-2 link-underline link-underline-opacity-0 btn btn-danger" style = "color:white" href="inicio_agendamento.php">VOLTAR</a>
+                <button class="btn btn-primary " type="submit" style="font-size:10px;">SALVAR</button>
+               <a class="link-offset-2 link-underline link-underline-opacity-0 btn btn-danger" style = "color:white; font-size:10px;" href="inicio_agendamento.php">VOLTAR</a>
             </div>
             </form>
     </div>

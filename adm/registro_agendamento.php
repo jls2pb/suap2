@@ -34,9 +34,23 @@ if ($resultadoVerificar->rowCount() > 0) {
 }
 
 
-$sql = "INSERT INTO agendamento(cod_usuario, data_atendimento, hora, nome_paciente, sexo, endereco, cpf, endereco_local, cod_profissional,local_atendimento, procedimento, status) VALUES ($cod, '$dia', '$horario', '$paciente', '$sexo', '$endereco', '$cpf', '$endereco_local',$cod_profissional,'$local_atendimento',$procedimento, 0)";
+$sql = "INSERT INTO agendamento(cod_usuario, data_atendimento, hora, nome_paciente, sexo, endereco, cpf, endereco_local, cod_profissional, local_atendimento, procedimento, status) VALUES (:cod, :dia, :horario, :paciente, :sexo, :endereco, :cpf, :endereco_local, :cod_profissional, :local_atendimento, :procedimento, 0)";
 $resultado = $conexao->prepare($sql);
-if($resultado->execute()){
+$resultado->bindParam(':cod', $cod, PDO::PARAM_INT);
+$resultado->bindParam(':dia', $dia, PDO::PARAM_STR);
+$resultado->bindParam(':horario', $horario, PDO::PARAM_STR);
+$resultado->bindParam(':paciente', $paciente, PDO::PARAM_STR);
+$resultado->bindParam(':sexo', $sexo, PDO::PARAM_STR);
+$resultado->bindParam(':endereco', $endereco, PDO::PARAM_STR);
+$resultado->bindParam(':cpf', $cpf, PDO::PARAM_STR);
+$resultado->bindParam(':endereco_local', $endereco_local, PDO::PARAM_STR);
+$resultado->bindParam(':cod_profissional', $cod_profissional, PDO::PARAM_INT);
+$resultado->bindParam(':local_atendimento', $local_atendimento, PDO::PARAM_STR);
+$resultado->bindParam(':procedimento', $procedimento, PDO::PARAM_INT);
+
+if ($resultado->execute()) {
+
+
     $hoje = date('d/m/Y');
     $sql1 = "UPDATE procedimentos SET data_do_agendamento = '$dia', local_do_agendamento = '$local_atendimento', data_da_saida = '$hoje', profissional = '$nome_profissional', status = 0 WHERE id = $procedimento";
     $resultado1 = $conexao->prepare($sql1);

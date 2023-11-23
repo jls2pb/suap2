@@ -14,78 +14,78 @@ $sql = "SELECT * FROM uaps ORDER BY nome_uaps ASC";
 $resultado = $conexao->prepare($sql);
 $resultado->execute();
 ?>
-<h3 class="mb-5 text-center"> CADASTRO DE PACIENTE </h3>
+<h4 class="mb-5 text-center"> CADASTRO DE PACIENTE </h4>
 <form method = "POST" action = "registro_paciente_adm.php">  
 <div class="form-outline mb-4">
-            <label class="form-label">Nome do Paciente *</label>
-            <input type="text" name="n_paciente" class="form-control form-control-lg" id="n_paciente" list="paciente_list" oninput="handleInput(event)" placeholder="Digite o nome do paciente...">
+            <label class="form-label"style = "font-size:12px;" >Nome do Paciente *</label>
+            <input type="text" name="n_paciente" class="form-control form-control-lg" id="n_paciente" list="paciente_list" oninput="handleInput(event)" placeholder="Digite o nome do paciente..." style = "font-size:12px;">
             <ul id="resultado"></ul>  
             </div>
 
                 <div class="row">
                     <div class="col">
-                        <label class="form-label">RG</label>
+                        <label style = "font-size:12px;" class="form-label">RG</label>
                     </div>
                     <div class="col">
-                        <label class="form-label">CPF </label>
+                        <label style = "font-size:12px;" class="form-label">CPF </label>
                     </div>
                     <div class="col">
-                        <label class="form-label">CNS </label>
+                        <label style = "font-size:12px;" class="form-label">CNS </label>
                     </div>
                     <div class="col">
-                        <label class="form-label">Data de Nascimento *</label>
+                        <label  class="form-label" style = "font-size:12px;">Data de Nascimento *</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="text" name = "rg" class="form-control form-control-lg" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');"/>
+                        <input type="text" name = "rg" class="form-control form-control-lg" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" style = "font-size:12px;"/>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="text" id = "cpf" name = "cpf" class="form-control form-control-lg" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" />
+                        <input type="text" id = "cpf" name = "cpf" class="form-control form-control-lg" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" style = "font-size:12px;"/>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="text" id = "cns" name = "cns" class="form-control form-control-lg" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" />
+                        <input type="text" id = "cns" name = "cns" class="form-control form-control-lg" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" style = "font-size:12px;" />
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="date" name = "nascimento" id = nascimento  class="form-control form-control-lg" required/>
+                        <input type="date" name = "nascimento" id = nascimento  class="form-control form-control-lg"required style = "font-size:12px;"/>
                         </div>
                     </div>
                 </div>
                 <div class="form-outline mb-4">
-                    <label class="form-label">Nome da Mãe *</label>
-                    <input type="text" name = "n_mae" id = "n_mae"  class="form-control form-control-lg" oninput="handleInput(event)" required/>
+                    <label style = "font-size:12px;" class="form-label">Nome da Mãe *</label>
+                    <input style = "font-size:12px;" type="text" name = "n_mae" id = "n_mae"  class="form-control form-control-lg" oninput="handleInput(event)" required/>
                 </div>
                 <div class="row">
                     <div class="col">
-                        <label class="form-label">ACS</label>
+                        <label  class="form-label" style = "font-size:12px;">ACS</label>
                     </div>
                     <div class="col">
-                        <label class="form-label">UBS</label>
+                        <label  class="form-label" style = "font-size:12px;">UBS</label>
                     </div>
                     <div class="col">
-                        <label class="form-label">CELULAR</label>
+                        <label class="form-label" style = "font-size:12px;">CELULAR</label>
                     </div>
                     <div class="col">
-                        <label class="form-label">TELEFONE</label>
+                        <label class="form-label" style = "font-size:12px;">TELEFONE</label>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="text" name = "acs" class="form-control form-control-lg" id="acs_input" list="acs_list" oninput="handleInput(event)">
+                        <input type="text" style = "font-size:12px;" name = "acs" class="form-control form-control-lg" id="acs_input" list="acs_list" oninput="handleInput(event)">
                         <datalist id="acs_list"></datalist>
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-outline mb-4">
-                            <select class="form-control form-control-lg" name = "ubs" id="ubs">
+                            <select class="form-control form-control-lg" name = "ubs" id="ubs" style = "font-size:12px;">
 			    	<option value = ""> SELECIONE A UNIDADE </option>
                             <?php 
                             foreach ($resultado as $r) {
@@ -99,18 +99,18 @@ $resultado->execute();
                     </div>
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="text" id = "cel" name = "cel" class="form-control form-control-lg" />
+                        <input type="text" id = "cel" style = "font-size:12px;" name = "cel" class="form-control form-control-lg" />
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-outline mb-4">
-                        <input type="text" id = "tel" name = "tel" class="form-control form-control-lg" />
+                        <input type="text" id = "tel" style = "font-size:12px;" name = "tel" class="form-control form-control-lg" />
                         </div>
                     </div>
                 </div>
                 <input type = "hidden" name = "cpf_logado" value = "<?php echo $cpf_logado?>">
-                <button style="color:white;background-color: #66a7ff;" class="btn " type="submit"><b>CADASTRAR</b></button>
-                <a class="link-offset-2 link-underline link-underline-opacity-0 btn btn-danger" style = "color:white" href="inicio_cad_ag.php" role="button">VOLTAR</a>
+                <button style="color:white;background-color: #66a7ff; font-size:10px;" class="btn " type="submit"><b>CADASTRAR</b></button>
+                <a class="link-offset-2 link-underline link-underline-opacity-0 btn btn-danger" style = "color:white; font-size:10px; " href="inicio_cad_ag.php" role="button">VOLTAR</a>
             </div>
             <?php
             include "../footer.php";

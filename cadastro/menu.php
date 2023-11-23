@@ -92,33 +92,29 @@ require_once("../conexao.php");
         <ul class="list-unstyled components mb-5">
           
           <li>
-            <a href="inicio.php"><span class="fa fa-home"></span><b> INÍCIO</b></a>
+            <a href="inicio.php" style="font-size:12px;"><span class="fa fa-home"></span><b> INÍCIO</b></a>
           </li>
           
           <li class="sub-menu-second">
-          <a style="cursor: pointer;" class="link-dark rounded"><span class="bi bi-pencil-square"></span><b>CADASTRO </b><div class="fa fa-caret-down right"></div></a>
+          <a style="cursor: pointer; font-size:12px;" class="link-dark rounded"><span class="bi bi-pencil-square"></span><b>CADASTRO </b><div class="fa fa-caret-down right"></div></a>
            
           <ul>
 
           <li>
-          <a href="cadastrar_paciente.php" class="link-dark rounded"><span class="fa fa-user"></span><b>NOVO PACIENTE</b></a></li>
+          <a href="cadastrar_paciente.php" style="font-size:12px;" class="link-dark rounded"><span class="fa fa-user"></span><b>NOVO PACIENTE</b></a></li>
           </li>
         
-          <li><a href="forms_tabela.php" class="link-dark rounded"><span class="bi bi-table"></span><b>TABELAS</b></a></li>
+          <li><a href="forms_tabela.php" style="font-size:12px;" class="link-dark rounded"><span class="bi bi-table"></span><b>TABELAS</b></a></li>
           </li>
 
           </ul></li>
 
           <li>
-            <a href="index_logado.php"><span class="fa fa-sticky-note"></span><b> LISTAR PACIENTES</b></a>
+            <a href="index_logado.php" style="font-size:12px;"><span class="fa fa-sticky-note"></span><b> LISTAR PACIENTES</b></a>
           </li>
 
           <li>
-            <a href="exibir_resultado.php"><span class="bi bi-bar-chart-line-fill" ></i></span><b> RANKING </b></a>
-          </li>
-
-          <li>
-            <a href="../sair.php"><span class="bi bi-door-open-fill" ></i></span><b> SAIR</b></a>
+            <a href="../sair.php" style="font-size:12px;"><span class="bi bi-door-open-fill" ></i></span><b> SAIR</b></a>
           </li>
         </ul>
 

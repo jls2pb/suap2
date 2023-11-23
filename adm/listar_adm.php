@@ -14,7 +14,7 @@
   .table.table-compact th,
   .table.table-compact td {
     padding: 10px; 
-    font-size: 13.5px; 
+    font-size: 12px; 
   }
   </style>
    <?php 
@@ -44,9 +44,9 @@ if($resultado->execute()){
 ?>
 
  
-   <div class = "container mt-1" style="font-size:13.5px;"> 
+   <div class = "container mt-1" style="font-size:12px;"> 
     <div class="">
-    <h3 class="mb-4">DADOS COMPLETOS DO PACIENTE</h3>
+    <h4 class="mb-4">DADOS COMPLETOS DO PACIENTE</h4>
   <?php 
     foreach ($x as $y) {
       if($y["nascimento"] != NULL){
@@ -110,23 +110,22 @@ if($resultado->execute()){
       <br>
       <div class="row text-center">
         <div class="col">
-          <a class="btn text-white" style = "background-color: DarkBlue; font-size:13px;" href="form_edita_adm.php" role="button">EDITAR PACIENTE</a>
-          <a class="btn btn-primary text-white" style="font-size:13px;" href="cadastrar_procedimento_adm.php?n=<?php echo $y["nome_paciente"]; ?>" role="button">NOVO PROCEDIMENTO</a>
-          <a class="btn btn-info text-white" style="font-size:13px;" href="listar_log_adm.php" role="button">ATIVIDADES</a>
-          <a class="btn btn-danger text-white" style="font-size:13px;" role="button" onclick="confirmarExclusao(<?php echo $y['cod']; ?>)">EXCLUIR CADASTRO</a>
+          <a class="btn text-white" style = "background-color: DarkBlue; font-size:10px;" href="form_edita_adm.php" role="button">EDITAR PACIENTE</a>
+          <a class="btn btn-primary text-white" style="font-size:10px;" href="cadastrar_procedimento_adm.php?n=<?php echo $y["nome_paciente"]; ?>" role="button">NOVO PROCEDIMENTO</a>
+          <a class="btn btn-info text-white" style="font-size:10px;" href="listar_log_adm.php" role="button">ATIVIDADES</a>
+          <a class="btn btn-danger text-white" style="font-size:10px;" role="button" onclick="confirmarExclusao(<?php echo $y['cod']; ?>)">EXCLUIR CADASTRO</a>
         </div>
       </div> 
             <br>
-            <table class="table table-striped table-compact" style="font-size:14px;">
+            <table class="table table-striped table-compact" style="font-size:10px;">
         <thead class="text-center">
             <tr>
             <th scope="col">COD</th>
-            <th scope="col">NOME</th>
-            <th scope="col">PROCEDIMENTO</th>
+			<th scope="col">PROCEDIMENTO</th>
             <th scope="col">STATUS</th>
             <th scope="col">PROFISSIONAL</th>
             <th scope="col">SOLICITAÇÃO </th><br>
-           <th scope="col">ENTRADA(CAD)</th>
+            <th scope="col">ENTRADA(CAD)</th>
             <th scope="col">SAIDA</th>
             <th scope="col">AGENDAMENTO</th>
             <th scope="col">AÇÃO</th>
@@ -146,11 +145,18 @@ if($resultado->execute()){
                               }else{
                                   $entrada = NULL;
                               }
-                              if($y2["data_da_saida"] != NULL){
-                                  $saida = $y2["data_da_saida"];
-                              }else{
-                                  $saida = NULL;
-                              }
+                              if ($y2["data_da_saida"] != NULL) {
+                                // Verifica se a data está no formato d/m/Y
+                                if (strpos($y2["data_da_saida"], '/') !== false) {
+                                    $saida = $y2["data_da_saida"];
+                                } else {
+                                    // Verifica se a data está no formato Y-m-d
+                                    $saida = date('d/m/Y', strtotime($y2["data_da_saida"]));
+                                }
+                            } else {
+                                $saida = NULL;
+                            }
+                                                   
                               if($y2["data_do_agendamento"] != NULL){
                                   $agendamento = date('d/m/Y', strtotime($y2["data_do_agendamento"]));  
                               }else{
@@ -171,37 +177,8 @@ if($resultado->execute()){
             </script> 
   <tr>
                       <th scope="row"><?php echo $y2["id"]; ?></th>
-                      <td><?php echo $y2["nome_paciente"]; ?></td>
                       <td><?php echo $y2["procedimento"]; ?></td> 
                       <td>
-<<<<<<< HEAD
-                        <?php
-                        $id = $y2['id'];
-                                $query = "SELECT status FROM agendamento WHERE procedimento = $id";
-                                $result = $conexao->prepare($query);
-                                $result->execute();
-                                if ($result && $result->rowCount() > 0) {
-                                $row = $result->fetch(PDO::FETCH_ASSOC);
-                                $status = $row['status'];
-                                if($status===0){
-                                  echo "AGENDADO";
-                                }elseif($status===1){
-                                  echo "COMPARECEU";
-                                }elseif($status===2){
-                                  echo "NÃO COMPARECEU";
-                                }else{
-                                  if($agendamento != NULL ){
-                                    echo "AGENDADO";
-                                  }else{
-                                    echo "AGUARDANDO AGENDAMENTO";
-                                  }
-                                }
-                              
-                              }
-
-                                
-                        ?>
-=======
                       <?php
                       $id = $y2['id'];
                       $query = "SELECT status FROM agendamento WHERE procedimento = $id";
@@ -253,15 +230,14 @@ if($resultado->execute()){
                       }
                       ?>
 
->>>>>>> a6bb4abff2b6acea0d5727b9b3c60b6a0a90ef8b
                       </td>
                     <td><?php echo $y2["profissional"]; ?></td>
                     <td><?php echo $solicitacao ?></td>  
             <td><?php echo $entrada ?></td>
             <td><?php echo $saida ?></td>
             <td><?php echo $agendamento ?></td>
-            <td class="d-flex"><a class="btn text-white" style = "background-color: DarkBlue; font-size:13px; margin:5px;" href="form_edita_procedimento_adm.php?id=<?php echo $y2['id'] ?>" role="button"> EDITAR </a>
-            <a class="btn btn-danger text-white" style="font-size:13px;margin:5px;" role="button" onclick="cconfirmarExclusao(<?php echo $y2['id']; ?>)"> EXCLUIR </a></td>
+            <td class="d-flex"><a class="btn text-white" style = "background-color: DarkBlue; font-size:10px; margin:5px;" href="form_edita_procedimento_adm.php?id=<?php echo $y2['id'] ?>" role="button"> EDITAR </a>
+            <a class="btn btn-danger text-white" style="font-size:10px;margin:5px;" role="button" onclick="cconfirmarExclusao(<?php echo $y2['id']; ?>)"> EXCLUIR </a></td>
             </tr>
             <?php
             }

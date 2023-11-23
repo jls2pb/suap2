@@ -35,7 +35,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             }
         }
         </script>
-<table class="table table-striped">
+<table class="table table-striped table-compact" style="font-size:12px;">
         <thead>
             <tr>
             <th scope="col">ID</th>
@@ -76,10 +76,10 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
           
         </td>
             <td>
-                <a class="btn text-white" style="background-color: #66a7ff;" href = "form_edita_usuario_adm.php?id=<?php $_GET["id"] = $d["id_usuario"]; echo $_GET["id"];?>" role="button"><b>EDITAR</b></a>
+                <a class="btn text-white" style="background-color: #66a7ff; font-size:10px;" href = "form_edita_usuario_adm.php?id=<?php $_GET["id"] = $d["id_usuario"]; echo $_GET["id"];?>" role="button"><b>EDITAR</b></a>
             </td>
             <td>
-                <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php $_GET['id'] = $d['id_usuario']; echo $_GET['id']; ?>)" role="button"><b>EXCLUIR</b></a>
+                <a class="btn text-white btn-danger text-white" style="font-size:10px;margin:5px;" onclick="confirmarExclusao(<?php $_GET['id'] = $d['id_usuario']; echo $_GET['id']; ?>)" role="button"><b>EXCLUIR</b></a>
             </td>
             </tr>
             <?php

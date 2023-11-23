@@ -30,32 +30,25 @@ if(isset($_SESSION['cpf'])){
     <p style="padding-left: 10px;">SEJA BEM VINDO(A) <?php echo $nome_paciente; ?></p>
 
     <table class="table table-striped table-bordered table-sm table-responsive">
-        <thead style="background-color: #66a7ff;" class="thead text-white">
+        <thead style="background-color: #66a7ff; font-size:12px" class="thead text-white">
             <tr>
-<<<<<<< HEAD
-                
-=======
->>>>>>> a6bb4abff2b6acea0d5727b9b3c60b6a0a90ef8b
                 <th scope="col">PROCEDIMENTO</th>
 				<th scope="col">STATUS</th>
                 <th scope="col">PROFISSIONAL</th>
-<<<<<<< HEAD
-                <th scope="col">SOLICITAÇÃO</th>
-                <th scope="col">AGENDAMENTO</th>
-=======
                 <th scope="col">DATA DA CONSULTA</th>
->>>>>>> a6bb4abff2b6acea0d5727b9b3c60b6a0a90ef8b
                 <th scope="col">LOCAL AGENDAMENTO</th>
                 
             </tr>
+			
         </thead>
         <tbody>
-        <?php 
+        <?php
         if (($result_procedimento) && ($result_procedimento->rowCount() > 0)) {
             while ($d2 = $result_procedimento->fetch(PDO::FETCH_ASSOC)) {
                 if($d2["procedimento"] != NULL){
 
                
+<<<<<<< HEAD
 
                 // Processar os dados do procedimento aqui
                 $solicitacao = ($d2["data_da_solicitacao"] != NULL) ? date('d/m/Y', strtotime($d2["data_da_solicitacao"])) : NULL;
@@ -84,10 +77,64 @@ if(isset($_SESSION['cpf'])){
                             echo "Agendado";
                         }else{
                             echo "Aguardando Agendamento";
+=======
+               
+                $agendamento = ($d2["data_do_agendamento"] != NULL) ? date('d/m/Y', strtotime($d2["data_do_agendamento"])) : NULL;
+        ?>
+            <tr>
+                <td><?php echo $d2["procedimento"]; ?></td>
+				<td>
+                <?php
+                      $id = $d2['id'];
+                      $query = "SELECT status FROM agendamento WHERE procedimento = $id";
+                      $result = $conexao->prepare($query);
+                      $result->execute();
+
+                      $query1 = "SELECT status FROM procedimentos WHERE id = $id";
+                      $result1 = $conexao->prepare($query1);
+                      $result1->execute();
+
+                      $statusArray = [];
+
+                      if ($result && $result->rowCount() > 0) {
+                          $statusRow = $result->fetch(PDO::FETCH_ASSOC);
+                          $statusArray[] = $statusRow['status'];
+                      } elseif ($result1 && $result1->rowCount() > 0) {
+                          $statusRow1 = $result1->fetch(PDO::FETCH_ASSOC);
+                          $statusArray[] = $statusRow1['status'];
+                      }
+                      
+
+                      if (count($statusArray) > 0) {
+                          // Os resultados das duas consultas estão em $statusArray
+                          foreach ($statusArray as $status) {
+                            if ($status === 0) {
+                                echo "AGENDADO";
+                            } elseif ($status === 1) {
+                                echo "COMPARECEU";
+                            } elseif ($status === 2) {
+                                echo "NÃO COMPARECEU";
+                            } elseif ($status === 3) {
+                                echo "AGUARDANDO AGENDAMENTO";
+                            } elseif ($status === 4) {
+                                echo "DEVOLVIDA À UAPS";
+                            } elseif ($status === 5) {
+                              echo "RETIRADA DO SETOR";
+                            } elseif ($status === 6) {
+                                echo "ENCAMINHADA À POLICLÍNICA";
+                            } elseif ($status === 7) {
+                                echo "ENCAMINHADA AO HGLAS";
+                            } elseif ($status === 8) {
+                                echo "ENCAMINHADA AO CAPS";
+                            } elseif ($status === 9) {
+                              echo "ENCAMINHADA AO CER";
+                           }
+>>>>>>> 2d170ae99c2c9e95445a9008d4048fb79816f9a3
                         }
-                        
-                    }
-                ?>
+                      } else {
+                          echo "AGUARDANDO";
+                      }
+                      ?>
                 </td>	
                 <td><?php echo $d2["profissional"]; ?></td>
                 <td><?php echo $agendamento ?></td>
@@ -98,7 +145,7 @@ if(isset($_SESSION['cpf'])){
             }
         }
         } else {
-            echo "<tr><td colspan='10' style='color: #f00;'>Nenhum agendamento encontrado!</td></tr>";
+            echo "<tr><td colspan='10' style='color: #f00; font-size:12px'>Nenhum agendamento encontrado!</td></tr>";
         }  
         
     } else {

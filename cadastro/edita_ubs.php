@@ -21,14 +21,14 @@ if($resultado->execute()){
 ?>
 
 <div class="container">
-    <h2 class="mb-4">EDITAR ACS</h2>
+    <h4 class="mb-4">EDITAR UAPS</h4>
     <form method="POST" action="editar.php">  
         <?php foreach ($x as $y) { ?>
             
 
             <div class="form-group">
-                <label for="nome_uaps" class="form-label">NOME</label>
-                <input required type="text" name="nome_uaps" class="form-control" id="nome_uaps" value="<?php echo $y["nome_uaps"]; ?>">
+                <label for="nome_uaps" class="form-label" style="font-size:12px;">NOME</label>
+                <input required type="text" name="nome_uaps" class="form-control" id="nome_uaps" value="<?php echo $y["nome_uaps"]; ?>" style="font-size:12px;">
             </div>
            
             
@@ -38,8 +38,8 @@ if($resultado->execute()){
         <input type="hidden" name="cpf_logado" value="<?php echo $cpf_logado ?>">    
 
         <div class="form-group">
-            <button class="btn btn-primary" type="submit">SALVAR</button>
-            <a class="btn btn-danger" href="tb_ubs.php">VOLTAR</a>
+            <button class="btn btn-primary" type="submit" style="font-size:10px;">SALVAR</button>
+            <a class="btn btn-danger" href="tb_ubs.php" style="font-size:10px;">VOLTAR</a>
         </div>
     </form>
 </div>

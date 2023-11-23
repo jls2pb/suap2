@@ -18,10 +18,7 @@
                     <li class="nav-item ml-auto">
                     <a href="relatorio.php" class="link-dark rounded text-white"><b>NÃO COMPARECIMENTO</b></a>
                     </li>
-                    <li class="nav-item ml-auto">
-                    <a href="inicio_agendamento.php" class="link-dark rounded text-white"><b>PROFISSIONAIS</b></a>
-                    </li>
-
+                   
                     <li class="nav-item ml-auto">
                     <a href="sair.php" class="link-dark rounded text-white"><b>SAIR</b></a></li>
                     </li>

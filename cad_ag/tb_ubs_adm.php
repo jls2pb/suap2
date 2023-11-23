@@ -36,7 +36,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             }
         }
         </script>
-<table class="table table-striped">
+<table class="table table-striped table-compact" style="font-size:12px;">
         <thead>
             <tr>
             <th scope="col">UAPS</th>
@@ -57,11 +57,11 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             <th scope="row"><?php echo $d["nome_uaps"];?></th>
             
             <td>
-		<a class="btn text-white btn-primary" href="edita_ubs.php?id=<?php echo $d['id_uaps'];?>" role="button"><b>EDITAR</b></a>
+		<a class="btn text-white btn-primary" style="font-size:10px;" href="edita_ubs.php?id=<?php echo $d['id_uaps'];?>" role="button"><b>EDITAR</b></a>
          
             </td>
             <td>
-                <a class="btn text-white btn-danger" onclick="confirmarExclusao(<?php $_GET['id'] = $d['id_uaps']; echo $_GET['id']; ?>)" role="button"><b>EXCLUIR</b></a>
+                <a class="btn text-white btn-danger" style="font-size:10px;" onclick="confirmarExclusao(<?php $_GET['id'] = $d['id_uaps']; echo $_GET['id']; ?>)" role="button"><b>EXCLUIR</b></a>
             </td>
             </tr>
             <?php
@@ -79,7 +79,7 @@ $pagina_atual = filter_input(INPUT_GET, "page", FILTER_SANITIZE_NUMBER_INT);
             // Maximo de link
             $maximo_link = 2;
             ?>
-            <div class = "row">
+             <div class = "row">
                 <div class = "col">        
             <?php 
                if ($pagina > 1) {

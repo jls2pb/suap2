@@ -20,7 +20,7 @@ include "../../footer.php";
         <div class="form-outline mb-4">
             <label class="form-label">NOME DO PACIENTE: </label>
             <input style="width: 150%;" type="text" name="paciente" class="form-control form-control-lg" oninput="handleInput(event)" id="paciente_input" list="paciente_list" required>
-            <datalist id="paciente_list"></datalist>
+            <ul id="paciente_list"></ul>
         </div>
     </div>
      
@@ -59,7 +59,7 @@ include "../../footer.php";
         <option selected disabled value = "">Selecione uma data</option>
             <?php
             // Conexão com o banco de dados
-            include "../../conexao.php";
+            include "../conexao.php";
             $sql = "select * from agenda_profissional where id_profissional = '$id'";
             $resultado = $conexao->prepare($sql);
            if ($resultado->execute()) {
@@ -113,59 +113,35 @@ include "../../footer.php";
 
 <script>
     $(document).ready(function () {
-        // Quando o usuário digitar algo no input, acionamos a função de busca
         $('#paciente_input').on('input', function () {
             var term = $(this).val();
-            if (term.length >= 3) {
-                // Realizamos a solicitação AJAX para buscar os pacientes
-                $.ajax({
-                    url: '../buscar/buscar_paciente.php',
-                    type: 'GET',
-                    data: { term: term },
-                    dataType: 'json',
-                    success: function (data) {
-                        // Limpa o datalist antes de preencher com as novas opções
-                        $('#paciente_list').empty();
+                if (term.length >= 3) {
+                    $.ajax({
+                        url: '../buscar/buscar_paciente.php',
+                        type: 'GET',
+                        data: {term: term},
+                        dataType: 'json',
+                        success: function(data) {
+                            $('#paciente_list').empty();
+                            data.forEach(function(paciente) {
+                                $('#paciente_list').append('<li data-nome_paciente="' + paciente.nome_paciente +'" data-nascimento="' + paciente.nascimento +'" data-cod="' + paciente.cod +'" data-cpf="' + paciente.cpf +'">' + paciente.nome_paciente + " <br> "+paciente.nascimento + '</li>');
+                            });
+                        }
+                    });
+                }
+            });
 
-                        // Preenche o datalist com as opções retornadas pela busca
-                        data.forEach(function (paciente) {
-                            // Paciente é um objeto que contém nome, cpf e cod
-                            $('#paciente_list').append('<option value="' + paciente.nome_paciente + '" data-cpf="' + paciente.cpf + '" data-cod="' + paciente.cod + '">');
-                        });
-                    }
-                });
-            }
-        });
-
-        // Quando uma opção é selecionada no datalist
-        $('#paciente_input').on('change', function () {
-            // Se o valor selecionado está em cache
-            if (this.list.querySelector("option[value='" + this.value + "']")) {
-                var cpf = this.list.querySelector("option[value='" + this.value + "']").getAttribute('data-cpf');
-                var cod = this.list.querySelector("option[value='" + this.value + "']").getAttribute('data-cod');
-
-                // Atualize os valores dos campos de entrada com o CPF e o código
-                $('#cpf').val(cpf);
+            $('#paciente_list').on('click', 'li', function() {
+                var nome = $(this).data('nome_paciente');
+                var cod = $(this).data('cod');
+                var cpf = $(this).data('cpf');
+                $('#paciente_input').val(nome);
                 $('#cod').val(cod);
-
-                // Atualize os procedimentos com base no código do paciente
                 atualizarProcedimentos(cod);
                 atualizarSexo(cpf);
                 atualizarEndereco(cpf);
-            }
-        });
-
-        // Quando o usuário seleciona um paciente no datalist
-        $('#paciente_input').on('change', function () {
-            var selectedOption = this.querySelector("option:checked");
-
-            if (selectedOption) {
-                var cod = selectedOption.getAttribute('data-cod');
-
-                // Atualize o campo de seleção de procedimentos com base no código (cod)
-                atualizarProcedimentos(cod);
-            }
-        });
+                $('#paciente_list').empty();
+            });
 
         function atualizarProcedimentos(cod) {
             // Realize uma solicitação AJAX para buscar os procedimentos com base no código (cod)
@@ -190,7 +166,7 @@ include "../../footer.php";
         function atualizarSexo(cpf) {
     // Realize uma solicitação AJAX para buscar o sexo com base no CPF
     $.ajax({
-        url: '../../buscar/buscar_sexo.php', // Substitua pelo URL correto para buscar o sexo com base no CPF do paciente
+        url: '../buscar/buscar_sexo.php', // Substitua pelo URL correto para buscar o sexo com base no CPF do paciente
         type: 'GET',
         data: { cpf: cpf },
         dataType: 'json',
@@ -208,7 +184,7 @@ include "../../footer.php";
 }
 function atualizarEndereco(cpf) {
     $.ajax({
-        url: '../../buscar/buscar_endereco.php', 
+        url: '../buscar/buscar_endereco.php', 
         type: 'GET',
         data: { cpf: cpf },
         dataType: 'json',
@@ -274,7 +250,7 @@ function atualizarEndereco(cpf) {
                 if (term.length >= 3) {
                     // Realizamos a solicitação AJAX para buscar os procedimentos
                     $.ajax({
-                        url: '../../buscar/buscar_local.php',
+                        url: '../buscar/buscar_local.php',
                         type: 'GET',
                         data: {term: term},
                         dataType: 'json',
@@ -309,7 +285,7 @@ function atualizarEndereco(cpf) {
             
             // Realize uma solicitação AJAX para buscar o endereço correspondente
             $.ajax({
-                url: '../../buscar/buscar_endereco_local.php', // Substitua pelo URL correto para buscar o endereço
+                url: '../buscar/buscar_endereco_local.php', // Substitua pelo URL correto para buscar o endereço
                 type: 'GET',
                 data: { local: localSelecionado },
                 dataType: 'json',

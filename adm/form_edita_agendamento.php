@@ -29,11 +29,11 @@ if ($resultado->execute()) {
 
 
 <script src="../mascara.js"></script>
-<h2 class="mb-4">EDITAR AGENDAMENTO</h2>
+<h4 class="mb-4">EDITAR AGENDAMENTO</h4>
 <form method="POST" action="editar_agendamento.php">
     <div class="row">
         <div class="col">
-            <label class="form-label">PROFISSIONAL</label>
+            <label class="form-label" style = "font-size:12px;">PROFISSIONAL</label>
             <select name="profissional" id="profissional" class="form-control form-control-lg" onchange="carregarDatas()">
                 <?php
                 $selectedProfissional = $agendamento['cod_profissional'];
@@ -50,7 +50,7 @@ if ($resultado->execute()) {
             </select>
         </div>
         <div class="col">
-            <label class="form-label">DATA DE ATENDIMENTO</label>
+            <label class="form-label"style = "font-size:12px;">DATA DE ATENDIMENTO</label>
             <select class="form-control form-control-lg" name="data_atendimento" id="dia" onchange="carregarHorarios()">
                 <option value="<?php echo $agendamento['data_atendimento']; ?>">
                 <?php

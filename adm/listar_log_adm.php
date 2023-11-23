@@ -17,9 +17,9 @@ include "../footer.php";
 
 ?>
 
-<h2 class="mb-4">AÇÕES REALIZADAS</h2>
+<h4 class="mb-4">AÇÕES REALIZADAS</h4>
 <p><a class="link-offset-2 link-underline link-underline-opacity-0" href="listar_adm.php">VOLTAR</a></p>
-<table class="table table-striped">
+<table class="table table-striped table-compact" style="font-size:12px;">
         <thead>
             <tr>
             <th scope="col">COD</th>
